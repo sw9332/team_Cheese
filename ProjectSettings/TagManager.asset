@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - item1
+  - item2
+  - item3
+  - item4
+  - object_Table
+  - Chair1
+  - Chair2
+  - Chair3
+  - Chair4
+  - "\uC0AC\uBB3C"
+  - A
+  - B
+  - "\uB2EC\uB825"
+  - "\uB098\uAC00\uB294 \uBB38"
+  - "\uD14C\uC774\uBE14"
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
