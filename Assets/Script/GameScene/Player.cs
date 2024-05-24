@@ -418,6 +418,7 @@ public class Player : MonoBehaviour
         Player_pos = transform.position;
         Player_move.speed = 0;
 
+        //위쪽으로 이동----------
         if(Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector2.up * Player_speed * Time.deltaTime);
@@ -425,6 +426,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
+                Player_move.Play("Player_motion");
             }
 
             else if(Player_speed == 7f)
@@ -434,6 +436,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyUp(KeyCode.W))
+        {
+            Player_move.Play("Player_motion_stop");
+        }
+
+        //아래쪽으로 이동----------
         if(Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector2.down * Player_speed * Time.deltaTime);
@@ -441,6 +449,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
+                Player_move.Play("Player_motion");
             }
 
             else if(Player_speed == 7f)
@@ -450,6 +459,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyUp(KeyCode.S))
+        {
+            Player_move.Play("Player_motion_stop");
+        }
+
+        //왼쪽으로 이동----------
         if(Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector2.left * Player_speed * Time.deltaTime);
@@ -458,6 +473,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
+                Player_move.Play("Player_motion");
             }
 
             else if(Player_speed == 7f)
@@ -467,6 +483,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            Player_move.Play("Player_motion_stop");
+        }
+
+        //오른쪽으로 이동----------
         if(Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector2.right * Player_speed * Time.deltaTime);
@@ -475,6 +497,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
+                Player_move.Play("Player_motion");
             }
 
             else if(Player_speed == 7f)
@@ -482,6 +505,11 @@ public class Player : MonoBehaviour
                 Player_move.speed = 2;
                 Player_Hp.value -= 0.03f;
             }
+        }
+
+        if(Input.GetKeyUp(KeyCode.D))
+        {
+            Player_move.Play("Player_motion_stop");
         }
 
         if(Input.GetKey(KeyCode.LeftShift))
