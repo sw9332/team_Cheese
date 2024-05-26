@@ -374,6 +374,24 @@ public class Player : MonoBehaviour
         {
             object_collision = "사물";
         }
+
+        if(other.gameObject.tag == "달력")
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                ObjectName = "달력";
+        }
+
+        if(other.gameObject.tag == "인형")
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                ObjectName = "인형";
+        }
+
+        if(other.gameObject.tag == "나가는 문")
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                ObjectName = "나가는 문";
+        }
     }
 
     public static string ObjectName;//상호작용 오브젝트 이름
@@ -384,21 +402,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "A") //케이크 이벤트
         {
             UIManager.Next_value = 6;
-        }
-
-        if(other.gameObject.tag == "달력")
-        {
-            ObjectName = "달력";
-        }
-
-        if(other.gameObject.tag == "인형")
-        {
-            ObjectName = "인형";
-        }
-
-        if(other.gameObject.tag == "나가는 문")
-        {
-            ObjectName = "나가는 문";
+            Destroy(other.gameObject);
         }
     }
 
@@ -426,19 +430,20 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("Player_motion");
+                Player_move.Play("walking the vertical up");
             }
 
             else if(Player_speed == 7f)
             {
                 Player_move.speed = 2;
-                Player_Hp.value -= 0.03f;
+                Player_move.Play("walking the vertical up");
+                Player_Hp.value -= 0.5f;
             }
         }
 
         if(Input.GetKeyUp(KeyCode.W))
         {
-            Player_move.Play("Player_motion_stop");
+            Player_move.Play("stop vertical");
         }
 
         //아래쪽으로 이동----------
@@ -449,19 +454,20 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("Player_motion");
+                Player_move.Play("walking the horizontal");
             }
 
-            else if(Player_speed == 7f)
+            else if(Player_speed == 7f && Player_Hp.value > 0)
             {
                 Player_move.speed = 2;
-                Player_Hp.value -= 0.03f;
+                Player_move.Play("walking the horizontal");
+                Player_Hp.value -= 0.5f;
             }
         }
 
         if(Input.GetKeyUp(KeyCode.S))
         {
-            Player_move.Play("Player_motion_stop");
+            Player_move.Play("stop horizontal");
         }
 
         //왼쪽으로 이동----------
@@ -473,19 +479,20 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("Player_motion");
+                Player_move.Play("walking the horizontal");
             }
 
-            else if(Player_speed == 7f)
+            else if(Player_speed == 7f && Player_Hp.value > 0)
             {
                 Player_move.speed = 2;
-                Player_Hp.value -= 0.03f;
+                Player_move.Play("walking the horizontal");
+                Player_Hp.value -= 0.5f;
             }
         }
 
         if(Input.GetKeyUp(KeyCode.A))
         {
-            Player_move.Play("Player_motion_stop");
+            Player_move.Play("stop horizontal");
         }
 
         //오른쪽으로 이동----------
@@ -497,24 +504,33 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("Player_motion");
+                Player_move.Play("walking the horizontal");
             }
 
-            else if(Player_speed == 7f)
+            else if(Player_speed == 7f && Player_Hp.value > 0)
             {
                 Player_move.speed = 2;
-                Player_Hp.value -= 0.03f;
+                Player_move.Play("walking the horizontal");
+                Player_Hp.value -= 0.5f;
             }
         }
 
         if(Input.GetKeyUp(KeyCode.D))
         {
-            Player_move.Play("Player_motion_stop");
+            Player_move.Play("stop horizontal");
+        }
+
+        if(Input.GetKey(KeyCode.LeftShift) && Player_Hp.value > 0)
+        {
+            Player_speed = 7f;
         }
 
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Player_speed = 7f;
+            if(Player_Hp.value < 1)
+            {
+                Player_speed = 3.5f;
+            }
         }
 
         if(Input.GetKeyUp(KeyCode.LeftShift))
