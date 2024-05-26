@@ -395,7 +395,7 @@ public class Player : MonoBehaviour
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the vertical up");
-                Player_Hp.value -= 0.5f;
+                Player_Hp.value -= 1f;
             }
         }
 
@@ -419,7 +419,7 @@ public class Player : MonoBehaviour
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 0.5f;
+                Player_Hp.value -= 1f;
             }
         }
 
@@ -444,7 +444,7 @@ public class Player : MonoBehaviour
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 0.5f;
+                Player_Hp.value -= 1f;
             }
         }
 
@@ -469,7 +469,7 @@ public class Player : MonoBehaviour
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 0.5f;
+                Player_Hp.value -= 1f;
             }
         }
 
@@ -513,5 +513,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Player_Move();
+
+        Player_Hp.value += 0.5f;
     }
 }
