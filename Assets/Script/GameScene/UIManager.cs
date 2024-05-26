@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     public static bool Text_effect_isCheck = false;
 
     //스토리 진행
-    void Next_value_manager()
+    void Stroy()
     {
         switch(Next_value)
         {
@@ -338,14 +338,14 @@ public class UIManager : MonoBehaviour
 
     void Fadein()
     {
-        if (isFading && Next_value >= 3)
+        if(isFading && Next_value >= 3)
         {
             fadeTimer += Time.deltaTime;
             float alpha = 1.0f - Mathf.Clamp01(fadeTimer / fadeDuration);
             
             fadeImage.canvasRenderer.SetAlpha(alpha);
 
-            if (fadeTimer >= fadeDuration)
+            if(fadeTimer >= fadeDuration)
             {
                 isFading = false;
                 FadeImage_false();
@@ -374,7 +374,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        Next_value_manager(); //스토리 진행
+        Stroy(); //스토리 진행
         Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
         Fadein();

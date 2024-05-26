@@ -6,14 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    //플레이어 이동 및 위치 관리------------------------------------------------------------------------------
-    public static Vector3 Player_pos; //플레이어 현재 위치
-    public SpriteRenderer rend; //플레이어 스프라이트
-    public Animator Player_move;
-    public Slider Player_Hp;
-
-    public static float Player_speed = 3.5f;
-
     //플레이어 인벤토리---------------------------------------------------------------------------------------
 
     //아이템 스프라이트
@@ -48,8 +40,10 @@ public class Player : MonoBehaviour
     public GameObject Slot3_Button_floor;
     public GameObject Slot4_Button_floor;
 
-    //인벤토리 슬롯1의 아이템 두기
-    void slot1_item_drop()
+    //슬롯 버튼-----------------------------------------------------------------------------
+
+    //슬롯1 아이템 땅에 두기
+    public void slot_button1_floor()
     {
         Slot1_Button_floor.SetActive(false);
         Slot1_Button_objects.SetActive(false);
@@ -62,8 +56,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    //인벤토리 슬롯1의 아이템 올려두기
-    void slot1_item_object_drop()
+    //슬롯2 아이템 오브젝트 위에 올려두기
+    public void slot_button1_objects()
     {
         Slot1_Button_floor.SetActive(false);
         Slot1_Button_objects.SetActive(false);
@@ -76,105 +70,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //인벤토리 슬롯2의 아이템 두기
-    void slot2_item_drop()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
-            item_main_slot[1] = null;
-            item_main_slot_Image[1].sprite = null;
-        }
-    }
-
-    //인벤토리 슬롯2의 아이템 올려두기
-    void slot2_item_object_drop()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[1] = null;
-            item_main_slot_Image[1].sprite = null;
-        }
-    }
-
-    //인벤토리 슬롯3의 아이템 두기
-    void slot3_item_drop()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
-            item_main_slot[2] = null;
-            item_main_slot_Image[2].sprite = null;
-        }
-    }
-
-    //인벤토리 슬롯3의 아이템 올려두기
-    void slot3_item_object_drop()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[2] = null;
-            item_main_slot_Image[2].sprite = null;
-        }
-    }
-
-    //인벤토리 슬롯4의 아이템 두기
-    void slot4_item_drop()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
-            item_main_slot[3] = null;
-            item_main_slot_Image[3].sprite = null;
-        }
-    }
-
-    //인벤토리 슬롯4의 아이템 올려두기
-    void slot4_item_object_drop()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[3] = null;
-            item_main_slot_Image[3].sprite = null;
-        }
-    }
-
-    //슬롯 버튼-----------------------------------------------------------------------------
-
-    //인벤토리 아이템 두기 버튼
-    public void slot_button1_floor()
-    {
-        slot1_item_drop();
-    }
-
-    //인벤토리 아이템 올려두기 버튼
-    public void slot_button1_objects()
-    {
-        slot1_item_object_drop();
-    }
-
-    //슬롯1 버튼
+    //슬롯1 UI버튼
     public void Slot1_UI_Button()
     {
         if(object_collision == "땅")
@@ -192,17 +88,35 @@ public class Player : MonoBehaviour
 
     //-------------------------------------------------------------------------------------------
 
+    //슬롯2 아이템 땅에 두기
     public void slot_button2_floor()
     {
-        slot2_item_drop();
+        Slot2_Button_floor.SetActive(false);
+        Slot2_Button_objects.SetActive(false);
+
+        if(object_collision == "땅")
+        {
+            Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
+            item_main_slot[1] = null;
+            item_main_slot_Image[1].sprite = null;
+        }
     }
 
+    //슬롯2 아이템 오브젝트 위에 올려두기
     public void slot_button2_objects()
     {
-        slot2_item_object_drop();
+        Slot2_Button_floor.SetActive(false);
+        Slot2_Button_objects.SetActive(false);
+
+        if(object_collision == "사물")
+        {
+            Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
+            item_main_slot[1] = null;
+            item_main_slot_Image[1].sprite = null;
+        }
     }
 
-    //슬롯2 버튼
+    //슬롯2 UI버튼
     public void Slot2_UI_Button()
     {
         if(object_collision == "땅")
@@ -220,17 +134,35 @@ public class Player : MonoBehaviour
 
     //-------------------------------------------------------------------------------------
 
+    //슬롯3 아이템 땅에 두기
     public void slot_button3_floor()
     {
-        slot3_item_drop();
+        Slot3_Button_floor.SetActive(false);
+        Slot3_Button_objects.SetActive(false);
+
+        if(object_collision == "땅")
+        {
+            Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
+            item_main_slot[2] = null;
+            item_main_slot_Image[2].sprite = null;
+        }
     }
 
+    //슬롯3 아이템 오브젝트 위에 두기
     public void slot_button3_objects()
     {
-        slot3_item_object_drop();
+        Slot3_Button_floor.SetActive(false);
+        Slot3_Button_objects.SetActive(false);
+
+        if(object_collision == "사물")
+        {
+            Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
+            item_main_slot[2] = null;
+            item_main_slot_Image[2].sprite = null;
+        }
     }
 
-    //슬롯3 버튼
+    //슬롯3 UI버튼
     public void Slot3_UI_Button()
     {
         if(object_collision == "땅")
@@ -248,17 +180,35 @@ public class Player : MonoBehaviour
 
     //------------------------------------------------------------------------------------------
 
+    //슬롯4 아이템 땅에 두기
     public void slot_button4_floor()
     {
-        slot4_item_drop();
+        Slot4_Button_floor.SetActive(false);
+        Slot4_Button_objects.SetActive(false);
+
+        if(object_collision == "땅")
+        {
+            Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
+            item_main_slot[3] = null;
+            item_main_slot_Image[3].sprite = null;
+        }
     }
 
+    //슬롯4 아이템 오브젝트 위에 올려두기
     public void slot_button4_objects()
     {
-        slot4_item_object_drop();
+        Slot4_Button_floor.SetActive(false);
+        Slot4_Button_objects.SetActive(false);
+
+        if(object_collision == "사물")
+        {
+            Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
+            item_main_slot[3] = null;
+            item_main_slot_Image[3].sprite = null;
+        }
     }
 
-    //슬롯4 버튼
+    //슬롯4 UI버튼
     public void Slot4_UI_Button()
     {
         if(object_collision == "땅")
@@ -370,6 +320,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        //오브젝트 상호작용---------------------------------------
         if(other.gameObject.tag == "사물")
         {
             object_collision = "사물";
@@ -417,6 +368,13 @@ public class Player : MonoBehaviour
 
     //Player이동----------------------------------------------------------------------------
 
+    public static Vector3 Player_pos; //플레이어 현재 위치
+    public SpriteRenderer rend; //플레이어 스프라이트
+    public Animator Player_move; //플레이어 이동 애니메이션
+    public Slider Player_Hp; //플레이어 Hp
+
+    public static float Player_speed = 3.5f;
+
     void Player_Move()
     {
         Player_pos = transform.position;
@@ -430,7 +388,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("walking the vertical up");
+                Player_move.Play("walking the vertical up"); //수직 이동 모션
             }
 
             else if(Player_speed == 7f)
@@ -443,7 +401,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.W))
         {
-            Player_move.Play("stop vertical");
+            Player_move.Play("stop vertical"); //수직으로 멈춤
         }
 
         //아래쪽으로 이동----------
@@ -454,7 +412,7 @@ public class Player : MonoBehaviour
             if(Player_speed == 3.5f)
             {
                 Player_move.speed = 1;
-                Player_move.Play("walking the horizontal");
+                Player_move.Play("walking the horizontal"); //수평선 이동 모션
             }
 
             else if(Player_speed == 7f && Player_Hp.value > 0)
@@ -467,7 +425,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.S))
         {
-            Player_move.Play("stop horizontal");
+            Player_move.Play("stop horizontal"); //수평선으로(?) 멈춤
         }
 
         //왼쪽으로 이동----------
@@ -543,7 +501,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate; //currentResolution.refreshRate <- 구형 버전으로 경고 뜰 수 있다.
+        Application.targetFrameRate = Screen.currentResolution.refreshRate; //모니터에 맞는 주사율을 현재 프레임으로 지정 currentResolution.refreshRate <- 구형 버전으로 경고 뜰 수 있다.
     }
 
     void Start()
