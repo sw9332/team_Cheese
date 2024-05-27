@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    //튜토리얼 플레이어 스크립트
+
     //플레이어 인벤토리---------------------------------------------------------------------------------------
 
     //아이템 스프라이트
@@ -42,7 +44,7 @@ public class Player : MonoBehaviour
 
     //슬롯 버튼-----------------------------------------------------------------------------
 
-    //슬롯1 아이템 땅에 두기
+    //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
     {
         Slot1_Button_floor.SetActive(false);
@@ -56,7 +58,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯2 아이템 오브젝트 위에 올려두기
+    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
     public void slot_button1_objects()
     {
         Slot1_Button_floor.SetActive(false);
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
 
     //-------------------------------------------------------------------------------------------
 
-    //슬롯2 아이템 땅에 두기
+    //슬롯2 아이템 땅에 두기 버튼
     public void slot_button2_floor()
     {
         Slot2_Button_floor.SetActive(false);
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯2 아이템 오브젝트 위에 올려두기
+    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
     public void slot_button2_objects()
     {
         Slot2_Button_floor.SetActive(false);
@@ -134,7 +136,7 @@ public class Player : MonoBehaviour
 
     //-------------------------------------------------------------------------------------
 
-    //슬롯3 아이템 땅에 두기
+    //슬롯3 아이템 땅에 두기 버튼
     public void slot_button3_floor()
     {
         Slot3_Button_floor.SetActive(false);
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯3 아이템 오브젝트 위에 두기
+    //슬롯3 아이템 오브젝트 위에 두기 버튼
     public void slot_button3_objects()
     {
         Slot3_Button_floor.SetActive(false);
@@ -180,7 +182,7 @@ public class Player : MonoBehaviour
 
     //------------------------------------------------------------------------------------------
 
-    //슬롯4 아이템 땅에 두기
+    //슬롯4 아이템 땅에 두기 버튼
     public void slot_button4_floor()
     {
         Slot4_Button_floor.SetActive(false);
@@ -194,7 +196,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯4 아이템 오브젝트 위에 올려두기
+    //슬롯4 아이템 오브젝트 위에 올려두기 버튼
     public void slot_button4_objects()
     {
         Slot4_Button_floor.SetActive(false);
