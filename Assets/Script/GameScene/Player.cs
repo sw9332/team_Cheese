@@ -480,11 +480,13 @@ public class Player : MonoBehaviour
             Player_move.Play("stop horizontal");
         }
 
+        //달리기
         if(Input.GetKey(KeyCode.LeftShift) && Player_Hp.value > 0)
         {
             Player_speed = 7f;
         }
 
+        //Hp가 0이면 기본속도로
         if(Input.GetKey(KeyCode.LeftShift))
         {
             if(Player_Hp.value < 1)
@@ -493,6 +495,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        //Shift키를 누르지 않을땐 기본속도
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
             Player_speed = 3.5f;
