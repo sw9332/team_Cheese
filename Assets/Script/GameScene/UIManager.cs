@@ -368,7 +368,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        player_thoughts_UI.SetActive(true);
+       Next_value = 0; player_thoughts_UI.SetActive(true);
         fadein_Start();
     }
 
