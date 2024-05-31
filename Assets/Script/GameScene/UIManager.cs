@@ -352,48 +352,39 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
-    //페이드 인 효과
     public Image fadeImage;
-    public GameObject fade;
-    public float fadeDuration = 1.0f;
-    
-    private bool isFading = false;
-    private float fadeTimer = 0.0f;
-    
-    void fadein_Start()
+    public float fadeDuration = 1f;
+
+    IEnumerator FadeIn()
     {
-        fade.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
         fadeImage.color = Color.black;
-        fadeImage.canvasRenderer.SetAlpha(1.0f);
-        StartFade();
-    }
 
-    void Fadein()
-    {
-        if(isFading && Next_value >= 3)
+        float timer = 0f;
+        while(timer < fadeDuration)
         {
-            fadeTimer += Time.deltaTime;
-            float alpha = 1.0f - Mathf.Clamp01(fadeTimer / fadeDuration);
-            
-            fadeImage.canvasRenderer.SetAlpha(alpha);
-
-            if(fadeTimer >= fadeDuration)
-            {
-                isFading = false;
-                FadeImage_false();
-            }
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
+            yield return null;
         }
+
+        fadeImage.gameObject.SetActive(false);
     }
 
-    void StartFade()
+    IEnumerator FadeOut()
     {
-        isFading = true;
-        fadeTimer = 0.0f;
-    }
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = Color.clear;
 
-    void FadeImage_false()
-    {
-        fade.SetActive(false);
+        float timer = 0f;
+        while(timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false);
     }
 
     //--------------------------------------------------------------------
@@ -402,7 +393,9 @@ public class UIManager : MonoBehaviour
 
     public void tutorial_Exit_OK()
     {
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(FadeOut());
+        Invoke("MainScene", 1f);
+        Time.timeScale = 1;
     }
 
     public void tutorial_Exit_NO()
@@ -411,13 +404,19 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void MainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
     //---------------------------------------------------------------------
 
     void Start()
     {
-       Next_value = 0; player_thoughts_UI.SetActive(true);
-       fadein_Start();
        Time.timeScale = 1;
+       Next_value = 0;
+       player_thoughts_UI.SetActive(true);
+       StartCoroutine(FadeIn());
     }
 
     void Update()
@@ -425,7 +424,6 @@ public class UIManager : MonoBehaviour
         Stroy(); //스토리 진행
         Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
-        Fadein();
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {

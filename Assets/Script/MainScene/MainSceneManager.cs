@@ -75,6 +75,8 @@ public class MainSceneManager : MonoBehaviour
             fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
             yield return null;
         }
+
+        fadeImage.gameObject.SetActive(false);
     }
 
     //-------------------------------------------------------------------------------
