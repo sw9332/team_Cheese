@@ -380,7 +380,13 @@ public class Player : MonoBehaviour
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.up * Velocity * Time.deltaTime);
-            Player_move.Play("walking the vertical up");
+
+            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                Player_move.Play("walking the horizontal");
+            else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                Player_move.Play("walking the horizontal");
+            else
+                Player_move.Play("walking the vertical up");
         }
 
         if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -404,19 +410,20 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
             rend.flipX = true;
-        }
+        }            
 
-        if(Velocity < 1)
-        {
+        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
+            Player_move.Play("stop vertical");
+
+        else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
             Player_move.Play("stop horizontal");
-        }
     }
 
     //--------------------------------------------------------------------------------------------
 
     void Start()
     {
-        Player_move.speed = 0;
+        Player_move.Play("stop horizontal");
     }
 
     void Update()
