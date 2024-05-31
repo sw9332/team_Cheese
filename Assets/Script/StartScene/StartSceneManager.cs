@@ -23,10 +23,6 @@ public class StartSceneManager : MonoBehaviour
     
     void Start()
     {
-        GameSetting Resolution = FindObjectOfType<GameSetting>();
-        if(Resolution != null)
-            Resolution.InitUI();
-
         fadeImage.color = Color.clear;
         fade.SetActive(false);
     }

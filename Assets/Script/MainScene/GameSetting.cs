@@ -14,7 +14,7 @@ public class GameSetting : MonoBehaviour
     int resolutionNum;
     int optionNum = 0;
 
-    public void InitUI()
+    void InitUI()
     {
         for(int i=0; i<Screen.resolutions.Length; i++)
         {
