@@ -361,7 +361,8 @@ public class Player : MonoBehaviour
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
 
-    public static float Player_speed = 3.5f;
+    public static float Velocity;
+    public float moveSpeed = 2.8f;
 
     //walking the vertical up
     //stop vertical
@@ -372,112 +373,42 @@ public class Player : MonoBehaviour
     void Player_Move()
     {
         Player_pos = transform.position; //위치 초기화
-        Player_move.speed = 0;
+        Player_move.speed = 1;
+        Velocity = 0;
 
-        //위쪽으로 이동----------
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(Vector2.up * Player_speed * Time.deltaTime);
-            
-            if(Player_speed == 3.5f)
-            {
-                Player_move.speed = 1;
-                Player_move.Play("walking the vertical up"); //수직 이동 모션
-            }
-
-            else if(Player_speed == 7f)
-            {
-                Player_move.speed = 2;
-                Player_move.Play("walking the vertical up");
-            }
+            Velocity = moveSpeed;
+            transform.Translate(Vector3.up * Velocity * Time.deltaTime);
+            Player_move.Play("walking the vertical up");
         }
 
-        if(Input.GetKeyUp(KeyCode.W))
+        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            Player_move.Play("stop vertical"); //수직으로 멈춤
+            Velocity = moveSpeed;
+            transform.Translate(Vector3.down * Velocity * Time.deltaTime);
+            Player_move.Play("walking the horizontal");
         }
 
-        //아래쪽으로 이동----------
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector2.down * Player_speed * Time.deltaTime);
-
-            if(Player_speed == 3.5f)
-            {
-                Player_move.speed = 1;
-                Player_move.Play("walking the horizontal"); //수평선 이동 모션
-            }
-
-            else if(Player_speed == 7f)
-            {
-                Player_move.speed = 2;
-                Player_move.Play("walking the horizontal");
-            }
-        }
-
-        if(Input.GetKeyUp(KeyCode.S))
-        {
-            Player_move.Play("stop horizontal"); //수평선으로(?) 멈춤
-        }
-
-        //왼쪽으로 이동----------
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector2.left * Player_speed * Time.deltaTime);
+            Velocity = moveSpeed;
+            transform.Translate(Vector3.left * Velocity * Time.deltaTime);
+            Player_move.Play("walking the horizontal");
             rend.flipX = false;
-            
-            if(Player_speed == 3.5f)
-            {
-                Player_move.speed = 1;
-                Player_move.Play("walking the horizontal");
-            }
-
-            else if(Player_speed == 7f)
-            {
-                Player_move.speed = 2;
-                Player_move.Play("walking the horizontal");
-            }
         }
 
-        if(Input.GetKeyUp(KeyCode.A))
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            Player_move.Play("stop horizontal");
-        }
-
-        //오른쪽으로 이동----------
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector2.right * Player_speed * Time.deltaTime);
+            Velocity = moveSpeed;
+            transform.Translate(Vector3.right * Velocity * Time.deltaTime);
+            Player_move.Play("walking the horizontal");
             rend.flipX = true;
-            
-            if(Player_speed == 3.5f)
-            {
-                Player_move.speed = 1;
-                Player_move.Play("walking the horizontal");
-            }
-
-            else if(Player_speed == 7f)
-            {
-                Player_move.speed = 2;
-                Player_move.Play("walking the horizontal");
-            }
         }
 
-        if(Input.GetKeyUp(KeyCode.D))
+        if(Velocity < 1)
         {
             Player_move.Play("stop horizontal");
-        }
-
-        //달리기
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            Player_speed = 7f;
-        }
-
-        //Shift키를 누르지 않을땐 기본속도
-        if(Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            Player_speed = 3.5f;
         }
     }
 

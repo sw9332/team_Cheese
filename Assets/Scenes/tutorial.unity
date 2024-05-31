@@ -1330,6 +1330,7 @@ MonoBehaviour:
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
   ExitUI: {fileID: 1080693240}
+  typingSpeed: 0.028
 --- !u!1 &121373664
 GameObject:
   m_ObjectHideFlags: 0
@@ -7549,6 +7550,7 @@ MonoBehaviour:
   Slot4_Button_floor: {fileID: 1724495117}
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
+  moveSpeed: 2.8
 --- !u!50 &730974883
 Rigidbody2D:
   serializedVersion: 4

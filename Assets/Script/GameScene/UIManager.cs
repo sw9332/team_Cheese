@@ -241,7 +241,7 @@ public class UIManager : MonoBehaviour
         for(int i=0; i<=Text_effect.Length; i++)
         {
             text_typing_effect.text = Text_effect.Substring(0, i);
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -299,7 +299,7 @@ public class UIManager : MonoBehaviour
         for(int i=0; i<=Interaction_string.Length; i++)
         {
             Interaction_typing_effect.text = Interaction_string.Substring(0, i);
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -410,6 +410,8 @@ public class UIManager : MonoBehaviour
     }
 
     //---------------------------------------------------------------------
+
+    public float typingSpeed = 0.03f;
 
     void Start()
     {
