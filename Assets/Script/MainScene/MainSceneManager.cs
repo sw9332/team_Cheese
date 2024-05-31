@@ -6,8 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class MainSceneManager : MonoBehaviour
 {
+    public GameObject SettingUI;
+
     //-------------------------------------------------------------------------------
 
+    //새 게임
+    public void StartButton_Fade()
+    {
+        fadeOut.SetActive(true);
+        isFading_out = true;
+        fadeTimer_out = 0.0f;
+
+        Invoke("StartFadeOut", 1.5f);
+    }
+
+    //설정
+    public void SettingButton_true()
+    {
+        SettingUI.SetActive(true);
+    }
+
+    //설정 닫기
+    public void SettingButton_false()
+    {
+        SettingUI.SetActive(false);
+    }
+
+    //나가기
     public void ExitButton()
     {
         Application.Quit();
@@ -57,15 +82,6 @@ public class MainSceneManager : MonoBehaviour
                 isFading_out = false;
             }
         }
-    }
-
-    public void StartButton_Fade()
-    {
-        fadeOut.SetActive(true);
-        isFading_out = true;
-        fadeTimer_out = 0.0f;
-
-        Invoke("StartFadeOut", 1.5f);
     }
 
     void StartFadeOut()

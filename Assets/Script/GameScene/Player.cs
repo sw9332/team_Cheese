@@ -483,11 +483,6 @@ public class Player : MonoBehaviour
 
     //--------------------------------------------------------------------------------------------
 
-    void Awake()
-    {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate; //모니터에 맞는 주사율을 현재 프레임으로 지정 currentResolution.refreshRate <- 구형 버전으로 경고 뜰 수 있다.
-    }
-
     void Start()
     {
         Player_move.speed = 0;

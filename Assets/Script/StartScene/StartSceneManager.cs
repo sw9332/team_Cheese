@@ -12,9 +12,21 @@ public class StartSceneManager : MonoBehaviour
     
     private bool isFading = false;
     private float fadeTimer = 0.0f;
+
+    public static int Screen_Frame;
+
+    void Awake()
+    {
+        Screen_Frame = Screen.currentResolution.refreshRate;
+        Application.targetFrameRate = Screen_Frame;
+    }
     
     void Start()
     {
+        GameSetting Resolution = FindObjectOfType<GameSetting>();
+        if(Resolution != null)
+            Resolution.InitUI();
+
         fadeImage.color = Color.clear;
         fade.SetActive(false);
     }
