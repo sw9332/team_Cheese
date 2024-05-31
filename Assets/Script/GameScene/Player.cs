@@ -373,7 +373,6 @@ public class Player : MonoBehaviour
     public static Vector3 Player_pos; //플레이어 현재 위치
     public SpriteRenderer rend; //플레이어 스프라이트
     public Animator Player_move; //플레이어 이동 애니메이션
-    public Slider Player_Hp; //플레이어 Hp
 
     public static float Player_speed = 3.5f;
 
@@ -397,7 +396,6 @@ public class Player : MonoBehaviour
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the vertical up");
-                Player_Hp.value -= 1f;
             }
         }
 
@@ -417,11 +415,10 @@ public class Player : MonoBehaviour
                 Player_move.Play("walking the horizontal"); //수평선 이동 모션
             }
 
-            else if(Player_speed == 7f && Player_Hp.value > 0)
+            else if(Player_speed == 7f)
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 1f;
             }
         }
 
@@ -442,11 +439,10 @@ public class Player : MonoBehaviour
                 Player_move.Play("walking the horizontal");
             }
 
-            else if(Player_speed == 7f && Player_Hp.value > 0)
+            else if(Player_speed == 7f)
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 1f;
             }
         }
 
@@ -467,11 +463,10 @@ public class Player : MonoBehaviour
                 Player_move.Play("walking the horizontal");
             }
 
-            else if(Player_speed == 7f && Player_Hp.value > 0)
+            else if(Player_speed == 7f)
             {
                 Player_move.speed = 2;
                 Player_move.Play("walking the horizontal");
-                Player_Hp.value -= 1f;
             }
         }
 
@@ -481,18 +476,9 @@ public class Player : MonoBehaviour
         }
 
         //달리기
-        if(Input.GetKey(KeyCode.LeftShift) && Player_Hp.value > 0)
-        {
-            Player_speed = 7f;
-        }
-
-        //Hp가 0이면 기본속도로
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            if(Player_Hp.value < 1)
-            {
-                Player_speed = 3.5f;
-            }
+            Player_speed = 7f;
         }
 
         //Shift키를 누르지 않을땐 기본속도
@@ -512,13 +498,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         Player_move.speed = 0;
-        Player_Hp.value = 100;
     }
 
     void Update()
     {
         Player_Move();
-
-        Player_Hp.value += 0.5f;
     }
 }
