@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 3:
-                Text_effect = "오늘은..... 드디어! 내 생일이다!";
+                Text_effect = "오늘은.....";
 
                 if(Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 4:
-                Text_effect = "친구들이 오기 전에 파티 준비를 해볼까?";
+                Text_effect = "드디어! 내 생일이야!!";
 
                 if(!Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -101,12 +101,8 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 5:
-                UI_Close();
-                break;
+                Text_effect = "친구들이 오기전에 파티준비를 해볼까?";
 
-            case 6:
-                Text_effect = "어?! 저기 케이크다!";
-                
                 if(Text_effect_isCheck)
                     StartCoroutine(typing());
                     Text_effect_isCheck = false;
@@ -114,8 +110,12 @@ public class UIManager : MonoBehaviour
                 player_UI();
                 break;
 
+            case 6:
+                UI_Close();
+                break;
+
             case 7:
-                Text_effect = "음..... 케이크를 주우려면 인형을 옮겨야겠어!";
+                Text_effect = "어?! 저기 케이크다!";
                 
                 if(!Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -125,41 +125,17 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 8:
-                Text_effect = "!@#$을..... 인형을 옮기려면 스페이스바 키로 수집 후, 다시 인벤토리 창에서 꺼내 올려두세요.";
+                Text_effect = "어.... 음.....";
                 
                 if(Text_effect_isCheck)
                     StartCoroutine(typing());
                     Text_effect_isCheck = false;
 
-                progress();
+                player_UI();
                 break;
 
             case 9:
-                UI_Close();
-                break;
-
-            case 10: //인형을 인벤토리에 넣은 후.
-                Text_effect = "#@#은 카메라를 %#$%다!";
-                
-                if(!Text_effect_isCheck)
-                    StartCoroutine(typing());
-                    Text_effect_isCheck = true;
-
-                progress();
-                break;
-
-            case 11:
-                Text_effect = "빨리... 케이크를 찌...ㄱ..... #@$#@$%!!!";
-                
-                if(Text_effect_isCheck)
-                    StartCoroutine(typing());
-                    Text_effect_isCheck = false;
-
-                progress();
-                break;
-
-            case 12:
-                Text_effect = "와!!! 카메라다! 빨리, 케이크....";
+                Text_effect = "케이크를 주우려면 인형을 옮겨야겠어!";
                 
                 if(!Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -168,8 +144,32 @@ public class UIManager : MonoBehaviour
                 player_UI();
                 break;
 
-            case 13:
-                Text_effect = "어?! 아! 케이크를 빨리 옮기자!";
+            case 10:
+                Text_effect = "!@#$을....";
+                
+                if(Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = false;
+
+                progress();
+                break;
+
+            case 11:
+                Text_effect = "인형을 옮기려면 스페이스바로 수집 후 인벤토리 창에서 꺼내 올려두세요.";
+                
+                if(!Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = true;
+
+                progress();
+                break;
+
+            case 12:
+                UI_Close();
+                break;
+
+            case 13: //인형을 인벤토리에 넣은 후.
+                Text_effect = "와!!! 카메라다! 카메라로! 카메라로.....";
                 
                 if(Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -179,8 +179,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 14:
-                Text_effect = "카메라를 획득하였습니다.";
-                CameraUI.SetActive(true);
+                Text_effect = "빨리... ㅋ.... 케이크를 %#@$!!!";
                 
                 if(!Text_effect_isCheck)
                     StartCoroutine(typing());
@@ -190,10 +189,41 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 15:
-                UI_Close();
+                Text_effect = "어?... 어... 아!";
+                
+                if(Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = false;
+
+                player_UI();
                 break;
 
             case 16:
+                Text_effect = "빨리 케이크를 옮기자!";
+                
+                if(!Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = true;
+
+                player_UI();
+                break;
+
+            case 17:
+                Text_effect = "카메라를 획득하였습니다.";
+                CameraUI.SetActive(true);
+                
+                if(Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = false;
+
+                progress();
+                break;
+
+            case 18:
+                UI_Close();
+                break;
+
+            case 19:
                 UI_Close();
                 break;
         }

@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     //튜토리얼 플레이어 스크립트
 
-    //플레이어 인벤토리---------------------------------------------------------------------------------------
+    //플레이어 인벤토리-------------------------------------------------------------------------------------------------------------
 
     //아이템 스프라이트
     public Sprite item1Sprite;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     public static string object_collision = "땅"; //테이블과 충돌 중인지 확인하는 변수.
 
-    //아이템 두기/올려두기---------------------------------------------------------------
+    //아이템 두기/올려두기 버튼----------------------------------------------------------------------------------------------------------
 
     //아이템 올려두기 버튼
     public GameObject Slot1_Button_objects;
@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
     public GameObject Slot2_Button_floor;
     public GameObject Slot3_Button_floor;
     public GameObject Slot4_Button_floor;
-
-    //슬롯 버튼-----------------------------------------------------------------------------
 
     //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
@@ -88,8 +86,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //-------------------------------------------------------------------------------------------
-
     //슬롯2 아이템 땅에 두기 버튼
     public void slot_button2_floor()
     {
@@ -133,8 +129,6 @@ public class Player : MonoBehaviour
             Slot2_Button_objects.SetActive(true);
         }
     }
-
-    //-------------------------------------------------------------------------------------
 
     //슬롯3 아이템 땅에 두기 버튼
     public void slot_button3_floor()
@@ -180,8 +174,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //------------------------------------------------------------------------------------------
-
     //슬롯4 아이템 땅에 두기 버튼
     public void slot_button4_floor()
     {
@@ -226,9 +218,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    //아이템 줍기-----------------------------------------------------------------------
+    //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
-    //오브젝트 아이템 이름(string)이 "item0" 이라면 "item0" 오브젝트(GameObject)를 반환.
     GameObject GetItemObject(string item_name)
     {
         if (item_name == "item1")
@@ -243,7 +234,6 @@ public class Player : MonoBehaviour
         return null;
     }
 
-    //오브젝트 아이템 이름(string)이 "item0" 이라면 "item0" 스프라이트를 반환.
     Sprite GetItemSprite(string item_name)
     {
         if (item_name == "item1")
@@ -257,8 +247,6 @@ public class Player : MonoBehaviour
 
         return null;
     }
-
-    //콜라이더 관리-------------------------------------------------------------------------
 
     //충돌 중일때 실행
     void OnTriggerStay2D(Collider2D other)
@@ -315,7 +303,9 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "item4";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-                    UIManager.Next_value = 10;
+
+                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로
+
                     break;
                 }
             }
@@ -348,17 +338,15 @@ public class Player : MonoBehaviour
 
     public static string ObjectName;//상호작용 오브젝트 이름
 
-    //충돌 했을때 실행
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "A") //케이크 이벤트
+        if(other.gameObject.tag == "Cake Event") //케이크 이벤트
         {
-            UIManager.Next_value = 6;
+            UIManager.Next_value = 7;
             Destroy(other.gameObject);
         }
     }
 
-    //충돌이 끝났을때 실행
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.gameObject.tag == "B")
@@ -367,17 +355,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Player이동----------------------------------------------------------------------------
+    //Player이동----------------------------------------------------------------------------------------------------------------------
 
-    public static Vector3 Player_pos; //플레이어 현재 위치
-    public SpriteRenderer rend; //플레이어 스프라이트
+    public static Vector3 Player_pos;
+    public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
 
     public static float Player_speed = 3.5f;
 
+    //walking the vertical up
+    //stop vertical
+    
+    //walking the horizontal
+    //stop horizontal
+
     void Player_Move()
     {
-        Player_pos = transform.position;
+        Player_pos = transform.position; //위치 초기화
         Player_move.speed = 0;
 
         //위쪽으로 이동----------

@@ -14,12 +14,12 @@ TagManager:
   - Chair3
   - Chair4
   - "\uC0AC\uBB3C"
-  - A
   - B
   - "\uB2EC\uB825"
   - "\uB098\uAC00\uB294 \uBB38"
   - "\uD14C\uC774\uBE14"
   - Teddy Bear
+  - Cake Event
   layers:
   - Default
   - TransparentFX

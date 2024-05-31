@@ -70,7 +70,7 @@ public class MainSceneManager : MonoBehaviour
 
     void StartFadeOut()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("tutorial");
     }
 
     //-------------------------------------------------------------------------------
