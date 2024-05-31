@@ -437,8 +437,17 @@ public class UIManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitUI.SetActive(true);
-            Time.timeScale = 0;
+            if(ExitUI.activeSelf == false)
+            {
+                ExitUI.SetActive(true);
+                Time.timeScale = 0;
+            }
+
+            else if(ExitUI.activeSelf == true)
+            {
+                ExitUI.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
 }
