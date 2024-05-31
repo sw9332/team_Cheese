@@ -285,7 +285,6 @@ public class Player : MonoBehaviour
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
                     item_main_slot[i] = "item2";
-                    UIManager.Next_value = 10;
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     break;
@@ -302,7 +301,6 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "item3";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-                    //UIManager.Next_value = 10;
                     break;
                 }
             }
@@ -317,6 +315,7 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "item4";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
+                    UIManager.Next_value = 10;
                     break;
                 }
             }
