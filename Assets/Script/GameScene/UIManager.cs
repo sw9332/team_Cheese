@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -304,6 +305,7 @@ public class UIManager : MonoBehaviour
 
     //---------------------------------------------------------------------
 
+    //상호작용UI 열기/닫기
     void Interaction_UI_open()
     {
         Object_Interaction_UI.SetActive(true);
@@ -396,10 +398,26 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
+    public GameObject ExitUI;
+
+    public void tutorial_Exit_OK()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void tutorial_Exit_NO()
+    {
+        ExitUI.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    //---------------------------------------------------------------------
+
     void Start()
     {
        Next_value = 0; player_thoughts_UI.SetActive(true);
-        fadein_Start();
+       fadein_Start();
+       Time.timeScale = 1;
     }
 
     void Update()
@@ -408,5 +426,11 @@ public class UIManager : MonoBehaviour
         Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
         Fadein();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitUI.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }
