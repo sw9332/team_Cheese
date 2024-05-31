@@ -416,7 +416,7 @@ public class UIManager : MonoBehaviour
        Time.timeScale = 1;
        Next_value = 0;
        player_thoughts_UI.SetActive(true);
-       StartCoroutine(FadeIn());
+       fadeImage.gameObject.SetActive(true);
     }
 
     void Update()
@@ -424,6 +424,16 @@ public class UIManager : MonoBehaviour
         Stroy(); //스토리 진행
         Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
+
+        if(Next_value == 3)
+        {
+            StartCoroutine(FadeIn());
+        }
+
+        else if(Next_value > 3)
+        {
+            StopCoroutine(FadeIn());
+        }
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {

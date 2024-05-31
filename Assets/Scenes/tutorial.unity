@@ -1291,11 +1291,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1739368322}
-  - {fileID: 1283266827}
-  - {fileID: 1032883398}
   - {fileID: 527049653}
   - {fileID: 1080693241}
   - {fileID: 1201729922}
+  - {fileID: 1283266827}
+  - {fileID: 1032883398}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
