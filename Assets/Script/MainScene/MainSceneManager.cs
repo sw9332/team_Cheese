@@ -75,8 +75,49 @@ public class MainSceneManager : MonoBehaviour
 
     //-------------------------------------------------------------------------------
 
+    public Collider2D flag;
+    public Transform flag_pos;
+    public GameObject TeddyBear;
+    public GameObject TeddyBear_yellow;
+    public GameObject TeddyBear_pink;
+
+    void MainObjectClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+            if (hit.collider != null && hit.collider == flag)
+            {
+                GameObject clickedObject = hit.collider.gameObject;
+                Debug.Log("Clicked on: " + clickedObject.name);
+                
+                int Rand = Random.Range(1,4);
+
+                switch(Rand)
+                {
+                    case 1:
+                        Instantiate(TeddyBear, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
+                        break;
+                    case 2:
+                        Instantiate(TeddyBear_yellow, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
+                        break;
+                    case 3:
+                        Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
+                        break;
+                }                    
+            }
+        }
+    }
+
     void Start()
     {
         StartCoroutine(FadeIn());
+    }
+
+    void Update()
+    {
+        MainObjectClick();
     }
 }
