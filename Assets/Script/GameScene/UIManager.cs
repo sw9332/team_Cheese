@@ -419,6 +419,7 @@ public class UIManager : MonoBehaviour
        Next_value = 0;
        player_thoughts_UI.SetActive(true);
        fadeImage.gameObject.SetActive(true);
+       Camera_setactive = false;
     }
 
     void Update()

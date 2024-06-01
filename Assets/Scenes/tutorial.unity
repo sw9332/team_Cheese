@@ -7449,8 +7449,8 @@ GameObject:
   - component: {fileID: 730974880}
   - component: {fileID: 730974886}
   - component: {fileID: 730974883}
-  - component: {fileID: 730974882}
   - component: {fileID: 730974887}
+  - component: {fileID: 730974882}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7537,14 +7537,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee4200447b99414dbeb4d62911f998f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item1Sprite: {fileID: 21300000, guid: 494f254542e748e4194711e6ded40ff2, type: 2}
-  item2Sprite: {fileID: 21300000, guid: f6f5a9514b0f3064c95eae93bed2c337, type: 3}
-  item3Sprite: {fileID: 21300000, guid: 0902ce92884eba6439f99ac20cb1b412, type: 3}
-  item4Sprite: {fileID: 21300000, guid: a98b32ea2aa9f094f967d1343429d88e, type: 3}
-  item1: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
-  item2: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
-  item3: {fileID: 8127878303061343821, guid: f8c8f0e970e535b4387920e28512dfb9, type: 3}
-  item4: {fileID: 2259940670080631774, guid: 65620292302482749902a1550bd96d01, type: 3}
+  Slot1_Button_objects: {fileID: 1968588209}
+  Slot2_Button_objects: {fileID: 640278322}
+  Slot3_Button_objects: {fileID: 257856199}
+  Slot4_Button_objects: {fileID: 555977243}
+  Slot1_Button_floor: {fileID: 1329276309}
+  Slot2_Button_floor: {fileID: 1480249339}
+  Slot3_Button_floor: {fileID: 1779679271}
+  Slot4_Button_floor: {fileID: 1724495117}
   item_main_slot:
   - 
   - 
@@ -7555,14 +7555,14 @@ MonoBehaviour:
   - {fileID: 771593826}
   - {fileID: 1600430777}
   - {fileID: 1978578322}
-  Slot1_Button_objects: {fileID: 1968588209}
-  Slot2_Button_objects: {fileID: 640278322}
-  Slot3_Button_objects: {fileID: 257856199}
-  Slot4_Button_objects: {fileID: 555977243}
-  Slot1_Button_floor: {fileID: 1329276309}
-  Slot2_Button_floor: {fileID: 1480249339}
-  Slot3_Button_floor: {fileID: 1779679271}
-  Slot4_Button_floor: {fileID: 1724495117}
+  item1: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  item2: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+  item3: {fileID: 8127878303061343821, guid: f8c8f0e970e535b4387920e28512dfb9, type: 3}
+  item4: {fileID: 2259940670080631774, guid: 65620292302482749902a1550bd96d01, type: 3}
+  item1Sprite: {fileID: 21300000, guid: 494f254542e748e4194711e6ded40ff2, type: 2}
+  item2Sprite: {fileID: 21300000, guid: f6f5a9514b0f3064c95eae93bed2c337, type: 3}
+  item3Sprite: {fileID: 21300000, guid: 0902ce92884eba6439f99ac20cb1b412, type: 3}
+  item4Sprite: {fileID: 21300000, guid: a98b32ea2aa9f094f967d1343429d88e, type: 3}
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
   moveSpeed: 2.8
