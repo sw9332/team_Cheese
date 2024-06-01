@@ -81,6 +81,9 @@ public class MainSceneManager : MonoBehaviour
     public GameObject TeddyBear_yellow;
     public GameObject TeddyBear_pink;
 
+    public Collider2D CameraObject;
+    public ParticleSystem CameraEffect;
+
     void MainObjectClick()
     {
         if (Input.GetMouseButtonDown(0))
@@ -107,6 +110,12 @@ public class MainSceneManager : MonoBehaviour
                         Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
                         break;
                 }                    
+            }
+
+            if (hit.collider != null && hit.collider == CameraObject)
+            {
+                GameObject clickedObject = hit.collider.gameObject;
+                CameraEffect.Play();
             }
         }
     }
