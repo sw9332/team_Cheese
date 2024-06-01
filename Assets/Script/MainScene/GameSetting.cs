@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameSetting : MonoBehaviour
 {
@@ -18,15 +19,10 @@ public class GameSetting : MonoBehaviour
 
     void InitUI()
     {
-        for(int i=0; i<Screen.resolutions.Length; i++)
-        {
-            if(Screen.resolutions[i].refreshRate == StartSceneManager.Screen_Frame)
-            {
-                resolutions.Add(Screen.resolutions[i]);
-            }
-        }
-
+        var sortedResolutions = Screen.resolutions.Where(res => res.refreshRate == StartSceneManager.Screen_Frame).OrderByDescending(res => res.width * res.height).ToList();
+        resolutions = sortedResolutions;
         resolutionDropdown.options.Clear();
+        optionNum = 0;
 
         foreach(Resolution item in resolutions)
         {
@@ -38,6 +34,7 @@ public class GameSetting : MonoBehaviour
             {
                 resolutionDropdown.value = optionNum;
             }
+
             optionNum++;
         }
 
