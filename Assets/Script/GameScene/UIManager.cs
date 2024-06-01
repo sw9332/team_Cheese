@@ -411,6 +411,18 @@ public class UIManager : MonoBehaviour
 
     //---------------------------------------------------------------------
 
+    public GameObject CameraAlbumUI;
+
+    void AlbumUI_Open_Close()
+    {
+        if(Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == false)
+            CameraAlbumUI.SetActive(true);
+        else if(Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == true)
+            CameraAlbumUI.SetActive(false);
+    }
+
+    //---------------------------------------------------------------------
+
     public float typingSpeed = 0.03f;
 
     void Start()
@@ -427,6 +439,7 @@ public class UIManager : MonoBehaviour
         Stroy(); //스토리 진행
         Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
+        AlbumUI_Open_Close(); //카메라 앨범 열기 닫기
 
         if(Next_value == 3)
         {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameSetting : MonoBehaviour
 {
+    //해상도 설정 부분-------------------------------------------------------------------------
+
     public Dropdown resolutionDropdown;
     public Toggle fullscreenBtn;
 
@@ -60,11 +62,91 @@ public class GameSetting : MonoBehaviour
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }
 
+    //그래픽 품질 설정 부분---------------------------------------------------------------------------------------
+
+    public static string Graphics = "Ultra";
+
+    public GameObject U_Check;
+    public GameObject H_Check;
+    public GameObject M_Check;
+    public GameObject L_Check;
+
+    public void GraphicsSettings_Ultra()
+    {
+        Graphics = "Ultra";
+    }
+
+    public void GraphicsSettings_High()
+    {
+        Graphics = "High";
+    }
+
+    public void GraphicsSettings_Medium()
+    {
+        Graphics = "Medium";
+    }
+
+    public void GraphicsSettings_Low()
+    {
+        Graphics = "Low";
+    }
+
+    void Graphic()
+    {
+        if(Graphics == "Ultra")
+        {
+            QualitySettings.SetQualityLevel(5);
+            U_Check.SetActive(true);
+            H_Check.SetActive(false);
+            M_Check.SetActive(false);
+            L_Check.SetActive(false);
+        }
+
+        else if(Graphics == "High")
+        {
+            QualitySettings.SetQualityLevel(3);
+            U_Check.SetActive(false);
+            H_Check.SetActive(true);
+            M_Check.SetActive(false);
+            L_Check.SetActive(false);
+        }
+
+        else if(Graphics == "Medium")
+        {
+            QualitySettings.SetQualityLevel(2);
+            U_Check.SetActive(false);
+            H_Check.SetActive(false);
+            M_Check.SetActive(true);
+            L_Check.SetActive(false);
+        }
+
+        else if(Graphics == "Low")
+        {
+            QualitySettings.SetQualityLevel(1);
+            U_Check.SetActive(false);
+            H_Check.SetActive(false);
+            M_Check.SetActive(false);
+            L_Check.SetActive(true);
+        }
+    }
+
+    //배경음, 효과음 설정 부분------------------------------------------------------------------------------------
+
     public Slider background_sound;
     public Slider effect_sound;
 
     public Text background_sound_text;
     public Text effect_sound_text;
+
+    void Background_sound_Setting()
+    {
+        background_sound_text.text = "배경음 : "+background_sound.value.ToString("F1")+"%";
+    }
+
+    void Effect_sound_Setting()
+    {
+        effect_sound_text.text = "효과음 : "+effect_sound.value.ToString("F1")+"%";
+    }
 
     void Start()
     {
@@ -75,7 +157,8 @@ public class GameSetting : MonoBehaviour
 
     void Update()
     {
-        background_sound_text.text = "배경음 : "+background_sound.value.ToString("F1")+"%";
-        effect_sound_text.text = "효과음 : "+effect_sound.value.ToString("F1")+"%";
+        Background_sound_Setting();
+        Effect_sound_Setting();
+        Graphic();
     }
 }
