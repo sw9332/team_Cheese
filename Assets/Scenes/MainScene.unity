@@ -3240,7 +3240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1140336921}
         m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
-        m_MethodName: SettingButton_true
+        m_MethodName: SettingButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

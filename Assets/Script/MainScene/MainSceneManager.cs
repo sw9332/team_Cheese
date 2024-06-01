@@ -6,24 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class MainSceneManager : MonoBehaviour
 {
+    public GameObject SettingUI;
+
     //메인화면 버튼---------------------------------------------------------------------
 
-    //새 게임
+    //새 게임---------------------------------
     public void StartButton_Fade()
     {
         StartCoroutine(FadeOut());
         Invoke("tutorial_start", 1f);
     }
 
-    public GameObject SettingUI;
+    void tutorial_start()
+    {
+        SceneManager.LoadScene("tutorial");
+    }
 
-    //설정
-    public void SettingButton_true()
+    //설정-------------------------------------
+    public void SettingButton()
     {
         SettingUI.SetActive(true);
     }
     
-    //나가기
+    //나가기------------------------------------
     public void ExitButton()
     {
         Application.Quit();
@@ -31,13 +36,7 @@ public class MainSceneManager : MonoBehaviour
 
     //-------------------------------------------------------------------------------
 
-    void tutorial_start()
-    {
-        SceneManager.LoadScene("tutorial");
-    }
-
-    //-------------------------------------------------------------------------------
-
+    //페이드 인, 아웃
     public Image fadeImage;
     public float fadeDuration = 1f;
 
@@ -75,6 +74,7 @@ public class MainSceneManager : MonoBehaviour
 
     //-------------------------------------------------------------------------------
 
+    //메인화면 효과
     public Collider2D flag;
     public Transform flag_pos;
     public GameObject TeddyBear;
@@ -119,6 +119,8 @@ public class MainSceneManager : MonoBehaviour
             }
         }
     }
+
+    //-------------------------------------------------------------------------------
 
     void Start()
     {
