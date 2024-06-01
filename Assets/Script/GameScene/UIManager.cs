@@ -256,6 +256,7 @@ public class UIManager : MonoBehaviour
 
             case 22:
                 UI_Close();
+                Text_effect_isCheck = false;
                 break;
         }
     }
