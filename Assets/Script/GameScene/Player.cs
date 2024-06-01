@@ -10,37 +10,26 @@ public class Player : MonoBehaviour
 
     //플레이어 인벤토리-------------------------------------------------------------------------------------------------------------
 
-    //아이템 스프라이트
-    public Sprite item1Sprite;
-    public Sprite item2Sprite;
-    public Sprite item3Sprite;
-    public Sprite item4Sprite;
+    //아이템 두기/올려두기 버튼
 
-    //아이템 오브젝트
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
-
-    //아이템 이름, 아이템 이미지 관리
-    public string[] item_main_slot = new string[4];
-    public Image[] item_main_slot_Image = new Image[4];
-
-    public static string object_collision = "땅"; //테이블과 충돌 중인지 확인하는 변수.
-
-    //아이템 두기/올려두기 버튼----------------------------------------------------------------------------------------------------------
+    //(슬롯을 누르면 나오는 두기, 올려두기 버튼)
 
     //아이템 올려두기 버튼
-    public GameObject Slot1_Button_objects;
+    public GameObject Slot1_Button_objects; //슬롯1 아이템 올려두기 버튼
     public GameObject Slot2_Button_objects;
     public GameObject Slot3_Button_objects;
     public GameObject Slot4_Button_objects;
 
     //아이템 두기 버튼
-    public GameObject Slot1_Button_floor;
+    public GameObject Slot1_Button_floor; //슬롯1 아이템 두기 버튼
     public GameObject Slot2_Button_floor;
     public GameObject Slot3_Button_floor;
     public GameObject Slot4_Button_floor;
+
+    public string[] item_main_slot = new string[4];
+    public Image[] item_main_slot_Image = new Image[4];
+
+    public static string object_collision = "땅";
 
     //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
@@ -220,6 +209,12 @@ public class Player : MonoBehaviour
 
     //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
+    //아이템 오브젝트
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+    public GameObject item4;
+
     GameObject GetItemObject(string item_name)
     {
         if (item_name == "item1")
@@ -233,6 +228,12 @@ public class Player : MonoBehaviour
 
         return null;
     }
+
+    //아이템 스프라이트
+    public Sprite item1Sprite;
+    public Sprite item2Sprite;
+    public Sprite item3Sprite;
+    public Sprite item4Sprite;
 
     Sprite GetItemSprite(string item_name)
     {
@@ -248,7 +249,6 @@ public class Player : MonoBehaviour
         return null;
     }
 
-    //충돌 중일때 실행
     void OnTriggerStay2D(Collider2D other)
     {
         //플레이어와 아이템이 충돌 중에 Z키를 누르면 해당 아이템을 줍고 슬롯에 저장.
@@ -304,7 +304,7 @@ public class Player : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
 
-                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로
+                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
 
                     break;
                 }
@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
 
     void Player_Move()
     {
-        Player_pos = transform.position; //위치 초기화
+        Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_move.speed = 1;
         Velocity = 0;
 
