@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
+    Vector3 Camera_Pos;
 
     void Start()
     {
@@ -17,14 +18,18 @@ public class CameraManager : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 Camera_Pos = transform.position;
+        Camera_Pos = transform.position;
 
-        if(player.position.x > -4 && player.position.x < 4)
+        if(player.position.x > -1f && player.position.x < 1f)
         {
             Camera_Pos.x = player.position.x + offset.x;
         }
 
-        Camera_Pos.y = player.position.y + offset.y;
+        if(player.position.y > -1f && player.position.y < 1f)
+        {
+            Camera_Pos.y = player.position.y + offset.y;
+        }
+
         transform.position = Camera_Pos;
     }
 }
