@@ -22,12 +22,6 @@ public class MainSceneManager : MonoBehaviour
     {
         SettingUI.SetActive(true);
     }
-
-    //설정 닫기
-    public void SettingButton_false()
-    {
-        SettingUI.SetActive(false);
-    }
     
     //나가기
     public void ExitButton()

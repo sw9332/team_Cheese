@@ -145,17 +145,25 @@ public class GameSetting : MonoBehaviour
         effect_sound_text.text = "효과음 : "+effect_sound.value.ToString("F1")+"%";
     }
 
+    public void OK_Button()
+    {
+        PlayerPrefs.SetFloat("Background Sound", background_sound.value);
+        PlayerPrefs.SetFloat("Effect Sound", effect_sound.value);
+        gameObject.SetActive(false);
+    }
+
     void Start()
     {
         InitUI();
-        background_sound.value = 100;
-        effect_sound.value = 100;
+
+        background_sound.value = PlayerPrefs.GetFloat("Background Sound");
+        effect_sound.value = PlayerPrefs.GetFloat("Effect Sound");
     }
 
     void Update()
     {
         Background_sound_Setting();
-        Effect_sound_Setting();
+        Effect_sound_Setting();   
         Graphic();
     }
 }
