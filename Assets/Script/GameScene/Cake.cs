@@ -9,6 +9,7 @@ public class Cake : MonoBehaviour
         if(other.gameObject.tag == "테이블")
         {
             UIManager.Camera_setactive = true;
+            UIManager.Next_value = 19;
         }
     }
 }

@@ -225,6 +225,36 @@ public class UIManager : MonoBehaviour
                 break;
 
             case 19:
+                Text_effect = "오!!!";
+                
+                if(!Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = true;
+
+                player_UI();
+                break;
+
+            case 20:
+                Text_effect = "카메라가 빛난다!";
+                
+                if(Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = false;
+
+                player_UI();
+                break;
+
+            case 21:
+                Text_effect = "이제 찍으면 되나?";
+                
+                if(!Text_effect_isCheck)
+                    StartCoroutine(typing());
+                    Text_effect_isCheck = true;
+
+                player_UI();
+                break;
+
+            case 22:
                 UI_Close();
                 break;
         }
