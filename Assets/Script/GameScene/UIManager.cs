@@ -304,19 +304,19 @@ public class UIManager : MonoBehaviour
     public Animator Camera_Effect_Animation;
     public static bool Camera_setactive = false;
 
-    void Camera_effect_manager()
-    {
-        switch(Camera_setactive)
-        {
-            case false:
-                Camera_Effect_Animation.Play("Camera_Effect_false");
-                break;
+    //void Camera_effect_manager()
+    //{
+    //    switch(Camera_setactive)
+    //    {
+    //        case false:
+    //            Camera_Effect_Animation.Play("Camera_Effect_false");
+    //            break;
 
-            case true:
-                Camera_Effect_Animation.Play("Camera_Effect_true");
-                break;
-        }
-    }
+    //        case true:
+    //            Camera_Effect_Animation.Play("Camera_Effect_true");
+    //            break;
+    //    }
+    //}
 
     //--------------------------------------------------------------------
 
@@ -376,7 +376,7 @@ public class UIManager : MonoBehaviour
     {
         Next_value_manager(); //스토리 진행
         Object_Interaction(); //오브젝트 상호작용 대화
-        Camera_effect_manager(); //카메라 UI 효과
+        // Camera_effect_manager(); //카메라 UI 효과
         Fadein();
     }
 }

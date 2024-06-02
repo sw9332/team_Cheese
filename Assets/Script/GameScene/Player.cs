@@ -19,16 +19,17 @@ public class Player : MonoBehaviour
     //플레이어 인벤토리---------------------------------------------------------------------------------------
 
     //아이템 스프라이트
-    public Sprite item1Sprite;
-    public Sprite item2Sprite;
+    public Sprite cakeBehindChairSprite;
+    public Sprite pinkDollonChairSprite;
     public Sprite item3Sprite;
     public Sprite item4Sprite;
 
     //아이템 오브젝트
-    public GameObject item1;
-    public GameObject item2;
+    public GameObject cakeBehindChair;
+    public GameObject pinkDollonChair;
     public GameObject item3;
     public GameObject item4;
+
 
     //아이템 이름, 아이템 이미지 관리
     public string[] item_main_slot = new string[4];
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
     public GameObject Slot2_Button_floor;
     public GameObject Slot3_Button_floor;
     public GameObject Slot4_Button_floor;
+
 
     //인벤토리 슬롯1의 아이템 두기
     void slot1_item_drop()
@@ -281,10 +283,10 @@ public class Player : MonoBehaviour
     //오브젝트 아이템 이름(string)이 "item0" 이라면 "item0" 오브젝트(GameObject)를 반환.
     GameObject GetItemObject(string item_name)
     {
-        if (item_name == "item1")
-            return item1;
-        else if (item_name == "item2")
-            return item2;
+        if (item_name == "cakeBehindChair")
+            return cakeBehindChair;
+        else if (item_name == "pinkDolloncChair")
+            return pinkDollonChair;
         else if (item_name == "item3")
             return item3;
         else if (item_name == "item4")
@@ -296,10 +298,10 @@ public class Player : MonoBehaviour
     //오브젝트 아이템 이름(string)이 "item0" 이라면 "item0" 스프라이트를 반환.
     Sprite GetItemSprite(string item_name)
     {
-        if (item_name == "item1")
-            return item1Sprite;
-        else if (item_name == "item2")
-            return item2Sprite;
+        if (item_name == "cakeBehindChair")
+            return cakeBehindChairSprite;
+        else if (item_name == "pinkDolloncChair")
+            return pinkDollonChairSprite;
         else if (item_name == "item3")
             return item3Sprite;
         else if (item_name == "item4")
@@ -314,13 +316,13 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         //플레이어와 아이템이 충돌 중에 Z키를 누르면 해당 아이템을 줍고 슬롯에 저장.
-        if(other.gameObject.tag == "item1" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "cakeBehindChair" && Input.GetKeyDown(KeyCode.Space))
         {
             for (int i=0; i<item_main_slot.Length; i++)
             {
                 if(item_main_slot[i] == "" || item_main_slot[i] == null) //i번째 슬롯에 아이템이 없는지 확인
                 {
-                    item_main_slot[i] = "item1"; //i번째 슬롯에 item1적용.
+                    item_main_slot[i] = "cakeBehindChair"; //i번째 슬롯에 cakeBehindChair적용.
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]); //슬롯 이미지(스프라이트)를 해당 아이템 스프라이트로 변경.
                     Destroy(other.gameObject); //땅에 있던 아이템 오브젝트는 제거.
                     break;
@@ -328,13 +330,13 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "item2" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "pinkDolloncChair" && Input.GetKeyDown(KeyCode.Space))
         {
             for(int i=0; i<item_main_slot.Length; i++)
             {
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
-                    item_main_slot[i] = "item2";
+                    item_main_slot[i] = "pinkDolloncChair";
                     UIManager.Next_value = 10;
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
@@ -378,7 +380,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public static string ObjectName;//상호작용 오브젝트 이름
+    public static string ObjectName; //상호작용 오브젝트 이름
 
     //충돌 했을때 실행
     void OnTriggerEnter2D(Collider2D other)
@@ -413,7 +415,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Player이동----------------------------------------------------------------------------
+    //Player 조작---------------------------------------------------------------------------
 
     void Player_Move()
     {
@@ -486,6 +488,8 @@ public class Player : MonoBehaviour
             }
         }
 
+  
+
         if(Input.GetKey(KeyCode.LeftShift))
         {
             Player_speed = 7f;
@@ -495,6 +499,33 @@ public class Player : MonoBehaviour
         {
             Player_speed = 3.5f;
         }
+
+
+        if(Input.GetKey(KeyCode.E))
+        {
+            Attack();
+        }
+    }
+
+    public int attackCount = 0;
+    void Attack()
+    {
+        // 처음엔 아무것도 아닌 걸로 지정
+        Collider2D other = null;
+
+        if (other.gameObject.tag == "pinkDoll" &&
+            Player_pos == other.gameObject.transform.position)
+        {
+            attackCount++;
+        }
+        // 오브젝트와 Player의 위치가 겹칠 때 공격 
+        // Count 변수 +1 
+        // Count 변수가 3일 때 object destroy
+    }
+
+    void Die()
+    {
+
     }
 
     //--------------------------------------------------------------------------------------------

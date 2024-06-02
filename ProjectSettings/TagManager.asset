@@ -19,6 +19,8 @@ TagManager:
   - "\uB2EC\uB825"
   - "\uB098\uAC00\uB294 \uBB38"
   - "\uD14C\uC774\uBE14"
+  - pinkDollonChair
+  - cakeBehindChair
   layers:
   - Default
   - TransparentFX
