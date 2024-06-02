@@ -139,5 +139,8 @@ public class MainSceneManager : MonoBehaviour
     void Update()
     {
         MainObjectClick();
+
+        if(Load_UI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+            LoadUI();
     }
 }

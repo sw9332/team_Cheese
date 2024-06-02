@@ -165,5 +165,8 @@ public class GameSetting : MonoBehaviour
         Background_sound_Setting();
         Effect_sound_Setting();   
         Graphic();
+
+        if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+            OK_Button();
     }
 }
