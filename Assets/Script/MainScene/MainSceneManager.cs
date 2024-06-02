@@ -19,7 +19,7 @@ public class MainSceneManager : MonoBehaviour
 
     void tutorial_start()
     {
-        SceneManager.LoadScene("tutorial");
+        SceneManager.LoadScene("GameScene");
     }
 
     //설정-------------------------------------
