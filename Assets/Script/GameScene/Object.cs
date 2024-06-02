@@ -28,4 +28,5 @@ public class Object : MonoBehaviour
             Player.object_collision = "땅";
         }
     }
+
 }
