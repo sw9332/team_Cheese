@@ -7,8 +7,17 @@ using UnityEngine.SceneManagement;
 public class MainSceneManager : MonoBehaviour
 {
     public GameObject SettingUI;
+    public GameObject Load_UI;
 
     //메인화면 버튼---------------------------------------------------------------------
+
+    public void LoadUI()
+    {
+        if(Load_UI.activeSelf == false)
+            Load_UI.SetActive(true);
+        else if(Load_UI.activeSelf == true)
+            Load_UI.SetActive(false);
+    }
 
     //새 게임---------------------------------
     public void StartButton_Fade()
