@@ -251,6 +251,9 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(typing());
                     Text_effect_isCheck = true;
 
+                MiniGame.is_take_photo = true;
+                MiniGame.is_minigame = true;
+
                 player_UI();
                 break;
 

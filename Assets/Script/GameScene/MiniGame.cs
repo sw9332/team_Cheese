@@ -13,9 +13,9 @@ public class MiniGame : MonoBehaviour
     public GameObject ingameUIPanel;
     public GameObject player;
 
-    public bool is_take_photo;
-    public bool is_next_stage;
-    public bool is_minigame;
+    public static bool is_take_photo;
+    public static bool is_next_stage;
+    public static bool is_minigame;
 
     // Start is called before the first frame update
     void Start()
