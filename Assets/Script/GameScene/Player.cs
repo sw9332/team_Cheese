@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// just for the test
+// just for the test2
 public class Player : MonoBehaviour
 {
     //플레이어 이동 및 위치 관리------------------------------------------------------------------------------
