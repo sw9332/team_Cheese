@@ -3558,7 +3558,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286991893}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &286991896
 Camera:
   m_ObjectHideFlags: 0
@@ -5543,7 +5543,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -15680,7 +15680,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ff0dff4677d6b924b92e17498e7c1745, type: 3}
     m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
@@ -16378,7 +16378,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "[\uC624\uB298\uC740 ###\uC758 \uC0DD\uC77C]"
+  m_Text: "(\uC0C1\uD638\uC791\uC6A9 \uB0B4\uC6A9)"
 --- !u!222 &1507848104
 CanvasRenderer:
   m_ObjectHideFlags: 0
