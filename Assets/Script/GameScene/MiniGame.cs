@@ -66,7 +66,7 @@ public class MiniGame : MonoBehaviour
             }
 
             float ClampX = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.x, -1.2f, 1.2f);
-            float ClampY = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.y, -3f, -1f);
+            float ClampY = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.y, -1f, 1f);
 
             photoCamera.transform.GetComponent<Transform>().position = new Vector3(ClampX, ClampY, -1f);
 
