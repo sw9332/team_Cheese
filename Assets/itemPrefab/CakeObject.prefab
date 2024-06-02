@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4878033958545776971}
   m_Layer: 0
   m_Name: CakeObject
-  m_TagString: item1
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,10 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - item1
-  - item2
-  - item3
-  - item4
   - object_Table
   - Chair1
   - Chair2
@@ -21,6 +17,13 @@ TagManager:
   - "\uD14C\uC774\uBE14"
   - pinkDollonChair
   - cakeBehindChair
+  - Cake Event
+  - Teddy Bear
+  - BrownTeddyBear
+  - PinkTeddyBear
+  - YellowTeddyBear
+  - Cake
+  - Undefined
   layers:
   - Default
   - TransparentFX

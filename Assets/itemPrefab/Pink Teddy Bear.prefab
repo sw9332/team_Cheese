@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2748429487754901049}
   m_Layer: 0
   m_Name: Pink Teddy Bear
-  m_TagString: item2
+  m_TagString: PinkTeddyBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
