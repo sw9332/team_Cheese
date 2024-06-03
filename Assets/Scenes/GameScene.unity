@@ -11715,7 +11715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6473509884464117161, guid: 2f7caba53f0f2c3448e07391cd35bc0d, type: 3}
       propertyPath: m_TagString
-      value: BrownTeddyBear
+      value: DroppedBrownTeddyBear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

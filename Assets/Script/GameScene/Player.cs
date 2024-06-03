@@ -251,6 +251,21 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if(other.gameObject.tag == "DroppedBrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i=0; i<item_main_slot.Length; i++)
+            {
+                if(item_main_slot[i] == "" || item_main_slot[i] == null)
+                {
+                    item_main_slot[i] = "BrownTeddyBear";
+                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
+                    Destroy(other.gameObject);
+                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    break;
+                }
+            }
+        }
+
         if(other.gameObject.tag == "BrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
         {
             for (int i=0; i<item_main_slot.Length; i++)
@@ -302,9 +317,6 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "Cake";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-
-                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
-
                     break;
                 }
             }
