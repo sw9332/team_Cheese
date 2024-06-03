@@ -1406,6 +1406,7 @@ MonoBehaviour:
   CameraUI: {fileID: 527049652}
   text_typing_effect: {fileID: 1099136819}
   Object_Interaction_UI: {fileID: 1032883397}
+  Interaction_Player_Image: {fileID: 1276043976}
   Interaction_Text: {fileID: 1507848103}
   Interaction_typing_effect: {fileID: 1507848103}
   Camera_Effect_Animation: {fileID: 527049656}
@@ -2273,7 +2274,7 @@ GameObject:
   - component: {fileID: 205272272}
   - component: {fileID: 205272271}
   m_Layer: 5
-  m_Name: Player Image
+  m_Name: Conversation Player Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3551,6 +3552,7 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
+  is_next_stage: 0
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -13767,7 +13769,7 @@ GameObject:
   - component: {fileID: 1276043979}
   - component: {fileID: 1276043978}
   m_Layer: 5
-  m_Name: Player Image
+  m_Name: Interaction Player Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

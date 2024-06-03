@@ -282,9 +282,10 @@ public class UIManager : MonoBehaviour
     //오브젝트 상호작용 대화------------------------------------------------
 
     public GameObject Object_Interaction_UI;
-    public Text Interaction_Text;
+    public GameObject Interaction_Player_Image;
     public static string Interaction_string;
     public static string Interaction_string_isCheck = "";
+    public Text Interaction_Text;
 
     void Object_Interaction()
     {
@@ -297,6 +298,7 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(typing2());
                     Interaction_string_isCheck = "달력";
 
+                Interaction_Player_Image.SetActive(true);
                 Interaction_UI_open();
                 break;
 
@@ -307,6 +309,7 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(typing2());
                     Interaction_string_isCheck = "인형";
 
+                Interaction_Player_Image.SetActive(true);
                 Interaction_UI_open();
                 break;
 
@@ -317,6 +320,7 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(typing2());
                     Interaction_string_isCheck = "나가는 문";
 
+                Interaction_Player_Image.SetActive(false);
                 Interaction_UI_open();
                 break;
         }
