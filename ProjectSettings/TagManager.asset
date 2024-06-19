@@ -25,6 +25,8 @@ TagManager:
   - Cake
   - Undefined
   - DroppedBrownTeddyBear
+  - C
+  - Camera Event
   layers:
   - Default
   - TransparentFX

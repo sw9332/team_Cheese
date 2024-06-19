@@ -356,6 +356,13 @@ public class Player : MonoBehaviour
             UIManager.Next_value = 7;
             Destroy(other.gameObject);
         }
+
+        if(other.gameObject.tag == "Camera Event") //케이크를 테이블에 놓았을때 생기는 이벤트에 닿았을때
+        {
+            UIManager.Next_value = 19;
+            UIManager.Camera_setactive = true;
+            Destroy(other.gameObject);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)

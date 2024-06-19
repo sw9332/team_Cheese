@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7581688060608889924}
   - component: {fileID: 54856679954520842}
   - component: {fileID: -6969267861808900921}
-  - component: {fileID: 4878033958545776971}
   m_Layer: 0
   m_Name: CakeObject
-  m_TagString: Undefined
+  m_TagString: Cake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,15 +120,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.31
---- !u!114 &4878033958545776971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2551561005460144523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16e87b9bca9ede4fbc66ce94cb5e0c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
