@@ -72,6 +72,13 @@ public class MiniGame : MonoBehaviour
 
             x_Axis.GetComponent<Slider>().value = photoCamera.transform.position.x;
             y_Axis.GetComponent<Slider>().value = photoCamera.transform.position.y;
+
+            if(Input.GetKey(KeyCode.F)
+                && x_Axis.GetComponent<Slider>().value <= 0.2f && x_Axis.GetComponent<Slider>().value >= -0.2f
+                && y_Axis.GetComponent<Slider>().value <= 0.2f && y_Axis.GetComponent<Slider>().value >= -0.2f)
+            {
+                is_next_stage = true;
+            }
         }
     }
 
