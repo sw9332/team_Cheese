@@ -447,5 +447,25 @@ public class Player : MonoBehaviour
     void Update()
     {
         Player_Move();
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Slot1_UI_Button();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Slot2_UI_Button();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Slot3_UI_Button();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Slot4_UI_Button();
+        }
     }
 }
