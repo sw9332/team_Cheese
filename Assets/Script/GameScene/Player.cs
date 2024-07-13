@@ -31,6 +31,13 @@ public class Player : MonoBehaviour
 
     public static string object_collision = "땅";
 
+
+    // 원거리 공격 관련 , bullet
+    public GameObject bullet;
+    public Transform pos;
+    public float cooltime;
+    private float curtime;
+
     //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
     {
@@ -379,6 +386,8 @@ public class Player : MonoBehaviour
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
 
+
+
     public static float Velocity;
     public float moveSpeed = 2.8f;
 
@@ -428,13 +437,27 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
             rend.flipX = true;
-        }            
+        }
 
-        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
+
+        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
             Player_move.Play("stop vertical");
 
         else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
             Player_move.Play("stop horizontal");
+    }
+
+    void Player_fire()
+    {
+        if (curtime <= 0)
+        {
+            if (Input.GetKey(KeyCode.Z))
+            {
+                Instantiate(bullet, pos.position, transform.rotation);
+            }
+            curtime = cooltime;
+        }
+        curtime -= Time.deltaTime;
     }
 
     //--------------------------------------------------------------------------------------------
@@ -447,5 +470,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Player_Move();
+        Player_fire();
     }
 }
