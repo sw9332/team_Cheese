@@ -27,6 +27,7 @@ TagManager:
   - DroppedBrownTeddyBear
   - C
   - Camera Event
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - player
   - Water
   - UI
-  - 
+  - enemy
   - 
   - 
   - 

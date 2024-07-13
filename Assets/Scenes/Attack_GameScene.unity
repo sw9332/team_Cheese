@@ -7955,7 +7955,7 @@ Transform:
   m_GameObject: {fileID: 730974879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.77, z: 0}
+  m_LocalPosition: {x: -0.009, y: -2.062, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8006,6 +8006,8 @@ MonoBehaviour:
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
   moveSpeed: 2.8
+  boxCenterOffset: {x: 0.3, y: -0.1, z: 0}
+  boxSize: {x: 2, y: 2.2}
 --- !u!50 &730974883
 Rigidbody2D:
   serializedVersion: 4
@@ -11672,7 +11674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6473509884464117161, guid: 2f7caba53f0f2c3448e07391cd35bc0d, type: 3}
       propertyPath: m_TagString
-      value: DroppedBrownTeddyBear
+      value: Teddy Bear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12841,6 +12843,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pink Teddy Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6749680202944883387, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12949,6 +12959,14 @@ PrefabInstance:
     - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
       propertyPath: m_Name
       value: Yellow Teddy Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16449,6 +16467,14 @@ PrefabInstance:
     - target: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
       propertyPath: m_Name
       value: brown Teddy Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5155233655385528532, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
       propertyPath: m_RootOrder
