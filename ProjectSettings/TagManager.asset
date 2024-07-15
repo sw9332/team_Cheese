@@ -5,10 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - object_Table
-  - Chair1
-  - Chair2
-  - Chair3
-  - Chair4
   - "\uC0AC\uBB3C"
   - A
   - B
@@ -27,6 +23,7 @@ TagManager:
   - DroppedBrownTeddyBear
   - C
   - Camera Event
+  - Chair
   layers:
   - Default
   - TransparentFX
