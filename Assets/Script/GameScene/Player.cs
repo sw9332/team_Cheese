@@ -6,50 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    //튜토리얼 플레이어 스크립트
-
-    //플레이어 인벤토리-------------------------------------------------------------------------------------------------------------
-
-    //아이템 두기/올려두기 버튼
-
-    //(슬롯을 누르면 나오는 두기, 올려두기 버튼)
-
-    //아이템 올려두기 버튼
-    public GameObject Slot1_Button_objects; //슬롯1 아이템 올려두기 버튼
-    public GameObject Slot2_Button_objects;
-    public GameObject Slot3_Button_objects;
-    public GameObject Slot4_Button_objects;
-
-    //아이템 두기 버튼
-    public GameObject Slot1_Button_floor; //슬롯1 아이템 두기 버튼
-    public GameObject Slot2_Button_floor;
-    public GameObject Slot3_Button_floor;
-    public GameObject Slot4_Button_floor;
-
     public string[] item_main_slot = new string[4];
     public Image[] item_main_slot_Image = new Image[4];
 
     public static string object_collision = "땅";
 
-    //슬롯1 아이템 땅에 두기 버튼
-    public void slot_button1_floor()
+    //Place items with 1,2,3,4 key buttons.
+    public void Slot1()
     {
-        Slot1_Button_floor.SetActive(false);
-        Slot1_Button_objects.SetActive(false);
-
         if(object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[0]), Player_pos, Quaternion.identity);
             item_main_slot[0] = null;
             item_main_slot_Image[0].sprite = null;
         }
-    }
-
-    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button1_objects()
-    {
-        Slot1_Button_floor.SetActive(false);
-        Slot1_Button_objects.SetActive(false);
 
         if(object_collision == "사물")
         {
@@ -59,43 +29,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯1 UI버튼
-    public void Slot1_UI_Button()
+    public void Slot2()
     {
-        if(object_collision == "땅")
-        {
-            Slot1_Button_floor.SetActive(true);
-            Slot1_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot1_Button_floor.SetActive(true);
-            Slot1_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯2 아이템 땅에 두기 버튼
-    public void slot_button2_floor()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
             item_main_slot[1] = null;
             item_main_slot_Image[1].sprite = null;
         }
-    }
 
-    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button2_objects()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
             item_main_slot[1] = null;
@@ -103,43 +46,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯2 UI버튼
-    public void Slot2_UI_Button()
+    public void Slot3()
     {
-        if(object_collision == "땅")
-        {
-            Slot2_Button_floor.SetActive(true);
-            Slot2_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot2_Button_floor.SetActive(true);
-            Slot2_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯3 아이템 땅에 두기 버튼
-    public void slot_button3_floor()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
             item_main_slot[2] = null;
             item_main_slot_Image[2].sprite = null;
         }
-    }
 
-    //슬롯3 아이템 오브젝트 위에 두기 버튼
-    public void slot_button3_objects()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
             item_main_slot[2] = null;
@@ -147,43 +63,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯3 UI버튼
-    public void Slot3_UI_Button()
+    public void Slot4()
     {
-        if(object_collision == "땅")
-        {
-            Slot3_Button_floor.SetActive(true);
-            Slot3_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot3_Button_floor.SetActive(true);
-            Slot3_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯4 아이템 땅에 두기 버튼
-    public void slot_button4_floor()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
             item_main_slot[3] = null;
             item_main_slot_Image[3].sprite = null;
         }
-    }
 
-    //슬롯4 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button4_objects()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
             item_main_slot[3] = null;
@@ -191,21 +80,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯4 UI버튼
-    public void Slot4_UI_Button()
-    {
-        if(object_collision == "땅")
-        {
-            Slot4_Button_floor.SetActive(true);
-            Slot4_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot4_Button_floor.SetActive(true);
-            Slot4_Button_objects.SetActive(true);
-        }
-    }
 
     //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
@@ -450,22 +324,22 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Slot1_UI_Button();
+            Slot1();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Slot2_UI_Button();
+            Slot2();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Slot3_UI_Button();
+            Slot3();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Slot4_UI_Button();
+            Slot4();
         }
     }
 }
