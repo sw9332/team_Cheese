@@ -16,11 +16,6 @@ public class Object : MonoBehaviour
             Object_pos = transform.position;
         }
 
-        if(other.gameObject.tag == "item2")
-        {
-            //UIManager.Next_value = 10;
-        }
-
         if(other.gameObject.tag == "Cake") //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
         {
             CamaraEvent.SetActive(true);

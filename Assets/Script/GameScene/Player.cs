@@ -254,7 +254,7 @@ public class Player : MonoBehaviour
     public Animator Player_move; //플레이어 이동 애니메이션
 
     public static float Velocity;
-    public float moveSpeed = 2.8f;
+    public float moveSpeed = 2.5f;
 
     //walking the vertical up
     //stop vertical
@@ -309,6 +309,18 @@ public class Player : MonoBehaviour
 
         else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
             Player_move.Play("stop horizontal");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Player_move.speed = 2;
+            moveSpeed = 5;
+        }
+            
+        else
+        {
+            Player_move.speed = 1;
+            moveSpeed = 2.5f;
+        }
     }
 
     //--------------------------------------------------------------------------------------------
