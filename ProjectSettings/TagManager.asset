@@ -23,15 +23,16 @@ TagManager:
   - DroppedBrownTeddyBear
   - C
   - Camera Event
+  - Enemy
   - Chair
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - player
   - Water
   - UI
-  - 
+  - enemy
   - 
   - 
   - 

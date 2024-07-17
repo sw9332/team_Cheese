@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq; // 데이터 쿼리 언어 
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class Player : MonoBehaviour
     public Image[] item_main_slot_Image = new Image[4];
 
     public static string object_collision = "땅";
+
+
+
+    // 원거리 공격 관련 , bullet
+    public GameObject bullet;
+    public Transform pos;
+    public float cooltime;
+    private float curtime;
+
+
 
     //Place items with 1,2,3,4 key buttons.
     public void Slot1()
@@ -252,6 +263,11 @@ public class Player : MonoBehaviour
     public static Vector3 Player_pos;
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
+    // 추후에 공격 애니메이션 추가
+    // public Animator Player_attack;
+    // Player_attack에서는 2개 (근접, 원거리)
+
+
 
     public static float Velocity;
     public float moveSpeed = 2.5f;
@@ -302,9 +318,12 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
             rend.flipX = true;
-        }            
+        }
 
-        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
+
+        // 방향키를 때면
+
+        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
             Player_move.Play("stop vertical");
 
         else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
@@ -323,6 +342,68 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Player_attack()
+    {
+        if (DetectEnemies() == true)
+        { 
+        }
+        else
+        {
+            if (curtime <= 0)
+            {
+                if (Input.GetKey(KeyCode.Z))
+                {
+                    Instantiate(bullet, pos.position, transform.rotation);
+                }
+                curtime = cooltime;
+            }
+            curtime -= Time.deltaTime;
+            // }
+        }
+    }
+
+    // Player의 범위를 세팅하주는 offset값들
+    public Vector3 boxCenterOffset = new Vector3(0.3f, -0.1f);
+    public Vector2 boxSize = new Vector2(2f, 2.2f);
+
+    // 감지한 적을 담는 Collider 2D 배열
+    private Collider2D[] detectedEnemies;
+
+    // Player의 enemy 탐지 범위
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(this.transform.position + boxCenterOffset, new Vector2(boxSize.x, boxSize.y));
+    }
+
+    //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
+    private bool DetectEnemies()
+    {
+
+        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
+        Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)boxCenterOffset, boxSize, 0f);
+
+        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
+        // => 람다
+        detectedEnemies = enemyArray
+            // Where: 조건을 만족하는 요소 필터링
+            .Where(collider => collider.CompareTag("Enemy") && collider is PolygonCollider2D)
+            // OrderBy: 오름차순 정렬
+            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+            // ToArray: 배열로 변환
+            .ToArray();
+
+        // 적을 찾은 경우에만 가장 가까운 enemy 출력
+        if (detectedEnemies.Length > 0)
+        {
+            Debug.Log("Closest enemy: " + detectedEnemies[0].name);
+            return true;
+        }
+        else
+            return false;
+    }
+
+
     //--------------------------------------------------------------------------------------------
 
     void Start()
@@ -332,7 +413,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        DetectEnemies();
         Player_Move();
+        Player_attack();
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
