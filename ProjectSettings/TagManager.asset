@@ -5,10 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - object_Table
-  - Chair1
-  - Chair2
-  - Chair3
-  - Chair4
   - "\uC0AC\uBB3C"
   - A
   - B
@@ -28,6 +24,7 @@ TagManager:
   - C
   - Camera Event
   - Enemy
+  - Chair
   layers:
   - Default
   - TransparentFX

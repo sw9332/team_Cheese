@@ -133,7 +133,7 @@ public class MainSceneManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FadeIn());
+        //StartCoroutine(FadeIn());
     }
 
     void Update()
