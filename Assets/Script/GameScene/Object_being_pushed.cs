@@ -8,7 +8,22 @@ public class Object_being_pushed : MonoBehaviour
     void Update()
     {
         if (Player.Velocity == 5)
-            rb.constraints = RigidbodyConstraints2D.None;
+        {
+            if(Player.MoveX == true && Player.MoveY == false) //가로로 밀었을때
+            {
+                rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rb.freezeRotation = true;
+            }
+
+            else if(Player.MoveY == true && Player.MoveX == false) //세로로 밀었을때
+            {
+                rb.constraints = RigidbodyConstraints2D.None;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                rb.freezeRotation = true;
+            }
+        }
+            
         else
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;

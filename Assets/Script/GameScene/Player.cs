@@ -267,7 +267,8 @@ public class Player : MonoBehaviour
     // public Animator Player_attack;
     // Player_attack에서는 2개 (근접, 원거리)
 
-
+    public static bool MoveX = false;
+    public static bool MoveY = false;
 
     public static float Velocity;
     public float moveSpeed = 2.5f;
@@ -295,6 +296,9 @@ public class Player : MonoBehaviour
                 Player_move.Play("walking the horizontal");
             else
                 Player_move.Play("walking the vertical up");
+
+            MoveX = true;
+            MoveY = false;
         }
 
         if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -302,6 +306,9 @@ public class Player : MonoBehaviour
             Velocity = moveSpeed;
             transform.Translate(Vector3.down * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
+
+            MoveX = true;
+            MoveY = false;
         }
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -310,6 +317,9 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.left * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
             rend.flipX = false;
+
+            MoveX = false;
+            MoveY = true;
         }
 
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -318,6 +328,9 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
             Player_move.Play("walking the horizontal");
             rend.flipX = true;
+
+            MoveX = false;
+            MoveY = true;
         }
 
 
