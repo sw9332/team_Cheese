@@ -3,53 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq; // 데이터 쿼리 언어 
 
 public class Player : MonoBehaviour
 {
-    //튜토리얼 플레이어 스크립트
-
-    //플레이어 인벤토리-------------------------------------------------------------------------------------------------------------
-
-    //아이템 두기/올려두기 버튼
-
-    //(슬롯을 누르면 나오는 두기, 올려두기 버튼)
-
-    //아이템 올려두기 버튼
-    public GameObject Slot1_Button_objects; //슬롯1 아이템 올려두기 버튼
-    public GameObject Slot2_Button_objects;
-    public GameObject Slot3_Button_objects;
-    public GameObject Slot4_Button_objects;
-
-    //아이템 두기 버튼
-    public GameObject Slot1_Button_floor; //슬롯1 아이템 두기 버튼
-    public GameObject Slot2_Button_floor;
-    public GameObject Slot3_Button_floor;
-    public GameObject Slot4_Button_floor;
-
     public string[] item_main_slot = new string[4];
     public Image[] item_main_slot_Image = new Image[4];
 
     public static string object_collision = "땅";
 
-    //슬롯1 아이템 땅에 두기 버튼
-    public void slot_button1_floor()
-    {
-        Slot1_Button_floor.SetActive(false);
-        Slot1_Button_objects.SetActive(false);
 
+
+    // 원거리 공격 관련 , bullet
+    public GameObject bullet;
+    public Transform pos;
+    public float cooltime;
+    private float curtime;
+
+
+
+    //Place items with 1,2,3,4 key buttons.
+    public void Slot1()
+    {
         if(object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[0]), Player_pos, Quaternion.identity);
             item_main_slot[0] = null;
             item_main_slot_Image[0].sprite = null;
         }
-    }
-
-    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button1_objects()
-    {
-        Slot1_Button_floor.SetActive(false);
-        Slot1_Button_objects.SetActive(false);
 
         if(object_collision == "사물")
         {
@@ -59,43 +40,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯1 UI버튼
-    public void Slot1_UI_Button()
+    public void Slot2()
     {
-        if(object_collision == "땅")
-        {
-            Slot1_Button_floor.SetActive(true);
-            Slot1_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot1_Button_floor.SetActive(true);
-            Slot1_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯2 아이템 땅에 두기 버튼
-    public void slot_button2_floor()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
             item_main_slot[1] = null;
             item_main_slot_Image[1].sprite = null;
         }
-    }
 
-    //슬롯2 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button2_objects()
-    {
-        Slot2_Button_floor.SetActive(false);
-        Slot2_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
             item_main_slot[1] = null;
@@ -103,43 +57,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯2 UI버튼
-    public void Slot2_UI_Button()
+    public void Slot3()
     {
-        if(object_collision == "땅")
-        {
-            Slot2_Button_floor.SetActive(true);
-            Slot2_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot2_Button_floor.SetActive(true);
-            Slot2_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯3 아이템 땅에 두기 버튼
-    public void slot_button3_floor()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
             item_main_slot[2] = null;
             item_main_slot_Image[2].sprite = null;
         }
-    }
 
-    //슬롯3 아이템 오브젝트 위에 두기 버튼
-    public void slot_button3_objects()
-    {
-        Slot3_Button_floor.SetActive(false);
-        Slot3_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
             item_main_slot[2] = null;
@@ -147,43 +74,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯3 UI버튼
-    public void Slot3_UI_Button()
+    public void Slot4()
     {
-        if(object_collision == "땅")
-        {
-            Slot3_Button_floor.SetActive(true);
-            Slot3_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot3_Button_floor.SetActive(true);
-            Slot3_Button_objects.SetActive(true);
-        }
-    }
-
-    //슬롯4 아이템 땅에 두기 버튼
-    public void slot_button4_floor()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "땅")
+        if (object_collision == "땅")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
             item_main_slot[3] = null;
             item_main_slot_Image[3].sprite = null;
         }
-    }
 
-    //슬롯4 아이템 오브젝트 위에 올려두기 버튼
-    public void slot_button4_objects()
-    {
-        Slot4_Button_floor.SetActive(false);
-        Slot4_Button_objects.SetActive(false);
-
-        if(object_collision == "사물")
+        if (object_collision == "사물")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
             item_main_slot[3] = null;
@@ -191,21 +91,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //슬롯4 UI버튼
-    public void Slot4_UI_Button()
-    {
-        if(object_collision == "땅")
-        {
-            Slot4_Button_floor.SetActive(true);
-            Slot4_Button_objects.SetActive(false);
-        }
-
-        if(object_collision == "사물")
-        {
-            Slot4_Button_floor.SetActive(true);
-            Slot4_Button_objects.SetActive(true);
-        }
-    }
 
     //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
@@ -378,9 +263,15 @@ public class Player : MonoBehaviour
     public static Vector3 Player_pos;
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
+    // 추후에 공격 애니메이션 추가
+    // public Animator Player_attack;
+    // Player_attack에서는 2개 (근접, 원거리)
+
+    public static bool MoveX = false;
+    public static bool MoveY = false;
 
     public static float Velocity;
-    public float moveSpeed = 2.8f;
+    public float moveSpeed = 2.5f;
 
     //walking the vertical up
     //stop vertical
@@ -394,48 +285,144 @@ public class Player : MonoBehaviour
         Player_move.speed = 1;
         Velocity = 0;
 
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.UpArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.up * Velocity * Time.deltaTime);
 
-            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                Player_move.Play("walking the horizontal");
-            else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("walking the horizontal");
+            if(Input.GetKey(KeyCode.LeftArrow))
+                Player_move.Play("PlayerLeft");
+            else if(Input.GetKey(KeyCode.RightArrow))
+                Player_move.Play("PlayerLeft");
             else
-                Player_move.Play("walking the vertical up");
+                Player_move.Play("Playerforward");
+
+            MoveX = true;
+            MoveY = false;
         }
 
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.DownArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.down * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+                Player_move.Play("PlayerLeft");
+            else if (Input.GetKey(KeyCode.RightArrow))
+                Player_move.Play("PlayerLeft");
+            else
+                Player_move.Play("PlayerBack");
+
+            MoveX = true;
+            MoveY = false;
         }
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.LeftArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.left * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+            Player_move.Play("PlayerLeft");
             rend.flipX = false;
+
+            MoveX = false;
+            MoveY = true;
         }
 
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.RightArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+            Player_move.Play("PlayerLeft");
             rend.flipX = true;
-        }            
 
-        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
+            MoveX = false;
+            MoveY = true;
+        }
+
+
+        // 방향키를 때면
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
             Player_move.Play("stop vertical");
 
         else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
             Player_move.Play("stop horizontal");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Player_move.speed = 2;
+            moveSpeed = 5;
+        }
+            
+        else
+        {
+            Player_move.speed = 1;
+            moveSpeed = 2.5f;
+        }
     }
+
+    /*
+    void Player_attack()
+    {
+        if (DetectEnemies() == true)
+        { 
+        }
+        else
+        {
+            if (curtime <= 0)
+            {
+                if (Input.GetKey(KeyCode.Z))
+                {
+                    Instantiate(bullet, pos.position, transform.rotation);
+                }
+                curtime = cooltime;
+            }
+            curtime -= Time.deltaTime;
+            // }
+        }
+    }
+
+    // Player의 범위를 세팅하주는 offset값들
+    public Vector3 boxCenterOffset = new Vector3(0.3f, -0.1f);
+    public Vector2 boxSize = new Vector2(2f, 2.2f);
+
+    // 감지한 적을 담는 Collider 2D 배열
+    private Collider2D[] detectedEnemies;
+
+    // Player의 enemy 탐지 범위
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(this.transform.position + boxCenterOffset, new Vector2(boxSize.x, boxSize.y));
+    }
+
+    //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
+    private bool DetectEnemies()
+    {
+
+        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
+        Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)boxCenterOffset, boxSize, 0f);
+
+        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
+        // => 람다
+        detectedEnemies = enemyArray
+            // Where: 조건을 만족하는 요소 필터링
+            .Where(collider => collider.CompareTag("Enemy") && collider is PolygonCollider2D)
+            // OrderBy: 오름차순 정렬
+            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+            // ToArray: 배열로 변환
+            .ToArray();
+
+        // 적을 찾은 경우에만 가장 가까운 enemy 출력
+        if (detectedEnemies.Length > 0)
+        {
+            Debug.Log("Closest enemy: " + detectedEnemies[0].name);
+            return true;
+        }
+        else
+            return false;
+    }*/
+
 
     //--------------------------------------------------------------------------------------------
 
@@ -446,26 +433,28 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //DetectEnemies();
         Player_Move();
+        //Player_attack();
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Slot1_UI_Button();
+            Slot1();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Slot2_UI_Button();
+            Slot2();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Slot3_UI_Button();
+            Slot3();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Slot4_UI_Button();
+            Slot4();
         }
     }
 }
