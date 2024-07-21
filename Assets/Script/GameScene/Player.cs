@@ -285,48 +285,54 @@ public class Player : MonoBehaviour
         Player_move.speed = 1;
         Velocity = 0;
 
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.UpArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.up * Velocity * Time.deltaTime);
 
-            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                Player_move.Play("walking the horizontal");
-            else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("walking the horizontal");
+            if(Input.GetKey(KeyCode.LeftArrow))
+                Player_move.Play("PlayerLeft");
+            else if(Input.GetKey(KeyCode.RightArrow))
+                Player_move.Play("PlayerLeft");
             else
-                Player_move.Play("walking the vertical up");
+                Player_move.Play("Playerforward");
 
             MoveX = true;
             MoveY = false;
         }
 
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.DownArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.down * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+                Player_move.Play("PlayerLeft");
+            else if (Input.GetKey(KeyCode.RightArrow))
+                Player_move.Play("PlayerLeft");
+            else
+                Player_move.Play("PlayerBack");
 
             MoveX = true;
             MoveY = false;
         }
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.LeftArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.left * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+            Player_move.Play("PlayerLeft");
             rend.flipX = false;
 
             MoveX = false;
             MoveY = true;
         }
 
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.RightArrow))
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
-            Player_move.Play("walking the horizontal");
+            Player_move.Play("PlayerLeft");
             rend.flipX = true;
 
             MoveX = false;
@@ -336,7 +342,7 @@ public class Player : MonoBehaviour
 
         // 방향키를 때면
 
-        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)))
+        if (Input.GetKeyUp(KeyCode.UpArrow))
             Player_move.Play("stop vertical");
 
         else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
@@ -355,6 +361,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     void Player_attack()
     {
         if (DetectEnemies() == true)
@@ -414,7 +421,7 @@ public class Player : MonoBehaviour
         }
         else
             return false;
-    }
+    }*/
 
 
     //--------------------------------------------------------------------------------------------
@@ -426,9 +433,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        DetectEnemies();
+        //DetectEnemies();
         Player_Move();
-        Player_attack();
+        //Player_attack();
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
