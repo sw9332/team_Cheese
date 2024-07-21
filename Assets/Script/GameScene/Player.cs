@@ -343,10 +343,11 @@ public class Player : MonoBehaviour
         // 방향키를 때면
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
-            Player_move.Play("stop vertical");
-
-        else if((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
-            Player_move.Play("stop horizontal");
+            Player_move.Play("PlayerStopfoward");
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+            Player_move.Play("PlayerStopBack");
+        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+            Player_move.Play("PlayerStopX");
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
