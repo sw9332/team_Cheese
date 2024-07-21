@@ -226,8 +226,8 @@ public class UIManager : MonoBehaviour
 
             case 19:
                 Text_effect = "오!!!";
-                
-                if(!Text_effect_isCheck)
+
+                if (!Text_effect_isCheck)
                     StartCoroutine(typing());
                     Text_effect_isCheck = true;
 
