@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Linq; // 데이터 쿼리 언어 
+using System.Linq;
+using Unity.VisualScripting; // 데이터 쿼리 언어 
 
 public class Player : MonoBehaviour
 {
+
+    //인벤토리
     public string[] item_main_slot = new string[4];
     public Image[] item_main_slot_Image = new Image[4];
 
+    //플레이어가 오브젝트에 충돌 중인지 체크 (땅/사물)
     public static string object_collision = "땅";
 
 
@@ -20,7 +24,7 @@ public class Player : MonoBehaviour
     public float cooltime;
     private float curtime;
 
-
+    //인벤토리---------------------------------------------------------------------------------------------------------
 
     //Place items with 1,2,3,4 key buttons.
     public void Slot1()
@@ -120,6 +124,8 @@ public class Player : MonoBehaviour
     public Sprite YellowTeddyBear_Sprite;
     public Sprite Cake_Sprite;
 
+    public GameObject Camera;
+
     Sprite GetItemSprite(string item_name)
     {
         if (item_name == "BrownTeddyBear")
@@ -145,10 +151,16 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "BrownTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    Camera.SetActive(true); //쓰러진 곰돌이를 획득하면 카메라가 생김.
                     break;
                 }
             }
+        }
+
+        if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
+        {
+            UIManager.Next_value = 13; //카메라를 주웠을 때 스토리값을 13으로 (카메라 발견)
+            Destroy(other.gameObject);
         }
 
         if(other.gameObject.tag == "BrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
@@ -332,8 +344,7 @@ public class Player : MonoBehaviour
         {
             Velocity = moveSpeed;
             transform.Translate(Vector3.right * Velocity * Time.deltaTime);
-            Player_move.Play("PlayerLeft");
-            rend.flipX = true;
+            Player_move.Play("PlayerRight");
 
             MoveX = false;
             MoveY = true;
@@ -435,8 +446,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         //DetectEnemies();
-        Player_Move();
         //Player_attack();
+
+        Player_Move();
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {

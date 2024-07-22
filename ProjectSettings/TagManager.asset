@@ -25,6 +25,7 @@ TagManager:
   - Camera Event
   - Enemy
   - Chair
+  - Camera
   layers:
   - Default
   - TransparentFX
