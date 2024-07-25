@@ -305,7 +305,7 @@ public class Player : MonoBehaviour
             if(Input.GetKey(KeyCode.LeftArrow))
                 Player_move.Play("PlayerLeft");
             else if(Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("PlayerLeft");
+                Player_move.Play("PlayerRight");
             else
                 Player_move.Play("Playerforward");
 
@@ -321,7 +321,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_move.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("PlayerLeft");
+                Player_move.Play("PlayerRight");
             else
                 Player_move.Play("PlayerBack");
 
@@ -373,13 +373,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*
+    
     void Player_attack()
     {
-        if (DetectEnemies() == true)
+        if (DetectedEnemies() == true) // 근처의 적군이 감지됐다면
         { 
+
         }
-        else
+        else // 감지된 적군이 없다면
         {
             if (curtime <= 0)
             {
@@ -404,12 +405,13 @@ public class Player : MonoBehaviour
     // Player의 enemy 탐지 범위
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.clear;
         Gizmos.DrawCube(this.transform.position + boxCenterOffset, new Vector2(boxSize.x, boxSize.y));
     }
 
     //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
-    private bool DetectEnemies()
+    public LayerMask targetLayer;
+    private bool DetectedEnemies()
     {
 
         // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
@@ -419,7 +421,7 @@ public class Player : MonoBehaviour
         // => 람다
         detectedEnemies = enemyArray
             // Where: 조건을 만족하는 요소 필터링
-            .Where(collider => collider.CompareTag("Enemy") && collider is PolygonCollider2D)
+            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
             // OrderBy: 오름차순 정렬
             .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
             // ToArray: 배열로 변환
@@ -433,7 +435,7 @@ public class Player : MonoBehaviour
         }
         else
             return false;
-    }*/
+    }
 
 
     //--------------------------------------------------------------------------------------------
@@ -445,8 +447,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //DetectEnemies();
-        //Player_attack();
+        DetectedEnemies();
+        Player_attack();
 
         Player_Move();
 

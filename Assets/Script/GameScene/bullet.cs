@@ -9,19 +9,21 @@ public class Bullet : MonoBehaviour
     public LayerMask isLayer;
     private Vector2 direction;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
-        // playerÀÇ ½ºÇÁ¶óÀÌÆ®¸¦ ¹Ş¾Æ¿À±â À§ÇØ Find ÇÔ¼ö »ç¿ë 
+        // playerì˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë°›ì•„ì˜¤ê¸° ìœ„í•´ Find í•¨ìˆ˜ ì‚¬ìš© 
         GameObject otherObject = GameObject.Find("Player");
         SpriteRenderer playerRenderer = otherObject.GetComponent<SpriteRenderer>();
 
-        // ÇÃ·¹ÀÌ¾îÀÇ SpriteRenderer Áß flip X¸¦ ÀÌ¿ëÇØ¼­ ÃÑ¾Ë ¹æÇâ ¼³Á¤
-        if (playerRenderer.flipX == true)   // ÇÃ·¹ÀÌ¾î°¡ ¿À¸¥ÂÊÀ» º¸´Â °æ¿ì
+        // í”Œë ˆì´ì–´ì˜ SpriteRenderer ì¤‘ flip Xë¥¼ ì´ìš©í•´ì„œ ì´ì•Œ ë°©í–¥ ì„¤ì •
+        if (Input.GetKey(KeyCode.RightArrow))   // í”Œë ˆì´ì–´ê°€ ì˜¤ë¥¸ìª½ì„ ë³´ëŠ” ê²½ìš°
         {
             direction = Vector2.right;
         }
-        else  // ÇÃ·¹ÀÌ¾î°¡ ¿ŞÂÊÀ» º¸´Â °æ¿ì
+        else  // í”Œë ˆì´ì–´ê°€ ì™¼ìª½ì„ ë³´ëŠ” ê²½ìš°
         {
             direction = Vector2.left;
         }
@@ -32,15 +34,14 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ÃÑ¾ËÀ» ¼³Á¤µÈ ¹æÇâÀ¸·Î ÀÌµ¿
+        // ì´ì•Œì„ ì„¤ì •ëœ ë°©í–¥ìœ¼ë¡œ ì´ë™
         transform.Translate(direction * speed * Time.deltaTime);
 
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, isLayer);
         if (ray.collider != null)
         {
-            if (ray.collider.tag == "Enemy")
             {
-                Debug.Log("¸íÁß!");
+                Debug.Log(ray.collider.name + " ëª…ì¤‘!");
             }
             DestroyBullet();
         }
