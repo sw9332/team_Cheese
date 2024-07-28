@@ -95,6 +95,8 @@ public class MiniGame : MonoBehaviour
             minigamePanel.SetActive(false);
             is_minigame = false;
             is_next_stage = false;
+
+            UIManager.Camera_setactive = false;
         }
     }
 }

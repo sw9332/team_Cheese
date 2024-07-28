@@ -1053,7 +1053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210832106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1073,7 +1073,7 @@ Transform:
   - {fileID: 1668773765}
   - {fileID: 1315867121}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224192564
 GameObject:
@@ -1617,7 +1617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410108924
 GameObject:
@@ -1764,6 +1764,7 @@ GameObject:
   - component: {fileID: 505931951}
   - component: {fileID: 505931952}
   - component: {fileID: 505931953}
+  - component: {fileID: 505931958}
   - component: {fileID: 505931955}
   - component: {fileID: 505931954}
   - component: {fileID: 505931956}
@@ -1854,7 +1855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3475da74eae8e47be66ec35cc06fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamaraEvent: {fileID: 693464526}
 --- !u!61 &505931954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2025,6 +2025,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9084363, y: 2.571516}
   m_EdgeRadius: 0
+--- !u!114 &505931958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505931950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed734948882080147b72544a7b88acbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CamaraEvent: {fileID: 693464526}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,7 +2124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.99, z: -10}
+  m_LocalPosition: {x: -10, y: -3.3, z: -10}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2927,8 +2940,8 @@ GameObject:
   - component: {fileID: 730974880}
   - component: {fileID: 730974886}
   - component: {fileID: 730974883}
-  - component: {fileID: 730974887}
   - component: {fileID: 730974882}
+  - component: {fileID: 730974887}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2996,7 +3009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730974879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -3.65, z: 0}
+  m_LocalPosition: {x: -10, y: -3.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3015,6 +3028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee4200447b99414dbeb4d62911f998f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  pos: {fileID: 0}
+  cooltime: 0
   item_main_slot:
   - 
   - 
@@ -3025,18 +3041,15 @@ MonoBehaviour:
   - {fileID: 771593826}
   - {fileID: 1600430777}
   - {fileID: 1978578322}
-  bullet: {fileID: 0}
-  pos: {fileID: 0}
-  cooltime: 0
   BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
   PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
   YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
   Cake_Object: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  Camera: {fileID: 1668773766}
   BrownTeddyBear_Sprite: {fileID: 21300000, guid: a98b32ea2aa9f094f967d1343429d88e, type: 3}
   PinkTeddyBear_Sprite: {fileID: 21300000, guid: f6f5a9514b0f3064c95eae93bed2c337, type: 3}
   YellowTeddyBear_Sprite: {fileID: 21300000, guid: 0902ce92884eba6439f99ac20cb1b412, type: 3}
   Cake_Sprite: {fileID: 21300000, guid: 494f254542e748e4194711e6ded40ff2, type: 2}
-  Camera: {fileID: 1668773766}
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
   moveSpeed: 2.8
@@ -3939,7 +3952,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &922658098
 GameObject:
@@ -39688,7 +39701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3475da74eae8e47be66ec35cc06fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamaraEvent: {fileID: 195157911}
 --- !u!212 &1741808402
 SpriteRenderer:
   m_ObjectHideFlags: 0
