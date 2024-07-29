@@ -8,22 +8,34 @@ using Unity.VisualScripting; // 데이터 쿼리 언어
 
 public class Player : MonoBehaviour
 {
-    // 원거리 공격 관련 , bullet
-    public GameObject bullet;
-    public Transform pos;
-    public float cooltime;
-    private float curtime;
+    //인벤토리 및 상호작용 처리 ------------------------------------------------------------------------------------------------------------------------
 
-    //인벤토리---------------------------------------------------------------------------------------------------------
-
-    //인벤토리 슬롯 배열
+    //슬롯 배열
     public string[] item_main_slot = new string[4];
     public Image[] item_main_slot_Image = new Image[4];
 
     //플레이어가 오브젝트에 충돌 중인지 체크 (땅/사물)
     public static string object_collision = "땅";
 
-    //Place items with 1,2,3,4 key buttons.
+    //상호작용 오브젝트 이름
+    public static string ObjectName;
+
+    //아이템 오브젝트
+    public GameObject BrownTeddyBear_Object;
+    public GameObject PinkTeddyBear_Object;
+    public GameObject YellowTeddyBear_Object;
+    public GameObject Cake_Object;
+    public GameObject Camera;
+
+    //아이템 스프라이트
+    public Sprite BrownTeddyBear_Sprite;
+    public Sprite PinkTeddyBear_Sprite;
+    public Sprite YellowTeddyBear_Sprite;
+    public Sprite Cake_Sprite;
+
+
+    /* 아이템 두기/올려두기 */
+
     public void Slot1()
     {
         if(object_collision == "땅")
@@ -92,15 +104,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    /* 아이템 두기/올려두기 끝 */
 
-    //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
-    //아이템 오브젝트
-    public GameObject BrownTeddyBear_Object;
-    public GameObject PinkTeddyBear_Object;
-    public GameObject YellowTeddyBear_Object;
-    public GameObject Cake_Object;
-    public GameObject Camera;
+
+    /* 아이템 줍기 */
 
     GameObject GetItemObject(string item_name)
     {
@@ -115,12 +123,6 @@ public class Player : MonoBehaviour
 
         return null;
     }
-
-    //아이템 스프라이트
-    public Sprite BrownTeddyBear_Sprite;
-    public Sprite PinkTeddyBear_Sprite;
-    public Sprite YellowTeddyBear_Sprite;
-    public Sprite Cake_Sprite;
 
     Sprite GetItemSprite(string item_name)
     {
@@ -215,12 +217,19 @@ public class Player : MonoBehaviour
             }
         }
 
-        //오브젝트 상호작용---------------------------------------
+    /* 아이템 줍기 끝 */
+
+
+
+    /* 상호작용 처리 */
+
+        //사물에 닿았을때 "사물"로 처리
         if(other.gameObject.tag == "사물")
         {
             object_collision = "사물";
         }
 
+        //오브젝트 상호작용
         if(other.gameObject.tag == "달력")
         {
             if(Input.GetKeyDown(KeyCode.Space))
@@ -240,8 +249,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public static string ObjectName;//상호작용 오브젝트 이름
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
@@ -258,46 +265,56 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "B")
-        {
-            UIManager.Camera_setactive = false; //카메라 UI 효과 끄기
-        }
-    }
+    /* 상호작용 처리 끝 */
 
-    //Player이동----------------------------------------------------------------------------------------------------------------------
+    //인벤토리 및 상호작용 처리 끝 ---------------------------------------------------------------------------------------------------------------
 
+
+
+    //Player 이동 및 컨트롤. 원거리 공격 ---------------------------------------------------------------------------------------------------------
+
+    //Player 이동 및 컨트롤
     public static Vector3 Player_pos;
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
     public Animator Player_move; //플레이어 이동 애니메이션
-    
+    public static float Velocity;
+    public float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public static float Velocity;
-    public float moveSpeed = 2.5f;
+    //원거리 공격 관련 , bullet
+    public GameObject bullet;
+    public Transform pos;
+    public float cooltime;
+    private float curtime;
 
     // 추후에 공격 애니메이션 추가
     // public Animator Player_attack;
     // Player_attack에서는 2개 (근접, 원거리)
 
-    void Player_Move()
+
+
+    /* Player 이동 및 컨트롤 관련 */
+
+    void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
     {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_move.speed = 1;
         Velocity = 0;
 
         //위로 이동
-        if(Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            Velocity = moveSpeed;
-            transform.Translate(Vector3.up * Velocity * Time.deltaTime);
+            //대화창이 켜져있을땐 움직이지 않게
+            if (UIManager.StoryUI == true)
+                Velocity = 0;
+            else
+                Velocity = moveSpeed;
 
             //키가 겹쳤을때
-            if(Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow))
                 Player_move.Play("PlayerLeft");
-            else if(Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow))
                 Player_move.Play("PlayerRight");
             else
                 Player_move.Play("PlayerUp");
@@ -307,13 +324,18 @@ public class Player : MonoBehaviour
 
             MoveX = true;
             MoveY = false;
+
+            transform.Translate(Vector3.up * Velocity * Time.deltaTime);
         }
 
         //아래로 이동
-        if(Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            Velocity = moveSpeed;
-            transform.Translate(Vector3.down * Velocity * Time.deltaTime);
+            //대화창이 켜져있을땐 움직이지 않게
+            if (UIManager.StoryUI == true)
+                Velocity = 0;
+            else
+                Velocity = moveSpeed;
 
             //키가 켭쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -328,38 +350,50 @@ public class Player : MonoBehaviour
 
             MoveX = true;
             MoveY = false;
+
+            transform.Translate(Vector3.down * Velocity * Time.deltaTime);
         }
 
         //왼쪽으로 이동
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
+            //대화창이 켜져있을땐 움직이지 않게
+            if (UIManager.StoryUI == true)
+                Velocity = 0;
+            else
+                Velocity = moveSpeed;
+
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.RightArrow))
                 Player_move.Play("PlayerLeft");
             else
                 Player_move.Play("PlayerLeft");
 
-            Velocity = moveSpeed;
-            transform.Translate(Vector3.left * Velocity * Time.deltaTime);
-
             MoveX = false;
             MoveY = true;
+
+            transform.Translate(Vector3.left * Velocity * Time.deltaTime);
         }
 
         //오른쪽으로 이동
-        if(Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
+            //대화창이 켜져있을땐 움직이지 않게
+            if (UIManager.StoryUI == true)
+                Velocity = 0;
+            else
+                Velocity = moveSpeed;
+
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_move.Play("PlayerLeft");
             else
                 Player_move.Play("PlayerRight");
 
-            Velocity = moveSpeed;
-            transform.Translate(Vector3.right * Velocity * Time.deltaTime);
-
             MoveX = false;
             MoveY = true;
+
+            transform.Translate(Vector3.right * Velocity * Time.deltaTime);
         }
 
 
@@ -379,18 +413,43 @@ public class Player : MonoBehaviour
             Player_move.speed = 2;
             moveSpeed = 5;
         }
-            
+
         else
         {
             Player_move.speed = 1;
             moveSpeed = 2.5f;
         }
+
+        /* Player 인벤토리 */
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Slot1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Slot2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Slot3();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Slot4();
+        }
     }
 
-    //-------------------------------------------------------------------------------------------------------------
+    /* Player 이동 및 컨트롤 관련 끝 */
 
-    /*
-    void Player_attack()
+
+
+    /* 원거리 공격 */
+
+    void PlayerAttack()
     {
         if (DetectEnemies() == true)
         { 
@@ -449,10 +508,15 @@ public class Player : MonoBehaviour
         }
         else
             return false;
-    }*/
+    }
+
+    /* 원거리 공격 끝 */
+
+    //Player 이동 및 컨트롤. 원거리 공격 끝 ------------------------------------------------------------------------------------------------
 
 
-    //--------------------------------------------------------------------------------------------
+
+    //메인 메소드 --------------------------------------------------------------------------------------------------------------------------
 
     void Start()
     {
@@ -461,29 +525,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //DetectEnemies();
-        //Player_attack();
-
-        Player_Move();
-
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Slot1();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Slot2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Slot3();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Slot4();
-        }
+        DetectEnemies();
+        PlayerAttack();
+        PlayerControl();
     }
 }

@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject Story_NextButton; //스토리 진행 다음 버튼
     public GameObject UI_Close_Button; //대화창 닫기 버튼
 
+    public static bool StoryUI = false;
+
     //--------------------------------------------------------------------
 
     public Text thoughts_Text; //Text
@@ -24,6 +26,8 @@ public class UIManager : MonoBehaviour
 
         Story_NextButton.SetActive(true);
         UI_Close_Button.SetActive(false);
+
+        StoryUI = true;
     }
 
     void progress() //대화창
@@ -33,11 +37,15 @@ public class UIManager : MonoBehaviour
 
         Story_NextButton.SetActive(true);
         UI_Close_Button.SetActive(false);
+
+        StoryUI = true;
     }
 
     void UI_Close() //UI 닫기
     {
         player_thoughts_UI.SetActive(false);
+
+        StoryUI = false;
     }
 
     //--------------------------------------------------------------------
