@@ -511,5 +511,9 @@ public class UIManager : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+
+        if (StoryUI == true)
+            if (Input.GetKeyDown(KeyCode.Space))
+                NextButton();
     }
 }

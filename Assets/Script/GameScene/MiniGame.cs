@@ -97,6 +97,7 @@ public class MiniGame : MonoBehaviour
             is_next_stage = false;
 
             UIManager.Camera_setactive = false;
+            GameManager.GameState = "InGame";
         }
     }
 }

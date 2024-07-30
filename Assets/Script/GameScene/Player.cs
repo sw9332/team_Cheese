@@ -223,8 +223,8 @@ public class Player : MonoBehaviour
 
     /* 상호작용 처리 */
 
-        //사물에 닿았을때 "사물"로 처리
-        if(other.gameObject.tag == "사물")
+            //사물에 닿았을때 "사물"로 처리
+        if (other.gameObject.tag == "사물")
         {
             object_collision = "사물";
         }
@@ -262,6 +262,11 @@ public class Player : MonoBehaviour
             UIManager.Next_value = 19;
             UIManager.Camera_setactive = true;
             Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "Tutorial Exit")
+        {
+            transform.position = new Vector3(57.52f, -9f, 0);
         }
     }
 
@@ -449,6 +454,7 @@ public class Player : MonoBehaviour
 
     /* 원거리 공격 */
 
+    /*
     void PlayerAttack()
     {
         if (DetectEnemies() == true)
@@ -508,7 +514,7 @@ public class Player : MonoBehaviour
         }
         else
             return false;
-    }
+    }*/
 
     /* 원거리 공격 끝 */
 
@@ -525,8 +531,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        DetectEnemies();
-        PlayerAttack();
+        //DetectEnemies();
+        //PlayerAttack();
         PlayerControl();
     }
 }
