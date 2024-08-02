@@ -463,6 +463,9 @@ public class UIManager : MonoBehaviour
 
     public float typingSpeed = 0.03f;
 
+
+    //---------------------------------------------------------------------
+
     void Start()
     {
        Time.timeScale = 1;
