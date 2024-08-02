@@ -1412,6 +1412,8 @@ MonoBehaviour:
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
   is_next_stage: 0
+  fadeImage: {fileID: 1201729923}
+  fadeDuration: 1
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0

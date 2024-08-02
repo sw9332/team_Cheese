@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,23 +11,23 @@ public class MiniGame : MonoBehaviour
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
     public GameObject player;
+    public Image fadeImage;
+    public float fadeDuration = 1f;
 
     public static bool is_take_photo;
-    public bool is_next_stage;
     public static bool is_minigame;
+    private bool is_next_stage;
+    private bool is_transitioning = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         is_take_photo = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         PhotoMode();
         TakePhoto();
-        GoNextStage();
     }
 
     private void PhotoMode()
@@ -46,7 +45,7 @@ public class MiniGame : MonoBehaviour
 
     private void TakePhoto()
     {
-        if(is_minigame == true)
+        if (is_minigame == true)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -73,31 +72,70 @@ public class MiniGame : MonoBehaviour
             x_Axis.GetComponent<Slider>().value = photoCamera.transform.position.x;
             y_Axis.GetComponent<Slider>().value = photoCamera.transform.position.y;
 
-            if(Input.GetKey(KeyCode.F)
+            if (Input.GetKey(KeyCode.F)
                 && x_Axis.GetComponent<Slider>().value <= 0.2f && x_Axis.GetComponent<Slider>().value >= -0.2f
                 && y_Axis.GetComponent<Slider>().value <= 0.2f && y_Axis.GetComponent<Slider>().value >= -0.2f)
             {
                 is_next_stage = true;
+                UIManager.Camera_setactive = false;
+                GameManager.GameState = "InGame";
             }
+        }
+
+        if (is_next_stage && !is_transitioning)
+        {
+            StartCoroutine(TransitionToNextStage());
         }
     }
 
-    private void GoNextStage()
+    IEnumerator TransitionToNextStage()
     {
-        if(is_next_stage == true)
-        {
-            player.transform.position = new Vector3(60, 0, 0);
-            mainCamera.transform.position = new Vector3(60, 0, -10);
-            player.SetActive(true);
-            mainCamera.GetComponent<Camera>().enabled = true;
-            photoCamera.GetComponent<Camera>().enabled = false;
-            ingameUIPanel.SetActive(true);
-            minigamePanel.SetActive(false);
-            is_minigame = false;
-            is_next_stage = false;
+        is_transitioning = true;
+        yield return StartCoroutine(FadeOut());
 
-            UIManager.Camera_setactive = false;
-            GameManager.GameState = "InGame";
+        player.transform.position = new Vector3(60, 0, 0);
+        mainCamera.transform.position = new Vector3(60, 0, -10);
+        player.SetActive(true);
+        mainCamera.GetComponent<Camera>().enabled = true;
+        photoCamera.GetComponent<Camera>().enabled = false;
+        ingameUIPanel.SetActive(true);
+        minigamePanel.SetActive(false);
+        is_minigame = false;
+        is_next_stage = false;
+
+        yield return StartCoroutine(FadeIn());
+        is_transitioning = false;
+    }
+
+    IEnumerator FadeIn()
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = Color.black;
+
+        float timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
+            yield return null;
         }
+
+        fadeImage.gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeOut()
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = Color.clear;
+
+        float timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
+            yield return null;
+        }
+
+        fadeImage.color = Color.black;
     }
 }
