@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.tag == "Tutorial Exit")
         {
-            transform.position = new Vector3(57.52f, -9f, 0);
+            transform.position = new Vector3(57.52f, -11f, 0);
         }
     }
 

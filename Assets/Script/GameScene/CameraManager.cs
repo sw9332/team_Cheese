@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
         if(GameManager.GameState == "Tutorial")
         {
             //튜토리얼 진행일 때 카메라
-            if (player.position.y > -3.5f && player.position.y < 0f)
+            if (player.position.y > 46.5f && player.position.y < 50.9f)
             {
                 Camera_Pos.y = player.position.y + offset.y;
             }
