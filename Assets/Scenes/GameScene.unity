@@ -2673,6 +2673,7 @@ MonoBehaviour:
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   pos: {fileID: 441062259}
   cooltime: 0.1
+  curtime: 0
   BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
   PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
   YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
@@ -2686,14 +2687,13 @@ MonoBehaviour:
   Player_move: {fileID: 730974887}
   moveSpeed: 2.8
   playerCenterOffset: {x: -0.25, y: -0.35, z: 0}
-  meleeAttackBoxSize: {x: 2, y: 2.2}
+  ak47: {fileID: 5269123794780398040, guid: abaeed5310331df458a5da6f0ac80c5d, type: 3}
+  meleeAttackBoxSize: {x: 2.5, y: 2.2}
   nearEnemyBoxSize: {x: 1.1, y: 1.6}
   hp:
   - {fileID: 918967694}
   - {fileID: 2022503826}
   - {fileID: 1359939695}
-  elapsedTime: 0
-  destroyTime: 3
 --- !u!50 &730974883
 Rigidbody2D:
   serializedVersion: 4

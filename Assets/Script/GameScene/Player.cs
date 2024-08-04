@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public Transform pos;
     public float cooltime;
-    private float curtime;
+    public  float curtime;
 
     //인벤토리---------------------------------------------------------------------------------------------------------
 
@@ -387,25 +387,37 @@ public class Player : MonoBehaviour
     //  공격 -------------------------------------------------------------------------------
     void Player_Attack()
     {
-        if (MeleeAttackableEnemies() == true) // 근처의 적군이 감지됐다면
-        { 
-            // MeleeAttack();
-        }
-        else // 감지된 적군이 없다면 -> 원거리 공격
+        if (meleeAttackableEnemy())
         {
-            rangedAttack();
+            if (Input.GetKey(KeyCode.Z)) // 근처의 적군이 감지됐다면
+            {
+                meleeAttack();
+            }
         }
+
+            if (Input.GetKey(KeyCode.Z) && meleeAttackableEnemy() == false)
+            // 감지된 적군이 없다면 -> 원거리 공격
+            {
+                rangedAttack();
+
+            }
     }
 
-    // 원거리 공격  -------------------------------------------------------------------------------
+    // 근거리, 원거리 공격  -------------------------------------------------------------------------------
+
+    public GameObject ak47;
+    private float gunStartTime = 0.5f; 
+
+    void meleeAttack()
+    {
+
+    }
+
     void rangedAttack()
     {
         if (curtime <= 0)
         {
-            if (Input.GetKey(KeyCode.Z))
-            {
-                Instantiate(bullet, pos.position, transform.rotation);
-            }
+            Instantiate(bullet, pos.position, transform.rotation);
             curtime = cooltime;
         }
         curtime -= Time.deltaTime;
@@ -417,7 +429,7 @@ public class Player : MonoBehaviour
     // 근접 공격 -------------------------------------------------------------------------------------------
 
     // 근접 공격 가능한 적을 담는 Collider 2D 배열
-    private Collider2D[] meleeattackableEnemies;
+    private Collider2D[] meleeAttackableEnemies;
 
     // Player의 근접 공격 범위 GizmoBox의 크기
     public Vector2 meleeAttackBoxSize;
@@ -429,7 +441,7 @@ public class Player : MonoBehaviour
     }
 
     //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
-    private bool MeleeAttackableEnemies() // melee : 근접해서 싸우다
+    private bool meleeAttackableEnemy() // melee : 근접해서 싸우다
     {
 
         // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
@@ -437,7 +449,7 @@ public class Player : MonoBehaviour
 
         // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
         // => 람다
-        meleeattackableEnemies = enemyArray
+        meleeAttackableEnemies = enemyArray
             // Where: 조건을 만족하는 요소 필터링
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
             // OrderBy: 오름차순 정렬
@@ -446,9 +458,9 @@ public class Player : MonoBehaviour
             .ToArray();
 
         // 적을 찾은 경우에만 가장 가까운 enemy 출력
-        if (meleeattackableEnemies.Length > 0)
+        if (meleeAttackableEnemies.Length > 0)
         {
-            Debug.Log("Melee Attackable Enemy: " + meleeattackableEnemies[0].name);
+            Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
             return true;
         }
         else
@@ -506,25 +518,27 @@ public class Player : MonoBehaviour
 
     public void Player_Collision()
     {
-        if (CollideWithEnemy() == true && hp != null)
-        {
-            isCollidingWithEnemy = true;
-        }
-        else
-        {
-            isCollidingWithEnemy = false;
-            elapsedTime = 0f;
-        }
-
-        if (isCollidingWithEnemy == true)
-        {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= destroyTime && hp.Count > 0)
+        if( hp != null) { 
+            if (CollideWithEnemy() == true)
             {
-                GameObject lastHp = hp[hp.Count - 1];
-                hp.RemoveAt(hp.Count - 1);
-                Destroy(lastHp);
-                elapsedTime = 0f; // 다시 시간 초기화
+                isCollidingWithEnemy = true;
+            }
+            else
+            {
+                isCollidingWithEnemy = false;
+                elapsedTime = 0f;
+            }
+
+            if (isCollidingWithEnemy == true)
+            {
+                elapsedTime += Time.deltaTime;
+                if (elapsedTime >= destroyTime && hp.Count > 0)
+                {
+                    GameObject lastHp = hp[hp.Count - 1];
+                    hp.RemoveAt(hp.Count - 1);
+                    Destroy(lastHp);
+                    elapsedTime = 0f; // 다시 시간 초기화
+                }
             }
         }
     }
