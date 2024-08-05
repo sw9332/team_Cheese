@@ -18,14 +18,25 @@ public class Bullet : MonoBehaviour
         GameObject otherObject = GameObject.Find("Player");
         SpriteRenderer playerRenderer = otherObject.GetComponent<SpriteRenderer>();
 
-        // 플레이어의 SpriteRenderer 중 flip X를 이용해서 총알 방향 설정
-        if (Input.GetKey(KeyCode.RightArrow))   // 플레이어가 오른쪽을 보는 경우
+        if (Input.GetKey(KeyCode.RightArrow)) 
         {
             direction = Vector2.right;
         }
-        else  // 플레이어가 왼쪽을 보는 경우
+        else if (Input.GetKey(KeyCode.UpArrow))  
+        {
+            direction = Vector2.up;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow)) 
         {
             direction = Vector2.left;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            direction = Vector2.down;
+        }
+        else
+        {
+            direction = Vector2.right;
         }
 
         Invoke("DestroyBullet", 2);

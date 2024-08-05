@@ -18,11 +18,7 @@ public class Player : MonoBehaviour
 
 
 
-    // 원거리 공격 관련 , bullet
-    public GameObject bullet;
-    public Transform pos;
-    public float cooltime;
-    public  float curtime;
+ 
 
     //인벤토리---------------------------------------------------------------------------------------------------------
 
@@ -285,12 +281,15 @@ public class Player : MonoBehaviour
     public static float Velocity;
     public float moveSpeed = 2.5f;
 
+    public Slider playerStamina;
+
     //walking the vertical up
     //stop vertical
     
     //walking the horizontal
     //stop horizontal
 
+    // 
     void Player_Move()
     {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
@@ -372,12 +371,13 @@ public class Player : MonoBehaviour
         {
             Player_move.speed = 2;
             moveSpeed = 5;
+            Stamina.isPlayerRunning = true;
         }
-            
         else
         {
             Player_move.speed = 1;
             moveSpeed = 2.5f;
+            Stamina.isPlayerRunning = false;
         }
     }
 
@@ -385,6 +385,13 @@ public class Player : MonoBehaviour
     public Vector3 playerCenterOffset;
 
     //  공격 -------------------------------------------------------------------------------
+
+    // 원거리 공격 관련 , bullet
+    public GameObject bullet;
+    public Transform bulletPos;
+    public float fireCooltime;
+    public float fireCurtime;
+
     void Player_Attack()
     {
         if (meleeAttackableEnemy())
@@ -403,11 +410,6 @@ public class Player : MonoBehaviour
             }
     }
 
-    // 근거리, 원거리 공격  -------------------------------------------------------------------------------
-
-    public GameObject ak47;
-    private float gunStartTime = 0.5f; 
-
     void meleeAttack()
     {
 
@@ -415,12 +417,12 @@ public class Player : MonoBehaviour
 
     void rangedAttack()
     {
-        if (curtime <= 0)
+        if (fireCurtime <= 0)
         {
-            Instantiate(bullet, pos.position, transform.rotation);
-            curtime = cooltime;
+            Instantiate(bullet, bulletPos.position, transform.rotation);
+            fireCurtime = fireCooltime;
         }
-        curtime -= Time.deltaTime;
+        fireCurtime -= Time.deltaTime;
     }
 
     //  -------------------------------------------------------------------------------------------
@@ -509,8 +511,7 @@ public class Player : MonoBehaviour
             return false;
     }
 
-
-    // Player HP --------------------------------------------------------------------------------
+    // Hp UI 파괴 
 
     private float elapsedTime = 0f;
     private float destroyTime = 1f;
