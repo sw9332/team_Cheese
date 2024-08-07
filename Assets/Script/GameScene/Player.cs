@@ -31,6 +31,20 @@ public class Player : MonoBehaviour
 
     public static string object_collision = "땅";
 
+    private DialogueManager dialogueManager;
+
+    //대화내용
+    [SerializeField]
+    public Dialogue d_cake;
+
+    [SerializeField]
+    public Dialogue d_camera;
+
+    [SerializeField]
+    public Dialogue d_photo;
+
+    public GameObject CameraUI;
+
     //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
     {
@@ -210,69 +224,70 @@ public class Player : MonoBehaviour
     //아이템 줍기---------------------------------------------------------------------------------------------------------------------
 
     //아이템 오브젝트
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
+    public GameObject BrownTeddyBear_Object;
+    public GameObject PinkTeddyBear_Object;
+    public GameObject YellowTeddyBear_Object;
+    public GameObject Cake_Object;
 
     GameObject GetItemObject(string item_name)
     {
-        if (item_name == "item1")
-            return item1;
-        else if (item_name == "item2")
-            return item2;
-        else if (item_name == "item3")
-            return item3;
-        else if (item_name == "item4")
-            return item4;
+        if (item_name == "BrownTeddyBear")
+            return BrownTeddyBear_Object;
+        else if (item_name == "PinkTeddyBear")
+            return PinkTeddyBear_Object;
+        else if (item_name == "YellowTeddyBear")
+            return YellowTeddyBear_Object;
+        else if (item_name == "Cake")
+            return Cake_Object;
 
         return null;
     }
 
     //아이템 스프라이트
-    public Sprite item1Sprite;
-    public Sprite item2Sprite;
-    public Sprite item3Sprite;
-    public Sprite item4Sprite;
+    public Sprite BrownTeddyBear_Sprite;
+    public Sprite PinkTeddyBear_Sprite;
+    public Sprite YellowTeddyBear_Sprite;
+    public Sprite Cake_Sprite;
 
     Sprite GetItemSprite(string item_name)
     {
-        if (item_name == "item1")
-            return item1Sprite;
-        else if (item_name == "item2")
-            return item2Sprite;
-        else if (item_name == "item3")
-            return item3Sprite;
-        else if (item_name == "item4")
-            return item4Sprite;
+        if (item_name == "BrownTeddyBear")
+            return BrownTeddyBear_Sprite;
+        else if (item_name == "PinkTeddyBear")
+            return PinkTeddyBear_Sprite;
+        else if (item_name == "YellowTeddyBear")
+            return YellowTeddyBear_Sprite;
+        else if (item_name == "Cake")
+            return Cake_Sprite;
 
         return null;
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        //플레이어와 아이템이 충돌 중에 Z키를 누르면 해당 아이템을 줍고 슬롯에 저장.
-        if(other.gameObject.tag == "item1" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "DroppedBrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
         {
             for (int i=0; i<item_main_slot.Length; i++)
             {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null) //i번째 슬롯에 아이템이 없는지 확인
+                if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
-                    item_main_slot[i] = "item1"; //i번째 슬롯에 item1적용.
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]); //슬롯 이미지(스프라이트)를 해당 아이템 스프라이트로 변경.
-                    Destroy(other.gameObject); //땅에 있던 아이템 오브젝트는 제거.
+                    item_main_slot[i] = "BrownTeddyBear";
+                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
+                    Destroy(other.gameObject);
+                    dialogueManager.ShowDialogue(d_camera); //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    CameraUI.SetActive(true);
                     break;
                 }
             }
         }
 
-        if(other.gameObject.tag == "item2" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "BrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
         {
-            for(int i=0; i<item_main_slot.Length; i++)
+            for (int i=0; i<item_main_slot.Length; i++)
             {
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
-                    item_main_slot[i] = "item2";
+                    item_main_slot[i] = "BrownTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     break;
@@ -280,13 +295,13 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "item3" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "PinkTeddyBear" && Input.GetKeyDown(KeyCode.Space))
         {
             for(int i=0; i<item_main_slot.Length; i++)
             {
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
-                    item_main_slot[i] = "item3";
+                    item_main_slot[i] = "PinkTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     break;
@@ -294,18 +309,29 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "item4" && Input.GetKeyDown(KeyCode.Space))
+        if(other.gameObject.tag == "YellowTeddyBear" && Input.GetKeyDown(KeyCode.Space))
         {
             for(int i=0; i<item_main_slot.Length; i++)
             {
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
-                    item_main_slot[i] = "item4";
+                    item_main_slot[i] = "YellowTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
+                    break;
+                }
+            }
+        }
 
-                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
-
+        if(other.gameObject.tag == "Cake" && Input.GetKeyDown(KeyCode.Space))
+        {
+            for(int i=0; i<item_main_slot.Length; i++)
+            {
+                if(item_main_slot[i] == "" || item_main_slot[i] == null)
+                {
+                    item_main_slot[i] = "Cake";
+                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
+                    Destroy(other.gameObject);
                     break;
                 }
             }
@@ -342,8 +368,17 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
         {
-            UIManager.Next_value = 7;
+            dialogueManager.ShowDialogue(d_cake);
             Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "Camera Event") //케이크를 테이블에 놓았을때 생기는 이벤트에 닿았을때
+        {
+            dialogueManager.ShowDialogue(d_photo);
+            UIManager.Camera_setactive = true;
+            Destroy(other.gameObject);
+            MiniGame.is_take_photo = true;
+            MiniGame.is_minigame = true;
         }
     }
 
@@ -424,6 +459,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Player_move.Play("stop horizontal");
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     void Update()

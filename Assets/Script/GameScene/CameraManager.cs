@@ -20,14 +20,17 @@ public class CameraManager : MonoBehaviour
     {
         Camera_Pos = transform.position;
 
-        if(player.position.x > -1f && player.position.x < 1f)
+        if(GameManager.GameState == "tutorial")
         {
-            Camera_Pos.x = player.position.x + offset.x;
-        }
+            if(player.position.x > -1f && player.position.x < 1f)
+            {
+                Camera_Pos.x = player.position.x + offset.x;
+            }
 
-        if(player.position.y > -1f && player.position.y < 1f)
-        {
-            Camera_Pos.y = player.position.y + offset.y;
+            if(player.position.y > -1f && player.position.y < 1f)
+            {
+                Camera_Pos.y = player.position.y + offset.y;
+            }
         }
 
         transform.position = Camera_Pos;

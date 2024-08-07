@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5548648369103653021}
   m_Layer: 0
   m_Name: brown Teddy Bear
-  m_TagString: item4
+  m_TagString: BrownTeddyBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
