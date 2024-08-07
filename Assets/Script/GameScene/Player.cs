@@ -31,6 +31,20 @@ public class Player : MonoBehaviour
 
     public static string object_collision = "땅";
 
+    private DialogueManager dialogueManager;
+
+    //대화내용
+    [SerializeField]
+    public Dialogue d_cake;
+
+    [SerializeField]
+    public Dialogue d_camera;
+
+    [SerializeField]
+    public Dialogue d_photo;
+
+    public GameObject CameraUI;
+
     //슬롯1 아이템 땅에 두기 버튼
     public void slot_button1_floor()
     {
@@ -260,7 +274,8 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "BrownTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-                    UIManager.Next_value = 13; //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    dialogueManager.ShowDialogue(d_camera); //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    CameraUI.SetActive(true);
                     break;
                 }
             }
@@ -353,15 +368,17 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
         {
-            UIManager.Next_value = 7;
+            dialogueManager.ShowDialogue(d_cake);
             Destroy(other.gameObject);
         }
 
         if(other.gameObject.tag == "Camera Event") //케이크를 테이블에 놓았을때 생기는 이벤트에 닿았을때
         {
-            UIManager.Next_value = 19;
+            dialogueManager.ShowDialogue(d_photo);
             UIManager.Camera_setactive = true;
             Destroy(other.gameObject);
+            MiniGame.is_take_photo = true;
+            MiniGame.is_minigame = true;
         }
     }
 
@@ -442,6 +459,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Player_move.Play("stop horizontal");
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     void Update()
