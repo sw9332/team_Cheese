@@ -2580,8 +2580,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaBar: {fileID: 629456182}
-  curStamina: 0
-  maxStamina: 0
 --- !u!1001 &654307619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2897,11 +2895,12 @@ MonoBehaviour:
   Camera: {fileID: 1668773766}
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
-  stamina: {fileID: 629456182}
+  moveSpeed: 2.5
+  playerStamina: {fileID: 629456182}
   playerCenterOffset: {x: -0.25, y: -0.35, z: 0}
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 441062259}
-  fireCooltime: 0
+  fireCooltime: 0.2
   fireCurtime: 0
   meleeAttackBoxSize: {x: 2.5, y: 2.2}
   nearEnemyBoxSize: {x: 1.1, y: 1.6}
