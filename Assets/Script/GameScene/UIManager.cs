@@ -230,12 +230,14 @@ public class UIManager : MonoBehaviour
     //            UI_Close();
     //            break;
 
+
     //        case 19:
     //            Text_effect = "오!!!";
                 
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
+
 
     //            player_UI();
     //            break;
@@ -489,6 +491,7 @@ public class UIManager : MonoBehaviour
     {
         StopCoroutine(FadeIn());
     }
+
 
 
     void Start()
