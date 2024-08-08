@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     //인벤토리---------------------------------------------------------------------------------------------------------
 
-    public static string object_collision = "땅";
 
     private DialogueManager dialogueManager;
 
@@ -55,10 +54,9 @@ public class Player : MonoBehaviour
     public GameObject CameraUI;
 
     //슬롯1 아이템 땅에 두기 버튼
-    public void slot_button1_floor()
+    public void Slot1()
 
     /* 아이템 두기/올려두기 */
-
 
     {
         if(object_collision == "땅")
@@ -183,7 +181,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
         {
-            UIManager.Next_value = 13; //카메라를 주웠을 때 스토리값을 13으로 (카메라 발견)
+           // UIManager.Next_value = 13; //카메라를 주웠을 때 스토리값을 13으로 (카메라 발견)
             Destroy(other.gameObject);
         }
 
@@ -356,10 +354,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             //대화창이 켜져있을땐 움직이지 않게
-            if (UIManager.StoryUI == true)
-                Velocity = 0;
-            else
-                Velocity = moveSpeed;
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -382,10 +380,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
         {
             //대화창이 켜져있을땐 움직이지 않게
-            if (UIManager.StoryUI == true)
-                Velocity = 0;
-            else
-                Velocity = moveSpeed;
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
 
             //키가 켭쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -408,10 +406,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //대화창이 켜져있을땐 움직이지 않게
-            if (UIManager.StoryUI == true)
-                Velocity = 0;
-            else
-                Velocity = moveSpeed;
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.RightArrow))
@@ -429,10 +427,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             //대화창이 켜져있을땐 움직이지 않게
-            if (UIManager.StoryUI == true)
-                Velocity = 0;
-            else
-                Velocity = moveSpeed;
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -571,21 +569,21 @@ public class Player : MonoBehaviour
         // => 람다
         meleeAttackableEnemies = enemyArray
             // Where: 조건을 만족하는 요소 필터링
-            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ //&& collider is PolygonCollider2D)
             // OrderBy: 오름차순 정렬
-            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+           // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
             // ToArray: 배열로 변환
-            .ToArray();
+           // .ToArray();
 
-        // 적을 찾은 경우에만 가장 가까운 enemy 출력
-        if (meleeAttackableEnemies.Length > 0)
-        {
-            Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
-            return true;
-        }
-        else
-            return false;
-    }
+    //    // 적을 찾은 경우에만 가장 가까운 enemy 출력
+    //    //if (meleeAttackableEnemies.Length > 0)
+    //   // {
+    //        Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
     /* 원거리 공격 끝 */
 
