@@ -322,7 +322,7 @@ public class Player : MonoBehaviour
 
     //원거리 공격 관련 , bullet
     public GameObject bullet;
-    public Transform pos;
+    public Transform bulletPos;
     public float cooltime;
     private float curtime;
 
@@ -501,8 +501,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /* Player 이동 및 컨트롤 관련 끝 */
-
 
 
     /* 원거리 공격 */
@@ -568,16 +566,18 @@ public class Player : MonoBehaviour
         // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
         // => 람다
         meleeAttackableEnemies = enemyArray
-            // Where: 조건을 만족하는 요소 필터링
+           // // Where: 조건을 만족하는 요소 필터링
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ //&& collider is PolygonCollider2D)
-            // OrderBy: 오름차순 정렬
+
+           // // OrderBy: 오름차순 정렬
            // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
-            // ToArray: 배열로 변환
+
+           // // ToArray: 배열로 변환
            // .ToArray();
 
-    //    // 적을 찾은 경우에만 가장 가까운 enemy 출력
-    //    //if (meleeAttackableEnemies.Length > 0)
-    //   // {
+    //     적을 찾은 경우에만 가장 가까운 enemy 출력
+    //    if (meleeAttackableEnemies.Length > 0)
+    //   {
     //        Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
     //        return true;
     //    }
@@ -587,7 +587,6 @@ public class Player : MonoBehaviour
 
     /* 원거리 공격 끝 */
 
-    //Player 이동 및 컨트롤. 원거리 공격 끝 ------------------------------------------------------------------------------------------------
 
 
 

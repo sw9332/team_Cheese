@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
     public static bool Text_effect_isCheck = false;
 
     //스토리 진행    //마찬가지로 대화내용은 dialogue에서 관리, switch문의 역할은 dialoguemanager에서 할 예정.
-                     //bool값 혹은 trigger 조정은 계속 고려할 예정 
+    //bool값 혹은 trigger 조정은 계속 고려할 예정 
     //void Stroy() 
     //{
     //    switch(Next_value)
@@ -123,7 +123,7 @@ public class UIManager : MonoBehaviour
 
     //        case 7:
     //            Text_effect = "어?! 저기 케이크다!";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -133,7 +133,7 @@ public class UIManager : MonoBehaviour
 
     //        case 8:
     //            Text_effect = "어.... 음.....";
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
 
     //        case 9:
     //            Text_effect = "케이크를 주우려면 인형을 옮겨야겠어!";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
 
     //        case 10:
     //            Text_effect = "!@#$을....";
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -163,7 +163,7 @@ public class UIManager : MonoBehaviour
 
     //        case 11:
     //            Text_effect = "인형을 옮기려면 스페이스바로 수집 후 인벤토리 창에서 꺼내 올려두세요.";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -177,7 +177,7 @@ public class UIManager : MonoBehaviour
 
     //        case 13: //인형을 인벤토리에 넣은 후.
     //            Text_effect = "와!!! 카메라다! 카메라로! 카메라로.....";
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -187,7 +187,7 @@ public class UIManager : MonoBehaviour
 
     //        case 14:
     //            Text_effect = "빨리... ㅋ.... 케이크를 %#@$!!!";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -197,7 +197,7 @@ public class UIManager : MonoBehaviour
 
     //        case 15:
     //            Text_effect = "어?... 어... 아!";
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -207,7 +207,7 @@ public class UIManager : MonoBehaviour
 
     //        case 16:
     //            Text_effect = "빨리 케이크를 옮기자!";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -218,7 +218,7 @@ public class UIManager : MonoBehaviour
     //        case 17:
     //            Text_effect = "카메라를 획득하였습니다.";
     //            CameraUI.SetActive(true);
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -233,7 +233,7 @@ public class UIManager : MonoBehaviour
 
     //        case 19:
     //            Text_effect = "오!!!";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -244,7 +244,7 @@ public class UIManager : MonoBehaviour
 
     //        case 20:
     //            Text_effect = "카메라가 빛난다!";
-                
+
     //            if(Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = false;
@@ -254,7 +254,7 @@ public class UIManager : MonoBehaviour
 
     //        case 21:
     //            Text_effect = "이제 찍으면 되나?";
-                
+
     //            if(!Text_effect_isCheck)
     //                StartCoroutine(typing());
     //                Text_effect_isCheck = true;
@@ -386,7 +386,7 @@ public class UIManager : MonoBehaviour
 
     void Camera_effect_manager()
     {
-        switch(Camera_setactive)
+        switch (Camera_setactive)
         {
             case false:
                 Camera_Effect_Animation.Play("Camera_Effect_false");
@@ -409,7 +409,7 @@ public class UIManager : MonoBehaviour
         fadeImage.color = Color.black;
 
         float timer = 0f;
-        while(timer < fadeDuration)
+        while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
             fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
@@ -425,7 +425,7 @@ public class UIManager : MonoBehaviour
         fadeImage.color = Color.clear;
 
         float timer = 0f;
-        while(timer < fadeDuration)
+        while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
             fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
@@ -463,9 +463,9 @@ public class UIManager : MonoBehaviour
 
     void AlbumUI_Open_Close()
     {
-        if(Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == false)
+        if (Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == false)
             CameraAlbumUI.SetActive(true);
-        else if(Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == true)
+        else if (Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == true)
             CameraAlbumUI.SetActive(false);
     }
 
@@ -476,7 +476,7 @@ public class UIManager : MonoBehaviour
     public void StartFadeIn() // start fade in coroutine
     {
         StartCoroutine(FadeIn());
-    
+
     }
     public void StopFadeIn() // stop fade in coroutine
     {
@@ -496,11 +496,11 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-       Time.timeScale = 1;
-       //Next_value = 0; // 이후 수정
-       //player_thoughts_UI.SetActive(true);
-       fadeImage.gameObject.SetActive(true);
-       Camera_setactive = false;
+        Time.timeScale = 1;
+        //Next_value = 0; // 이후 수정
+        //player_thoughts_UI.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
+        Camera_setactive = false;
     }
 
     void Update()
@@ -520,15 +520,15 @@ public class UIManager : MonoBehaviour
         //    StopCoroutine(FadeIn());
         //}
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(ExitUI.activeSelf == false)
+            if (ExitUI.activeSelf == false)
             {
                 ExitUI.SetActive(true);
                 Time.timeScale = 0;
             }
 
-            else if(ExitUI.activeSelf == true)
+            else if (ExitUI.activeSelf == true)
             {
                 ExitUI.SetActive(false);
                 Time.timeScale = 1;
