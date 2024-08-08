@@ -26,6 +26,7 @@ TagManager:
   - Enemy
   - Chair
   - Camera
+  - Tutorial Exit
   layers:
   - Default
   - TransparentFX

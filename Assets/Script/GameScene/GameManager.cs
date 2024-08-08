@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static string GameState = "tutorial";
+    public static string GameState = "Tutorial";
+
+    void Start()
+    {
+        GameState = "Tutorial";
+    }
 }
