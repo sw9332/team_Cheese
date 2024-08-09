@@ -505,17 +505,17 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        //Stroy(); //스토리 진행
-        //Object_Interaction(); //오브젝트 상호작용 대화
+        // Stroy(); //스토리 진행
+        // Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
         AlbumUI_Open_Close(); //카메라 앨범 열기 닫기
 
-        //if(dialogueManager.count == 3)
+        //if (dialogueManager.count == 3)
         //{
         //    StartCoroutine(FadeIn());
         //}
 
-        //else if(dialogueManager.count > 3)
+        //else if (dialogueManager.count > 3)
         //{
         //    StopCoroutine(FadeIn());
         //}
