@@ -297,10 +297,6 @@ public class Player : MonoBehaviour
     }
 
 
-    //Player이동, 공격 ----------------------------------------------------------------------------------------------------------------------
-
-    /* 상호작용 처리 끝 */
-
 
     //인벤토리 및 상호작용 처리 끝 ---------------------------------------------------------------------------------------------------------------
 
@@ -510,13 +506,13 @@ public class Player : MonoBehaviour
     {
         if (meleeAttackableEnemy())
         {
-            if (Input.GetKey(KeyCode.Z)) // 근처의 적군이 감지됐다면
+            if (Input.GetKeyDown(KeyCode.LeftControl)) // 근처의 적군이 감지됐다면
             {
                 meleeAttack();
             }
         }
          
-            if (Input.GetKey(KeyCode.Z) && meleeAttackableEnemy() == false)
+            if Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
             // 감지된 적군이 없다면 -> 원거리 공격
             {
                 rangedAttack();
@@ -569,11 +565,11 @@ public class Player : MonoBehaviour
            // // Where: 조건을 만족하는 요소 필터링
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ //&& collider is PolygonCollider2D)
 
-           // // OrderBy: 오름차순 정렬
-           // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+    // // OrderBy: 오름차순 정렬
+    // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
 
-           // // ToArray: 배열로 변환
-           // .ToArray();
+    // // ToArray: 배열로 변환
+    // .ToArray();
 
     //     적을 찾은 경우에만 가장 가까운 enemy 출력
     //    if (meleeAttackableEnemies.Length > 0)
