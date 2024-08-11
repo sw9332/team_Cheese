@@ -66,8 +66,8 @@ public class MiniGame : MonoBehaviour
                     photoCamera.transform.Translate(0f, -1f * 1.5f * Time.deltaTime, 0f);
                 }
 
-                float ClampX = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.x, -1.2f, 1.2f);
-                float ClampY = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.y, -1f, 1f);
+                float ClampX = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.x, -78.2f, -76.2f);
+                float ClampY = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.y, 48f, 50f);
 
                 photoCamera.transform.GetComponent<Transform>().position = new Vector3(ClampX, ClampY, -1f);
 
@@ -75,11 +75,13 @@ public class MiniGame : MonoBehaviour
                 y_Axis.GetComponent<Slider>().value = photoCamera.transform.position.y;
 
                 if (Input.GetKey(KeyCode.F)
-                    && x_Axis.GetComponent<Slider>().value <= 0.2f && x_Axis.GetComponent<Slider>().value >= -0.2f
-                    && y_Axis.GetComponent<Slider>().value <= 0.2f && y_Axis.GetComponent<Slider>().value >= -0.2f)
+                    && x_Axis.GetComponent<Slider>().value <= -77f && x_Axis.GetComponent<Slider>().value >= -77.4f
+                    && y_Axis.GetComponent<Slider>().value <= 49.2f && y_Axis.GetComponent<Slider>().value >= -48.8f)
                 {
                     is_next_stage = true;
                     UIManager.Camera_setactive = false;
+                    is_take_photo = false;
+                    is_minigame = false;
                     GameManager.GameState = "InGame";
                 }
             }
