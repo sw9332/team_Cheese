@@ -369,7 +369,7 @@ public class Player : MonoBehaviour
             MoveX = true;
             MoveY = false;
 
-            transform.Translate(Vector3.up * Velocity * Time.deltaTime);
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         }
 
         //아래로 이동
@@ -395,7 +395,7 @@ public class Player : MonoBehaviour
             MoveX = true;
             MoveY = false;
 
-            transform.Translate(Vector3.down * Velocity * Time.deltaTime);
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
 
         //왼쪽으로 이동
@@ -416,7 +416,7 @@ public class Player : MonoBehaviour
             MoveX = false;
             MoveY = true;
 
-            transform.Translate(Vector3.left * Velocity * Time.deltaTime);
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
 
         //오른쪽으로 이동
@@ -440,7 +440,7 @@ public class Player : MonoBehaviour
             // player가 오른쪽으로 이동할 경우 중심이 변경됨
             // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
             playerCenterOffset.x = 0.25f;
-            transform.Translate(Vector3.right * Velocity * Time.deltaTime);
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
 
 
@@ -666,6 +666,7 @@ public class Player : MonoBehaviour
     {
 
         Player_move.Play("PlayerBack_Stop");
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     void Update()
