@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using Unity.VisualScripting; // 데이터 쿼리 언어 
 
-public class Player : MonoBehaviour
+public class player : MonoBehaviour
 {
     //인벤토리 및 상호작용 처리 ------------------------------------------------------------------------------------------------------------------------
 
@@ -312,30 +312,27 @@ public class Player : MonoBehaviour
     public float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
+    public Slider playerStamina;
 
-    // Player의 Gizmo 위치 조정 offset
-    public Vector3 playerCenterOffset;
 
-    //원거리 공격 관련 , bullet
+    [SerializeField] Vector3 playerCenterOffset; // player의 범위 판별을 위한 offset
+
+    //원거리 공격 관련
     public GameObject bullet;
     public Transform bulletPos;
-    public float cooltime;
-    private float curtime;
+    private float fireCooltime = 0.3f;
+    private float fireCurtime;
+
+
+    // 근접 공격 및 enemy와 충돌
+    private Collider2D[] meleeAttackableEnemies; // 근접 공격 가능한 적을 담는 Collider 2D 배열
+    [SerializeField] Vector2 meleeAttackBoxSize; // Player의 근접 공격 범위 GizmoBox의 크기
+    [SerializeField] Vector2 nearEnemyBoxSize; // Player와 Enemy의 Collision 체크를 위한 offset
+
 
     // 추후에 공격 애니메이션 추가
     // public Animator Player_Attack;
-    // Player_Attack에서는 2개 (근접, 원거리)
 
-
-
-
-    public Slider playerStamina;
-
-    //walking the vertical up
-    //stop vertical
-    
-    //walking the horizontal
-    //stop horizontal
 
     /* Player 이동 및 컨트롤 관련 */
 
@@ -437,9 +434,6 @@ public class Player : MonoBehaviour
             MoveX = false;
             MoveY = true;
 
-            // player가 오른쪽으로 이동할 경우 중심이 변경됨
-            // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
-            playerCenterOffset.x = 0.25f;
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
 
@@ -454,19 +448,16 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.RightArrow))
             Player_move.Play("PlayerRight_Stop");
         else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
             Player_move.Play("PlayerStopX");
-            // 방향키를 뗄 경우 다시 원래의 offset으로 변경
-            playerCenterOffset.x = -0.25f;
-        }
 
         //달리기
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            Player_move.speed = 2;
-            moveSpeed = 5;
-            Stamina.isPlayerRunning = true;
+                Player_move.speed = 2;
+                moveSpeed = 5;
+                Stamina.isPlayerRunning = true;
         }
+
         else
         {
             Player_move.speed = 1;
@@ -498,10 +489,6 @@ public class Player : MonoBehaviour
     }
 
 
-
-    /* 원거리 공격 */
-
-    /*
     void PlayerAttack()
     {
         if (meleeAttackableEnemy())
@@ -512,7 +499,7 @@ public class Player : MonoBehaviour
             }
         }
          
-            if Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
+            if (Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
             // 감지된 적군이 없다면 -> 원거리 공격
             {
                 rangedAttack();
@@ -535,89 +522,79 @@ public class Player : MonoBehaviour
         fireCurtime -= Time.deltaTime;
     }
 
-    //  -------------------------------------------------------------------------------------------
-
 
     // 근접 공격 -------------------------------------------------------------------------------------------
 
-    // 근접 공격 가능한 적을 담는 Collider 2D 배열
-    private Collider2D[] meleeAttackableEnemies;
-
-    // Player의 근접 공격 범위 GizmoBox의 크기
-    public Vector2 meleeAttackBoxSize;
-    // Player의 enemy 탐지 범위
+    
+    /* Player의 enemy 탐지 Gizmo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1.0f, 0f, 0f, 0.5f);
         Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
     }
+    */
 
-    //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
-    private bool meleeAttackableEnemy() // melee : 근접해서 싸우다
+    /*  근접 공격 설명
+     *  
+      linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
+      Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
+      => 람다
+      Where: 조건을 만족하는 요소 필터링  ,  OrderBy: 오름차순 정렬 ,   ToArray: 배열로 변환
+      'enemy' 태그를 가진 PolygonCollider2D만 필터링
+
+     */
+
+    private bool meleeAttackableEnemy() 
     {
-
-        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, meleeAttackBoxSize, 0f);
 
-        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
-        // => 람다
+      
         meleeAttackableEnemies = enemyArray
-           // // Where: 조건을 만족하는 요소 필터링
-            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ //&& collider is PolygonCollider2D)
+            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+             .ToArray();
 
-    // // OrderBy: 오름차순 정렬
-    // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+        if (meleeAttackableEnemies.Length > 0)
+        {
+            Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
+            return true;
+        }
+        else
+            return false;
+    }
 
-    // // ToArray: 배열로 변환
-    // .ToArray();
-
-    //     적을 찾은 경우에만 가장 가까운 enemy 출력
-    //    if (meleeAttackableEnemies.Length > 0)
-    //   {
-    //        Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
-    //        return true;
-    //    }
-    //    else
-    //        return false;
-    //}
-
-    /* 원거리 공격 끝 */
-
-
-
-
-    //메인 메소드 --------------------------------------------------------------------------------------------------------------------------
 
     // Player HP ---------------------------------------------------------------------
-
-    // Player와 Enemy의 Collision 체크를 위한 offset
-    public Vector2 nearEnemyBoxSize;
-
     public List<GameObject> hp = new List<GameObject> ();
     private Collider2D[] nearEnemies;
 
+    /* HP 관련 Gizmo
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0f,3f,0f,0.5f);
         Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
     }
+    */
 
+    /* CollideWithEnemy 함수 설명
+      'enemy' 태그를 가진 PolygonCollider2D만 필터링
+       => : 람다
+
+       Where: 조건을 만족하는 요소 필터링
+       OrderBy: 오름차순 정렬
+       ToArray: 배열로 변환
+       적을 찾은 경우에만 가장 가까운 enemy 출력
+     */
 
     public bool CollideWithEnemy()
     {
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, nearEnemyBoxSize, 0f);
 
-        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
-        // => 람다
         nearEnemies = enemyArray
-            // Where: 조건을 만족하는 요소 필터링
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
-            // OrderBy: 오름차순 정렬
             .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
-            // ToArray: 배열로 변환
             .ToArray();
 
-        // 적을 찾은 경우에만 가장 가까운 enemy 출력
         if (nearEnemies.Length > 0)
         {
             Debug.Log("Near Enemy: " + nearEnemies[0].name);
@@ -628,7 +605,6 @@ public class Player : MonoBehaviour
     }
 
     // Hp UI 파괴 
-
     private float elapsedTime = 0f;
     private float destroyTime = 1f;
     private bool isCollidingWithEnemy= false;
@@ -664,6 +640,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // 범위 판정 offset 값
+        playerCenterOffset = new Vector3(0f, -0.4f, 0f);
+        meleeAttackBoxSize = new Vector2(1.8f, 2.3f);
+        nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
 
         Player_move.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
@@ -671,9 +651,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
-        //DetectEnemies();
-        //PlayerAttack();
+        PlayerAttack();
         PlayerControl();
     }
 }
