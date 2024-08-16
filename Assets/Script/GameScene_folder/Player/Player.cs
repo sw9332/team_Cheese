@@ -15,7 +15,7 @@ public class player : MonoBehaviour
     public Image[] item_main_slot_Image = new Image[4];
 
     // 플레이어가 오브젝트에 충동 줄인지 체크 (땅/사물)
-    public static string object_collision = "??��?��?��";
+    public static string object_collision = "땅";
 
     // 상호작용 오브젝트 이름
     public static string ObjectName;
@@ -279,7 +279,6 @@ public class player : MonoBehaviour
 
 
 
-
     // Player 아동 및 컨트롤
 
     public static Vector3 Player_pos;
@@ -292,12 +291,14 @@ public class player : MonoBehaviour
     public Slider playerStamina;
 
 
-    [SerializeField] Vector3 playerCenterOffset; // player 범위판별 offset
+    [SerializeField] 
+    public Vector3 playerCenterOffset; // player 범위판별 offset
 
     // 원거리 공격 관련
     public GameObject bullet;
     public Transform bulletPos;
-    private float fireCooltime = 0.3f;
+    public static int playerDirection = 2; // 1: 뒤, 2: 정면, 3: 왼쪽, 4: 오른쪽 
+    public float fireCooltime;
     private float fireCurtime;
 
 
@@ -323,6 +324,7 @@ public class player : MonoBehaviour
             //    Velocity = moveSpeed;
 
             // 키가 겹쳤을 때
+            playerDirection = 1;
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_control.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
@@ -337,6 +339,7 @@ public class player : MonoBehaviour
             MoveY = false;
 
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            playerDirection = 1;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -362,6 +365,7 @@ public class player : MonoBehaviour
             MoveY = false;
 
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            playerDirection = 2;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -382,6 +386,7 @@ public class player : MonoBehaviour
             MoveY = true;
 
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            playerDirection = 3;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -402,23 +407,32 @@ public class player : MonoBehaviour
             MoveY = true;
 
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            playerDirection = 4;
         }
 
 
         // 방향키를 때면
         if (Input.GetKeyUp(KeyCode.UpArrow))
-            Player_control.Play("PlayerUp_Stop");
-        else if (Input.GetKeyUp(KeyCode.DownArrow))
-            Player_control.Play("PlayerBack_Stop");
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
-            Player_control.Play("PlayerLeft_Stop");
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-            Player_control.Play("PlayerRight_Stop");
-        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            Player_control.Play("PlayerStopX");
-            playerCenterOffset.x = -0.25f;
+            Player_control.Play("PlayerUp_Stop");
+            playerDirection = 1;
         }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            Player_control.Play("PlayerBack_Stop");
+            playerDirection = 2;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            Player_control.Play("PlayerLeft_Stop");
+            playerDirection = 3;
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            Player_control.Play("PlayerRight_Stop");
+            playerDirection = 4;
+        }
+
 
         // 달리기
         if (Input.GetKey(KeyCode.LeftShift))
@@ -460,20 +474,58 @@ public class player : MonoBehaviour
 
     void PlayerAttack()
     {
+        // 근처의 적군이 감지됐다면
         if (meleeAttackableEnemy())
         {
-            if (Input.GetKeyDown(KeyCode.LeftControl)) // 근처의 적군이 감지됐다면
+            if (Input.GetKey(KeyCode.LeftControl)) 
             {
                 meleeAttack();
             }
         }
-         
-            if (Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
-            // 없으면 원거리 공격
-            {
-                rangedAttack();
 
+        // 없으면 원거리 공격
+        if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
+        {
+            rangedAttack();
+            if (playerDirection == 1) // 뒤
+            {
+                Player_control.Play("PlayerBackAttack");
             }
+            else if (playerDirection == 2) // 정면
+            {
+                Player_control.Play("PlayerFrontAttack");
+            }
+            else if(playerDirection == 3) // 왼쪽
+            {
+                Player_control.Play("PlayerLeftAttack");
+            }
+            else if (playerDirection == 4) // 오른쪽
+            {
+                Player_control.Play("PlayerRightAttack");
+            }
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                Player_control.Play("PlayerUp_Stop");
+            }
+            else if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                Player_control.Play("PlayerBack_Stop");
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                Player_control.Play("PlayerLeft_Stop");
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                Player_control.Play("PlayerRight_Stop");
+            }
+        }
+
     }
 
     void meleeAttack()
@@ -495,13 +547,13 @@ public class player : MonoBehaviour
     // 근접 공격   -------------------------------------------------------------------------------------------
 
     
-    /* Player의 enemy 탐지 Gizmo
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(1.0f, 0f, 0f, 0.5f);
-        Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
-    }
-    */
+    /* Player의 enemy 탐지 Gizmo */
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = new Color(1.0f, 0f, 0f, 0.5f);
+    //    Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
+    //}
+    
 
     /*  근접 공격 설명
      linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
@@ -537,14 +589,13 @@ public class player : MonoBehaviour
     public List<GameObject> hp = new List<GameObject> ();
     private Collider2D[] nearEnemies;
 
-    /* HP 관련 Gizmo
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0f,3f,0f,0.5f);
-        Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
-    }
-    */
-
+    /* HP 관련 Gizmo */
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = new Color(0f,3f,0f,0.5f);
+    //    Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
+    //}
+   
     /* CollideWithEnemy 함수 설명
       'enemy' 태그를 가진 polygonCollider2D만 필터링
        => : 람다

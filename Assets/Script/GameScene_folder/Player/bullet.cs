@@ -14,27 +14,20 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // player의 스프라이트를 받아오기 위해 Find 함수 사용 
-        GameObject otherObject = GameObject.Find("Player");
-        SpriteRenderer playerRenderer = otherObject.GetComponent<SpriteRenderer>();
-
-        if (Input.GetKey(KeyCode.RightArrow)) 
-        {
-            direction = Vector2.right;
-        }
-        else if (Input.GetKey(KeyCode.UpArrow))  
+        
+        if (player.playerDirection == 1)  
         {
             direction = Vector2.up;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow)) 
-        {
-            direction = Vector2.left;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (player.playerDirection == 2)
         {
             direction = Vector2.down;
         }
-        else
+        else if (player.playerDirection == 3 ) 
+        {
+            direction = Vector2.left;
+        }
+        else if (player.playerDirection == 4)
         {
             direction = Vector2.right;
         }

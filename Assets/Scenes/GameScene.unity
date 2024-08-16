@@ -822,6 +822,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue:
+    contents: []
+    sprites: []
+  Story_NextButton: {fileID: 0}
+  UI_Close_Button: {fileID: 0}
+  CameraUI: {fileID: 0}
+  Camera_Effect_Animation: {fileID: 0}
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
+  ExitUI: {fileID: 0}
+  CameraAlbumUI: {fileID: 0}
+  typingSpeed: 0.03
 --- !u!1 &195157911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,8 +3384,7 @@ MonoBehaviour:
   playerCenterOffset: {x: 0, y: -0.4, z: 0}
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
-  fireCooltime: 0
-  playerStamina: {fileID: 0}
+  fireCooltime: 0.2
   meleeAttackBoxSize: {x: 1.8, y: 2.3}
   nearEnemyBoxSize: {x: 1.2, y: 1.7}
   hp:
