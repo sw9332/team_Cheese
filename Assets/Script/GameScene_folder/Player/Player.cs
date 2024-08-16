@@ -34,8 +34,6 @@ public class Player : MonoBehaviour
     public Sprite Cake_Sprite;
 
 
-
-
     //인벤토리---------------------------------------------------------------------------------------------------------
 
 
@@ -126,7 +124,6 @@ public class Player : MonoBehaviour
     }
 
     /* 아이템 두기/올려두기 끝 */
-
 
 
     /* 아이템 줍기 */
@@ -307,7 +304,7 @@ public class Player : MonoBehaviour
     //Player 이동 및 컨트롤
     public static Vector3 Player_pos;
     public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
-    public Animator Player_move; //플레이어 이동 애니메이션
+    public Animator Player_control; //플레이어 이동 애니메이션
     public static float Velocity;
     public float moveSpeed = 2.5f;
     public static bool MoveX = false;
@@ -319,8 +316,8 @@ public class Player : MonoBehaviour
     //원거리 공격 관련 , bullet
     public GameObject bullet;
     public Transform bulletPos;
-    public float cooltime;
-    private float curtime;
+    public float fireCooltime;
+    private float fireCurtime;
 
     // 추후에 공격 애니메이션 추가
     // public Animator Player_Attack;
@@ -343,7 +340,7 @@ public class Player : MonoBehaviour
 
     {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
-        Player_move.speed = 1;
+        Player_control.speed = 1;
         Velocity = 0;
 
         //위로 이동
@@ -357,14 +354,14 @@ public class Player : MonoBehaviour
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
-                Player_move.Play("PlayerLeft");
+                Player_control.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("PlayerRight");
+                Player_control.Play("PlayerRight");
             else
-                Player_move.Play("PlayerUp");
+                Player_control.Play("PlayerUp");
 
             if (Input.GetKey(KeyCode.DownArrow))
-                Player_move.Play("PlayerUp");
+                Player_control.Play("PlayerUp");
 
             MoveX = true;
             MoveY = false;
@@ -383,14 +380,14 @@ public class Player : MonoBehaviour
 
             //키가 켭쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
-                Player_move.Play("PlayerLeft");
+                Player_control.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("PlayerRight");
+                Player_control.Play("PlayerRight");
             else
-                Player_move.Play("PlayerBack");
+                Player_control.Play("PlayerBack");
 
             if (Input.GetKey(KeyCode.UpArrow))
-                Player_move.Play("PlayerUp");
+                Player_control.Play("PlayerUp");
 
             MoveX = true;
             MoveY = false;
@@ -409,9 +406,9 @@ public class Player : MonoBehaviour
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.RightArrow))
-                Player_move.Play("PlayerLeft");
+                Player_control.Play("PlayerLeft");
             else
-                Player_move.Play("PlayerLeft");
+                Player_control.Play("PlayerLeft");
 
             MoveX = false;
             MoveY = true;
@@ -430,9 +427,9 @@ public class Player : MonoBehaviour
 
             //키가 겹쳤을때
             if (Input.GetKey(KeyCode.LeftArrow))
-                Player_move.Play("PlayerLeft");
+                Player_control.Play("PlayerLeft");
             else
-                Player_move.Play("PlayerRight");
+                Player_control.Play("PlayerRight");
 
             MoveX = false;
             MoveY = true;
@@ -446,16 +443,16 @@ public class Player : MonoBehaviour
 
         // 방향키를 때면
         if (Input.GetKeyUp(KeyCode.UpArrow))
-            Player_move.Play("PlayerUp_Stop");
+            Player_control.Play("PlayerUp_Stop");
         else if (Input.GetKeyUp(KeyCode.DownArrow))
-            Player_move.Play("PlayerBack_Stop");
+            Player_control.Play("PlayerBack_Stop");
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
-            Player_move.Play("PlayerLeft_Stop");
+            Player_control.Play("PlayerLeft_Stop");
         else if (Input.GetKeyUp(KeyCode.RightArrow))
-            Player_move.Play("PlayerRight_Stop");
+            Player_control.Play("PlayerRight_Stop");
         else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            Player_move.Play("PlayerStopX");
+            Player_control.Play("PlayerStopX");
             // 방향키를 뗄 경우 다시 원래의 offset으로 변경
             playerCenterOffset.x = -0.25f;
         }
@@ -463,13 +460,13 @@ public class Player : MonoBehaviour
         //달리기
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            Player_move.speed = 2;
+            Player_control.speed = 2;
             moveSpeed = 5;
             Stamina.isPlayerRunning = true;
         }
         else
         {
-            Player_move.speed = 1;
+            Player_control.speed = 1;
             moveSpeed = 2.5f;
             Stamina.isPlayerRunning = false;
         }
@@ -501,7 +498,7 @@ public class Player : MonoBehaviour
 
     /* 원거리 공격 */
 
-    /*
+    
     void PlayerAttack()
     {
         if (meleeAttackableEnemy())
@@ -512,7 +509,7 @@ public class Player : MonoBehaviour
             }
         }
          
-            if Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
+            if (Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
             // 감지된 적군이 없다면 -> 원거리 공격
             {
                 rangedAttack();
@@ -556,37 +553,26 @@ public class Player : MonoBehaviour
     private bool meleeAttackableEnemy() // melee : 근접해서 싸우다
     {
 
-        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴
+        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴,
+        // Where: 조건을 만족하는 요소 필터링, OrderBy: 오름차순 정렬, ToArray: 배열로 변환
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, meleeAttackBoxSize, 0f);
 
         // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
         // => 람다
-        meleeAttackableEnemies = enemyArray
-           // // Where: 조건을 만족하는 요소 필터링
-            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ //&& collider is PolygonCollider2D)
+            meleeAttackableEnemies = enemyArray
+            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+            .ToArray();
 
-    // // OrderBy: 오름차순 정렬
-    // .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
-
-    // // ToArray: 배열로 변환
-    // .ToArray();
-
-    //     적을 찾은 경우에만 가장 가까운 enemy 출력
-    //    if (meleeAttackableEnemies.Length > 0)
-    //   {
-    //        Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
-    //        return true;
-    //    }
-    //    else
-    //        return false;
-    //}
-
-    /* 원거리 공격 끝 */
-
-
-
-
-    //메인 메소드 --------------------------------------------------------------------------------------------------------------------------
+        // 적을 찾은 경우에만 가장 가까운 enemy 출력
+        if (meleeAttackableEnemies.Length > 0)
+        {
+            Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
+            return true;
+        }
+        else
+            return false;
+    }
 
     // Player HP ---------------------------------------------------------------------
 
@@ -665,7 +651,7 @@ public class Player : MonoBehaviour
     void Start()
     {
 
-        Player_move.Play("PlayerBack_Stop");
+        Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
