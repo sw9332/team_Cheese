@@ -4,42 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
-using Unity.VisualScripting; // 데이터 쿼리 언어 
+using Unity.VisualScripting; // ?占쏙옙?占쏙옙?占쏙옙 荑쇰━ ?占쏙옙?占쏙옙 
 
-public class Player : MonoBehaviour
+public class player : MonoBehaviour
 {
-    //인벤토리 및 상호작용 처리 ------------------------------------------------------------------------------------------------------------------------
+    //?占쏙옙踰ㅽ넗占�? 占�? ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 泥섎━ ------------------------------------------------------------------------------------------------------------------------
 
-    //슬롯 배열
+    //?占쏙옙占�? 諛곗뿴
     public string[] item_main_slot = new string[4];
     public Image[] item_main_slot_Image = new Image[4];
 
-    //플레이어가 오브젝트에 충돌 중인지 체크 (땅/사물)
-    public static string object_collision = "땅";
+    //?占쏙옙?占쏙옙?占쏙옙?占쏙옙占�? ?占쏙옙釉뚯젥?占쏙옙?占쏙옙 異⑸룎 以묒씤占�? 泥댄겕 (?占쏙옙/?占쏙옙占�?)
+    public static string object_collision = "?占쏙옙";
 
-    //상호작용 오브젝트 이름
+    //?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙釉뚯젥?占쏙옙 ?占쏙옙占�?
     public static string ObjectName;
 
-    //아이템 오브젝트
+    //?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙釉뚯젥?占쏙옙
     public GameObject BrownTeddyBear_Object;
     public GameObject PinkTeddyBear_Object;
     public GameObject YellowTeddyBear_Object;
     public GameObject Cake_Object;
     public GameObject Camera;
 
-    //아이템 스프라이트
+    //?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙?占쏙옙
     public Sprite BrownTeddyBear_Sprite;
     public Sprite PinkTeddyBear_Sprite;
     public Sprite YellowTeddyBear_Sprite;
     public Sprite Cake_Sprite;
 
 
-    //인벤토리---------------------------------------------------------------------------------------------------------
+    //?占쏙옙踰ㅽ넗占�?---------------------------------------------------------------------------------------------------------
 
 
     private DialogueManager dialogueManager;
 
-    //대화내용
+    //????占쏙옙?占쏙옙?占쏙옙
     [SerializeField]
     public Dialogue d_cake;
 
@@ -51,20 +51,20 @@ public class Player : MonoBehaviour
 
     public GameObject CameraUI;
 
-    //슬롯1 아이템 땅에 두기 버튼
+    //?占쏙옙占�?1 ?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙占�? 踰꾪듉
     public void Slot1()
 
-    /* 아이템 두기/올려두기 */
+    /* ?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙占�?/?占쏙옙?占쏙옙?占쏙옙占�? */
 
     {
-        if(object_collision == "땅")
+        if(object_collision == "?占쏙옙")
         {
             Instantiate(GetItemObject(item_main_slot[0]), Player_pos, Quaternion.identity);
             item_main_slot[0] = null;
             item_main_slot_Image[0].sprite = null;
         }
 
-        if(object_collision == "사물")
+        if(object_collision == "?占쏙옙占�?")
         {
             Instantiate(GetItemObject(item_main_slot[0]), Object.Object_pos, Quaternion.identity);
             item_main_slot[0] = null;
@@ -74,14 +74,14 @@ public class Player : MonoBehaviour
 
     public void Slot2()
     {
-        if (object_collision == "땅")
+        if (object_collision == "?占쏙옙")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
             item_main_slot[1] = null;
             item_main_slot_Image[1].sprite = null;
         }
 
-        if (object_collision == "사물")
+        if (object_collision == "?占쏙옙占�?")
         {
             Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
             item_main_slot[1] = null;
@@ -91,14 +91,14 @@ public class Player : MonoBehaviour
 
     public void Slot3()
     {
-        if (object_collision == "땅")
+        if (object_collision == "?占쏙옙")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
             item_main_slot[2] = null;
             item_main_slot_Image[2].sprite = null;
         }
 
-        if (object_collision == "사물")
+        if (object_collision == "?占쏙옙占�?")
         {
             Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
             item_main_slot[2] = null;
@@ -108,14 +108,14 @@ public class Player : MonoBehaviour
 
     public void Slot4()
     {
-        if (object_collision == "땅")
+        if (object_collision == "?占쏙옙")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
             item_main_slot[3] = null;
             item_main_slot_Image[3].sprite = null;
         }
 
-        if (object_collision == "사물")
+        if (object_collision == "?占쏙옙占�?")
         {
             Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
             item_main_slot[3] = null;
@@ -123,10 +123,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    /* 아이템 두기/올려두기 끝 */
+    /* ?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙占�?/?占쏙옙?占쏙옙?占쏙옙占�? ?占쏙옙 */
 
 
-    /* 아이템 줍기 */
+    /* ?占쏙옙?占쏙옙?占쏙옙 以띻린 */
 
     GameObject GetItemObject(string item_name)
     {
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
 
-                    dialogueManager.ShowDialogue(d_camera); //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
+                    dialogueManager.ShowDialogue(d_camera); //?占쏙옙?占쏙옙占�? 怨곕룎?占쏙옙占�? 二쇱썱?占쏙옙 ?占쏙옙 ?占쏙옙?占쏙옙由ш컪?占쏙옙 13?占쏙옙占�? (移대찓?占쏙옙 諛쒓껄)
                     CameraUI.SetActive(true);
 
                     break;
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
         {
-           // UIManager.Next_value = 13; //카메라를 주웠을 때 스토리값을 13으로 (카메라 발견)
+           // UIManager.Next_value = 13; //移대찓?占쏙옙占�? 二쇱썱?占쏙옙 ?占쏙옙 ?占쏙옙?占쏙옙由ш컪?占쏙옙 13?占쏙옙占�? (移대찓?占쏙옙 諛쒓껄)
             Destroy(other.gameObject);
         }
 
@@ -238,47 +238,47 @@ public class Player : MonoBehaviour
             }
         }
 
-    /* 아이템 줍기 끝 */
+    /* ?占쏙옙?占쏙옙?占쏙옙 以띻린 ?占쏙옙 */
 
 
 
-    /* 상호작용 처리 */
+    /* ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 泥섎━ */
 
-            //사물에 닿았을때 "사물"로 처리
-        if (other.gameObject.tag == "사물")
+            //?占쏙옙臾쇱뿉 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 "?占쏙옙占�?"占�? 泥섎━
+        if (other.gameObject.tag == "?占쏙옙占�?")
         {
-            object_collision = "사물";
+            object_collision = "?占쏙옙占�?";
         }
 
-        //오브젝트 상호작용
-        if(other.gameObject.tag == "달력")
+        //?占쏙옙釉뚯젥?占쏙옙 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙
+        if(other.gameObject.tag == "?占쏙옙?占쏙옙")
         {
             if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "달력";
+                ObjectName = "?占쏙옙?占쏙옙";
         }
 
-        if(other.gameObject.tag == "인형")
+        if(other.gameObject.tag == "?占쏙옙?占쏙옙")
         {
             if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "인형";
+                ObjectName = "?占쏙옙?占쏙옙";
         }
 
-        if(other.gameObject.tag == "나가는 문")
+        if(other.gameObject.tag == "?占쏙옙占�??占쏙옙 占�?")
         {
             if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "나가는 문";
+                ObjectName = "?占쏙옙占�??占쏙옙 占�?";
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Cake Event") //케이크 이벤트
+        if(other.gameObject.tag == "Cake Event") //占�??占쏙옙?占쏙옙 ?占쏙옙踰ㅽ듃
         {
             dialogueManager.ShowDialogue(d_cake);
             Destroy(other.gameObject);
         }
 
-        if(other.gameObject.tag == "Camera Event") //케이크를 테이블에 놓았을때 생기는 이벤트에 닿았을때
+        if(other.gameObject.tag == "Camera Event") //占�??占쏙옙?占쏙옙占�? ?占쏙옙?占쏙옙釉붿뿉 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙湲곕뒗 ?占쏙옙踰ㅽ듃?占쏙옙 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙
         {
             dialogueManager.ShowDialogue(d_photo);
             UIManager.Camera_setactive = true;
@@ -295,64 +295,60 @@ public class Player : MonoBehaviour
 
 
 
-    //인벤토리 및 상호작용 처리 끝 ---------------------------------------------------------------------------------------------------------------
+    //?占쏙옙踰ㅽ넗占�? 占�? ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 泥섎━ ?占쏙옙 ---------------------------------------------------------------------------------------------------------------
 
 
 
-    //Player 이동 및 컨트롤. 원거리 공격 ---------------------------------------------------------------------------------------------------------
+    //Player ?占쏙옙?占쏙옙 占�? 而⑦듃占�?. ?占쏙옙嫄곕━ 怨듦꺽 ---------------------------------------------------------------------------------------------------------
 
-    //Player 이동 및 컨트롤
+    //Player ?占쏙옙?占쏙옙 占�? 而⑦듃占�?
     public static Vector3 Player_pos;
-    public SpriteRenderer rend; //플레이어 스프라이트 (바라보는 방향 설정)
-    public Animator Player_control; //플레이어 이동 애니메이션
+    public SpriteRenderer rend; //?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙?占쏙옙?占쏙옙?占쏙옙 (諛붾씪蹂대뒗 諛⑺뼢 ?占쏙옙?占쏙옙)
+    public Animator Player_control; //?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙硫붿씠?占쏙옙
     public static float Velocity;
     public float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
-
-    // Player의 Gizmo 위치 조정 offset
-    public Vector3 playerCenterOffset;
-
-    //원거리 공격 관련 , bullet
-    public GameObject bullet;
-    public Transform bulletPos;
-    public float fireCooltime;
-    private float fireCurtime;
-
-    // 추후에 공격 애니메이션 추가
-    // public Animator Player_Attack;
-    // Player_Attack에서는 2개 (근접, 원거리)
-
-
-
-
     public Slider playerStamina;
 
-    //walking the vertical up
-    //stop vertical
-    
-    //walking the horizontal
-    //stop horizontal
 
-    /* Player 이동 및 컨트롤 관련 */
+    [SerializeField] Vector3 playerCenterOffset; // player?占쏙옙 踰붿쐞 ?占쏙옙蹂꾩쓣 ?占쏙옙?占쏙옙 offset
 
-    void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
+    //?占쏙옙嫄곕━ 怨듦꺽 占�??占쏙옙
+    public GameObject bullet;
+    public Transform bulletPos;
+    private float fireCooltime = 0.3f;
+    private float fireCurtime;
+
+
+    // 洹쇱젒 怨듦꺽 占�? enemy??? 異⑸룎
+    private Collider2D[] meleeAttackableEnemies; // 洹쇱젒 怨듦꺽 占�??占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 Collider 2D 諛곗뿴
+    [SerializeField] Vector2 meleeAttackBoxSize; // Player?占쏙옙 洹쇱젒 怨듦꺽 踰붿쐞 GizmoBox?占쏙옙 ?占쏙옙占�?
+    [SerializeField] Vector2 nearEnemyBoxSize; // Player??? Enemy?占쏙옙 Collision 泥댄겕占�? ?占쏙옙?占쏙옙 offset
+
+    // 異뷀썑?占쏙옙 怨듦꺽 ?占쏙옙?占쏙옙硫붿씠?占쏙옙 異뷂옙??
+    // public Animator Player_Attack;
+
+
+    /* Player ?占쏙옙?占쏙옙 占�? 而⑦듃占�? 占�??占쏙옙 */
+
+    void PlayerControl() //?占쏙옙?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 占�? ?占쏙옙踰ㅽ넗占�? 而⑦듃占�?
 
     {
-        Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
+        Player_pos = transform.position; //?占쏙옙?占쏙옙?占쏙옙?占쏙옙 ?占쏙옙 ?占쏙옙 留덈떎 ?占쏙옙占�? 珥덇린?占쏙옙
         Player_control.speed = 1;
         Velocity = 0;
 
-        //위로 이동
+        //?占쏙옙占�? ?占쏙옙?占쏙옙
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            //대화창이 켜져있을땐 움직이지 않게
+            //????占쏙옙李쎌씠 耳쒖졇?占쏙옙?占쏙옙?占쏙옙 ???吏곸씠占�? ?占쏙옙占�?
             //if (UIManager.StoryUI == true)
             //    Velocity = 0;
             //else
             //    Velocity = moveSpeed;
 
-            //키가 겹쳤을때
+            //?占쏙옙占�? 寃뱀낀?占쏙옙?占쏙옙
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_control.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
@@ -369,16 +365,16 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         }
 
-        //아래로 이동
+        //?占쏙옙?占쏙옙占�? ?占쏙옙?占쏙옙
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            //대화창이 켜져있을땐 움직이지 않게
+            //????占쏙옙李쎌씠 耳쒖졇?占쏙옙?占쏙옙?占쏙옙 ???吏곸씠占�? ?占쏙옙占�?
             //if (UIManager.StoryUI == true)
             //    Velocity = 0;
             //else
             //    Velocity = moveSpeed;
 
-            //키가 켭쳤을때
+            //?占쏙옙占�? 占�?爾ㅼ쓣?占쏙옙
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_control.Play("PlayerLeft");
             else if (Input.GetKey(KeyCode.RightArrow))
@@ -395,16 +391,16 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
 
-        //왼쪽으로 이동
+        //?占쏙옙履쎌쑝占�? ?占쏙옙?占쏙옙
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //대화창이 켜져있을땐 움직이지 않게
+            //????占쏙옙李쎌씠 耳쒖졇?占쏙옙?占쏙옙?占쏙옙 ???吏곸씠占�? ?占쏙옙占�?
             //if (UIManager.StoryUI == true)
             //    Velocity = 0;
             //else
             //    Velocity = moveSpeed;
 
-            //키가 겹쳤을때
+            //?占쏙옙占�? 寃뱀낀?占쏙옙?占쏙옙
             if (Input.GetKey(KeyCode.RightArrow))
                 Player_control.Play("PlayerLeft");
             else
@@ -416,16 +412,16 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
 
-        //오른쪽으로 이동
+        //?占쏙옙瑜몄そ?占쏙옙占�? ?占쏙옙?占쏙옙
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //대화창이 켜져있을땐 움직이지 않게
+            //????占쏙옙李쎌씠 耳쒖졇?占쏙옙?占쏙옙?占쏙옙 ???吏곸씠占�? ?占쏙옙占�?
             //if (UIManager.StoryUI == true)
             //    Velocity = 0;
             //else
             //    Velocity = moveSpeed;
 
-            //키가 겹쳤을때
+            //?占쏙옙占�? 寃뱀낀?占쏙옙?占쏙옙
             if (Input.GetKey(KeyCode.LeftArrow))
                 Player_control.Play("PlayerLeft");
             else
@@ -434,14 +430,11 @@ public class Player : MonoBehaviour
             MoveX = false;
             MoveY = true;
 
-            // player가 오른쪽으로 이동할 경우 중심이 변경됨
-            // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
-            playerCenterOffset.x = 0.25f;
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
 
 
-        // 방향키를 때면
+        // 諛⑺뼢?占쏙옙占�? ?占쏙옙占�?
         if (Input.GetKeyUp(KeyCode.UpArrow))
             Player_control.Play("PlayerUp_Stop");
         else if (Input.GetKeyUp(KeyCode.DownArrow))
@@ -453,17 +446,19 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             Player_control.Play("PlayerStopX");
-            // 방향키를 뗄 경우 다시 원래의 offset으로 변경
+            // 諛⑺뼢?占쏙옙占�? ?占쏙옙 寃쎌슦 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙?占쏙옙 offset?占쏙옙占�? 占�?占�?
             playerCenterOffset.x = -0.25f;
         }
 
-        //달리기
+        //?占쏙옙由ш린
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Player_control.speed = 2;
             moveSpeed = 5;
             Stamina.isPlayerRunning = true;
+
         }
+
         else
         {
             Player_control.speed = 1;
@@ -471,7 +466,7 @@ public class Player : MonoBehaviour
             Stamina.isPlayerRunning = false;
         }
 
-        /* Player 인벤토리 */
+        /* Player ?占쏙옙踰ㅽ넗占�? */
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -494,23 +489,18 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
-    /* 원거리 공격 */
-
-    
     void PlayerAttack()
     {
         if (meleeAttackableEnemy())
         {
-            if (Input.GetKeyDown(KeyCode.LeftControl)) // 근처의 적군이 감지됐다면
+            if (Input.GetKeyDown(KeyCode.LeftControl)) // 洹쇱쿂?占쏙옙 ?占쏙옙援곗씠 媛먲옙???占쏙옙?占쏙옙占�?
             {
                 meleeAttack();
             }
         }
          
             if (Input.GetKeyDown(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
-            // 감지된 적군이 없다면 -> 원거리 공격
+            // 媛먲옙???占쏙옙 ?占쏙옙援곗씠 ?占쏙옙?占쏙옙占�? -> ?占쏙옙嫄곕━ 怨듦꺽
             {
                 rangedAttack();
 
@@ -532,39 +522,48 @@ public class Player : MonoBehaviour
         fireCurtime -= Time.deltaTime;
     }
 
-    //  -------------------------------------------------------------------------------------------
 
+    // 洹쇱젒 怨듦꺽 -------------------------------------------------------------------------------------------
 
-    // 근접 공격 -------------------------------------------------------------------------------------------
-
-    // 근접 공격 가능한 적을 담는 Collider 2D 배열
-    private Collider2D[] meleeAttackableEnemies;
-
-    // Player의 근접 공격 범위 GizmoBox의 크기
-    public Vector2 meleeAttackBoxSize;
-    // Player의 enemy 탐지 범위
+    
+    /* Player?占쏙옙 enemy ?占쏙옙占�? Gizmo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1.0f, 0f, 0f, 0.5f);
         Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
     }
+    */
 
-    //linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
-    private bool meleeAttackableEnemy() // melee : 근접해서 싸우다
+    /*  洹쇱젒 怨듦꺽 ?占쏙옙占�?
+     *  
+      linq(?占쏙옙?占쏙옙?占쏙옙 荑쇰━ ?占쏙옙?占쏙옙)占�? ?占쏙옙?占쏙옙?占쏙옙?占쏙옙 鍮좊Ⅸ ?占쏙옙?占쏙옙
+      Gizmo?占쏙옙 踰붿쐞 ?占쏙옙?占쏙옙 議댁옱?占쏙옙?占쏙옙 紐⑤뱺 2D 肄쒕씪?占쏙옙?占쏙옙占�? 占�??占쏙옙?占쏙옙
+      => ?占쏙옙?占쏙옙
+      Where: 議곌굔?占쏙옙 留뚯”?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙占�?  ,  OrderBy: ?占쏙옙由꾩감?占쏙옙 ?占쏙옙?占쏙옙 ,   ToArray: 諛곗뿴占�? 占�??占쏙옙
+      'enemy' ?占쏙옙洹몌옙?? 占�?占�? PolygonCollider2D占�? ?占쏙옙?占쏙옙占�?
+
+     */
+
+    private bool meleeAttackableEnemy() 
     {
-
-        // Gizmo의 범위 안에 존재하는 모든 2D 콜라이더를 가져옴,
-        // Where: 조건을 만족하는 요소 필터링, OrderBy: 오름차순 정렬, ToArray: 배열로 변환
+        // Gizmo?占쏙옙 踰붿쐞 ?占쏙옙?占쏙옙 議댁옱?占쏙옙?占쏙옙 紐⑤뱺 2D 肄쒕씪?占쏙옙?占쏙옙占�? 占�??占쏙옙?占쏙옙,
+        // Where: 議곌굔?占쏙옙 留뚯”?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙占�?, OrderBy: ?占쏙옙由꾩감?占쏙옙 ?占쏙옙?占쏙옙, ToArray: 諛곗뿴占�? 占�??占쏙옙
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, meleeAttackBoxSize, 0f);
 
-        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
-        // => 람다
+        // 'enemy' ?占쏙옙洹몌옙?? 占�?占�? PolygonCollider2D占�? ?占쏙옙?占쏙옙占�?
+        // => ?占쏙옙?占쏙옙
             meleeAttackableEnemies = enemyArray
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
             .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
             .ToArray();
 
-        // 적을 찾은 경우에만 가장 가까운 enemy 출력
+        // ?占쏙옙?占쏙옙 李억옙?? 寃쎌슦?占쏙옙占�? 占�??占쏙옙 占�?源뚯슫 enemy 異쒕젰
+        Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, meleeAttackBoxSize, 0f);
+        meleeAttackableEnemies = enemyArray
+            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+            .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
+             .ToArray();
+
         if (meleeAttackableEnemies.Length > 0)
         {
             Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
@@ -575,35 +574,36 @@ public class Player : MonoBehaviour
     }
 
     // Player HP ---------------------------------------------------------------------
-
-    // Player와 Enemy의 Collision 체크를 위한 offset
-    public Vector2 nearEnemyBoxSize;
-
     public List<GameObject> hp = new List<GameObject> ();
     private Collider2D[] nearEnemies;
 
+    /* HP 占�??占쏙옙 Gizmo
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0f,3f,0f,0.5f);
         Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
     }
+    */
 
+    /* CollideWithEnemy ?占쏙옙?占쏙옙 ?占쏙옙占�?
+      'enemy' ?占쏙옙洹몌옙?? 占�?占�? PolygonCollider2D占�? ?占쏙옙?占쏙옙占�?
+       => : ?占쏙옙?占쏙옙
+
+       Where: 議곌굔?占쏙옙 留뚯”?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙 ?占쏙옙?占쏙옙占�?
+       OrderBy: ?占쏙옙由꾩감?占쏙옙 ?占쏙옙?占쏙옙
+       ToArray: 諛곗뿴占�? 占�??占쏙옙
+       ?占쏙옙?占쏙옙 李억옙?? 寃쎌슦?占쏙옙占�? 占�??占쏙옙 占�?源뚯슫 enemy 異쒕젰
+     */
 
     public bool CollideWithEnemy()
     {
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, nearEnemyBoxSize, 0f);
 
-        // 'enemy' 태그를 가진 PolygonCollider2D만 필터링
-        // => 람다
         nearEnemies = enemyArray
-            // Where: 조건을 만족하는 요소 필터링
             .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
-            // OrderBy: 오름차순 정렬
             .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
-            // ToArray: 배열로 변환
             .ToArray();
 
-        // 적을 찾은 경우에만 가장 가까운 enemy 출력
         if (nearEnemies.Length > 0)
         {
             Debug.Log("Near Enemy: " + nearEnemies[0].name);
@@ -613,8 +613,7 @@ public class Player : MonoBehaviour
             return false;
     }
 
-    // Hp UI 파괴 
-
+    // Hp UI ?占쏙옙占�? 
     private float elapsedTime = 0f;
     private float destroyTime = 1f;
     private bool isCollidingWithEnemy= false;
@@ -640,7 +639,7 @@ public class Player : MonoBehaviour
                     GameObject lastHp = hp[hp.Count - 1];
                     hp.RemoveAt(hp.Count - 1);
                     Destroy(lastHp);
-                    elapsedTime = 0f; // 다시 시간 초기화
+                    elapsedTime = 0f; // ?占쏙옙?占쏙옙 ?占쏙옙占�? 珥덇린?占쏙옙
                 }
             }
         }
@@ -650,6 +649,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // 踰붿쐞 ?占쏙옙?占쏙옙 offset 占�?
+        playerCenterOffset = new Vector3(0f, -0.4f, 0f);
+        meleeAttackBoxSize = new Vector2(1.8f, 2.3f);
+        nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
@@ -657,9 +660,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
-        //DetectEnemies();
-        //PlayerAttack();
+        PlayerAttack();
         PlayerControl();
     }
 }
