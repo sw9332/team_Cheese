@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    public Dialogue dialogue; //대화내용
+   // public Dialogue dialogue; //대화내용
 
     private DialogueManager dialogueManager; //대화내용 관리
 
     //public GameObject player_thoughts_UI; //대화창
     //public GameObject Player_Image; //Player 이미지
 
-    public GameObject Story_NextButton; //스토리 진행 다음 버튼
-    public GameObject UI_Close_Button; //대화창 닫기 버튼
+   // public GameObject Story_NextButton; //스토리 진행 다음 버튼
+   // public GameObject UI_Close_Button; //대화창 닫기 버튼
 
     //-------------------------------------------------------------------- 아래 단락 전체 내용을 dialogueManager로 통합. 확인 후 삭제 예정
 
@@ -368,10 +368,10 @@ public class UIManager : MonoBehaviour
     //--------------------------------------------------------------------
 
     //대화 닫기/다음 버튼
-    public void NextButton()
-    {
-        dialogueManager.count++;
-    }
+    //public void NextButton()
+    //{
+    //    dialogueManager.count++;
+    //}
 
     //public void CloseButton() // 이후 수정
     //{
@@ -437,20 +437,20 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
-    public GameObject ExitUI;
+    //public GameObject ExitUI;
 
-    public void tutorial_Exit_OK()
-    {
-        StartCoroutine(FadeOut());
-        Invoke("MainScene", 1f);
-        Time.timeScale = 1;
-    }
+    //public void tutorial_Exit_OK()
+    //{
+    //    StartCoroutine(FadeOut());
+    //    Invoke("MainScene", 1f);
+    //    Time.timeScale = 1;
+    //}
 
-    public void tutorial_Exit_NO()
-    {
-        ExitUI.SetActive(false);
-        Time.timeScale = 1;
-    }
+    //public void tutorial_Exit_NO()
+    //{
+    //    ExitUI.SetActive(false);
+    //    Time.timeScale = 1;
+    //}
 
     public void MainScene()
     {
@@ -458,20 +458,6 @@ public class UIManager : MonoBehaviour
     }
 
     //---------------------------------------------------------------------
-
-    public GameObject CameraAlbumUI;
-
-    void AlbumUI_Open_Close()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == false)
-            CameraAlbumUI.SetActive(true);
-        else if (Input.GetKeyDown(KeyCode.E) && CameraAlbumUI.activeSelf == true)
-            CameraAlbumUI.SetActive(false);
-    }
-
-    //---------------------------------------------------------------------
-
-    public float typingSpeed = 0.03f;
 
     public void StartFadeIn() // start fade in coroutine
     {
@@ -493,7 +479,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-
     void Start()
     {
         Time.timeScale = 1;
@@ -508,7 +493,6 @@ public class UIManager : MonoBehaviour
         // Stroy(); //스토리 진행
         // Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
-        AlbumUI_Open_Close(); //카메라 앨범 열기 닫기
 
         //if (dialogueManager.count == 3)
         //{
@@ -520,19 +504,19 @@ public class UIManager : MonoBehaviour
         //    StopCoroutine(FadeIn());
         //}
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (ExitUI.activeSelf == false)
-            {
-                ExitUI.SetActive(true);
-                Time.timeScale = 0;
-            }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (ExitUI.activeSelf == false)
+        //    {
+        //        ExitUI.SetActive(true);
+        //        Time.timeScale = 0;
+        //    }
 
-            else if (ExitUI.activeSelf == true)
-            {
-                ExitUI.SetActive(false);
-                Time.timeScale = 1;
-            }
-        }
+        //    else if (ExitUI.activeSelf == true)
+        //    {
+        //        ExitUI.SetActive(false);
+        //        Time.timeScale = 1;
+        //    }
+        //}
     }
 }

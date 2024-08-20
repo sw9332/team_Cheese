@@ -16,7 +16,7 @@ public class MiniGame : MonoBehaviour
 
     public static bool is_take_photo;
     public static bool is_minigame;
-    private bool is_next_stage;
+    private static bool is_next_stage;
     private bool is_transitioning = false;
 
     void Start()
@@ -83,6 +83,7 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     GameManager.GameState = "InGame";
+                    CameraAlbumUI.cakeImageAvailable = true;    // 앨범에 케이크 사진이 보이게끔
                 }
             }
 

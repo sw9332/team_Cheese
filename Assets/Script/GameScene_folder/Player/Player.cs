@@ -508,19 +508,19 @@ public class player : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            if (Input.GetKeyUp(KeyCode.UpArrow))
+            if (playerDirection == 1)
             {
                 Player_control.Play("PlayerUp_Stop");
             }
-            else if (Input.GetKeyUp(KeyCode.DownArrow))
+            else if (playerDirection == 2)
             {
                 Player_control.Play("PlayerBack_Stop");
             }
-            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            else if (playerDirection == 3)
             {
                 Player_control.Play("PlayerLeft_Stop");
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            else if (playerDirection == 4)
             {
                 Player_control.Play("PlayerRight_Stop");
             }
