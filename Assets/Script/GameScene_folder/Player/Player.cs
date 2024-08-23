@@ -170,10 +170,7 @@ public class Player : MonoBehaviour
                     item_main_slot[i] = "BrownTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
-
-                    dialogueManager.ShowDialogue(d_camera); //쓰러진 곰돌이를 주웠을 때 스토리값을 13으로 (카메라 발견)
-                    CameraUI.SetActive(true);
-
+                    Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
                     break;
                 }
             }
@@ -181,7 +178,8 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
         {
-           // UIManager.Next_value = 13; //카메라를 주웠을 때 스토리값을 13으로 (카메라 발견)
+            dialogueManager.ShowDialogue(d_camera); //카메라를 주웠을 때 스토리값을 13으로
+            CameraUI.SetActive(true);
             Destroy(other.gameObject);
         }
 
