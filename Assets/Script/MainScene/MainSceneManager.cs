@@ -131,9 +131,14 @@ public class MainSceneManager : MonoBehaviour
 
     //-------------------------------------------------------------------------------
 
+    void Awake()
+    {
+        Application.targetFrameRate = Application.targetFrameRate;
+        print(Application.targetFrameRate+"FPS");
+    }
+
     void Start()
     {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         //StartCoroutine(FadeIn());
     }
 

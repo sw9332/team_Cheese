@@ -39,7 +39,7 @@ public class GameSetting : MonoBehaviour
         foreach (Resolution item in resolutions)
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
-            option.text = item.width + "x" + item.height;
+            option.text = item.width + "x" + item.height + " " + Application.targetFrameRate + "Hz";
             resolutionDropdown.options.Add(option);
 
             if (item.width == Screen.width && item.height == Screen.height)
