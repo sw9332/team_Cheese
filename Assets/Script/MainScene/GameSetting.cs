@@ -23,12 +23,14 @@ public class GameSetting : MonoBehaviour
         {1920, 1080}, {1600, 900}, {1366, 768}, {1280, 960}, {1280, 720}, {800, 600}
     };
 
-    //res.refreshRate 옛날 버전이라 경고 뜰 수 있습니다.
-    
     void InitUI()
     {
-        var filteredResolutions = Screen.resolutions.Where(res => res.refreshRate == Application.targetFrameRate &&
-        IsAllowedResolution(res.width, res.height)).OrderByDescending(res => res.width * res.height).ToList();
+        var filteredResolutions = Screen.resolutions
+            .Where(res => IsAllowedResolution(res.width, res.height))
+            .GroupBy(res => new { res.width, res.height })
+            .Select(g => g.First())
+            .OrderByDescending(res => res.width * res.height)
+            .ToList();
 
         resolutions = filteredResolutions;
         resolutionDropdown.options.Clear();
@@ -37,7 +39,7 @@ public class GameSetting : MonoBehaviour
         foreach (Resolution item in resolutions)
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
-            option.text = item.width + "x" + item.height + " " + item.refreshRate + "Hz";
+            option.text = item.width + "x" + item.height;
             resolutionDropdown.options.Add(option);
 
             if (item.width == Screen.width && item.height == Screen.height)

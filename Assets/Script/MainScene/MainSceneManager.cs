@@ -133,6 +133,7 @@ public class MainSceneManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         //StartCoroutine(FadeIn());
     }
 
