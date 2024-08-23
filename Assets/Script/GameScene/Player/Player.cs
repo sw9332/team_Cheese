@@ -33,7 +33,6 @@ public class player : MonoBehaviour
     public Sprite Cake_Sprite;
 
 
-
     private DialogueManager dialogueManager;
 
     // 대화내용

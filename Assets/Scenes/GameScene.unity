@@ -864,6 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Album: {fileID: 1152546717}
   cakeImage: {fileID: 214976295}
+  player: {fileID: 730974879}
 --- !u!1 &195157911
 GameObject:
   m_ObjectHideFlags: 0
@@ -40932,7 +40933,6 @@ GameObject:
   - component: {fileID: 1152546718}
   - component: {fileID: 1152546720}
   - component: {fileID: 1152546719}
-  - component: {fileID: 1152546721}
   m_Layer: 5
   m_Name: Camera Album UI
   m_TagString: Untagged
@@ -41002,20 +41002,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152546717}
   m_CullTransparentMesh: 1
---- !u!114 &1152546721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152546717}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1dc07be18cbde45a34a48a958ca17c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Album: {fileID: 1152546717}
-  cakeImage: {fileID: 214976295}
 --- !u!1001 &1163881106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66933,6 +66919,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stamina
       objectReference: {fileID: 0}
+    - target: {fileID: 6534321531753110256, guid: d9957c6841a279642aa3f5a3362b5229, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534321531753110256, guid: d9957c6841a279642aa3f5a3362b5229, type: 3}
+      propertyPath: playerStaminaBar
+      value: 
+      objectReference: {fileID: 1591775559}
     - target: {fileID: 6860368653337054524, guid: d9957c6841a279642aa3f5a3362b5229, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
