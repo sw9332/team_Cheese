@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1638264466}
+  dialogueManager: {fileID: 0}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -40977,7 +40977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
