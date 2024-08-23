@@ -17,20 +17,30 @@ public class GameSetting : MonoBehaviour
     int resolutionNum;
     int optionNum = 0;
 
+    //해상도 리스트
+    int[,] allowedResolutions = new int[,]
+    { 
+        {1920, 1080}, {1600, 900}, {1366, 768}, {1280, 960}, {1280, 720}, {800, 600}
+    };
+
+    //res.refreshRate 옛날 버전이라 경고 뜰 수 있습니다.
+    
     void InitUI()
     {
-        var sortedResolutions = Screen.resolutions.Where(res => res.refreshRate == StartSceneManager.Screen_Frame).OrderByDescending(res => res.width * res.height).ToList();
-        resolutions = sortedResolutions;
+        var filteredResolutions = Screen.resolutions.Where(res => res.refreshRate == Application.targetFrameRate &&
+        IsAllowedResolution(res.width, res.height)).OrderByDescending(res => res.width * res.height).ToList();
+
+        resolutions = filteredResolutions;
         resolutionDropdown.options.Clear();
         optionNum = 0;
 
-        foreach(Resolution item in resolutions)
+        foreach (Resolution item in resolutions)
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
             option.text = item.width + "x" + item.height + " " + item.refreshRate + "Hz";
             resolutionDropdown.options.Add(option);
 
-            if(item.width == Screen.width && item.height == Screen.height)
+            if (item.width == Screen.width && item.height == Screen.height)
             {
                 resolutionDropdown.value = optionNum;
             }
@@ -40,6 +50,18 @@ public class GameSetting : MonoBehaviour
 
         resolutionDropdown.RefreshShownValue();
         fullscreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
+    }
+
+    bool IsAllowedResolution(int width, int height)
+    {
+        for (int i = 0; i < allowedResolutions.GetLength(0); i++)
+        {
+            if (allowedResolutions[i, 0] == width && allowedResolutions[i, 1] == height)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void DropdownOptionChange(int x)
@@ -58,6 +80,7 @@ public class GameSetting : MonoBehaviour
     {
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }
+
 
     //그래픽 품질 설정 부분---------------------------------------------------------------------------------------
 
