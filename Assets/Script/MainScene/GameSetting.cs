@@ -6,6 +6,31 @@ using System.Linq;
 
 public class GameSetting : MonoBehaviour
 {
+    public GameObject GraphicTab;
+    public GameObject AudioTab;
+    public GameObject KeyTab;
+
+    public void GraphicsTabButton()
+    {
+        GraphicTab.SetActive(true);
+        AudioTab.SetActive(false);
+        KeyTab.SetActive(false);
+    }
+
+    public void AudioTabButton()
+    {
+        GraphicTab.SetActive(false);
+        AudioTab.SetActive(true);
+        KeyTab.SetActive(false);
+    }
+
+    public void KeyTabButton()
+    {
+        GraphicTab.SetActive(false);
+        AudioTab.SetActive(false);
+        KeyTab.SetActive(true);
+    }
+
     //해상도 설정 부분-------------------------------------------------------------------------
 
     public Dropdown resolutionDropdown;
@@ -20,7 +45,7 @@ public class GameSetting : MonoBehaviour
     //해상도 리스트
     int[,] allowedResolutions = new int[,]
     { 
-        {1920, 1080}, {1600, 900}, {1366, 768}, {1280, 960}, {1280, 720}, {800, 600}
+        {1920, 1080}, {1600, 900}, {1280, 960}, {1280, 720}, {800, 600}
     };
 
     void InitUI()

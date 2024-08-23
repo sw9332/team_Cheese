@@ -133,7 +133,7 @@ public class MainSceneManager : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = Application.targetFrameRate;
+        Application.targetFrameRate = 60;
         print(Application.targetFrameRate+"FPS");
     }
 
