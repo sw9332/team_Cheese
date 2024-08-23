@@ -8,7 +8,6 @@ public class CameraAlbumUI : MonoBehaviour
 {
     public GameObject Album;
     public Image cakeImage;
-    public static bool cakeImageAvailable = false;
     public GameObject player;
 
     void AlbumUI_Open_Close()
@@ -26,15 +25,8 @@ public class CameraAlbumUI : MonoBehaviour
 
     }
 
-    void ShowCakeImage()
-    {
-        if (cakeImageAvailable)
-            cakeImage.enabled =  true;
-    }
-     
     void Update()
     {
         AlbumUI_Open_Close();
-        ShowCakeImage();
     }
 }

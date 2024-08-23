@@ -83,7 +83,6 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     GameManager.GameState = "InGame";
-                    CameraAlbumUI.cakeImageAvailable = true;    // 앨범에 케이크 사진이 보이게끔
                 }
             }
 
