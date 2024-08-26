@@ -292,6 +292,66 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(57.52f, -11f, 0);
         }
+
+        if(other.gameObject.tag == "RoomA Go")
+        {
+            transform.position = new Vector3(43.88f, 7.15f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomA Exit")
+        {
+            transform.position = new Vector3(43.88f, -2.33f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomB Go")
+        {
+            transform.position = new Vector3(54.73f, 19.67f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomB Exit")
+        {
+            transform.position = new Vector3(46.61f, 19.67f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomC Go")
+        {
+            transform.position = new Vector3(19.99f, -1.7f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomC Exit")
+        {
+            transform.position = new Vector3(19.99f, -11.6f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomD Go")
+        {
+            transform.position = new Vector3(19.99f, 18.5f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomD Exit")
+        {
+            transform.position = new Vector3(19.99f, 8.6f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomE Go")
+        {
+            transform.position = new Vector3(33.26f, -46.35f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomE Exit")
+        {
+            transform.position = new Vector3(40.67f, -42f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomF Go")
+        {
+            transform.position = new Vector3(40.85f, -56.23f, 0f);
+        }
+
+        if (other.gameObject.tag == "RoomF Exit")
+        {
+            transform.position = new Vector3(32.93f, -60.36f, 0f);
+        }
     }
 
 
