@@ -3989,9 +3989,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 113407668}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: Interaction_UI_close
+      - m_Target: {fileID: 1638264466}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: NextSentence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6239,6 +6239,7 @@ MonoBehaviour:
   rend: {fileID: 730974880}
   Player_move: {fileID: 730974887}
   moveSpeed: 2.8
+  is_move: 1
   playerCenterOffset: {x: 0, y: 0, z: 0}
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
@@ -46500,7 +46501,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB2EB\uAE30"
+  m_Text: "\uB2E4\uC74C"
 --- !u!222 &1469930873
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49765,10 +49766,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1507848103}
   sprite: {fileID: 1276043980}
+  button_text: {fileID: 1469930872}
   contentsList: []
   spriteList: []
   ingameUiPanel: {fileID: 1790190305}
   DialoguePanel: {fileID: 1032883397}
+  player: {fileID: 730974882}
   count: 0
   dialogue_continue: 0
 --- !u!1 &1655633497
