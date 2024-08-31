@@ -27,7 +27,6 @@ public class CameraAlbumUI : MonoBehaviour
         }
 
     }
-
     void Update()
     {
         AlbumUI_Open_Close();

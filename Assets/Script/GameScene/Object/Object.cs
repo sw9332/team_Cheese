@@ -11,7 +11,7 @@ public class Object : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.object_collision = "사물";
+            Player.object_collision = "사물";
             Object_pos = transform.position;
         }
     }
@@ -20,7 +20,7 @@ public class Object : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.object_collision = "땅";
+            Player.object_collision = "땅";
         }
     }
 }
