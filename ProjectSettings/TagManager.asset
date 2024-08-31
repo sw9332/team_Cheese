@@ -27,6 +27,18 @@ TagManager:
   - Chair
   - Camera
   - Tutorial Exit
+  - RoomA Go
+  - RoomB Go
+  - RoomC Go
+  - RoomD Go
+  - RoomE Go
+  - RoomF Go
+  - RoomA Exit
+  - RoomB Exit
+  - RoomC Exit
+  - RoomD Exit
+  - RoomE Exit
+  - RoomF Exit
   layers:
   - Default
   - TransparentFX
