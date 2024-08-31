@@ -16,12 +16,12 @@ public class MiniGame : MonoBehaviour
 
     public static bool is_take_photo;
     public static bool is_minigame;
-    private bool is_next_stage;
+    private static bool is_next_stage;
     private bool is_transitioning = false;
 
     void Start()
     {
-        is_take_photo = false;
+       // is_take_photo = false;
     }
 
     void Update()

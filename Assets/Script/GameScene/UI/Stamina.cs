@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
-    public  Slider staminaBar;
+    public Slider playerStaminaBar;
     public static bool isPlayerRunning;
 
-  
     void staminaChage()
     {
             if (isPlayerRunning== true)
@@ -23,16 +22,16 @@ public class Stamina : MonoBehaviour
     }
     void staminaDown()
     {
-        staminaBar.value -= Time.deltaTime;
+        playerStaminaBar.value -= Time.deltaTime;
     }
     void staminaUp()
     {
-        staminaBar.value += 0.2f * Time.deltaTime ;
+        playerStaminaBar.value += 0.25f * Time.deltaTime ;
     }
 
     void Start()
     {
-       
+        playerStaminaBar.value = 1f;
     }
     // Update is called once per frame
     void Update()
