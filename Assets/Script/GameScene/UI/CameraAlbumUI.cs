@@ -9,6 +9,7 @@ public class CameraAlbumUI : MonoBehaviour
     public GameObject Album;
     public Image cakeImage;
     public GameObject player;
+    public GameObject InGameUI;
 
     void AlbumUI_Open_Close()
     {
@@ -16,11 +17,13 @@ public class CameraAlbumUI : MonoBehaviour
         {
             Album.SetActive(true);
             player.SetActive(false);
+            InGameUI.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.E) && Album.activeSelf == true)
         {
             Album.SetActive(false);
             player.SetActive(true);
+            InGameUI.SetActive(true);
         }
 
     }

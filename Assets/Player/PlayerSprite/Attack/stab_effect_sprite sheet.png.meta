@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5be5ff7ae97e5df4cacde033e44c0382
+guid: 8c37c2586b0766541a7be7b4791f3fd6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,96 +149,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: backAttack1
+      name: stab_effect_sprite sheet_0
       rect:
         serializedVersion: 2
-        x: 15
+        x: 7
         y: 144
-        width: 20
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9bb4492e2d699646950acba0160d036
-      internalID: -1320080439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backAttack2
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 144
-        width: 23
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bfc1f21918b9b874a9c40559b86297d6
-      internalID: 526153607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backAttack3
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 142
-        width: 27
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 037b3d9512f823e469d3565ec2039702
-      internalID: -663950557
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backAttack4
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 144
-        width: 20
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d689aa52395fa0340a3171047c6b45a0
-      internalID: 873769741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: frontAttack1
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 96
-        width: 21
+        width: 25
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -247,14 +163,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0341084e11bea344086738f0a59bfd54
-      internalID: 1227048403
+      spriteID: 5a907964b845df549a4bfeb6f57f9602
+      internalID: 524033424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frontAttack2
+      name: stab_effect_sprite sheet_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 144
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d10a669bcd984649a3ec60f9eadbfc1
+      internalID: 689276119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 144
+        width: 26
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35efee7639cad604e891ee2910fb7eea
+      internalID: -535374701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_3
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 144
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d499c7f05b57a04e884cdadfcefd091
+      internalID: -1894072125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_4
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 144
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317d2a622bf611e449b848b23bdfd0fe
+      internalID: -1249991134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_5
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 144
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76377799d2c84634088c26308f290a39
+      internalID: -1991095682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_6
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 96
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b196656bc7791d4fbf6b41d7e1a3f8d
+      internalID: 218143888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_7
       rect:
         serializedVersion: 2
         x: 63
@@ -268,19 +310,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba499c397c35fd447888f06cdd620456
-      internalID: -1521222306
+      spriteID: c9c97a3cc40fef9439ed030fe677cfe9
+      internalID: -1071226887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frontAttack3
+      name: stab_effect_sprite sheet_8
       rect:
         serializedVersion: 2
-        x: 109
+        x: 106
         y: 96
-        width: 29
+        width: 31
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -289,187 +331,82 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb549a588bef0684487b1ab02ffe3d7f
-      internalID: 1679939816
+      spriteID: c725e52d331965847b98a421fb5f4ee6
+      internalID: -21029173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frontAttack4
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 96
-        width: 21
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b01266b3d2815741af03df34c7aecb8
-      internalID: 102748944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftAttack1
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 48
-        width: 24
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 674b413955c40874eac714fce7c7921c
-      internalID: 1147149171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftAttack2
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 48
-        width: 27
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 062d051e788fa1d4f913c898426b78ad
-      internalID: 1369347568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftAttack3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
-        width: 38
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdc2535aa1e695247a382d35e76e9967
-      internalID: -1847399788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftAttack4
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 48
-        width: 37
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab5162b18e5b61f4585a834d164f6d19
-      internalID: 1407391114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rightAttack1
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 0
-        width: 37
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08f40ddaab7feb34ea11f5437e737172
-      internalID: -78736565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rightAttack2
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 0
-        width: 38
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6101b8ffe40d3f49903b031dd1ac56d
-      internalID: 1343718040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rightAttack3
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 0
-        width: 27
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 458df932d58503b47a7c896540ec5ce6
-      internalID: -1576084226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rightAttack4
+      name: stab_effect_sprite sheet_9
       rect:
         serializedVersion: 2
         x: 155
-        y: 0
-        width: 24
+        y: 96
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25765f749e556cf489e24ef281e8e210
+      internalID: -801312661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_10
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 96
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ae6eef7a912024ebf6b89d804ad729
+      internalID: -533801409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_11
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 96
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8eedb9ac1e1aa446bdcdf3143aa4d19
+      internalID: 43533817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 48
+        width: 27
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -478,8 +415,239 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d98e655a117a864e9b3b6b5d1f4e848
-      internalID: 920213385
+      spriteID: 123618154cb3a8d4086547b5ee6a8391
+      internalID: -732476225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 48
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0312a7c08691b3b4c867acd848d6b345
+      internalID: -1970639456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_14
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 48
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79eec8516ff1e034683c62c4b118b547
+      internalID: -244809048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_15
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 48
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88cd2e5a35849e43b33748d717bb5fa
+      internalID: -859431155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 48
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1574e5d68dc7720478ab638015d15384
+      internalID: 1790234015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_17
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 48
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc0f4b73a8f6c9489433b1ff8fea694
+      internalID: 168448418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_18
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc191a4c04ac824c84e8ab8d0b41c4d
+      internalID: -1514848421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_19
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 0
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28898275ac988df4bafe76a48d1d6f1e
+      internalID: -1056710361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_20
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 0
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444811baa1b42bc4e811e1c001d8ad01
+      internalID: -14915800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_21
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa79731231334024e85ef5a7413ca98a
+      internalID: 1033091122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_22
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03da9e88119f59b418bfdcdf8cef3312
+      internalID: 1807018548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stab_effect_sprite sheet_23
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 0
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84fa78064d4e59844929782836848cad
+      internalID: 1298596507
       vertices: []
       indices: 
       edges: []
@@ -495,22 +663,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      backAttack1: -1320080439
-      backAttack2: 526153607
-      backAttack3: -663950557
-      backAttack4: 873769741
-      frontAttack1: 1227048403
-      frontAttack2: -1521222306
-      frontAttack3: 1679939816
-      frontAttack4: 102748944
-      leftAttack1: 1147149171
-      leftAttack2: 1369347568
-      leftAttack3: -1847399788
-      leftAttack4: 1407391114
-      rightAttack1: -78736565
-      rightAttack2: 1343718040
-      rightAttack3: -1576084226
-      rightAttack4: 920213385
+      stab_effect_sprite sheet_0: 524033424
+      stab_effect_sprite sheet_1: 689276119
+      stab_effect_sprite sheet_10: -533801409
+      stab_effect_sprite sheet_11: 43533817
+      stab_effect_sprite sheet_12: -732476225
+      stab_effect_sprite sheet_13: -1970639456
+      stab_effect_sprite sheet_14: -244809048
+      stab_effect_sprite sheet_15: -859431155
+      stab_effect_sprite sheet_16: 1790234015
+      stab_effect_sprite sheet_17: 168448418
+      stab_effect_sprite sheet_18: -1514848421
+      stab_effect_sprite sheet_19: -1056710361
+      stab_effect_sprite sheet_2: -535374701
+      stab_effect_sprite sheet_20: -14915800
+      stab_effect_sprite sheet_21: 1033091122
+      stab_effect_sprite sheet_22: 1807018548
+      stab_effect_sprite sheet_23: 1298596507
+      stab_effect_sprite sheet_3: -1894072125
+      stab_effect_sprite sheet_4: -1249991134
+      stab_effect_sprite sheet_5: -1991095682
+      stab_effect_sprite sheet_6: 218143888
+      stab_effect_sprite sheet_7: -1071226887
+      stab_effect_sprite sheet_8: -21029173
+      stab_effect_sprite sheet_9: -801312661
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

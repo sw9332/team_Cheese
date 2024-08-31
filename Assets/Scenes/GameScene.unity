@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1638264466}
+  dialogueManager: {fileID: 0}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -865,6 +865,7 @@ MonoBehaviour:
   Album: {fileID: 1152546717}
   cakeImage: {fileID: 214976295}
   player: {fileID: 730974879}
+  InGameUI: {fileID: 1790190305}
 --- !u!1 &195157911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,6 +3141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Teddy Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4409,6 +4414,10 @@ PrefabInstance:
     - target: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
       propertyPath: m_Name
       value: brown Teddy Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5155233655385528532, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
       propertyPath: m_RootOrder
