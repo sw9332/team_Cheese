@@ -383,20 +383,35 @@ public class UIManager : MonoBehaviour
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
     public static bool Camera_setactive = false;
+    bool isMessageLogged = false;
 
     void Camera_effect_manager()
     {
-        switch (Camera_setactive)
+        if (Camera_Effect_Animation.gameObject.activeInHierarchy)
         {
-            case false:
-                Camera_Effect_Animation.Play("Camera_Effect_false");
-                break;
+            isMessageLogged = false;
 
-            case true:
-                Camera_Effect_Animation.Play("Camera_Effect_true");
-                break;
+            switch (Camera_setactive)
+            {
+                case false:
+                    Camera_Effect_Animation.Play("Camera_Effect_false");
+                    break;
+
+                case true:
+                    Camera_Effect_Animation.Play("Camera_Effect_true");
+                    break;
+            }
+        }
+        else
+        {
+            if (!isMessageLogged)
+            {
+                Debug.Log("카메라 비활성화 상태");
+                isMessageLogged = true;
+            }
         }
     }
+
 
     //--------------------------------------------------------------------
 
