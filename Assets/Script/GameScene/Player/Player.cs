@@ -398,7 +398,7 @@ public class player : MonoBehaviour
 
             // 키가 겹쳤을 때
             if (Input.GetKey(KeyCode.LeftArrow))
-                Player_control.Play("PlayerLeft");
+                Player_control.Play("PlayerRight");
             else
                 Player_control.Play("PlayerRight");
 
@@ -474,37 +474,69 @@ public class player : MonoBehaviour
     void PlayerAttack()
     {
         // 근처의 적군이 감지됐다면
-        if (meleeAttackableEnemy())
+        if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == true)
         {
-            if (Input.GetKey(KeyCode.LeftControl)) 
-            {
-                meleeAttack();
-            }
+            meleeAttack();
         }
-
+        
         // 없으면 원거리 공격
         if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
         {
             rangedAttack();
-            if (playerDirection == 1) // 뒤
-            {
-                Player_control.Play("PlayerBackAttack");
-            }
-            else if (playerDirection == 2) // 정면
-            {
-                Player_control.Play("PlayerFrontAttack");
-            }
-            else if(playerDirection == 3) // 왼쪽
-            {
-                Player_control.Play("PlayerLeftAttack");
-            }
-            else if (playerDirection == 4) // 오른쪽
-            {
-                Player_control.Play("PlayerRightAttack");
-            }
-
         }
 
+        attackStop();
+    }
+
+    void meleeAttack()
+    {
+        if(playerDirection == 1)
+        {
+            Player_control.Play("PlayerMeeleeAttackBack");
+        }
+        if (playerDirection == 2)
+        {
+            Player_control.Play("PlayerMeeleeAttackFront");
+        }
+        if (playerDirection == 3)
+        {
+            Player_control.Play("PlayerMeeleeAttackLeft");
+        }
+        if (playerDirection == 4)
+        {
+            Player_control.Play("PlayerMeeleeAttackRight");
+        }
+    }
+
+    void rangedAttack()
+    {
+        if (playerDirection == 1) // 뒤
+        {
+            Player_control.Play("PlayerLongAttackBack");
+        }
+        else if (playerDirection == 2) // 정면
+        {
+            Player_control.Play("PlayerLongAttackFront");
+        }
+        else if (playerDirection == 3) // 왼쪽
+        {
+            Player_control.Play("PlayerLongAttackLeft");
+        }
+        else if (playerDirection == 4) // 오른쪽
+        {
+            Player_control.Play("PlayerLongAttackRight");
+        }
+
+        if (fireCurtime <= 0)
+        {
+            Instantiate(bullet, bulletPos.position, transform.rotation);
+            fireCurtime = fireCooltime;
+        }
+        fireCurtime -= Time.deltaTime;
+    }
+
+    void attackStop()
+    {
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             if (playerDirection == 1)
@@ -524,22 +556,6 @@ public class player : MonoBehaviour
                 Player_control.Play("PlayerRight_Stop");
             }
         }
-
-    }
-
-    void meleeAttack()
-    {
-
-    }
-
-    void rangedAttack()
-    {
-        if (fireCurtime <= 0)
-        {
-            Instantiate(bullet, bulletPos.position, transform.rotation);
-            fireCurtime = fireCooltime;
-        }
-        fireCurtime -= Time.deltaTime;
     }
 
 
@@ -584,9 +600,8 @@ public class player : MonoBehaviour
             return false;
     }
 
-    // Player HP ---------------------------------------------------------------------
-    public List<GameObject> hp = new List<GameObject> ();
-    private Collider2D[] nearEnemies;
+  
+
 
     /* HP 관련 Gizmo */
     //private void OnDrawGizmos()
@@ -595,14 +610,23 @@ public class player : MonoBehaviour
     //    Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
     //}
    
-    /* CollideWithEnemy 함수 설명
-      'enemy' 태그를 가진 polygonCollider2D만 필터링
-       => : 람다
-        Where : 조건을 만족하는 요소 필터링
-        OrderBy: 오름차순 정렬
-        oArray: 배열로 변환
-     */
 
+    // Player HP ---------------------------------------------------------------------
+    public List<GameObject> hp = new List<GameObject>();
+    private Collider2D[] nearEnemies;
+    private float elapsedTime = 0f;
+    private float destroyTime = 1f;
+    private bool isCollidingWithEnemy= false;
+
+
+
+    /* CollideWithEnemy 함수 설명
+   'enemy' 태그를 가진 polygonCollider2D만 필터링
+    => : 람다
+     Where : 조건을 만족하는 요소 필터링
+     OrderBy: 오름차순 정렬
+     oArray: 배열로 변환
+  */
     public bool CollideWithEnemy()
     {
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, nearEnemyBoxSize, 0f);
@@ -620,11 +644,6 @@ public class player : MonoBehaviour
         else
             return false;
     }
-
-    // Hp UI 관련
-    private float elapsedTime = 0f;
-    private float destroyTime = 1f;
-    private bool isCollidingWithEnemy= false;
 
     public void Player_Collision()
     {
