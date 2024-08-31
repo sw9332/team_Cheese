@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 1638264466}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
