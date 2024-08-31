@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
 
-    public Player player;
+    public  Player player;
 
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
