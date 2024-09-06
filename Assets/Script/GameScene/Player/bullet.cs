@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private Vector2 direction;
 
 
+   
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,12 @@ public class Bullet : MonoBehaviour
     {
         // 총알을 설정된 방향으로 이동
         transform.Translate(direction * speed * Time.deltaTime);
+        isHit();
 
+    }
+
+    public bool isHit()
+    {
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, isLayer);
         if (ray.collider != null)
         {
@@ -48,11 +54,16 @@ public class Bullet : MonoBehaviour
                 Debug.Log(ray.collider.name + " 명중!");
             }
             DestroyBullet();
+            return true;
         }
+        else
+            return false;
     }
 
     void DestroyBullet()
     {
         Destroy(gameObject);
     }
+
+
 }

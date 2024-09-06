@@ -1939,6 +1939,8 @@ GameObject:
   - component: {fileID: 113407665}
   - component: {fileID: 113407664}
   - component: {fileID: 113407668}
+  - component: {fileID: 113407670}
+  - component: {fileID: 113407669}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2053,6 +2055,44 @@ MonoBehaviour:
   cakeImage: {fileID: 214976295}
   player: {fileID: 730974879}
   InGameUI: {fileID: 1790190305}
+--- !u!95 &113407669
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113407663}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 919db7e2f9ac736439c394cf58a16393, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &113407670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113407663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1638264466}
+  CameraUI: {fileID: 527049652}
+  Camera_Effect_Animation: {fileID: 113407669}
+  fadeImage: {fileID: 1201729923}
+  fadeDuration: 1
 --- !u!1 &123138765
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,7 +6119,8 @@ GameObject:
   m_Component:
   - component: {fileID: 691012460}
   - component: {fileID: 691012459}
-  m_Layer: 0
+  - component: {fileID: 691012461}
+  m_Layer: 6
   m_Name: enemy_rabbit-export_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6153,6 +6194,21 @@ Transform:
   m_Father: {fileID: 542243904}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &691012461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691012458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
+  enemy: {fileID: 691012458}
+  enemySprite: {fileID: 691012459}
 --- !u!1 &693464526
 GameObject:
   m_ObjectHideFlags: 0
@@ -6986,9 +7042,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 787517284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5f3a847e933714e84c18914f1c7cc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 084bdc6ecd87a0f47815d1c99b2be287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  d_prologue:
+    contents: []
+    sprites: []
+  uiManager: {fileID: 0}
 --- !u!1 &788612235
 GameObject:
   m_ObjectHideFlags: 0
@@ -46312,7 +46372,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1464094606}
   - component: {fileID: 1464094605}
-  m_Layer: 0
+  - component: {fileID: 1464094607}
+  m_Layer: 6
   m_Name: enemy_girl-export_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46386,6 +46447,21 @@ Transform:
   m_Father: {fileID: 542243904}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1464094607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464094604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
+  enemy: {fileID: 1464094604}
+  enemySprite: {fileID: 1464094605}
 --- !u!1 &1469930870
 GameObject:
   m_ObjectHideFlags: 0
@@ -49528,6 +49604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638264465}
+  - component: {fileID: 1638264466}
   m_Layer: 5
   m_Name: DialougeManager
   m_TagString: Untagged
@@ -49556,6 +49633,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1638264466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638264464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23be0ac2c41f874a9fabf2e60d561e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1507848103}
+  sprite: {fileID: 1276043980}
+  button_text: {fileID: 252235792}
+  contentsList: []
+  spriteList: []
+  ingameUiPanel: {fileID: 1790190305}
+  DialoguePanel: {fileID: 1032883397}
+  player: {fileID: 730974888}
+  count: 0
+  dialogue_continue: 0
 --- !u!1 &1655633497
 GameObject:
   m_ObjectHideFlags: 0
