@@ -503,7 +503,7 @@ public class Player : MonoBehaviour
             }
 
             //달리기
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.1f)
             {
                 Player_control.speed = 2;
                 moveSpeed = 5;

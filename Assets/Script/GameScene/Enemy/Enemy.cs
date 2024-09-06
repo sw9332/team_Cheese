@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,45 +10,65 @@ public class Enemy : MonoBehaviour
     public Bullet bullet;
     public GameObject enemy;
     public SpriteRenderer enemySprite;
+    public Animator enemyEffect;
+    public bool isDead = false;
 
-    bool isDead()
-    {
-        if (hp == 0)
-        {
-            Destroy(enemy);
-            return true;
-        }
-        return false;
-    }
 
-    bool isDamaged()
+    public void takeDamage(string enemyName)
     {
-        if (isDead() != true)
+        if (!isDead && !isCoroutining && hp > 0)
         {
-            if (bullet.isHit() == true && !isCoroutining  /* || 근접 공격에 맞았을 때 */)
+            Debug.Log("hp 까임");
+            hp-=1;
+            enemyEffect.Play(enemy.tag+"Hit");
+            StartCoroutine(ResetToDefaultState());
+            StartCoroutine(changeColorToRed());
+
+            if (hp == 0)
             {
-                hp--;
-                StartCoroutine(changeColorToRed());
-                return true;
+                isDead = true;
+                destroyEnemy();  // 적 파괴
             }
-            else
-                return false;
         }
-        return false;
     }
+
+
 
     IEnumerator changeColorToRed()
     {
-        isCoroutining = true;
-        enemySprite.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
-        enemySprite.color = Color.clear;
-        isCoroutining = false;
+       isCoroutining = true;
+       enemySprite.color = Color.red;
+       yield return new WaitForSeconds(0.3f);
+       enemySprite.color = Color.white;
+       isCoroutining = false;
     }
 
-
-    void Update()
+    IEnumerator ResetToDefaultState()
     {
-        isDamaged();
+        yield return new WaitForSeconds(0.4f); // 애니메이션 재생 시간만큼 대기
+        enemyEffect.Play("None");    // 기본 상태로 전환 
     }
+
+    void destroyEnemy()
+    {
+        string name = enemy.tag;
+        switch (name)
+        {
+            case "pinkDollEnemy":
+                {
+                    Destroy(enemy);
+                    enemyEffect.Play("pinkDollDying");
+                    break;
+                }
+            case "rabbitDollEnemy":
+                {
+                    Destroy(enemy);
+                    enemyEffect.Play("rabbitDying");
+                    break;
+                }
+        }
+
+    }
+
+
 }

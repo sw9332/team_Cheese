@@ -10,6 +10,7 @@ public class Prologue : MonoBehaviour
     public UIManager uiManager;
 
     private DialogueManager dialogueManager;
+
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
