@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 1638264466}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -6540,8 +6540,8 @@ MonoBehaviour:
     - "\uC5B4.... \uC74C....."
     - "\uCF00\uC774\uD06C\uB97C \uC8FC\uC6B0\uB824\uBA74 \uC778\uD615\uC744 \uC62E\uACA8\uC57C\uACA0\uC5B4!"
     - "!@#$\uC744...."
-    - "\uC778\uD615\uC744 \uC62E\uAE30\uB824\uBA74 \uC2A4\uD398\uC2A4\uBC14\uB85C
-      \uC218\uC9D1 \uD6C4 \uC778\uBCA4\uD1A0\uB9AC \uCC3D\uC5D0\uC11C \uAEBC\uB0B4
+    - "\uC778\uD615\uC744 \uC62E\uAE30\uB824\uBA74 \uC2A4\uD398\uC774\uC2A4\uBC14\uB85C
+      \uC218\uC9D1 \uD6C4 \n\uC778\uBCA4\uD1A0\uB9AC \uCC3D\uC5D0\uC11C \uAEBC\uB0B4
       \uC62C\uB824\uB450\uC138\uC694."
     sprites:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
@@ -43884,9 +43884,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638264466}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: NextSentence
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44254,6 +44254,7 @@ GameObject:
   - component: {fileID: 1152546718}
   - component: {fileID: 1152546720}
   - component: {fileID: 1152546719}
+  - component: {fileID: 1152546721}
   m_Layer: 5
   m_Name: Camera Album UI
   m_TagString: Untagged
@@ -44322,6 +44323,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152546717}
   m_CullTransparentMesh: 1
+--- !u!114 &1152546721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152546717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1dc07be18cbde45a34a48a958ca17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Album: {fileID: 1152546717}
+  cakeImage: {fileID: 214976295}
+  player: {fileID: 730974879}
+  InGameUI: {fileID: 1790190305}
 --- !u!1001 &1163881106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44482,9 +44499,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1638264466}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: NextSentence
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44975,7 +44992,7 @@ MonoBehaviour:
   y_Axis: {fileID: 1556865391}
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
-  player: {fileID: 0}
+  player: {fileID: 730974879}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
 --- !u!1 &1235198641
@@ -49785,7 +49802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1507848103}
   sprite: {fileID: 1276043980}
-  button_text: {fileID: 252235792}
+  button_text: {fileID: 1469930872}
   contentsList: []
   spriteList: []
   ingameUiPanel: {fileID: 1790190305}

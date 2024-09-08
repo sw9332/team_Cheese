@@ -258,13 +258,13 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
         {
-            //dialogueManager.ShowDialogue(d_cake);
+            dialogueManager.ShowDialogue(d_cake);
             Destroy(other.gameObject);
         }
 
         if(other.gameObject.tag == "Camera Event") // 케이크를 테이블에 놓았을 때 생기는 이벤트에 닿았을 때
         {
-            //dialogueManager.ShowDialogue(d_photo);
+            dialogueManager.ShowDialogue(d_photo);
             UIManager.Camera_setactive = true;
             Destroy(other.gameObject);
             MiniGame.is_take_photo = true;
@@ -371,8 +371,7 @@ public class Player : MonoBehaviour
 
 
         void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
-
-    {
+        {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
         Velocity = 0;

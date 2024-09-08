@@ -21,9 +21,8 @@ public class Enemy : MonoBehaviour
             Debug.Log("hp 까임");
             hp-=1;
             enemyEffect.Play(enemy.tag+"Hit");
-            StartCoroutine(ResetToDefaultState());
             StartCoroutine(changeColorToRed());
-
+            StartCoroutine(ResetToDefaultState());
             if (hp == 0)
             {
                 isDead = true;
@@ -43,10 +42,10 @@ public class Enemy : MonoBehaviour
        isCoroutining = false;
     }
 
-    IEnumerator ResetToDefaultState()
+    IEnumerator ResetToDefaultState()   // 애니메이션을 기본 상태로 전환
     {
-        yield return new WaitForSeconds(0.4f); // 애니메이션 재생 시간만큼 대기
-        enemyEffect.Play("None");    // 기본 상태로 전환 
+        yield return new WaitForSeconds(0.4f); 
+        enemyEffect.Play("None");   
     }
 
     void destroyEnemy()
@@ -57,13 +56,13 @@ public class Enemy : MonoBehaviour
             case "pinkDollEnemy":
                 {
                     Destroy(enemy);
-                    enemyEffect.Play("pinkDollDying");
+                    enemyEffect.Play(name + "Hit");
                     break;
                 }
             case "rabbitDollEnemy":
                 {
                     Destroy(enemy);
-                    enemyEffect.Play("rabbitDying");
+                    enemyEffect.Play(name + "Hit");
                     break;
                 }
         }
