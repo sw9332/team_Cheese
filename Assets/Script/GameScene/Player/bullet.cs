@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     public LayerMask isLayer;
     private Vector2 direction;
 
+    private EnemyManager enemyList;
+
 
     void bulletDirectionSettings()
     {
@@ -40,7 +42,7 @@ public class Bullet : MonoBehaviour
             if (enemy != null)
             {
                 Debug.Log(enemy.tag + " 명중!");
-                enemy.takeDamage(enemy.tag); // 적에게 데미지를 입힘
+                enemyList.takeDamage(enemy.tag); // 적에게 데미지를 입힘
             }
             DestroyBullet(); // 충돌 후 총알 파괴
         }
@@ -50,7 +52,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyList = FindObjectOfType<EnemyManager> ();
         bulletDirectionSettings();
     }
 

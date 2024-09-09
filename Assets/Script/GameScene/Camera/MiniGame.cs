@@ -21,7 +21,7 @@ public class MiniGame : MonoBehaviour
 
     void Start()
     {
-       // is_take_photo = false;
+       is_take_photo = false;
     }
 
     void Update()

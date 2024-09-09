@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
-                    //CameraUI.SetActive(true); -> conflicts
+                    CameraUI.SetActive(true); // -> conflicts
 
                     Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
                     break;
@@ -339,7 +339,7 @@ public class Player : MonoBehaviour
 
 
 
-    // Player 아동 및 컨트롤
+    // Player 이동 및 컨트롤
 
     public static Vector3 Player_pos;
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
@@ -352,9 +352,7 @@ public class Player : MonoBehaviour
 
     public Slider playerStamina;
 
-
-    [SerializeField] 
-    public Vector3 playerCenterOffset; // player 범위판별 offset
+    private Vector3 playerCenterOffset; // player 범위판별 offset
 
     // 원거리 공격 관련
     public GameObject bullet;
@@ -365,9 +363,10 @@ public class Player : MonoBehaviour
 
 
     // 근접공격 및 enemy와 충돌
-    private Collider2D[] meleeAttackableEnemies; 
-    [SerializeField] Vector2 meleeAttackBoxSize; 
-    [SerializeField] Vector2 nearEnemyBoxSize; 
+    private EnemyManager enemyList;
+    private Collider2D[] meleeAttackableEnemies;
+    private Vector2 meleeAttackBoxSize;
+    private Vector2 nearEnemyBoxSize; 
 
 
         void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
@@ -546,6 +545,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == true)
         {
             meleeAttack();
+            // Collider2D other
+            // enemyList.takeDamage(Enemy.tag);
         }
         
         // 없으면 원거리 공격
@@ -753,6 +754,8 @@ public class Player : MonoBehaviour
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
+        enemyList = FindObjectOfType<EnemyManager>();
+
     }
 
     void Update()

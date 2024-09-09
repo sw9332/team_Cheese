@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1638264466}
+  dialogueManager: {fileID: 0}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -4063,6 +4063,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &403567744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403567745}
+  - component: {fileID: 403567747}
+  m_Layer: 0
+  m_Name: enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403567745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403567744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 691012460}
+  - {fileID: 1464094606}
+  m_Father: {fileID: 542243904}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &403567747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403567744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90cafc175a9ab141b8fe43e32389cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList:
+  - {fileID: 691012463}
+  - {fileID: 1464094609}
+  enemySprites:
+  - {fileID: 691012459}
+  - {fileID: 1464094605}
+  enemyEffects:
+  - {fileID: 691012464}
+  - {fileID: 1464094610}
 --- !u!1 &409197664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,8 +4917,7 @@ Transform:
   - {fileID: 226566944}
   - {fileID: 1051410408}
   - {fileID: 1655633499}
-  - {fileID: 691012460}
-  - {fileID: 1464094606}
+  - {fileID: 403567745}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6034,11 +6088,11 @@ GameObject:
   m_Component:
   - component: {fileID: 691012460}
   - component: {fileID: 691012459}
-  - component: {fileID: 691012461}
   - component: {fileID: 691012462}
   - component: {fileID: 691012463}
+  - component: {fileID: 691012464}
   m_Layer: 6
-  m_Name: enemy_rabbit-export_0
+  m_Name: rabbitDollEnemy
   m_TagString: rabbitDollEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6108,26 +6162,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 542243904}
+  m_Father: {fileID: 403567745}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &691012461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691012458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
-  enemy: {fileID: 691012458}
-  enemySprite: {fileID: 691012459}
-  enemyEffect: {fileID: 691012463}
-  isDead: 0
 --- !u!60 &691012462
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6180,7 +6217,21 @@ PolygonCollider2D:
       - {x: 0.53125, y: 0.6875}
       - {x: 0.40625, y: 0.8125}
   m_UseDelaunayMesh: 0
---- !u!95 &691012463
+--- !u!114 &691012463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691012458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  isDead: 0
+--- !u!95 &691012464
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -6577,12 +6628,9 @@ MonoBehaviour:
   moveSpeed: 2.5
   is_move: 1
   playerStamina: {fileID: 1046106979}
-  playerCenterOffset: {x: 0, y: 0, z: 0}
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.3
-  meleeAttackBoxSize: {x: 0, y: 0}
-  nearEnemyBoxSize: {x: 0, y: 0}
   hp:
   - {fileID: 1554170118}
   - {fileID: 451106391}
@@ -44981,7 +45029,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233675655}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bd1c50d4ee802b428aa085f8b58512e, type: 3}
   m_Name: 
@@ -46451,11 +46499,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1464094606}
   - component: {fileID: 1464094605}
-  - component: {fileID: 1464094607}
   - component: {fileID: 1464094608}
   - component: {fileID: 1464094609}
+  - component: {fileID: 1464094610}
   m_Layer: 6
-  m_Name: enemy_girl-export_0
+  m_Name: pinkDollEnemy
   m_TagString: pinkDollEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46525,26 +46573,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 542243904}
+  m_Father: {fileID: 403567745}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1464094607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464094604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
-  enemy: {fileID: 1464094604}
-  enemySprite: {fileID: 1464094605}
-  enemyEffect: {fileID: 1464094609}
-  isDead: 0
 --- !u!60 &1464094608
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -46596,7 +46627,21 @@ PolygonCollider2D:
       - {x: 0.75, y: -0.59375}
       - {x: 0.75, y: 0.84375}
   m_UseDelaunayMesh: 0
---- !u!95 &1464094609
+--- !u!114 &1464094609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464094604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3eb2f326175c245b624eb8fe74899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  isDead: 0
+--- !u!95 &1464094610
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
