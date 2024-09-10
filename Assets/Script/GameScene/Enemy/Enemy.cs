@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private GameObject enemy;
-    // public Animator enemyEffect;
+    // EnemyManager에서 사용해서 public 으로 선언
     public int hp = 3;
     public bool isDead = false;
 
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         enemy = this.gameObject;
     }

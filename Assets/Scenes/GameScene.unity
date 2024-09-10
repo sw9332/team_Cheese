@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 1638264466}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -2806,7 +2806,7 @@ Transform:
   - {fileID: 1668773765}
   - {fileID: 1315867121}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &212151825
 GameObject:
@@ -4109,15 +4109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90cafc175a9ab141b8fe43e32389cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 691012463}
-  - {fileID: 1464094609}
-  enemySprites:
-  - {fileID: 691012459}
-  - {fileID: 1464094605}
-  enemyEffects:
-  - {fileID: 691012464}
-  - {fileID: 1464094610}
+  enemies:
+  - {fileID: 691012458}
+  - {fileID: 1464094604}
+  enemyList: []
+  enemySprites: []
+  enemyEffects: []
 --- !u!1 &409197664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,7 +4181,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410108924
 GameObject:
@@ -4919,7 +4916,7 @@ Transform:
   - {fileID: 1655633499}
   - {fileID: 403567745}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552739999
 GameObject:
@@ -6459,7 +6456,7 @@ Transform:
   m_Children:
   - {fileID: 658994212}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &730974883
 Rigidbody2D:
@@ -8048,7 +8045,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928426211
 GameObject:

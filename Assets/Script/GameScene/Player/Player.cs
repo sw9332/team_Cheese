@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
 
     public GameObject CameraUI;
 
+    private EnemyManager enemyManager;
+
+
     // 아이템  두기 / 올려두기
     public void Slot1()
     {
@@ -270,6 +273,11 @@ public class Player : MonoBehaviour
             MiniGame.is_take_photo = true;
             MiniGame.is_minigame = true;
         }
+        
+        //if(other.gameObject.layer == LayerMask.NameToLayer("enemy"))
+        //{
+        //    enemyManager.takeDamage(other.tag);
+        //}
 
         if(other.gameObject.tag == "Tutorial Exit")
         {
@@ -363,13 +371,12 @@ public class Player : MonoBehaviour
 
 
     // 근접공격 및 enemy와 충돌
-    private EnemyManager enemyList;
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize; 
 
 
-        void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
+    void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
         {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
@@ -545,8 +552,6 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == true)
         {
             meleeAttack();
-            // Collider2D other
-            // enemyList.takeDamage(Enemy.tag);
         }
         
         // 없으면 원거리 공격
@@ -754,7 +759,7 @@ public class Player : MonoBehaviour
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
-        enemyList = FindObjectOfType<EnemyManager>();
+        enemyManager = FindObjectOfType<EnemyManager>();
 
     }
 
