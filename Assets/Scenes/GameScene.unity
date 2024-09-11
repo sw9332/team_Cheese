@@ -2088,7 +2088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1638264466}
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 113407669}
   fadeImage: {fileID: 1201729923}
@@ -4074,7 +4073,7 @@ GameObject:
   - component: {fileID: 403567745}
   - component: {fileID: 403567747}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: enemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6582,6 +6581,7 @@ MonoBehaviour:
   PinkTeddyBear_Sprite: {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
   YellowTeddyBear_Sprite: {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
   Cake_Sprite: {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
+  enemyManager: {fileID: 403567747}
   d_cake:
     contents:
     - "\uC5B4?! \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!"
@@ -6628,6 +6628,8 @@ MonoBehaviour:
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.3
+  meleeAttackBoxSize: {x: 0, y: 0}
+  nearEnemyBoxSize: {x: 0, y: 0}
   hp:
   - {fileID: 1554170118}
   - {fileID: 451106391}

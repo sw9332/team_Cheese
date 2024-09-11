@@ -38,11 +38,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("enemy"))  // 적 레이어와 충돌했을 때
         {
-           // Enemy enemy = other.GetComponent<Enemy>(); // Enemy 스크립트 참조
-            if (other != null)
+            Enemy enemy = other.GetComponent<Enemy>(); // Enemy 스크립트 참조
+            if (enemy != null)
             {
-                Debug.Log(other.tag + " 명중!");
-                enemyList.takeDamage(other.tag); // 적에게 데미지를 입힘
+                Debug.Log(enemy.tag + " 명중!");
+                enemyList.takeDamage(enemy.tag); // 적에게 데미지를 입힘
             }
             DestroyBullet(); // 충돌 후 총알 파괴
         }

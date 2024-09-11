@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
      void destroyEnemy(GameObject enemy)
     {
-        if(isDead == true)
+        if(hp == 0)
         {
             Destroy(enemy);
         }

@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public Sprite YellowTeddyBear_Sprite;
     public Sprite Cake_Sprite;
 
-
+    public EnemyManager enemyManager;
     private DialogueManager dialogueManager;
 
     // 대화내용
@@ -44,8 +44,6 @@ public class Player : MonoBehaviour
     public Dialogue d_photo;
 
     public GameObject CameraUI;
-
-    private EnemyManager enemyManager;
 
 
     // 아이템  두기 / 올려두기
@@ -274,10 +272,7 @@ public class Player : MonoBehaviour
             MiniGame.is_minigame = true;
         }
         
-        //if(other.gameObject.layer == LayerMask.NameToLayer("enemy"))
-        //{
-        //    enemyManager.takeDamage(other.tag);
-        //}
+      
 
         if(other.gameObject.tag == "Tutorial Exit")
         {
@@ -372,9 +367,11 @@ public class Player : MonoBehaviour
 
     // 근접공격 및 enemy와 충돌
     private Collider2D[] meleeAttackableEnemies;
-    private Vector2 meleeAttackBoxSize;
-    private Vector2 nearEnemyBoxSize; 
+    public Vector2 meleeAttackBoxSize;
+    public Vector2 nearEnemyBoxSize;
 
+    // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
+    private Collider2D enemyCollider;
 
     void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
         {
@@ -384,6 +381,7 @@ public class Player : MonoBehaviour
 
         if(is_move == false)
         {
+            Player_control.Play("PlayerBack_Stop");
             //이 부분에 player animator에서 idle 모션(player_stop으로 되어있는 애니메이션)을 출력하도록 부탁드립니다.
         }
 
@@ -440,7 +438,7 @@ public class Player : MonoBehaviour
                 MoveY = false;
 
                 transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-                playerDirection =2 ;
+                playerDirection = 2 ;
             }
 
             //왼쪽으로 이동
@@ -461,6 +459,7 @@ public class Player : MonoBehaviour
                 MoveX = false;
                 MoveY = true;
 
+                playerCenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 playerDirection = 3;
             }
@@ -485,7 +484,7 @@ public class Player : MonoBehaviour
 
                 // player가 오른쪽으로 이동할 경우 중심이 변경됨
                 // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
-                playerCenterOffset.x = 0.25f;
+                playerCenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 playerDirection = 4;
             }
@@ -497,14 +496,14 @@ public class Player : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.DownArrow))
                 Player_control.Play("PlayerBack_Stop");
             else if (Input.GetKeyUp(KeyCode.LeftArrow))
-                Player_control.Play("PlayerLeft_Stop");
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
-                Player_control.Play("PlayerRight_Stop");
-            else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
             {
-                Player_control.Play("PlayerStopX");
-                // 방향키를 뗄 경우 다시 원래의 offset으로 변경
-                playerCenterOffset.x = -0.25f;
+                playerCenterOffset = new Vector3(0f, -0.4f, 0f);
+                Player_control.Play("PlayerLeft_Stop");
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                playerCenterOffset = new Vector3(0f, -0.4f, 0f);
+                Player_control.Play("PlayerRight_Stop");
             }
 
             //달리기
@@ -548,14 +547,19 @@ public class Player : MonoBehaviour
 
     void PlayerAttack()
     {
-        // 근처의 적군이 감지됐다면
-        if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == true)
+        enemyCollider = meleeAttackableEnemy();
+        if (Input.GetKeyDown(KeyCode.LeftControl) &&  enemyCollider != null)    // 근접 공격 범위 내에 적군이 감지 됐다면
         {
-            meleeAttack();
+            if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
+            {
+                Debug.Log("괄호 안" + enemyCollider.tag);
+                meleeAttack();
+                enemyManager.takeDamage(enemyCollider.tag);
+            }
         }
-        
+
         // 없으면 원거리 공격
-        if (Input.GetKey(KeyCode.LeftControl) && meleeAttackableEnemy() == false)
+        if (Input.GetKey(KeyCode.LeftControl) && enemyCollider == null)
         {
             rangedAttack();
         }
@@ -636,14 +640,13 @@ public class Player : MonoBehaviour
 
     // 근접 공격   -------------------------------------------------------------------------------------------
 
-    
+
     /* Player의 enemy 탐지 Gizmo */
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = new Color(1.0f, 0f, 0f, 0.5f);
-    //    Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
-    //}
-    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
+        Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
+    }
 
     /*  근접 공격 설명
      linq(데이터 쿼리 언어)를 이용해서 빠른 정렬
@@ -656,12 +659,12 @@ public class Player : MonoBehaviour
 
      */
 
-    private bool meleeAttackableEnemy() 
+    private Collider2D meleeAttackableEnemy() 
     {
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, meleeAttackBoxSize, 0f);
 
             meleeAttackableEnemies = enemyArray
-            .Where(collider => collider.gameObject.layer == 6 /*LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+            .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
             .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
             .ToArray();
 
@@ -669,10 +672,10 @@ public class Player : MonoBehaviour
         if (meleeAttackableEnemies.Length > 0)
         {
             Debug.Log("Melee Attackable Enemy: " + meleeAttackableEnemies[0].name);
-            return true;
+            return meleeAttackableEnemies[0];
         }
         else
-            return false;
+            return null; 
     }
 
   
@@ -753,13 +756,12 @@ public class Player : MonoBehaviour
     {
         // 범위 판정 offset 값
         playerCenterOffset = new Vector3(0f, -0.4f, 0f);
-        meleeAttackBoxSize = new Vector2(1.8f, 2.3f);
+        meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
         fireCooltime = 0.2f;
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
-        enemyManager = FindObjectOfType<EnemyManager>();
 
     }
 

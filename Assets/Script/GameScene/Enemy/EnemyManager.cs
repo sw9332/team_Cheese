@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
             = getEnemyInformation(enemyTag);
 
         enemy.hp -= 1;
-        if (enemy.isDead != true && !isCoroutining && enemy.hp > 0)
+        if (!isCoroutining && enemy.hp > 0)
         {
             Debug.Log("hp 까임");
             enemyAni.Play(enemy.tag + "Hit");
@@ -26,9 +26,8 @@ public class EnemyManager : MonoBehaviour
             StartCoroutine(ResetToDefaultState(enemyAni));
         }
 
-        if (!isCoroutining && enemy.hp ==0)
+        if (!isCoroutining && enemy.hp == 0)
         {
-            enemy.isDead = true;
             destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // 적 파괴
         }
     }
@@ -63,7 +62,6 @@ public class EnemyManager : MonoBehaviour
         return (obj, enemy, enemySprite, enemyAni);
     }
 
-
     void destroyEnemy(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
         string enemyTag = enemy.tag;
@@ -71,14 +69,14 @@ public class EnemyManager : MonoBehaviour
         {
             case "pinkDollEnemy":
                 {
-                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     enemyAni.Play(enemyTag + "Hit");
+                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     break;
                 }
             case "rabbitDollEnemy":
                 {
-                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     enemyAni.Play(enemyTag + "Hit");
+                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     break;
                 }
         }
@@ -108,6 +106,23 @@ public class EnemyManager : MonoBehaviour
         enemyAni.Play("None");
     }
 
+    // null reference 오류 발생을 안시키도록
+    void removeNullEnemiesFromLists()
+    {
+        // 뒤에서부터 지워야 인덱스 꼬임이 안 생기므로, 역순으로 순회
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (enemies[i] == null)
+            {
+                // 해당 인덱스에 있는 요소들을 모두 제거
+                enemies.RemoveAt(i);
+                enemyList.RemoveAt(i);
+                enemySprites.RemoveAt(i);
+                enemyEffects.RemoveAt(i);
+            }
+        }
+    }
+
 
     void Start()
     {
@@ -117,5 +132,6 @@ public class EnemyManager : MonoBehaviour
 
      void Update()
     {
+        removeNullEnemiesFromLists();
     }
 }

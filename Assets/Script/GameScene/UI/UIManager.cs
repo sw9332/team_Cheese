@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
    // public Dialogue dialogue; //대화내용
-
-    private DialogueManager dialogueManager; //대화내용 관리
+   // private DialogueManager dialogueManager; //대화내용 관리
 
     //public GameObject player_thoughts_UI; //대화창
     //public GameObject Player_Image; //Player 이미지
