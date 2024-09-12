@@ -548,7 +548,9 @@ public class Player : MonoBehaviour
     void PlayerAttack()
     {
         enemyCollider = meleeAttackableEnemy();
-        if (Input.GetKeyDown(KeyCode.LeftControl) &&  enemyCollider != null)    // 근접 공격 범위 내에 적군이 감지 됐다면
+
+        // 근접 공격 처리
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
@@ -557,14 +559,19 @@ public class Player : MonoBehaviour
                 enemyManager.takeDamage(enemyCollider.tag);
             }
         }
-
-        // 없으면 원거리 공격
-        if (Input.GetKey(KeyCode.LeftControl) && enemyCollider == null)
+        // 원거리 공격 처리
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0) // 쿨타임 확인
         {
-            rangedAttack();
+            rangedAttack(); 
         }
 
         attackStop();
+
+        // bullet에 있던 코드를 끌어옴 , 단발 사격
+        if (fireCurtime > 0)
+        {
+            fireCurtime -= Time.deltaTime;  // 쿨타임 감소
+        }
     }
 
     void meleeAttack()
@@ -589,6 +596,7 @@ public class Player : MonoBehaviour
 
     void rangedAttack()
     {
+        // 방향에 따른 애니메이션 설정
         if (playerDirection == 1) // 뒤
         {
             Player_control.Play("PlayerLongAttackBack");
@@ -606,12 +614,9 @@ public class Player : MonoBehaviour
             Player_control.Play("PlayerLongAttackRight");
         }
 
-        if (fireCurtime <= 0)
-        {
-            Instantiate(bullet, bulletPos.position, transform.rotation);
-            fireCurtime = fireCooltime;
-        }
-        fireCurtime -= Time.deltaTime;
+        // 발사 쿨타임이 끝났을 때만 총알 발사
+        Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
+        fireCurtime = fireCooltime; // 쿨타임 초기화
     }
 
     void attackStop()

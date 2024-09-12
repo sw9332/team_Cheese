@@ -6113,7 +6113,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1241783847, guid: 6e6590924a76cf74e9726491879af517, type: 3}
+  m_Sprite: {fileID: -1313788669, guid: cd391d4086df8dc498543a4e87f93261, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6607,6 +6607,8 @@ MonoBehaviour:
   fireCooltime: 0.3
   meleeAttackBoxSize: {x: 0, y: 0}
   nearEnemyBoxSize: {x: 0, y: 0}
+  showRangeGizmo: 0
+  showHPGizmo: 0
   hp:
   - {fileID: 1554170118}
   - {fileID: 451106391}

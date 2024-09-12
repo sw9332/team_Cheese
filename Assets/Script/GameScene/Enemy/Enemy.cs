@@ -5,24 +5,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject enemy;
-    // EnemyManager에서 사용해서 public 으로 선언
     public int hp = 3;
 
-     void destroyEnemy(GameObject enemy)
+    private GameObject enemy;
+    private Animator enemyEffects;  // Animator 컴포넌트
+
+    public void destroyEnemy()
     {
-        if(hp == 0)
-        {
-            Destroy(enemy);
-        }
+        Destroy(gameObject);
+    }
+
+    public IEnumerator PlayDeathAnimationAndDestroy()
+    {
+        enemyEffects.Play(enemy.tag + "Die");
+        yield return new WaitForSeconds(enemyEffects.GetCurrentAnimatorStateInfo(0).length);
+        // 애니메이션 재생 후 오브젝트 삭제
+        destroyEnemy();
     }
 
     void Start()
     {
         enemy = this.gameObject;
+        enemyEffects = GetComponent<Animator>();
     }
+
     void Update()
     {
-        destroyEnemy(enemy);
+        if (hp == 0)
+        {
+            StartCoroutine(PlayDeathAnimationAndDestroy());
+        }
     }
 }

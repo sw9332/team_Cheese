@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
-        for (int i = 0; i < dialogue.contents.Length -1; i++)  
+        for (int i = 0; i < dialogue.contents.Length; i++)  
         {
             contentsList.Add(dialogue.contents[i]);
             spriteList.Add(dialogue.sprites[i]);

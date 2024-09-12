@@ -35,12 +35,9 @@ public class EnemyManager : MonoBehaviour
     // 실행하면 자동적으로 enemy관련 components들 list에 추가되도록 설정
      void addEnemyInformationInLists()
     {
-        for(int i=0; i< enemies.Count -1; i++)
-        {
             enemyList.AddRange(GetComponentsInChildren<Enemy>());
             enemySprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
             enemyEffects.AddRange(GetComponentsInChildren<Animator>());
-        }
     }
 
     // 튜플로 여러 형식을 반환하게 함
@@ -69,13 +66,11 @@ public class EnemyManager : MonoBehaviour
         {
             case "pinkDollEnemy":
                 {
-                    enemyAni.Play(enemyTag + "Hit");
                     deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     break;
                 }
             case "rabbitDollEnemy":
                 {
-                    enemyAni.Play(enemyTag + "Hit");
                     deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                     break;
                 }
@@ -95,7 +90,7 @@ public class EnemyManager : MonoBehaviour
     {
         isCoroutining = true;
         enemySprite.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
         enemySprite.color = Color.white;
         isCoroutining = false;
     }
