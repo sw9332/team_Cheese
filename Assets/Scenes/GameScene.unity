@@ -711,6 +711,7 @@ GameObject:
   - component: {fileID: 113407666}
   - component: {fileID: 113407665}
   - component: {fileID: 113407664}
+<<<<<<< HEAD
   - component: {fileID: 113407669}
   - component: {fileID: 113407668}
 <<<<<<< HEAD
@@ -722,6 +723,9 @@ GameObject:
 =======
   - component: {fileID: 113407669}
 >>>>>>> parent of 09f4ee5 (Revert "Update")
+=======
+  - component: {fileID: 113407668}
+>>>>>>> parent of 8df5d3d (Update)
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -907,6 +911,7 @@ MonoBehaviour:
   player: {fileID: 730974879}
   InGameUI: {fileID: 1790190305}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 --- !u!114 &113407669
 MonoBehaviour:
@@ -925,6 +930,8 @@ MonoBehaviour:
   Camera_Effect_Animation: {fileID: 527049656}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
+=======
+>>>>>>> parent of 8df5d3d (Update)
 --- !u!1 &123138765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,11 +2433,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - m_Target: {fileID: 113407668}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Interaction_UI_close
 =======
       - m_Target: {fileID: 1638264466}
+=======
+      - m_Target: {fileID: 0}
+>>>>>>> parent of 8df5d3d (Update)
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
         m_MethodName: NextSentence
 >>>>>>> parent of 09f4ee5 (Revert "Update")
@@ -4341,9 +4352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 787517284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084bdc6ecd87a0f47815d1c99b2be287, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e5f3a847e933714e84c18914f1c7cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   d_prologue:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4373,6 +4385,8 @@ MonoBehaviour:
     sprites: []
   uiManager: {fileID: 113407669}
 >>>>>>> parent of 09f4ee5 (Revert "Update")
+=======
+>>>>>>> parent of 8df5d3d (Update)
 --- !u!1 &788612235
 GameObject:
   m_ObjectHideFlags: 0
@@ -45513,7 +45527,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638264465}
-  - component: {fileID: 1638264466}
   m_Layer: 5
   m_Name: DialougeManager
   m_TagString: Untagged
@@ -45542,6 +45555,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!114 &1638264466
 MonoBehaviour:
 <<<<<<< HEAD
@@ -45566,6 +45580,8 @@ MonoBehaviour:
   player: {fileID: 730974888}
   count: 0
   dialogue_continue: 0
+=======
+>>>>>>> parent of 8df5d3d (Update)
 --- !u!1 &1655633497
 GameObject:
 >>>>>>> parent of 09f4ee5 (Revert "Update")
