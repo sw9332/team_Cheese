@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using Unity.VisualScripting; // 데이터 쿼리 언어
 
-public class Player : MonoBehaviour
+public class player : MonoBehaviour
 {
 // 인벤토리 및 상호작용 처리
 
@@ -157,7 +157,6 @@ public class Player : MonoBehaviour
                     Destroy(other.gameObject);
                     dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
                     //CameraUI.SetActive(true); -> conflicts
-
                     Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
                     break;
                 }
@@ -258,13 +257,13 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
         {
-            //dialogueManager.ShowDialogue(d_cake);
+            dialogueManager.ShowDialogue(d_cake);
             Destroy(other.gameObject);
         }
 
         if(other.gameObject.tag == "Camera Event") // 케이크를 테이블에 놓았을 때 생기는 이벤트에 닿았을 때
         {
-            //dialogueManager.ShowDialogue(d_photo);
+            dialogueManager.ShowDialogue(d_photo);
             UIManager.Camera_setactive = true;
             Destroy(other.gameObject);
             MiniGame.is_take_photo = true;
@@ -348,7 +347,6 @@ public class Player : MonoBehaviour
     public float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
-    public bool is_move = true; // is_move가 false 일때는 움직일 수 없음.
 
     public Slider playerStamina;
 
@@ -374,7 +372,7 @@ public class Player : MonoBehaviour
 
     {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
-        Player_control.speed = 1;
+        Player_move.speed = 1;
         Velocity = 0;
 
         if(is_move == false)
@@ -395,14 +393,14 @@ public class Player : MonoBehaviour
 
                 //키가 겹쳤을때
                 if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
+                    Player_move.Play("PlayerLeft");
                 else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
+                    Player_move.Play("PlayerRight");
                 else
-                    Player_control.Play("PlayerUp");
+                    Player_move.Play("PlayerUp");
 
                 if (Input.GetKey(KeyCode.DownArrow))
-                    Player_control.Play("PlayerUp");
+                    Player_move.Play("PlayerUp");
 
                 MoveX = true;
                 MoveY = false;
@@ -422,14 +420,14 @@ public class Player : MonoBehaviour
 
                 //키가 켭쳤을때
                 if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
+                    Player_move.Play("PlayerLeft");
                 else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
+                    Player_move.Play("PlayerRight");
                 else
-                    Player_control.Play("PlayerBack");
+                    Player_move.Play("PlayerBack");
 
                 if (Input.GetKey(KeyCode.UpArrow))
-                    Player_control.Play("PlayerUp");
+                    Player_move.Play("PlayerUp");
 
                 MoveX = true;
                 MoveY = false;
@@ -449,9 +447,9 @@ public class Player : MonoBehaviour
 
                 //키가 겹쳤을때
                 if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerLeft");
+                    Player_move.Play("PlayerLeft");
                 else
-                    Player_control.Play("PlayerLeft");
+                    Player_move.Play("PlayerLeft");
 
                 MoveX = false;
                 MoveY = true;
@@ -471,9 +469,9 @@ public class Player : MonoBehaviour
 
                 //키가 겹쳤을때
                 if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
+                    Player_move.Play("PlayerLeft");
                 else
-                    Player_control.Play("PlayerRight");
+                    Player_move.Play("PlayerRight");
 
                 MoveX = false;
                 MoveY = true;
@@ -488,16 +486,16 @@ public class Player : MonoBehaviour
 
             // 방향키를 때면
             if (Input.GetKeyUp(KeyCode.UpArrow))
-                Player_control.Play("PlayerUp_Stop");
+                Player_move.Play("PlayerUp_Stop");
             else if (Input.GetKeyUp(KeyCode.DownArrow))
-                Player_control.Play("PlayerBack_Stop");
+                Player_move.Play("PlayerBack_Stop");
             else if (Input.GetKeyUp(KeyCode.LeftArrow))
-                Player_control.Play("PlayerLeft_Stop");
+                Player_move.Play("PlayerLeft_Stop");
             else if (Input.GetKeyUp(KeyCode.RightArrow))
-                Player_control.Play("PlayerRight_Stop");
+                Player_move.Play("PlayerRight_Stop");
             else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
             {
-                Player_control.Play("PlayerStopX");
+                Player_move.Play("PlayerStopX");
                 // 방향키를 뗄 경우 다시 원래의 offset으로 변경
                 playerCenterOffset.x = -0.25f;
             }
@@ -505,13 +503,13 @@ public class Player : MonoBehaviour
             //달리기
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                Player_control.speed = 2;
+                Player_move.speed = 2;
                 moveSpeed = 5;
                 Stamina.isPlayerRunning = true;
             }
             else
             {
-                Player_control.speed = 1;
+                Player_move.speed = 1;
                 moveSpeed = 2.5f;
                 Stamina.isPlayerRunning = false;
             }
@@ -562,19 +560,19 @@ public class Player : MonoBehaviour
     {
         if(playerDirection == 1)
         {
-            Player_control.Play("PlayerMeleeAttackBack");
+            Player_control.Play("PlayerMeeleeAttackBack");
         }
         if (playerDirection == 2)
         {
-            Player_control.Play("PlayerMeleeAttackFront");
+            Player_control.Play("PlayerMeeleeAttackFront");
         }
         if (playerDirection == 3)
         {
-            Player_control.Play("PlayerMeleeAttackLeft");
+            Player_control.Play("PlayerMeeleeAttackLeft");
         }
         if (playerDirection == 4)
         {
-            Player_control.Play("PlayerMeleeAttackRight");
+            Player_control.Play("PlayerMeeleeAttackRight");
         }
     }
 
@@ -750,7 +748,6 @@ public class Player : MonoBehaviour
         playerCenterOffset = new Vector3(0f, -0.4f, 0f);
         meleeAttackBoxSize = new Vector2(1.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
-        fireCooltime = 0.2f;
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
