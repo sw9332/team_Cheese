@@ -47,9 +47,7 @@ public class UIManager : MonoBehaviour
     //--------------------------------------------------------------------
 
     public GameObject CameraUI;
-
     public static string Text_effect;
-
     public static bool Text_effect_isCheck = false;
 
     //스토리 진행    //마찬가지로 대화내용은 dialogue에서 관리, switch문의 역할은 dialoguemanager에서 할 예정.
@@ -482,7 +480,6 @@ public class UIManager : MonoBehaviour
     {
         StopCoroutine(FadeIn());
     }
-
     public void StartFadeOut() // start fade out coroutine
     {
         StartCoroutine(FadeOut());

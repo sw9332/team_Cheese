@@ -640,12 +640,15 @@ public class Player : MonoBehaviour
 
     // 근접 공격   -------------------------------------------------------------------------------------------
 
-
+    public bool showRangeGizmo = false;
     /* Player의 enemy 탐지 Gizmo */
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
-        Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
+        if (showRangeGizmo)
+        {
+            Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
+            Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(meleeAttackBoxSize.x, meleeAttackBoxSize.y));
+        }
     }
 
     /*  근접 공격 설명
@@ -678,16 +681,20 @@ public class Player : MonoBehaviour
             return null; 
     }
 
-  
+
 
 
     /* HP 관련 Gizmo */
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = new Color(0f,3f,0f,0.5f);
-    //    Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
-    //}
-   
+    public bool showHPGizmo = false;
+    private void OnDrawGizmos()
+    {
+        if (showHPGizmo)
+        {
+            Gizmos.color = new Color(0f, 3f, 0f, 0.7f);
+            Gizmos.DrawCube(this.transform.position + playerCenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
+        }
+    }
+
 
     // Player HP ---------------------------------------------------------------------
     public List<GameObject> hp = new List<GameObject>();
@@ -742,8 +749,8 @@ public class Player : MonoBehaviour
                 if (elapsedTime >= destroyTime && hp.Count > 0)
                 {
                     GameObject lastHp = hp[hp.Count - 1];
-                    hp.RemoveAt(hp.Count - 1);
                     Destroy(lastHp);
+                    hp.RemoveAt(hp.Count - 1);
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
             }
@@ -769,5 +776,6 @@ public class Player : MonoBehaviour
     {
         PlayerAttack();
         PlayerControl();
+        Player_Collision();
     }
 }

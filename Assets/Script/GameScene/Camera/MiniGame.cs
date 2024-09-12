@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MiniGame : MonoBehaviour
 {
+    public static bool is_take_photo;
+    public static bool is_minigame;
     public GameObject mainCamera;
     public GameObject photoCamera;
     public Slider x_Axis;
@@ -13,9 +15,7 @@ public class MiniGame : MonoBehaviour
     public GameObject player;
     public Image fadeImage;
     public float fadeDuration = 1f;
-
-    public static bool is_take_photo;
-    public static bool is_minigame;
+  
     private static bool is_next_stage;
     private bool is_transitioning = false;
 

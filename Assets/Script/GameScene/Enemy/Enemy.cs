@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     private GameObject enemy;
     // EnemyManager에서 사용해서 public 으로 선언
     public int hp = 3;
-    public bool isDead = false;
 
      void destroyEnemy(GameObject enemy)
     {

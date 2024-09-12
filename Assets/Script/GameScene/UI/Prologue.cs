@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Prologue : MonoBehaviour
 {
-    [SerializeField]
     public Dialogue d_prologue;
-
     public UIManager uiManager;
-
     private DialogueManager dialogueManager;
 
     void Start()

@@ -42,19 +42,18 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         text.text = "";
-        contentsList = new List<string>();
-        spriteList = new List<Sprite>();
         count = 0;
     } 
 
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
-        dialogue_continue = true;
-        for(int i = 0; i < dialogue.contents.Length; i++)  
+        for (int i = 0; i < dialogue.contents.Length -1; i++)  
         {
             contentsList.Add(dialogue.contents[i]);
             spriteList.Add(dialogue.sprites[i]);
+
         }
+        dialogue_continue = true;
         button_text.text = "다음";
         ingameUiPanel.SetActive(false);
         DialoguePanel.SetActive(true);
@@ -77,6 +76,16 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator startDialogueCoroutine()
     {
+        if (count == 0)
+        {
+            sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
+            for (int i = 0; i < contentsList[count].Length; i++)
+            {
+                text.text += contentsList[count][i];
+                yield return new WaitForSeconds(0.03f);
+            }
+        }
+
         if (count != 0) //인덱스 오류로 인해 0일때와 아닐때 구분
         {
             if (spriteList[count] != spriteList[count - 1])
@@ -89,15 +98,7 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.03f);
             }
         }
-        if (count == 0)
-        {
-            sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
-            for (int i = 0; i < contentsList[count].Length; i++)
-            {
-                text.text += contentsList[count][i];
-                yield return new WaitForSeconds(0.03f);
-            }
-        }
+      
 
         yield return null;
     }
