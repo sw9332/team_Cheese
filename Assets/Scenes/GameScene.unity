@@ -2187,6 +2187,14 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+--- !u!1 &336781535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  m_PrefabInstance: {fileID: 336781534}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> parent of 53332ee (인벤토리 적용)
 --- !u!1 &355348664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3592,6 +3600,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+--- !u!1 &654307620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+  m_PrefabInstance: {fileID: 654307619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &658994211
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,19 +4040,19 @@ MonoBehaviour:
   - 
   - 
   item_main_slot_Image:
-  - {fileID: 62631892}
-  - {fileID: 771593826}
-  - {fileID: 1600430777}
-  - {fileID: 1978578322}
-  BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
-  PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
-  YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
-  Cake_Object: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BrownTeddyBear_Object: {fileID: 902964620}
+  PinkTeddyBear_Object: {fileID: 795661427}
+  YellowTeddyBear_Object: {fileID: 654307620}
+  Cake_Object: {fileID: 336781535}
   Camera: {fileID: 519420028}
-  BrownTeddyBear_Sprite: {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
-  PinkTeddyBear_Sprite: {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
-  YellowTeddyBear_Sprite: {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
-  Cake_Sprite: {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
+  BrownTeddyBear_Sprite: {fileID: 21300000, guid: a98b32ea2aa9f094f967d1343429d88e, type: 3}
+  PinkTeddyBear_Sprite: {fileID: 21300000, guid: f6f5a9514b0f3064c95eae93bed2c337, type: 3}
+  YellowTeddyBear_Sprite: {fileID: 21300000, guid: 0902ce92884eba6439f99ac20cb1b412, type: 3}
+  Cake_Sprite: {fileID: 21300000, guid: 494f254542e748e4194711e6ded40ff2, type: 2}
   d_cake:
     contents: []
     sprites: []
@@ -4501,6 +4514,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+--- !u!1 &795661427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+  m_PrefabInstance: {fileID: 795661426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &797713968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6207527444221541580, guid: 2f7caba53f0f2c3448e07391cd35bc0d, type: 3}
@@ -4989,6 +5007,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+--- !u!1 &902964620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+  m_PrefabInstance: {fileID: 902964619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &921938698
 GameObject:
   m_ObjectHideFlags: 0
