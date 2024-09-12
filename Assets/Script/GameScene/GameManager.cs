@@ -8,6 +8,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameState = "Tutorial"; /* Tutorial / InGame */
+        GameState = "Tutorial";
     }
 }

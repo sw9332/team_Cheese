@@ -25,15 +25,12 @@ public class DialogueManager : MonoBehaviour
 
     public Text text;
     public SpriteRenderer sprite;
-    public Text button_text;
 
     public List<string> contentsList;
     public List<Sprite> spriteList;
 
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
-
-    public Player player;
 
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
@@ -55,11 +52,9 @@ public class DialogueManager : MonoBehaviour
             contentsList.Add(dialogue.contents[i]);
             spriteList.Add(dialogue.sprites[i]);
         }
-        button_text.text = "다음";
         ingameUiPanel.SetActive(false);
         DialoguePanel.SetActive(true);
         StartCoroutine(startDialogueCoroutine());
-        player.is_move = false;
     }
 
     public void ExitDialogue()
@@ -72,7 +67,6 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(true);
         DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        player.is_move = true;
     }
 
     IEnumerator startDialogueCoroutine()
@@ -104,71 +98,42 @@ public class DialogueManager : MonoBehaviour
 
     public void NextSentence()
     {
-        if(dialogue_continue)
+        if (dialogue_continue)
         {
-            if(count == contentsList.Count - 2)
-            {
-                button_text.text = "닫기";
-            }
             count++;
             text.text = "";
-            if (count == contentsList.Count)
+            if (count == contentsList.Count - 1)
             {
                 StopCoroutine(startDialogueCoroutine());
-                ExitDialogue();
-
             }
             else
             {
                 StopCoroutine(startDialogueCoroutine());
                 StartCoroutine(startDialogueCoroutine());
             }
-        }
+        }        
     }
 
+    private void Update()
+    {
+        if (dialogue_continue)
+        {
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                count++;
+                text.text = "";
+                if (count == contentsList.Count)
+                {
+                    StopCoroutine(startDialogueCoroutine());
+                    ExitDialogue();
 
-
-
-    //혹시나 버그날 때 복구해서 사용할 코드...
-
-    //public void NextSentence()
-    //{
-    //    if (dialogue_continue)
-    //    {
-    //        count++;
-    //        text.text = "";
-    //        if (count == contentsList.Count - 1)
-    //        {
-    //            StopCoroutine(startDialogueCoroutine());
-    //        }
-    //        else
-    //        {
-    //            StopCoroutine(startDialogueCoroutine());
-    //            StartCoroutine(startDialogueCoroutine());
-    //        }
-    //    }        
-    //}
-
-    //private void Update()
-    //{
-    //    if (dialogue_continue)
-    //    {
-    //        if(Input.GetKeyDown(KeyCode.Z))
-    //        {
-    //            //count++;
-    //            //text.text = "";
-    //            //if (count == contentsList.Count)
-    //            //{
-    //            //    StopCoroutine(startDialogueCoroutine());
-    //            //    ExitDialogue();
-
-    //            //}
-    //            //else
-    //            //{
-    //            //    StopCoroutine(startDialogueCoroutine());
-    //            //    StartCoroutine(startDialogueCoroutine());
-    //            //}
-    //        }
-    //    }
-    //}
+                }
+                else
+                {
+                    StopCoroutine(startDialogueCoroutine());
+                    StartCoroutine(startDialogueCoroutine());
+                }
+            }
+        }
+    }
 }

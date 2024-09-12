@@ -131,12 +131,6 @@ public class MainSceneManager : MonoBehaviour
 
     //-------------------------------------------------------------------------------
 
-    void Awake()
-    {
-        Application.targetFrameRate = 60;
-        print(Application.targetFrameRate+"FPS");
-    }
-
     void Start()
     {
         //StartCoroutine(FadeIn());

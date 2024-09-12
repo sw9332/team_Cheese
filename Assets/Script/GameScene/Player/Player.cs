@@ -155,9 +155,10 @@ public class player : MonoBehaviour
                     item_main_slot[i] = "BrownTeddyBear";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
+
                     dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
-                    //CameraUI.SetActive(true); -> conflicts
-                    Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
+                    CameraUI.SetActive(true);
+
                     break;
                 }
             }
@@ -165,8 +166,7 @@ public class player : MonoBehaviour
 
         if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
         {
-            dialogueManager.ShowDialogue(d_camera); //카메라를 주웠을 때 스토리값을 13으로
-            CameraUI.SetActive(true);
+            // UImanager.Next_value = 13; // 카메라를 주웠을 때 스톻리 값을 13으로 (카메라 발견)
             Destroy(other.gameObject);
         }
 
@@ -274,66 +274,6 @@ public class player : MonoBehaviour
         {
             transform.position = new Vector3(57.52f, -11f, 0);
         }
-
-        if(other.gameObject.tag == "RoomA Go")
-        {
-            transform.position = new Vector3(43.88f, 7.15f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomA Exit")
-        {
-            transform.position = new Vector3(43.88f, -2.33f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomB Go")
-        {
-            transform.position = new Vector3(59f, 19.67f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomB Exit")
-        {
-            transform.position = new Vector3(46.61f, 19.67f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomC Go")
-        {
-            transform.position = new Vector3(11.96f, -1.7f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomC Exit")
-        {
-            transform.position = new Vector3(11.96f, -11.6f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomD Go")
-        {
-            transform.position = new Vector3(11.96f, 18.5f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomD Exit")
-        {
-            transform.position = new Vector3(11.96f, 8.6f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomE Go")
-        {
-            transform.position = new Vector3(27.76f, -49.45f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomE Exit")
-        {
-            transform.position = new Vector3(41.15f, -42.31f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomF Go")
-        {
-            transform.position = new Vector3(40.97f, -58.25f, 0f);
-        }
-
-        if (other.gameObject.tag == "RoomF Exit")
-        {
-            transform.position = new Vector3(28.05f, -63f, 0f);
-        }
     }
 
 
@@ -347,7 +287,6 @@ public class player : MonoBehaviour
     public float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
-
     public Slider playerStamina;
 
 
@@ -368,175 +307,168 @@ public class player : MonoBehaviour
     [SerializeField] Vector2 nearEnemyBoxSize; 
 
 
-        void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
+    void PlayerControl() // 플레이어의 이돌 및 인벤토리 컨트롤
 
     {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
-        Player_move.speed = 1;
         Velocity = 0;
 
-        if(is_move == false)
+        // 위로 이동
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            //이 부분에 player animator에서 idle 모션(player_stop으로 되어있는 애니메이션)을 출력하도록 부탁드립니다.
-        }
+            // 대화창이 켜져있을 땐 움직이지 않게
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
 
-        if(is_move == true)
-        {
-            //위로 이동
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_move.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_move.Play("PlayerRight");
-                else
-                    Player_move.Play("PlayerUp");
-
-                if (Input.GetKey(KeyCode.DownArrow))
-                    Player_move.Play("PlayerUp");
-
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                playerDirection =1;
-            }
-
-            //아래로 이동
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 켭쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_move.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_move.Play("PlayerRight");
-                else
-                    Player_move.Play("PlayerBack");
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                    Player_move.Play("PlayerUp");
-
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-                playerDirection =2 ;
-            }
-
-            //왼쪽으로 이동
+            // 키가 겹쳤을 때
+            playerDirection = 1;
             if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.RightArrow))
-                    Player_move.Play("PlayerLeft");
-                else
-                    Player_move.Play("PlayerLeft");
-
-                MoveX = false;
-                MoveY = true;
-
-                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-                playerDirection = 3;
-            }
-
-            //오른쪽으로 이동
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_move.Play("PlayerLeft");
-                else
-                    Player_move.Play("PlayerRight");
-
-                MoveX = false;
-                MoveY = true;
-
-                // player가 오른쪽으로 이동할 경우 중심이 변경됨
-                // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
-                playerCenterOffset.x = 0.25f;
-                transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-                playerDirection = 4;
-            }
-
-
-            // 방향키를 때면
-            if (Input.GetKeyUp(KeyCode.UpArrow))
-                Player_move.Play("PlayerUp_Stop");
-            else if (Input.GetKeyUp(KeyCode.DownArrow))
-                Player_move.Play("PlayerBack_Stop");
-            else if (Input.GetKeyUp(KeyCode.LeftArrow))
-                Player_move.Play("PlayerLeft_Stop");
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
-                Player_move.Play("PlayerRight_Stop");
-            else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                Player_move.Play("PlayerStopX");
-                // 방향키를 뗄 경우 다시 원래의 offset으로 변경
-                playerCenterOffset.x = -0.25f;
-            }
-
-            //달리기
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Player_move.speed = 2;
-                moveSpeed = 5;
-                Stamina.isPlayerRunning = true;
-            }
+                Player_control.Play("PlayerLeft");
+            else if (Input.GetKey(KeyCode.RightArrow))
+                Player_control.Play("PlayerRight");
             else
-            {
-                Player_move.speed = 1;
-                moveSpeed = 2.5f;
-                Stamina.isPlayerRunning = false;
-            }
+                Player_control.Play("PlayerUp");
 
-            /* Player 인벤토리 */
+            if (Input.GetKey(KeyCode.DownArrow))
+                Player_control.Play("PlayerUp");
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Slot1();
-            }
+            MoveX = true;
+            MoveY = false;
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Slot2();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Slot3();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                Slot4();
-            }
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            playerDirection = 1;
         }
-        
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            // 대화창이 켜져있을 땐 움직이지 않게
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
+
+            // 키가 겹쳤을 때
+            if (Input.GetKey(KeyCode.LeftArrow))
+                Player_control.Play("PlayerLeft");
+            else if (Input.GetKey(KeyCode.RightArrow))
+                Player_control.Play("PlayerRight");
+            else
+                Player_control.Play("PlayerBack");
+
+            if (Input.GetKey(KeyCode.UpArrow))
+                Player_control.Play("PlayerUp");
+
+            MoveX = true;
+            MoveY = false;
+
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            playerDirection = 2;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+             // 대화창이 켜져있을 땐 움직이지 않게
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
+
+            // 키가 겹쳤을 때
+            if (Input.GetKey(KeyCode.RightArrow))
+                Player_control.Play("PlayerLeft");
+            else
+                Player_control.Play("PlayerLeft");
+
+            MoveX = false;
+            MoveY = true;
+
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            playerDirection = 3;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            // 대화창이 켜져있을 땐 움직이지 않게
+            //if (UIManager.StoryUI == true)
+            //    Velocity = 0;
+            //else
+            //    Velocity = moveSpeed;
+
+            // 키가 겹쳤을 때
+            if (Input.GetKey(KeyCode.LeftArrow))
+                Player_control.Play("PlayerRight");
+            else
+                Player_control.Play("PlayerRight");
+
+            MoveX = false;
+            MoveY = true;
+
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            playerDirection = 4;
+        }
+
+
+        // 방향키를 때면
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            Player_control.Play("PlayerUp_Stop");
+            playerDirection = 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            Player_control.Play("PlayerBack_Stop");
+            playerDirection = 2;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            Player_control.Play("PlayerLeft_Stop");
+            playerDirection = 3;
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            Player_control.Play("PlayerRight_Stop");
+            playerDirection = 4;
+        }
+
+
+        // 달리기
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Player_control.speed = 2;
+            moveSpeed = 5;
+            Stamina.isPlayerRunning = true;
+
+        }
+        else
+        {
+            Player_control.speed = 1;
+            moveSpeed = 2.5f;
+            Stamina.isPlayerRunning = false;
+        }
+
+        /* Player 인벤토리 */
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Slot1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Slot2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Slot3();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Slot4();
+        }
     }
 
     void PlayerAttack()
