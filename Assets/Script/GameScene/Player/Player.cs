@@ -159,6 +159,7 @@ public class Player : MonoBehaviour
                     //CameraUI.SetActive(true); -> conflicts
 
                     Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
+                    UIManager.CameraUI_isCheck = true;
                     break;
                 }
             }
@@ -271,9 +272,14 @@ public class Player : MonoBehaviour
             MiniGame.is_minigame = true;
         }
 
-        if(other.gameObject.tag == "Tutorial Exit")
+        if (other.gameObject.tag == "Tutorial Go")
         {
-            transform.position = new Vector3(57.52f, -11f, 0);
+            transform.position = new Vector3(57.52f, -1.98f, 0);
+        }
+
+        if (other.gameObject.tag == "Tutorial Exit")
+        {
+            transform.position = new Vector3(57.52f, -11.8f, 0);
         }
 
         if(other.gameObject.tag == "RoomA Go")

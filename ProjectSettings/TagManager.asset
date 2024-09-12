@@ -39,6 +39,7 @@ TagManager:
   - RoomD Exit
   - RoomE Exit
   - RoomF Exit
+  - Tutorial Go
   layers:
   - Default
   - TransparentFX
