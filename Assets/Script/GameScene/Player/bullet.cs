@@ -9,13 +9,12 @@ public class Bullet : MonoBehaviour
     public LayerMask isLayer;
     private Vector2 direction;
 
+    private EnemyManager enemyList;
 
 
-    // Start is called before the first frame update
-    void Start()
+    void bulletDirectionSettings()
     {
-        
-        if (Player.playerDirection == 1)  
+        if (Player.playerDirection == 1)
         {
             direction = Vector2.up;
         }
@@ -23,7 +22,7 @@ public class Bullet : MonoBehaviour
         {
             direction = Vector2.down;
         }
-        else if (Player.playerDirection == 3 ) 
+        else if (Player.playerDirection == 3)
         {
             direction = Vector2.left;
         }
@@ -35,20 +34,33 @@ public class Bullet : MonoBehaviour
         Invoke("DestroyBullet", 2);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("enemy"))  // 적 레이어와 충돌했을 때
+        {
+            Enemy enemy = other.GetComponent<Enemy>(); // Enemy 스크립트 참조
+            if (enemy != null)
+            {
+                Debug.Log(enemy.tag + " 명중!");
+                enemyList.takeDamage(enemy.tag); // 적에게 데미지를 입힘
+            }
+            DestroyBullet(); // 충돌 후 총알 파괴
+        }
+    }
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        enemyList = FindObjectOfType<EnemyManager> ();
+        bulletDirectionSettings();
+    }
+
     // Update is called once per frame
     void Update()
     {
         // 총알을 설정된 방향으로 이동
         transform.Translate(direction * speed * Time.deltaTime);
-
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, isLayer);
-        if (ray.collider != null)
-        {
-            {
-                Debug.Log(ray.collider.name + " 명중!");
-            }
-            DestroyBullet();
-        }
     }
 
     void DestroyBullet()

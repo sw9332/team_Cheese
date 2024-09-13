@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
    // public Dialogue dialogue; //대화내용
-
-    private DialogueManager dialogueManager; //대화내용 관리
+   // private DialogueManager dialogueManager; //대화내용 관리
 
     //public GameObject player_thoughts_UI; //대화창
     //public GameObject Player_Image; //Player 이미지
@@ -48,9 +47,7 @@ public class UIManager : MonoBehaviour
     //--------------------------------------------------------------------
 
     public GameObject CameraUI;
-
     public static string Text_effect;
-
     public static bool Text_effect_isCheck = false;
 
     //스토리 진행    //마찬가지로 대화내용은 dialogue에서 관리, switch문의 역할은 dialoguemanager에서 할 예정.
@@ -483,7 +480,6 @@ public class UIManager : MonoBehaviour
     {
         StopCoroutine(FadeIn());
     }
-
     public void StartFadeOut() // start fade out coroutine
     {
         StartCoroutine(FadeOut());
