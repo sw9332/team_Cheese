@@ -271,12 +271,15 @@ public class Player : MonoBehaviour
             MiniGame.is_take_photo = true;
             MiniGame.is_minigame = true;
         }
-        
-      
 
-        if(other.gameObject.tag == "Tutorial Exit")
+        if (other.gameObject.tag == "Tutorial Go")
         {
-            transform.position = new Vector3(57.52f, -11f, 0);
+            transform.position = new Vector3(57.52f, -1.8f, 0);
+        }
+
+        if (other.gameObject.tag == "Tutorial Exit")
+        {
+            transform.position = new Vector3(57.52f, -11.3f, 0);
         }
 
         if(other.gameObject.tag == "RoomA Go")
@@ -507,7 +510,7 @@ public class Player : MonoBehaviour
             }
 
             //달리기
-            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.1f)
+            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.01f)
             {
                 Player_control.speed = 2;
                 moveSpeed = 5;
