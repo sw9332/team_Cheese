@@ -12,7 +12,7 @@ public class Table : MonoBehaviour
         if (other.gameObject.tag == "Cake") //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
         {
             CamaraEvent.SetActive(true);
-            //UIManager.Camera_setactive = true; //카메라 반짝이는 애니메이션
+            UIManager.Camera_setactive = true;
         }
     }
 }

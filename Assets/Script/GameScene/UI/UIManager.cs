@@ -8,14 +8,13 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
    // public Dialogue dialogue; //대화내용
-
-    private DialogueManager dialogueManager; //대화내용 관리
+   // private DialogueManager dialogueManager; //대화내용 관리
 
     //public GameObject player_thoughts_UI; //대화창
     //public GameObject Player_Image; //Player 이미지
 
-    // public GameObject Story_NextButton; //스토리 진행 다음 버튼
-    // public GameObject UI_Close_Button; //대화창 닫기 버튼
+   // public GameObject Story_NextButton; //스토리 진행 다음 버튼
+   // public GameObject UI_Close_Button; //대화창 닫기 버튼
 
     //-------------------------------------------------------------------- 아래 단락 전체 내용을 dialogueManager로 통합. 확인 후 삭제 예정
 
@@ -46,6 +45,10 @@ public class UIManager : MonoBehaviour
     //}
 
     //--------------------------------------------------------------------
+
+    public GameObject CameraUI;
+    public static string Text_effect;
+    public static bool Text_effect_isCheck = false;
 
     //스토리 진행    //마찬가지로 대화내용은 dialogue에서 관리, switch문의 역할은 dialoguemanager에서 할 예정.
     //bool값 혹은 trigger 조정은 계속 고려할 예정 
@@ -374,12 +377,6 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
-    public GameObject CameraUI;
-
-    public static string Text_effect;
-
-    public static bool Text_effect_isCheck = false;
-
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
     public static bool Camera_setactive = false;
@@ -411,17 +408,6 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
-    public static bool CameraUI_isCheck = false;
-
-    void CameraUI_SetActive()
-    {
-        if(CameraUI_isCheck)
-            CameraUI.SetActive(true);
-        else
-            CameraUI.SetActive(false);
-    }
-        
 
 
     //--------------------------------------------------------------------
@@ -494,7 +480,6 @@ public class UIManager : MonoBehaviour
     {
         StopCoroutine(FadeIn());
     }
-
     public void StartFadeOut() // start fade out coroutine
     {
         StartCoroutine(FadeOut());
@@ -519,7 +504,6 @@ public class UIManager : MonoBehaviour
         // Stroy(); //스토리 진행
         // Object_Interaction(); //오브젝트 상호작용 대화
         Camera_effect_manager(); //카메라 UI 효과
-        CameraUI_SetActive();
 
         //if (dialogueManager.count == 3)
         //{

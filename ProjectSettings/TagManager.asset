@@ -39,7 +39,8 @@ TagManager:
   - RoomD Exit
   - RoomE Exit
   - RoomF Exit
-  - Tutorial Go
+  - pinkDollEnemy
+  - rabbitDollEnemy
   layers:
   - Default
   - TransparentFX
