@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
-using Unity.VisualScripting; // 데이터 쿼리 언어
+using Unity.VisualScripting;
+using JetBrains.Annotations; // 데이터 쿼리 언어
 
 public class Player : MonoBehaviour
 {
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
     public Dialogue d_photo;
 
     public GameObject CameraUI;
+
+    public Stamina stamina;
 
     // 아이템  두기 / 올려두기
     public void Slot1()
@@ -509,12 +512,13 @@ public class Player : MonoBehaviour
             }
 
             //달리기
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (stamina.playerStaminaBar.value > 0.01f && Input.GetKey(KeyCode.LeftShift))
             {
                 Player_control.speed = 2;
                 moveSpeed = 5;
                 Stamina.isPlayerRunning = true;
             }
+
             else
             {
                 Player_control.speed = 1;
