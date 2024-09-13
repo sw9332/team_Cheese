@@ -253,6 +253,33 @@ public class Player : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
                 ObjectName = "나가는 문";
         }
+
+        //오브젝트 밀기
+        if(other.gameObject.tag == "Push_Object")
+        {
+            is_Push = true;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (is_Push && Input.GetKey(KeyCode.LeftArrow))
+                    Player_control.Play("LeftPush");
+                else if (is_Push && Input.GetKey(KeyCode.RightArrow))
+                    Player_control.Play("RightPush");
+                else if (is_Push && Input.GetKey(KeyCode.UpArrow))
+                    Player_control.Play("UpPush");
+                else if (is_Push && Input.GetKey(KeyCode.DownArrow))
+                    Player_control.Play("DownPush");
+            }
+
+            else
+                is_Push = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Push_Object")
+            is_Push = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -351,7 +378,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator Player_control; // player 이동 및 공격 애니메이션
     public static float Velocity;
-    public float moveSpeed = 2.5f;
+    public static float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
     public bool is_move = true; // is_move가 false 일때는 움직일 수 없음.
@@ -376,8 +403,10 @@ public class Player : MonoBehaviour
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
+    public static bool is_Push = false;
+
     void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
-        {
+    {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
         Velocity = 0;
@@ -393,49 +422,41 @@ public class Player : MonoBehaviour
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerRight");
+                    else
+                        Player_control.Play("PlayerUp");
 
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
-                else
-                    Player_control.Play("PlayerUp");
-
-                if (Input.GetKey(KeyCode.DownArrow))
-                    Player_control.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.DownArrow))
+                        Player_control.Play("PlayerUp");
+                }
 
                 MoveX = true;
                 MoveY = false;
 
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                playerDirection =1;
+                playerDirection = 1;
             }
 
             //아래로 이동
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerRight");
+                    else
+                        Player_control.Play("PlayerBack");
 
-                //키가 켭쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
-                else
-                    Player_control.Play("PlayerBack");
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                    Player_control.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.UpArrow))
+                        Player_control.Play("PlayerUp");
+                }
 
                 MoveX = true;
                 MoveY = false;
@@ -447,18 +468,14 @@ public class Player : MonoBehaviour
             //왼쪽으로 이동
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerLeft");
-                else
-                    Player_control.Play("PlayerLeft");
-
+                if(!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerLeft");
+                    else
+                        Player_control.Play("PlayerLeft");
+                }
+                
                 MoveX = false;
                 MoveY = true;
 
@@ -470,17 +487,13 @@ public class Player : MonoBehaviour
             //오른쪽으로 이동
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else
-                    Player_control.Play("PlayerRight");
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else
+                        Player_control.Play("PlayerRight");
+                }
 
                 MoveX = false;
                 MoveY = true;

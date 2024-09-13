@@ -42,6 +42,7 @@ TagManager:
   - pinkDollEnemy
   - rabbitDollEnemy
   - Tutorial Go
+  - Push_Object
   layers:
   - Default
   - TransparentFX
