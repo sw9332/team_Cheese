@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
-                    CameraUI.SetActive(true); // -> conflicts
+                    CameraUI.SetActive(true);
 
                     Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
                     break;
@@ -414,7 +414,6 @@ public class Player : MonoBehaviour
         if(is_move == false)
         {
             Player_control.Play("PlayerBack_Stop");
-            //이 부분에 player animator에서 idle 모션(player_stop으로 되어있는 애니메이션)을 출력하도록 부탁드립니다.
         }
 
         if(is_move == true)
@@ -498,8 +497,7 @@ public class Player : MonoBehaviour
                 MoveX = false;
                 MoveY = true;
 
-                // player가 오른쪽으로 이동할 경우 중심이 변경됨
-                // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
+                // player가 오른쪽으로 이동할 경우 중심이 변경, offset값으로 중심점을 항상 일치하도록 
                 playerCenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 playerDirection = 4;
@@ -570,7 +568,6 @@ public class Player : MonoBehaviour
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                Debug.Log("괄호 안" + enemyCollider.tag);
                 meleeAttack();
                 enemyManager.takeDamage(enemyCollider.tag);
             }
