@@ -10,7 +10,7 @@ public class Stamina : MonoBehaviour
 
     void staminaChage()
     {
-            if (isPlayerRunning== true)
+            if (isPlayerRunning == true)
             {
                 staminaDown();
             }

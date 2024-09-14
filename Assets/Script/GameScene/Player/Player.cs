@@ -527,7 +527,11 @@ public class Player : MonoBehaviour
             {
                 Player_control.speed = 2;
                 moveSpeed = 5;
-                Stamina.isPlayerRunning = true;
+
+                if(!is_Push)
+                    Stamina.isPlayerRunning = true;
+                else
+                    Stamina.isPlayerRunning = false;
             }
             else
             {
