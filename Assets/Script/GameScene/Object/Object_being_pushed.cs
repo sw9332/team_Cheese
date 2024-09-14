@@ -7,7 +7,7 @@ public class Object_being_pushed : MonoBehaviour
     public Rigidbody2D rb;
     void Update()
     {
-        if (Player.Velocity == 5)
+        if (Player.moveSpeed == 5)
         {
             if(Player.MoveX == true && Player.MoveY == false) //가로로 밀었을때
             {
