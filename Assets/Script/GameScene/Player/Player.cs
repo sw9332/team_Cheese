@@ -525,10 +525,14 @@ public class Player : MonoBehaviour
             //달리기
             if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.01f)
             {
-                Player_control.speed = 2;
                 moveSpeed = 5;
 
-                if(!is_Push)
+                if (!is_Push)
+                    Player_control.speed = 2;
+                else
+                    Player_control.speed = 1;
+
+                if (!is_Push)
                     Stamina.isPlayerRunning = true;
                 else
                     Stamina.isPlayerRunning = false;
