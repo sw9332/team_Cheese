@@ -113,10 +113,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 144
-        width: 21
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 144
-        width: 23
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 144
-        width: 23
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_3
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 144
-        width: 25
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_4
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 144
-        width: 25
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_5
       rect:
         serializedVersion: 2
-        x: 256
+        x: 240
         y: 144
-        width: 24
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +239,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_6
       rect:
         serializedVersion: 2
-        x: 304
+        x: 288
         y: 144
-        width: 24
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_7
       rect:
         serializedVersion: 2
-        x: 352
+        x: 336
         y: 144
-        width: 23
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_8
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 96
-        width: 22
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,10 +302,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_9
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 96
-        width: 22
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,10 +323,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_10
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 96
-        width: 24
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,10 +344,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_11
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 96
-        width: 26
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +365,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_12
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 96
-        width: 26
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,10 +386,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_13
       rect:
         serializedVersion: 2
-        x: 256
+        x: 240
         y: 96
-        width: 26
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,10 +407,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_14
       rect:
         serializedVersion: 2
-        x: 304
+        x: 288
         y: 96
-        width: 25
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,10 +428,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_15
       rect:
         serializedVersion: 2
-        x: 352
+        x: 336
         y: 96
-        width: 24
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,10 +449,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_16
       rect:
         serializedVersion: 2
-        x: 12
+        x: 0
         y: 48
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,10 +470,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_17
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 48
-        width: 24
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,10 +491,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_18
       rect:
         serializedVersion: 2
-        x: 108
+        x: 96
         y: 48
-        width: 26
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,10 +512,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_19
       rect:
         serializedVersion: 2
-        x: 156
+        x: 144
         y: 48
-        width: 28
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -533,10 +533,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_20
       rect:
         serializedVersion: 2
-        x: 204
+        x: 192
         y: 48
-        width: 26
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,10 +554,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_21
       rect:
         serializedVersion: 2
-        x: 252
+        x: 240
         y: 48
-        width: 24
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,10 +575,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_22
       rect:
         serializedVersion: 2
-        x: 300
+        x: 288
         y: 48
-        width: 23
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,10 +596,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_23
       rect:
         serializedVersion: 2
-        x: 348
+        x: 336
         y: 48
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,10 +617,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_24
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 0
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,10 +638,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_25
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 0
-        width: 24
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -659,10 +659,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_26
       rect:
         serializedVersion: 2
-        x: 106
+        x: 96
         y: 0
-        width: 26
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -680,10 +680,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_27
       rect:
         serializedVersion: 2
-        x: 152
+        x: 144
         y: 0
-        width: 28
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -701,10 +701,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_28
       rect:
         serializedVersion: 2
-        x: 202
+        x: 192
         y: 0
-        width: 26
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -722,10 +722,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_29
       rect:
         serializedVersion: 2
-        x: 252
+        x: 240
         y: 0
-        width: 24
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -743,10 +743,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_30
       rect:
         serializedVersion: 2
-        x: 301
+        x: 288
         y: 0
-        width: 23
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -764,10 +764,10 @@ TextureImporter:
       name: KakaoTalk_20240913_211043670_31
       rect:
         serializedVersion: 2
-        x: 350
+        x: 336
         y: 0
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

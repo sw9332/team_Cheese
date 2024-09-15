@@ -113,10 +113,10 @@ TextureImporter:
       name: forward4_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 38
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
