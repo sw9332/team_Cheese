@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
-                    CameraUI.SetActive(true); // -> conflicts
+                    CameraUI.SetActive(true);
 
                     Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
                     break;
@@ -253,6 +253,33 @@ public class Player : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
                 ObjectName = "나가는 문";
         }
+
+        //오브젝트 밀기
+        if(other.gameObject.tag == "Push_Object")
+        {
+            is_Push = true;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (is_Push && Input.GetKey(KeyCode.LeftArrow))
+                    Player_control.Play("LeftPush");
+                else if (is_Push && Input.GetKey(KeyCode.RightArrow))
+                    Player_control.Play("RightPush");
+                else if (is_Push && Input.GetKey(KeyCode.UpArrow))
+                    Player_control.Play("UpPush");
+                else if (is_Push && Input.GetKey(KeyCode.DownArrow))
+                    Player_control.Play("DownPush");
+            }
+
+            else
+                is_Push = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Push_Object")
+            is_Push = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -271,12 +298,15 @@ public class Player : MonoBehaviour
             MiniGame.is_take_photo = true;
             MiniGame.is_minigame = true;
         }
-        
-      
 
-        if(other.gameObject.tag == "Tutorial Exit")
+        if (other.gameObject.tag == "Tutorial Go")
         {
-            transform.position = new Vector3(57.52f, -11f, 0);
+            transform.position = new Vector3(57.52f, -1.8f, 0);
+        }
+
+        if (other.gameObject.tag == "Tutorial Exit")
+        {
+            transform.position = new Vector3(57.52f, -11.3f, 0);
         }
 
         if(other.gameObject.tag == "RoomA Go")
@@ -348,7 +378,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator Player_control; // player 이동 및 공격 애니메이션
     public static float Velocity;
-    public float moveSpeed = 2.5f;
+    public static float moveSpeed = 2.5f;
     public static bool MoveX = false;
     public static bool MoveY = false;
     public bool is_move = true; // is_move가 false 일때는 움직일 수 없음.
@@ -373,8 +403,10 @@ public class Player : MonoBehaviour
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
+    public static bool is_Push = false;
+
     void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
-        {
+    {
         Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
         Velocity = 0;
@@ -382,7 +414,6 @@ public class Player : MonoBehaviour
         if(is_move == false)
         {
             Player_control.Play("PlayerBack_Stop");
-            //이 부분에 player animator에서 idle 모션(player_stop으로 되어있는 애니메이션)을 출력하도록 부탁드립니다.
         }
 
         if(is_move == true)
@@ -390,49 +421,41 @@ public class Player : MonoBehaviour
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerRight");
+                    else
+                        Player_control.Play("PlayerUp");
 
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
-                else
-                    Player_control.Play("PlayerUp");
-
-                if (Input.GetKey(KeyCode.DownArrow))
-                    Player_control.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.DownArrow))
+                        Player_control.Play("PlayerUp");
+                }
 
                 MoveX = true;
                 MoveY = false;
 
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                playerDirection =1;
+                playerDirection = 1;
             }
 
             //아래로 이동
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerRight");
+                    else
+                        Player_control.Play("PlayerBack");
 
-                //키가 켭쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerRight");
-                else
-                    Player_control.Play("PlayerBack");
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                    Player_control.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.UpArrow))
+                        Player_control.Play("PlayerUp");
+                }
 
                 MoveX = true;
                 MoveY = false;
@@ -444,18 +467,14 @@ public class Player : MonoBehaviour
             //왼쪽으로 이동
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.RightArrow))
-                    Player_control.Play("PlayerLeft");
-                else
-                    Player_control.Play("PlayerLeft");
-
+                if(!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                        Player_control.Play("PlayerLeft");
+                    else
+                        Player_control.Play("PlayerLeft");
+                }
+                
                 MoveX = false;
                 MoveY = true;
 
@@ -467,23 +486,18 @@ public class Player : MonoBehaviour
             //오른쪽으로 이동
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                //대화창이 켜져있을땐 움직이지 않게
-                //if (UIManager.StoryUI == true)
-                //    Velocity = 0;
-                //else
-                //    Velocity = moveSpeed;
-
-                //키가 겹쳤을때
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    Player_control.Play("PlayerLeft");
-                else
-                    Player_control.Play("PlayerRight");
+                if (!is_Push)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        Player_control.Play("PlayerLeft");
+                    else
+                        Player_control.Play("PlayerRight");
+                }
 
                 MoveX = false;
                 MoveY = true;
 
-                // player가 오른쪽으로 이동할 경우 중심이 변경됨
-                // 그래서 player 애니메이션과 Gizmo(판정범위)를 맞추기 위해 offset값 변경 
+                // player가 오른쪽으로 이동할 경우 중심이 변경, offset값으로 중심점을 항상 일치하도록 
                 playerCenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 playerDirection = 4;
@@ -507,11 +521,19 @@ public class Player : MonoBehaviour
             }
 
             //달리기
-            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.1f)
+            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.01f)
             {
-                Player_control.speed = 2;
                 moveSpeed = 5;
-                Stamina.isPlayerRunning = true;
+
+                if (!is_Push)
+                    Player_control.speed = 2;
+                else
+                    Player_control.speed = 1;
+
+                if (!is_Push)
+                    Stamina.isPlayerRunning = true;
+                else
+                    Stamina.isPlayerRunning = false;
             }
             else
             {
@@ -554,7 +576,6 @@ public class Player : MonoBehaviour
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                Debug.Log("괄호 안" + enemyCollider.tag);
                 meleeAttack();
                 enemyManager.takeDamage(enemyCollider.tag);
             }

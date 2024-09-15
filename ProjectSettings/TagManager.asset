@@ -41,6 +41,9 @@ TagManager:
   - RoomF Exit
   - pinkDollEnemy
   - rabbitDollEnemy
+  - Tutorial Go
+  - Push_Object
+  - back
   layers:
   - Default
   - TransparentFX
@@ -49,7 +52,7 @@ TagManager:
   - Water
   - UI
   - enemy
-  - 
+  - wall
   - 
   - 
   - 

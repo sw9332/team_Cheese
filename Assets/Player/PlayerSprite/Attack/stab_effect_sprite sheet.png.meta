@@ -152,10 +152,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 0
         y: 144
-        width: 25
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_1
       rect:
         serializedVersion: 2
-        x: 54
+        x: 48
         y: 144
-        width: 27
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_2
       rect:
         serializedVersion: 2
-        x: 108
+        x: 96
         y: 144
-        width: 26
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_3
       rect:
         serializedVersion: 2
-        x: 155
+        x: 144
         y: 144
-        width: 27
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_4
       rect:
         serializedVersion: 2
-        x: 198
+        x: 192
         y: 144
-        width: 27
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,10 +257,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_5
       rect:
         serializedVersion: 2
-        x: 247
+        x: 240
         y: 144
-        width: 25
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_6
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 96
-        width: 22
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_7
       rect:
         serializedVersion: 2
-        x: 63
+        x: 48
         y: 96
-        width: 22
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_8
       rect:
         serializedVersion: 2
-        x: 106
+        x: 96
         y: 96
-        width: 31
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_9
       rect:
         serializedVersion: 2
-        x: 155
+        x: 144
         y: 96
-        width: 31
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,10 +362,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_10
       rect:
         serializedVersion: 2
-        x: 207
+        x: 192
         y: 96
-        width: 22
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,10 +383,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_11
       rect:
         serializedVersion: 2
-        x: 254
+        x: 240
         y: 96
-        width: 22
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_12
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 48
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,10 +425,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_13
       rect:
         serializedVersion: 2
-        x: 56
+        x: 48
         y: 48
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,10 +446,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_14
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 48
-        width: 37
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -467,10 +467,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_15
       rect:
         serializedVersion: 2
-        x: 150
+        x: 144
         y: 48
-        width: 30
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -488,10 +488,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_16
       rect:
         serializedVersion: 2
-        x: 200
+        x: 192
         y: 48
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -509,10 +509,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_17
       rect:
         serializedVersion: 2
-        x: 248
+        x: 240
         y: 48
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -530,10 +530,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_18
       rect:
         serializedVersion: 2
-        x: 12
+        x: 0
         y: 0
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -551,10 +551,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_19
       rect:
         serializedVersion: 2
-        x: 61
+        x: 48
         y: 0
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,10 +572,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_20
       rect:
         serializedVersion: 2
-        x: 105
+        x: 96
         y: 0
-        width: 37
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -593,10 +593,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_21
       rect:
         serializedVersion: 2
-        x: 156
+        x: 144
         y: 0
-        width: 30
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -614,10 +614,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_22
       rect:
         serializedVersion: 2
-        x: 205
+        x: 192
         y: 0
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -635,10 +635,10 @@ TextureImporter:
       name: stab_effect_sprite sheet_23
       rect:
         serializedVersion: 2
-        x: 253
+        x: 240
         y: 0
-        width: 27
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

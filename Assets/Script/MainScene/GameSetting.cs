@@ -45,7 +45,11 @@ public class GameSetting : MonoBehaviour
     //해상도 리스트
     int[,] allowedResolutions = new int[,]
     { 
-        {1920, 1080}, {1600, 900}, {1280, 960}, {1280, 720}, {800, 600}
+        {1920, 1080},
+        {1600, 900},
+        {1280, 960},
+        {1280, 720},
+        {800, 600}
     };
 
     void InitUI()
