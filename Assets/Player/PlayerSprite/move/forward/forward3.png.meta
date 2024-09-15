@@ -113,19 +113,19 @@ TextureImporter:
       name: forward3_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 38
-        height: 37
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa1b057d4ef5994b9399181df2ce076
-      internalID: -719004990
+      spriteID: cdac7722a4c0c1d47825a657d890bd6a
+      internalID: -789794079
       vertices: []
       indices: 
       edges: []
