@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Bullet : MonoBehaviour
     public float distance;
     public LayerMask isLayer;
     private Vector2 direction;
-
+    private TilemapCollider2D wall;
     private EnemyManager enemyList;
 
 
@@ -31,9 +32,13 @@ public class Bullet : MonoBehaviour
             direction = Vector2.right;
         }
 
-        Invoke("DestroyBullet", 2);
+        Invoke("DestroyBullet", 1);
     }
+    void bulletMove()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
 
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("enemy"))  // 적 레이어와 충돌했을 때
@@ -46,21 +51,22 @@ public class Bullet : MonoBehaviour
             }
             DestroyBullet(); // 충돌 후 총알 파괴
         }
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("wall"))
+        {
+            DestroyBullet(); // 충돌 후 총알 파괴
+        }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         enemyList = FindObjectOfType<EnemyManager> ();
         bulletDirectionSettings();
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
-        // 총알을 설정된 방향으로 이동
-        transform.Translate(direction * speed * Time.deltaTime);
+        bulletMove();
     }
 
     void DestroyBullet()
