@@ -10,7 +10,7 @@ public class Stamina : MonoBehaviour
 
     void staminaChage()
     {
-            if (isPlayerRunning == true)
+            if (isPlayerRunning== true && Player.is_Push != true)
             {
                 staminaDown();
             }
@@ -33,7 +33,7 @@ public class Stamina : MonoBehaviour
     {
         playerStaminaBar.value = 1f;
     }
-    // Update is called once per frame
+
     void Update()
     {
         staminaChage(); 
