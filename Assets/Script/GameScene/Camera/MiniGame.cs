@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MiniGame : MonoBehaviour
 {
     public static bool is_take_photo;
-    public static bool is_minigame;
+    public bool is_minigame = false;
     public GameObject mainCamera;
     public GameObject photoCamera;
     public Slider x_Axis;
@@ -16,13 +16,9 @@ public class MiniGame : MonoBehaviour
     public Image fadeImage;
     public float fadeDuration = 1f;
   
-    private static bool is_next_stage;
-    private bool is_transitioning = false;
+    //private bool is_next_stage = false;
+    //private bool is_transition = false;
 
-    void Start()
-    {
-       is_take_photo = false;
-    }
 
     void Update()
     {
@@ -76,26 +72,27 @@ public class MiniGame : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.F)
                     && x_Axis.GetComponent<Slider>().value <= -77f && x_Axis.GetComponent<Slider>().value >= -77.4f
-                    && y_Axis.GetComponent<Slider>().value <= 49.2f && y_Axis.GetComponent<Slider>().value >= -48.8f)
+                    && y_Axis.GetComponent<Slider>().value <= 49.2f && y_Axis.GetComponent<Slider>().value >= 48.8f)
                 {
-                    is_next_stage = true;
+                    //is_next_stage = true;
                     UIManager.Camera_setactive = false;
                     is_take_photo = false;
                     is_minigame = false;
                     GameManager.GameState = "InGame";
+                    StartCoroutine(TransitionToNextStage());
                 }
             }
 
-            if (is_next_stage && !is_transitioning)
-            {
-                StartCoroutine(TransitionToNextStage());
-            }
+            //if (is_next_stage && !is_transition)
+            //{
+                
+            //}
         }
     }
 
     IEnumerator TransitionToNextStage()
     {
-        is_transitioning = true;
+        //is_transition = true;
         yield return StartCoroutine(FadeOut());
 
         player.transform.position = new Vector3(60, 0, 0);
@@ -106,10 +103,10 @@ public class MiniGame : MonoBehaviour
         ingameUIPanel.SetActive(true);
         minigamePanel.SetActive(false);
         is_minigame = false;
-        is_next_stage = false;
+        ///is_next_stage = false;
 
         yield return StartCoroutine(FadeIn());
-        is_transitioning = false;
+        //is_transition = false;
     }
 
     IEnumerator FadeIn()

@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
             UIManager.Camera_setactive = true;
             Destroy(other.gameObject);
             MiniGame.is_take_photo = true;
-            MiniGame.is_minigame = true;
+            //MiniGame.is_minigame = true;
         }
 
         if (other.gameObject.tag == "Tutorial Go")
