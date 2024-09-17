@@ -583,7 +583,7 @@ public class Player : MonoBehaviour
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0) // 쿨타임 확인
         {
-            rangedAttack(); 
+            rangedAttack();
         }
 
         attackStop();
@@ -634,6 +634,7 @@ public class Player : MonoBehaviour
         {
             Player_control.Play("PlayerLongAttackRight");
         }
+
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
