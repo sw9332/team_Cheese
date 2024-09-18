@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6041845853303537885}
   m_Layer: 0
   m_Name: cart
-  m_TagString: Untagged
+  m_TagString: Push_Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe965a300897c9e45bcc735953336ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 5374853006168662092}
 --- !u!50 &5374853006168662092
 Rigidbody2D:
   serializedVersion: 4
