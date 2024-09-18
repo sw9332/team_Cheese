@@ -139,7 +139,7 @@ public class CameraAlbumUI : MonoBehaviour
         }
     }
 
-    // 현재 활성화된 이미지 설정 (예: 앨범 UI에서 이미지 전환)
+    // 현재 활성화된 이미지 설정
     public void switchImage(string imageName)
     {
         (GameObject objImage, Image img) = getImageInformation(imageName);
