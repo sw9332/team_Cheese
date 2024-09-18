@@ -449,20 +449,20 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
-    //public GameObject ExitUI;
+    public GameObject ExitUI;
 
-    //public void tutorial_Exit_OK()
-    //{
-    //    StartCoroutine(FadeOut());
-    //    Invoke("MainScene", 1f);
-    //    Time.timeScale = 1;
-    //}
+    public void tutorial_Exit_OK()
+    {
+        StartCoroutine(FadeOut());
+        Invoke("MainScene", 1f);
+        Time.timeScale = 1;
+    }
 
-    //public void tutorial_Exit_NO()
-    //{
-    //    ExitUI.SetActive(false);
-    //    Time.timeScale = 1;
-    //}
+    public void tutorial_Exit_NO()
+    {
+        ExitUI.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void MainScene()
     {
@@ -515,19 +515,19 @@ public class UIManager : MonoBehaviour
         //    StopCoroutine(FadeIn());
         //}
 
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (ExitUI.activeSelf == false)
-        //    {
-        //        ExitUI.SetActive(true);
-        //        Time.timeScale = 0;
-        //    }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ExitUI.activeSelf == false)
+            {
+                ExitUI.SetActive(true);
+                Time.timeScale = 0;
+            }
 
-        //    else if (ExitUI.activeSelf == true)
-        //    {
-        //        ExitUI.SetActive(false);
-        //        Time.timeScale = 1;
-        //    }
-        //}
+            else if (ExitUI.activeSelf == true)
+            {
+                ExitUI.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
     }
 }

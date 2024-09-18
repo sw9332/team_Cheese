@@ -311,7 +311,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.tag == "RoomA Go")
         {
-            transform.position = new Vector3(43.88f, 7.15f, 0f);
+            transform.position = new Vector3(43.88f, 7.5f, 0f);
         }
 
         if (other.gameObject.tag == "RoomA Exit")
