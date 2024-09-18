@@ -3548,12 +3548,12 @@ RectTransform:
   m_Children:
   - {fileID: 1790190306}
   - {fileID: 1233675656}
-  - {fileID: 1080693241}
   - {fileID: 1201729922}
   - {fileID: 1283266827}
   - {fileID: 1152546718}
   - {fileID: 1638264465}
   - {fileID: 787517285}
+  - {fileID: 1080693241}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3594,6 +3594,7 @@ MonoBehaviour:
   Camera_Effect_Animation: {fileID: 527049656}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
+  ExitUI: {fileID: 1080693240}
 --- !u!1 &123138765
 GameObject:
   m_ObjectHideFlags: 0
@@ -13410,7 +13411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 113407669}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: tutorial_Exit_NO
         m_Mode: 1
@@ -16297,7 +16298,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 113407669}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: tutorial_Exit_OK
         m_Mode: 1
