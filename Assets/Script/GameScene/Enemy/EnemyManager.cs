@@ -12,16 +12,16 @@ public class EnemyManager : MonoBehaviour
     private Bullet bullet;
     private bool isCoroutining = false; // 중첩되서 실행되는 것을 방지
 
-    public void takeDamage(string enemyTag) // name : bullet에서 가져온 enemy의 tag
+    public void takeDamage(string enemyName) // name : bullet에서 가져온 enemy의 tag
     {
         (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni) 
-            = getEnemyInformation(enemyTag);
+            = getEnemyInformation(enemyName);
 
         enemy.hp -= 1;
         if (!isCoroutining && enemy.hp > 0)
         {
             Debug.Log("hp 까임");
-            enemyAni.Play(enemy.tag + "Hit");
+            enemyAni.Play(enemy.name + "Hit");
             StartCoroutine(changeColor(enemySprite));
             StartCoroutine(ResetToDefaultState(enemyAni));
         }
@@ -42,18 +42,18 @@ public class EnemyManager : MonoBehaviour
 
     // 튜플로 여러 형식을 반환하게 함
     // Damage를 받는 해당 오브젝트의 Components들을 list들에서 반환
-    (GameObject , Enemy, SpriteRenderer , Animator) getEnemyInformation(string enemyTag)
+    (GameObject , Enemy, SpriteRenderer , Animator) getEnemyInformation(string enemyName)
     {
-        int objIndex = enemies.FindIndex(x => x.tag.Equals(enemyTag));
+        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
         GameObject obj = enemies[objIndex];
 
-        int enemyIndex = enemyList.FindIndex(x => x.tag.Equals(enemyTag));
+        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyName));
         Enemy enemy = enemyList[enemyIndex];
 
-        int spriteIndex = enemySprites.FindIndex(x => x.tag.Equals(enemyTag));
+        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         SpriteRenderer enemySprite = enemySprites[spriteIndex];
 
-        int aniIndex = enemySprites.FindIndex(x => x.tag.Equals(enemyTag));
+        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         Animator enemyAni = enemyEffects[aniIndex];
 
         return (obj, enemy, enemySprite, enemyAni);
@@ -61,7 +61,7 @@ public class EnemyManager : MonoBehaviour
 
     void destroyEnemy(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
-        string enemyTag = enemy.tag;
+        string enemyTag = enemy.name;
         switch (enemyTag)
         {
             case "pinkDollEnemy":
