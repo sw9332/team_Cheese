@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3226729608844403088}
   - component: {fileID: 2268822773679692113}
   - component: {fileID: 6453683056740397472}
-  - component: {fileID: 2961504757905895609}
+  - component: {fileID: 2458221913303072548}
   m_Layer: 0
   m_Name: Pink Box
   m_TagString: Push_Object
@@ -193,7 +193,7 @@ PolygonCollider2D:
       - {x: 0.5014801, y: 0.34721088}
       - {x: 0.43838692, y: 0.3479452}
   m_UseDelaunayMesh: 0
---- !u!61 &2961504757905895609
+--- !u!61 &2458221913303072548
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,7 +225,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08}
+  m_Offset: {x: -0.00029468536, y: 0.03623104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -236,5 +236,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.08, y: 1}
+  m_Size: {x: 1.0430355, y: 0.91698074}
   m_EdgeRadius: 0
