@@ -15,11 +15,13 @@ public class MiniGame : MonoBehaviour
     public GameObject player;
     public Image fadeImage;
     public float fadeDuration = 1f;
-  
+    // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
+    public static bool isImageChange = false;
+
     //private bool is_next_stage = false;
     //private bool is_transition = false;
 
-
+   
     void Update()
     {
         PhotoMode();
@@ -79,6 +81,7 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     GameManager.GameState = "InGame";
+                    isImageChange = true;
                     StartCoroutine(TransitionToNextStage());
                 }
             }

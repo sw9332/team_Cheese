@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator PlayDeathAnimationAndDestroy()
     {
-        enemyEffects.Play(enemy.tag + "Die");
+        enemyEffects.Play(enemy.name + "Die");
         yield return new WaitForSeconds(enemyEffects.GetCurrentAnimatorStateInfo(0).length);
         // 애니메이션 재생 후 오브젝트 삭제
         destroyEnemy();
