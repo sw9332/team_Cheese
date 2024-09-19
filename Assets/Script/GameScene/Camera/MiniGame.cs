@@ -21,13 +21,11 @@ public class MiniGame : MonoBehaviour
     //private bool is_next_stage = false;
     //private bool is_transition = false;
 
-   
-    void Update()
+    private void Update()
     {
         PhotoMode();
         TakePhoto();
     }
-
     private void PhotoMode()
     {
         if (is_take_photo == true && Input.GetKeyDown(KeyCode.P))
@@ -73,11 +71,13 @@ public class MiniGame : MonoBehaviour
                 y_Axis.GetComponent<Slider>().value = photoCamera.transform.position.y;
 
                 if (Input.GetKey(KeyCode.F)
-                    && x_Axis.GetComponent<Slider>().value <= -77f && x_Axis.GetComponent<Slider>().value >= -77.4f
-                    && y_Axis.GetComponent<Slider>().value <= 49.2f && y_Axis.GetComponent<Slider>().value >= 48.8f)
+                    && x_Axis.GetComponent<Slider>().value <= -76.9f && x_Axis.GetComponent<Slider>().value >= -77.1f
+                    && y_Axis.GetComponent<Slider>().value <= 48.7f && y_Axis.GetComponent<Slider>().value >= 48.35f)
                 {
                     //is_next_stage = true;
-                    UIManager.Camera_setactive = false;
+                    UIManager.is_cake = false;
+                    UIManager.is_bear = false;
+                    UIManager.tutorialTrigger = false;
                     is_take_photo = false;
                     is_minigame = false;
                     GameManager.GameState = "InGame";

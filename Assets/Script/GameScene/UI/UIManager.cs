@@ -379,7 +379,14 @@ public class UIManager : MonoBehaviour
 
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
-    public static bool Camera_setactive = false;
+    public bool Camera_setactive = false;
+    //튜토리얼 맵 변수
+    public static bool tutorialTrigger = false;
+    public static bool is_bear = false;
+    public static bool is_cake = false;
+    public static bool is_playerPos = false;
+
+
     bool isMessageLogged = false;
 
     void Camera_effect_manager()
@@ -528,6 +535,26 @@ public class UIManager : MonoBehaviour
                 ExitUI.SetActive(false);
                 Time.timeScale = 1;
             }
+        }
+
+        if(is_bear == true &&is_cake == true &&is_playerPos == true)
+        {
+            tutorialTrigger = true;
+        }
+        else
+        {
+            tutorialTrigger = false;
+        }
+
+        if(tutorialTrigger == true) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
+        {
+            Camera_setactive = true;
+            MiniGame.is_take_photo = true;
+        }
+        else
+        {
+            Camera_setactive = false;
+            MiniGame.is_take_photo = false;
         }
     }
 }
