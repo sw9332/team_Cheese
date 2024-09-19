@@ -434,8 +434,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerUp");
                 }
 
-                MoveX = true;
-                MoveY = false;
+                MoveX = false;
+                MoveY = true;
 
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
                 playerDirection = 1;
@@ -457,8 +457,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerUp");
                 }
 
-                MoveX = true;
-                MoveY = false;
+                MoveX = false;
+                MoveY = true;
 
                 transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
                 playerDirection = 2 ;
@@ -475,8 +475,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerLeft");
                 }
                 
-                MoveX = false;
-                MoveY = true;
+                MoveX = true;
+                MoveY = false;
 
                 playerCenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
@@ -494,8 +494,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerRight");
                 }
 
-                MoveX = false;
-                MoveY = true;
+                MoveX = true;
+                MoveY = false;
 
                 // player가 오른쪽으로 이동할 경우 중심이 변경, offset값으로 중심점을 항상 일치하도록 
                 playerCenterOffset.x = 0.05f;

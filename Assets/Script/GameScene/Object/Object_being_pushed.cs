@@ -2,68 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectBeingPushed : MonoBehaviour
+public class Object_Being_Pushed : MonoBehaviour
 {
     public Rigidbody2D rb;
+
+    private bool FreezeX = false;
+    private bool FreezeY = false;
 
     void Update()
     {
         if (Player.moveSpeed == 5)
         {
-            if (Player.MoveX == true && Player.MoveY == false) //가로로 밀었을 때
+            if (Player.MoveX && !Player.MoveY && !FreezeX) // 가로로 밀었을 때
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY; // Y축 고정
                 rb.freezeRotation = true;
             }
 
-            else if (Player.MoveY == true && Player.MoveX == false) //세로로 밀었을 때
+            else if (Player.MoveY && !Player.MoveX && !FreezeY) // 세로로 밀었을 때
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX; // X축 고정
                 rb.freezeRotation = true;
             }
+
+            else if (!FreezeX && !FreezeY)
+            {
+                rb.constraints = RigidbodyConstraints2D.None;
+            }
+
+            else
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
+
         else
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Player")
-            return;
+        if (collider.gameObject.CompareTag("Player")) return;
 
-        Vector2 collisionPoint = collision.contacts[0].point;
-        Vector2 objectPosition = transform.position;
-        Vector2 direction = collisionPoint - objectPosition;
-        direction.Normalize();
+        FreezeX = Mathf.Abs(collider.transform.position.x - transform.position.x) > Mathf.Abs(collider.transform.position.y - transform.position.y);
+        FreezeY = !FreezeX;
+    }
 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) //X축 충돌
-        {
-            if (direction.x > 0)
-            {
-                Debug.Log("오른쪽에서 충돌");
-            }
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player")) return;
 
-            else
-            {
-                Debug.Log("왼쪽에서 충돌");
-            }
-        }
-
-        else
-        {
-            if (direction.y > 0) //Y축 충돌
-            {
-                Debug.Log("위쪽에서 충돌");
-            }
-
-            else
-            {
-                Debug.Log("아래쪽에서 충돌");
-            }
-        }
+        FreezeX = false;
+        FreezeY = false;
     }
 }
