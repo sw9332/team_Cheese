@@ -293,9 +293,9 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Camera Event") // 케이크를 테이블에 놓았을 때 생기는 이벤트에 닿았을 때
         {
             dialogueManager.ShowDialogue(d_photo);
-            UIManager.Camera_setactive = true;
+            //UIManager.is_cake = true;
             Destroy(other.gameObject);
-            MiniGame.is_take_photo = true;
+            //MiniGame.is_take_photo = true;
             //MiniGame.is_minigame = true;
         }
 
@@ -784,6 +784,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool Minigame_PlayerPos()
+    {
+        //아래 조건문에도 스테이지 별로 || 연산자를 이용하여 조건식을 추가해줄 것.
+        if(transform.position.y <= 48.5 && transform.position.y >= 47.5 && transform.position.x <= -76 && transform.position.x >= -78 //튜토리얼 Pos값.
+            )
+        {
+            return true;
+        }
+        return false;
+    }
+
     // -----------------------------------------------------------------------------------------
 
     void Start()
@@ -804,5 +815,6 @@ public class Player : MonoBehaviour
         PlayerAttack();
         PlayerControl();
         Player_Collision();
+        UIManager.is_playerPos = Minigame_PlayerPos();
     }
 }
