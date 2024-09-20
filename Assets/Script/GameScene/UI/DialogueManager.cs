@@ -42,6 +42,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool is_talking = false;
 
+    public MiniGame minigame;
+
     private void Start()
     {
         text.text = "";
@@ -147,6 +149,10 @@ public class DialogueManager : MonoBehaviour
                     StopCoroutine(startDialogueCoroutine());
                     ExitDialogue();
 
+                    if (GameManager.GameState == "Tutorial Cut Scene")
+                    {
+                        StartCoroutine(minigame.FadeOut_FadeIn());
+                    }
                 }
                 else
                 {
@@ -154,10 +160,10 @@ public class DialogueManager : MonoBehaviour
                     StartCoroutine(startDialogueCoroutine());
                 }
             }
+
+           
         }
     }
-
-
 
 
     //혹시나 버그날 때 복구해서 사용할 코드...

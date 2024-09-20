@@ -18,6 +18,10 @@ public class MiniGame : MonoBehaviour
     // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
     public static bool isImageChange = false;
 
+    public Player player1;
+    public DialogueManager dialogueManager;
+
+
     //private bool is_next_stage = false;
     //private bool is_transition = false;
 
@@ -41,6 +45,7 @@ public class MiniGame : MonoBehaviour
 
     private void TakePhoto()
     {
+        //GameState가 Tutorial일 때.
         if(GameManager.GameState == "Tutorial")
         {
             if (is_minigame == true)
@@ -80,9 +85,10 @@ public class MiniGame : MonoBehaviour
                     UIManager.tutorialTrigger = false;
                     is_take_photo = false;
                     is_minigame = false;
-                    GameManager.GameState = "InGame";
+                    GameManager.GameState = "Tutorial Cut Scene";
                     isImageChange = true;
-                    StartCoroutine(TransitionToNextStage());
+                    StartCoroutine(NextStage());
+                    Invoke("CutSceneText", 1.5f);
                 }
             }
 
@@ -93,11 +99,15 @@ public class MiniGame : MonoBehaviour
         }
     }
 
-    IEnumerator TransitionToNextStage()
+    void CutSceneText()
     {
-        //is_transition = true;
-        yield return StartCoroutine(FadeOut());
+        dialogueManager.ShowDialogue(player1.d_cutScene);
+    }
 
+    IEnumerator NextStage()
+    {
+        yield return StartCoroutine(FadeOut());
+        //is_transition = true;
         player.transform.position = new Vector3(60, 0, 0);
         mainCamera.transform.position = new Vector3(60, 0, -10);
         player.SetActive(true);
@@ -106,17 +116,23 @@ public class MiniGame : MonoBehaviour
         ingameUIPanel.SetActive(true);
         minigamePanel.SetActive(false);
         is_minigame = false;
-        ///is_next_stage = false;
-
-        yield return StartCoroutine(FadeIn());
         //is_transition = false;
+        yield return StartCoroutine(FadeIn());
     }
 
-    IEnumerator FadeIn()
+    //페이드인 페이드아웃 관리
+    public IEnumerator FadeOut_FadeIn()
+    {
+        yield return StartCoroutine(FadeOut());
+        GameManager.GameState = "InGame";
+        yield return StartCoroutine(FadeIn());
+    }
+
+    public IEnumerator FadeIn()
     {
         fadeImage.gameObject.SetActive(true);
         fadeImage.color = Color.black;
-
+        
         float timer = 0f;
         while (timer < fadeDuration)
         {
@@ -128,7 +144,7 @@ public class MiniGame : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
     }
 
-    IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         fadeImage.gameObject.SetActive(true);
         fadeImage.color = Color.clear;

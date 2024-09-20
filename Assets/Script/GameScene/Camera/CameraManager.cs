@@ -6,7 +6,7 @@ public class cameraManager : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
-    Vector3 Camera_Pos;
+    public static Vector3 Camera_Pos;
 
     void Start()
     {
@@ -27,6 +27,13 @@ public class cameraManager : MonoBehaviour
             {
                 Camera_Pos.y = player.position.y + offset.y;
             }
+        }
+
+        else if (GameManager.GameState == "Tutorial Cut Scene")
+        {
+            //ÄÉÀÌÅ©¸¦ ÂïÀ» ½Ã ÄÆ¾À Ä«¸Ş¶ó
+            Camera_Pos.x = -51.8f;
+            Camera_Pos.y = 47f;
         }
 
         else if (GameManager.GameState == "InGame")
