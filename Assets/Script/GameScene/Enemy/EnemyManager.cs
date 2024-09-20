@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<GameObject> enemies = new();
-    [SerializeField] List<Enemy> enemyList = new();
-    [SerializeField] List<SpriteRenderer> enemySprites = new();
-    [SerializeField] List<Animator> enemyEffects = new();  // Animator override 해서 하고 싶지만 실패, 추후 수정 예정
+    [SerializeField] List<GameObject> enemies = new();
+    private List<Enemy> enemyList = new();
+    private List<SpriteRenderer> enemySprites = new();
+    private List<Animator> enemyEffects = new();  // Animator override 해서 하고 싶지만 실패, 추후 수정 예정
 
     private Bullet bullet;
     private bool isCoroutining = false; // 중첩되서 실행되는 것을 방지
 
     public void takeDamage(string enemyName) // name : bullet에서 가져온 enemy의 tag
     {
-        (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni) 
+        (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
             = getEnemyInformation(enemyName);
 
         enemy.hp -= 1;
@@ -33,16 +34,17 @@ public class EnemyManager : MonoBehaviour
     }
 
     // 실행하면 자동적으로 enemy관련 components들 list에 추가되도록 설정
-     void addEnemyInformationInLists()
+    void addEnemyInformationInLists()
     {
-            enemyList.AddRange(GetComponentsInChildren<Enemy>());
-            enemySprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
-            enemyEffects.AddRange(GetComponentsInChildren<Animator>());
+        // enemies.AddRange(transform.GetChild());
+        enemyList.AddRange(GetComponentsInChildren<Enemy>());
+        enemySprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        enemyEffects.AddRange(GetComponentsInChildren<Animator>());
     }
 
     // 튜플로 여러 형식을 반환하게 함
     // Damage를 받는 해당 오브젝트의 Components들을 list들에서 반환
-    (GameObject , Enemy, SpriteRenderer , Animator) getEnemyInformation(string enemyName)
+    (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyName)
     {
         int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
         GameObject obj = enemies[objIndex];
@@ -125,7 +127,7 @@ public class EnemyManager : MonoBehaviour
         addEnemyInformationInLists();
     }
 
-     void Update()
+    void Update()
     {
         removeNullEnemiesFromLists();
     }
