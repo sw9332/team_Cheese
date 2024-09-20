@@ -3579,7 +3579,7 @@ MonoBehaviour:
   Camera_setactive: 0
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
-  ExitUI: {fileID: 0}
+  ExitUI: {fileID: 1080693240}
 --- !u!114 &113407670
 MonoBehaviour:
   m_ObjectHideFlags: 0
