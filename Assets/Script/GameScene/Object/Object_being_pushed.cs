@@ -2,31 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Object_being_pushed : MonoBehaviour
+public class Object_Being_Pushed : MonoBehaviour
 {
     public Rigidbody2D rb;
+
+    private bool FreezeX = false;
+    private bool FreezeY = false;
+
     void Update()
     {
         if (Player.moveSpeed == 5)
         {
-            if(Player.MoveX == true && Player.MoveY == false) //가로로 밀었을때
+            if (Player.MoveX && !Player.MoveY && !FreezeX) // 가로로 밀었을 때
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY; // Y축 고정
                 rb.freezeRotation = true;
             }
 
-            else if(Player.MoveY == true && Player.MoveX == false) //세로로 밀었을때
+            else if (Player.MoveY && !Player.MoveX && !FreezeY) // 세로로 밀었을 때
             {
-                rb.constraints = RigidbodyConstraints2D.None;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX; // X축 고정
                 rb.freezeRotation = true;
             }
+
+            else if (!FreezeX && !FreezeY)
+            {
+                rb.constraints = RigidbodyConstraints2D.None;
+            }
+
+            else
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
-            
+
         else
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player")) return;
+
+        FreezeX = Mathf.Abs(collider.transform.position.x - transform.position.x) > Mathf.Abs(collider.transform.position.y - transform.position.y);
+        FreezeY = !FreezeX;
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player")) return;
+
+        FreezeX = false;
+        FreezeY = false;
     }
 }

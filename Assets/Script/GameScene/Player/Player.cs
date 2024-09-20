@@ -26,11 +26,13 @@ public class Player : MonoBehaviour
     public GameObject YellowTeddyBear_Object;
     public GameObject Cake_Object;
     public GameObject Camera;
+    public GameObject NPC_Object;
 
     public Sprite BrownTeddyBear_Sprite;
     public Sprite PinkTeddyBear_Sprite;
     public Sprite YellowTeddyBear_Sprite;
     public Sprite Cake_Sprite;
+    public Sprite NPC_Sprite;
 
     public EnemyManager enemyManager;
     private DialogueManager dialogueManager;
@@ -42,6 +44,8 @@ public class Player : MonoBehaviour
     public Dialogue d_camera;
     [SerializeField]
     public Dialogue d_photo;
+    [SerializeField]
+    public Dialogue d_cutScene;
 
     public GameObject CameraUI;
 
@@ -127,6 +131,8 @@ public class Player : MonoBehaviour
             return YellowTeddyBear_Object;
         else if (item_name == "Cake")
             return Cake_Object;
+        else if (item_name == "NPC")
+            return NPC_Object;
 
         return null;
     }
@@ -141,6 +147,8 @@ public class Player : MonoBehaviour
             return YellowTeddyBear_Sprite;
         else if (item_name == "Cake")
             return Cake_Sprite;
+        else if (item_name =="NPC")
+            return NPC_Sprite;
 
         return null;
     }
@@ -221,6 +229,20 @@ public class Player : MonoBehaviour
                 if(item_main_slot[i] == "" || item_main_slot[i] == null)
                 {
                     item_main_slot[i] = "Cake";
+                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
+                    Destroy(other.gameObject);
+                    break;
+                }
+            }
+        }
+
+        if (other.gameObject.tag == "NPC" && Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < item_main_slot.Length; i++)
+            {
+                if (item_main_slot[i] == "" || item_main_slot[i] == null)
+                {
+                    item_main_slot[i] = "NPC";
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     break;
@@ -434,8 +456,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerUp");
                 }
 
-                MoveX = true;
-                MoveY = false;
+                MoveX = false;
+                MoveY = true;
 
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
                 playerDirection = 1;
@@ -457,8 +479,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerUp");
                 }
 
-                MoveX = true;
-                MoveY = false;
+                MoveX = false;
+                MoveY = true;
 
                 transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
                 playerDirection = 2 ;
@@ -475,8 +497,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerLeft");
                 }
                 
-                MoveX = false;
-                MoveY = true;
+                MoveX = true;
+                MoveY = false;
 
                 playerCenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
@@ -494,8 +516,8 @@ public class Player : MonoBehaviour
                         Player_control.Play("PlayerRight");
                 }
 
-                MoveX = false;
-                MoveY = true;
+                MoveX = true;
+                MoveY = false;
 
                 // player가 오른쪽으로 이동할 경우 중심이 변경, offset값으로 중심점을 항상 일치하도록 
                 playerCenterOffset.x = 0.05f;
