@@ -3607,7 +3607,7 @@ MonoBehaviour:
   Camera_setactive: 0
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
-  ExitUI: {fileID: 1080693240}
+  ExitUI: {fileID: 0}
 --- !u!114 &113407670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6326,8 +6326,6 @@ MonoBehaviour:
   player: {fileID: 730974879}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
-  player1: {fileID: 730974888}
-  dialogueManager: {fileID: 1638264466}
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7485,7 +7483,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410108924
 GameObject:
@@ -9929,7 +9927,7 @@ Transform:
   - {fileID: 841236604}
   - {fileID: 1726939423}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &550448316
 GameObject:
@@ -16783,7 +16781,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928426211
 GameObject:
@@ -57844,8 +57842,6 @@ MonoBehaviour:
   player: {fileID: 730974879}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
-  player1: {fileID: 730974888}
-  dialogueManager: {fileID: 1638264466}
 --- !u!1 &1235198641
 GameObject:
   m_ObjectHideFlags: 0

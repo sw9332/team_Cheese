@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
 
     public bool dialogue_continue = false;
 
-    private bool is_talking = false;
+    public bool is_talking = false;
 
     public MiniGame minigame;
 
