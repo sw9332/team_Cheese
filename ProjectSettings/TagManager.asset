@@ -44,6 +44,7 @@ TagManager:
   - Tutorial Go
   - Push_Object
   - back
+  - NPC
   layers:
   - Default
   - TransparentFX
