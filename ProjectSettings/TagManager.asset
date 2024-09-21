@@ -45,6 +45,7 @@ TagManager:
   - Push_Object
   - back
   - NPC
+  - TableA
   layers:
   - Default
   - TransparentFX
