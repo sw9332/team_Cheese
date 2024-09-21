@@ -121,12 +121,6 @@ public class MiniGame : MonoBehaviour
     }
 
     //페이드인 페이드아웃 관리
-    public IEnumerator FadeOut_FadeIn()
-    {
-        yield return StartCoroutine(FadeOut());
-        GameManager.GameState = "InGame";
-        yield return StartCoroutine(FadeIn());
-    }
 
     public IEnumerator FadeIn()
     {
