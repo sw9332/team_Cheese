@@ -149,9 +149,10 @@ public class DialogueManager : MonoBehaviour
                     StopCoroutine(startDialogueCoroutine());
                     ExitDialogue();
 
+                    //마지막 대화 닫기를 눌렀을때 GameState가 "Tutorial Cut Scene 이면 MiniGame 클래스에 있는 StartInGameFade 코루틴 시작.
                     if (GameManager.GameState == "Tutorial Cut Scene")
                     {
-                        StartCoroutine(minigame.FadeOut_FadeIn());
+                        StartCoroutine(StartInGameFade());
                     }
                 }
                 else
@@ -163,6 +164,14 @@ public class DialogueManager : MonoBehaviour
 
            
         }
+    }
+
+    //임시로 다이어로그에 페이드 해놓고 추후 페이드 관리 스크립트 추가 예정.
+    public IEnumerator StartInGameFade()
+    {
+        yield return StartCoroutine(minigame.FadeOut());
+        GameManager.GameState = "InGame";
+        yield return StartCoroutine(minigame.FadeIn());
     }
 
 
