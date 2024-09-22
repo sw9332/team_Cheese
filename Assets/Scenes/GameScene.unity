@@ -3605,9 +3605,9 @@ MonoBehaviour:
   CameraUI: {fileID: 527049652}
   Camera_Effect_Animation: {fileID: 527049656}
   Camera_setactive: 0
+  ExitUI: {fileID: 1080693240}
+  gameManager: {fileID: 921938699}
   fadeImage: {fileID: 1201729923}
-  fadeDuration: 1
-  ExitUI: {fileID: 0}
 --- !u!114 &113407670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,10 +6324,9 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
-  fadeImage: {fileID: 1201729923}
-  fadeDuration: 1
   player1: {fileID: 730974888}
   dialogueManager: {fileID: 1638264466}
+  gameManager: {fileID: 921938699}
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7480,7 +7479,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410108924
 GameObject:
@@ -16765,6 +16764,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce68ecfabb1e46439816a25d1e03136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1201729923}
+  fadeDuration: 1
 --- !u!4 &921938700
 Transform:
   m_ObjectHideFlags: 0
@@ -16778,7 +16779,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928426211
 GameObject:
@@ -57982,10 +57983,9 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
-  fadeImage: {fileID: 1201729923}
-  fadeDuration: 1
   player1: {fileID: 730974888}
   dialogueManager: {fileID: 1638264466}
+  gameManager: {fileID: 0}
 --- !u!1 &1235198641
 GameObject:
   m_ObjectHideFlags: 0
@@ -73319,6 +73319,7 @@ MonoBehaviour:
   ingameUiPanel: {fileID: 1790190305}
   DialoguePanel: {fileID: 1032883397}
   player: {fileID: 730974888}
+  gameManager: {fileID: 921938699}
   count: 0
   dialogue_continue: 0
   is_talking: 0
@@ -73901,7 +73902,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1726939422
 PrefabInstance:
@@ -75289,7 +75290,7 @@ Transform:
   - {fileID: 1753083113}
   - {fileID: 2089835062}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1782010935 stripped
 Transform:
@@ -75613,7 +75614,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796145758
 GameObject:
@@ -77228,7 +77229,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937641095
 GameObject:
@@ -101897,7 +101898,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089835061
 GameObject:
