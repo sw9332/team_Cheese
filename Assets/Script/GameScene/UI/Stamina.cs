@@ -10,7 +10,7 @@ public class Stamina : MonoBehaviour
 
     void staminaChage()
     {
-            if (isPlayerRunning== true && Player.is_Push != true)
+            if (isPlayerRunning== true && PlayerControl.is_Push != true)
             {
                 staminaDown();
             }

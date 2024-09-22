@@ -15,19 +15,19 @@ public class Bullet : MonoBehaviour
 
     void bulletDirectionSettings()
     {
-        if (Player.playerDirection == 1)
+        if (PlayerControl.playerDirection == 1)
         {
             direction = Vector2.up;
         }
-        else if (Player.playerDirection == 2)
+        else if (PlayerControl.playerDirection == 2)
         {
             direction = Vector2.down;
         }
-        else if (Player.playerDirection == 3)
+        else if (PlayerControl.playerDirection == 3)
         {
             direction = Vector2.left;
         }
-        else if (Player.playerDirection == 4)
+        else if (PlayerControl.playerDirection == 4)
         {
             direction = Vector2.right;
         }

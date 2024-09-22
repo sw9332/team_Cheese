@@ -13296,6 +13296,7 @@ GameObject:
   - component: {fileID: 730974883}
   - component: {fileID: 730974886}
   - component: {fileID: 730974888}
+  - component: {fileID: 730974890}
   - component: {fileID: 730974889}
   m_Layer: 0
   m_Name: Player
@@ -13477,7 +13478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee4200447b99414dbeb4d62911f998f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyManager: {fileID: 403567747}
+  stamina: {fileID: 1046106979}
   d_cake:
     contents:
     - "\uC5B4?1 \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!\t\t\t"
@@ -13515,21 +13516,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  rend: {fileID: 730974880}
-  Player_control: {fileID: 730974887}
-  is_move: 1
-  playerStamina: {fileID: 1046106979}
-  bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
-  bulletPos: {fileID: 658994212}
-  fireCooltime: 0.3
-  meleeAttackBoxSize: {x: 0, y: 0}
-  nearEnemyBoxSize: {x: 0, y: 0}
-  showRangeGizmo: 0
-  showHPGizmo: 0
-  hp:
-  - {fileID: 1554170118}
-  - {fileID: 1554170118}
-  - {fileID: 1554170118}
 --- !u!114 &730974889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13577,6 +13563,34 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   CameraUI: {fileID: 527049652}
+--- !u!114 &730974890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730974879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb68a0cc07e8bcd40a21db1cf0b4820b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 730974888}
+  enemyManager: {fileID: 403567747}
+  rend: {fileID: 730974880}
+  Player_control: {fileID: 730974887}
+  is_move: 1
+  bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
+  bulletPos: {fileID: 658994212}
+  fireCooltime: 0.3
+  meleeAttackBoxSize: {x: 0, y: 0}
+  nearEnemyBoxSize: {x: 0, y: 0}
+  showRangeGizmo: 0
+  showHPGizmo: 0
+  hp:
+  - {fileID: 1554170118}
+  - {fileID: 786270577}
+  - {fileID: 1054705958}
 --- !u!1001 &739177304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14277,6 +14291,11 @@ Transform:
   m_Father: {fileID: 542243904}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &786270577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3566477905940368873, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
+  m_PrefabInstance: {fileID: 1425767780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &787070767
 GameObject:
   m_ObjectHideFlags: 0
@@ -55152,6 +55171,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1054705958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3566477905940368873, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
+  m_PrefabInstance: {fileID: 1176627169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057289287
 GameObject:
   m_ObjectHideFlags: 0
@@ -73331,7 +73355,7 @@ MonoBehaviour:
   spriteList: []
   ingameUiPanel: {fileID: 1790190305}
   DialoguePanel: {fileID: 1032883397}
-  player: {fileID: 730974888}
+  playerControl: {fileID: 730974890}
   gameManager: {fileID: 921938699}
   count: 0
   dialogue_continue: 0

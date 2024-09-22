@@ -11,15 +11,15 @@ public class Object_Being_Pushed : MonoBehaviour
 
     void Update()
     {
-        if (Player.moveSpeed == 5)
+        if (PlayerControl.moveSpeed == 5)
         {
-            if (Player.MoveX && !Player.MoveY && !FreezeX) // 가로로 밀었을 때
+            if (PlayerControl.MoveX && !PlayerControl.MoveY && !FreezeX) // 가로로 밀었을 때
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY; // Y축 고정
                 rb.freezeRotation = true;
             }
 
-            else if (Player.MoveY && !Player.MoveX && !FreezeY) // 세로로 밀었을 때
+            else if (PlayerControl.MoveY && !PlayerControl.MoveX && !FreezeY) // 세로로 밀었을 때
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX; // X축 고정
                 rb.freezeRotation = true;
