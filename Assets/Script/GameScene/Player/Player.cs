@@ -8,274 +8,20 @@ using Unity.VisualScripting; // 데이터 쿼리 언어
 
 public class Player : MonoBehaviour
 {
-// 인벤토리 및 상호작용 처리
-
-// 슬롯 배열
-    public string[] item_main_slot = new string[4];
-    public Image[] item_main_slot_Image = new Image[4];
-
-    // 플레이어가 오브젝트에 충동 줄인지 체크 (땅/사물)
-    public static string object_collision = "땅";
-
-    // 상호작용 오브젝트 이름
-    public static string ObjectName;
-
-    // 아이템 오브젝트 및 스프라이트
-    public GameObject BrownTeddyBear_Object;
-    public GameObject PinkTeddyBear_Object;
-    public GameObject YellowTeddyBear_Object;
-    public GameObject Cake_Object;
-    public GameObject Camera;
-    public GameObject NPC_Object;
-
-    public Sprite BrownTeddyBear_Sprite;
-    public Sprite PinkTeddyBear_Sprite;
-    public Sprite YellowTeddyBear_Sprite;
-    public Sprite Cake_Sprite;
-    public Sprite NPC_Sprite;
-
-    public EnemyManager enemyManager;
     private DialogueManager dialogueManager;
+    public EnemyManager enemyManager;
 
-    // 대화내용
+    public static string object_collision = "땅"; //충돌 확인(땅/사물)
+
     [SerializeField]
     public Dialogue d_cake;
-    [SerializeField]
-    public Dialogue d_camera;
     [SerializeField]
     public Dialogue d_photo;
     [SerializeField]
     public Dialogue d_cutScene;
 
-    public GameObject CameraUI;
-
-
-    // 아이템  두기 / 올려두기
-    public void Slot1()
-    {
-        if(object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[0]), Player_pos, Quaternion.identity);
-            item_main_slot[0] = null;
-            item_main_slot_Image[0].sprite = null;
-        }
-
-        if(object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[0]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[0] = null;
-            item_main_slot_Image[0].sprite = null;
-        }
-    }
-
-    public void Slot2()
-    {
-        if (object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[1]), Player_pos, Quaternion.identity);
-            item_main_slot[1] = null;
-            item_main_slot_Image[1].sprite = null;
-        }
-
-        if (object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[1]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[1] = null;
-            item_main_slot_Image[1].sprite = null;
-        }
-    }
-
-    public void Slot3()
-    {
-        if (object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[2]), Player_pos, Quaternion.identity);
-            item_main_slot[2] = null;
-            item_main_slot_Image[2].sprite = null;
-        }
-
-        if (object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[2]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[2] = null;
-            item_main_slot_Image[2].sprite = null;
-        }
-    }
-
-    public void Slot4()
-    {
-        if (object_collision == "땅")
-        {
-            Instantiate(GetItemObject(item_main_slot[3]), Player_pos, Quaternion.identity);
-            item_main_slot[3] = null;
-            item_main_slot_Image[3].sprite = null;
-        }
-
-        if (object_collision == "사물")
-        {
-            Instantiate(GetItemObject(item_main_slot[3]), Object.Object_pos, Quaternion.identity);
-            item_main_slot[3] = null;
-            item_main_slot_Image[3].sprite = null;
-        }
-    }
-
-
-    // 아이템 줍기 
-    GameObject GetItemObject(string item_name)
-    {
-        if (item_name == "BrownTeddyBear")
-            return BrownTeddyBear_Object;
-        else if (item_name == "PinkTeddyBear")
-            return PinkTeddyBear_Object;
-        else if (item_name == "YellowTeddyBear")
-            return YellowTeddyBear_Object;
-        else if (item_name == "Cake")
-            return Cake_Object;
-        else if (item_name == "NPC")
-            return NPC_Object;
-
-        return null;
-    }
-
-    Sprite GetItemSprite(string item_name)
-    {
-        if (item_name == "BrownTeddyBear")
-            return BrownTeddyBear_Sprite;
-        else if (item_name == "PinkTeddyBear")
-            return PinkTeddyBear_Sprite;
-        else if (item_name == "YellowTeddyBear")
-            return YellowTeddyBear_Sprite;
-        else if (item_name == "Cake")
-            return Cake_Sprite;
-        else if (item_name =="NPC")
-            return NPC_Sprite;
-
-        return null;
-    }
-
     void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.tag == "DroppedBrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i=0; i<item_main_slot.Length; i++)
-            {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "BrownTeddyBear";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    dialogueManager.ShowDialogue(d_camera); // 쓰레진 곰돌이를 주웠을 때 스토리 값을 13으로 (카메라 발견)
-                    CameraUI.SetActive(true);
-
-                    Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
-                    break;
-                }
-            }
-        }
-
-        if(other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
-        {
-            dialogueManager.ShowDialogue(d_camera); //카메라를 주웠을 때 스토리값을 13으로
-            CameraUI.SetActive(true);
-            Destroy(other.gameObject);
-        }
-
-        if(other.gameObject.tag == "BrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i=0; i<item_main_slot.Length; i++)
-            {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "BrownTeddyBear";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    break;
-                }
-            }
-        }
-
-        if(other.gameObject.tag == "PinkTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for(int i=0; i<item_main_slot.Length; i++)
-            {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "PinkTeddyBear";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    break;
-                }
-            }
-        }
-
-        if(other.gameObject.tag == "YellowTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for(int i=0; i<item_main_slot.Length; i++)
-            {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "YellowTeddyBear";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    break;
-                }
-            }
-        }
-
-        if(other.gameObject.tag == "Cake" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for(int i=0; i<item_main_slot.Length; i++)
-            {
-                if(item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "Cake";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    break;
-                }
-            }
-        }
-
-        if (other.gameObject.tag == "NPC" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < item_main_slot.Length; i++)
-            {
-                if (item_main_slot[i] == "" || item_main_slot[i] == null)
-                {
-                    item_main_slot[i] = "NPC";
-                    item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
-                    Destroy(other.gameObject);
-                    break;
-                }
-            }
-        }
-
-
-        // 사물에 닿았을 때 "사물"로 처리 
-        if (other.gameObject.tag == "사물")
-        {
-            object_collision = "사물";
-        }
-
-        // 오브젝트 상호작용
-        if(other.gameObject.tag == "달력")
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "달력";
-        }
-
-        if(other.gameObject.tag == "인형")
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "인형";
-        }
-
-        if(other.gameObject.tag == "나가는 문")
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-                ObjectName = "나가는 문";
-        }
-
         //오브젝트 밀기
         if(other.gameObject.tag == "Push_Object")
         {
@@ -295,6 +41,11 @@ public class Player : MonoBehaviour
 
             else
                 is_Push = false;
+        }
+
+        if (other.gameObject.tag == "사물")
+        {
+            object_collision = "사물";
         }
     }
 
@@ -395,8 +146,6 @@ public class Player : MonoBehaviour
 
 
     // Player 이동 및 컨트롤
-
-    public static Vector3 Player_pos;
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator Player_control; // player 이동 및 공격 애니메이션
     public static float Velocity;
@@ -404,6 +153,7 @@ public class Player : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
     public bool is_move = true; // is_move가 false 일때는 움직일 수 없음.
+    public static Vector3 pos;
 
     public Slider playerStamina;
 
@@ -429,7 +179,7 @@ public class Player : MonoBehaviour
 
     void PlayerControl() //플레이어의 이동 및 인벤토리 컨트롤
     {
-        Player_pos = transform.position; //업데이트 될 때 마다 위치 초기화
+        pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
         Velocity = 0;
 
@@ -562,28 +312,6 @@ public class Player : MonoBehaviour
                 Player_control.speed = 1;
                 moveSpeed = 2.5f;
                 Stamina.isPlayerRunning = false;
-            }
-
-            /* Player 인벤토리 */
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Slot1();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Slot2();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Slot3();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                Slot4();
             }
         }
         
@@ -829,7 +557,6 @@ public class Player : MonoBehaviour
 
         Player_control.Play("PlayerBack_Stop");
         dialogueManager = FindObjectOfType<DialogueManager>();
-
     }
 
     void Update()

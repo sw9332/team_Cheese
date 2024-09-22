@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Object : MonoBehaviour
 {
-    public static Vector3 Object_pos;
+    public static Vector3 pos;
 
-    //void OnCollisionEnter2D
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             Player.object_collision = "사물";
-            Object_pos = transform.position;
+            pos = transform.position;
         }
     }
 
