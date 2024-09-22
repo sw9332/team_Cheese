@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
 
-    public Player player;
+    public PlayerControl playerControl;
 
     public GameManager gameManager;
 
@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(false);
         DialoguePanel.SetActive(true);
         StartCoroutine(startDialogueCoroutine());
-        player.is_move = false;
+        playerControl.is_move = false;
     }
 
     public void ExitDialogue()
@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(true);
         DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        player.is_move = true;
+        playerControl.is_move = true;
     }
 
     IEnumerator startDialogueCoroutine()
