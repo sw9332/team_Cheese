@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 62631893}
   - component: {fileID: 62631892}
   m_Layer: 5
-  m_Name: Image1
+  m_Name: Slot1_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13293,9 +13293,10 @@ GameObject:
   - component: {fileID: 730974881}
   - component: {fileID: 730974880}
   - component: {fileID: 730974887}
-  - component: {fileID: 730974888}
   - component: {fileID: 730974883}
   - component: {fileID: 730974886}
+  - component: {fileID: 730974888}
+  - component: {fileID: 730974889}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13476,27 +13477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee4200447b99414dbeb4d62911f998f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item_main_slot:
-  - 
-  - 
-  - 
-  - 
-  item_main_slot_Image:
-  - {fileID: 62631892}
-  - {fileID: 771593826}
-  - {fileID: 1600430777}
-  - {fileID: 1978578322}
-  BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
-  PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
-  YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
-  Cake_Object: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
-  Camera: {fileID: 6965041605082161305, guid: 8de1dbe49ec221f44ba9eca985deb4dc, type: 3}
-  NPC_Object: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
-  BrownTeddyBear_Sprite: {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
-  PinkTeddyBear_Sprite: {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
-  YellowTeddyBear_Sprite: {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
-  Cake_Sprite: {fileID: 21300000, guid: d522466950a14e34f80ce6df926e5111, type: 3}
-  NPC_Sprite: {fileID: 21300000, guid: 4d185be5c15e9ef4c9094c7d531da437, type: 3}
   enemyManager: {fileID: 403567747}
   d_cake:
     contents:
@@ -13507,19 +13487,6 @@ MonoBehaviour:
     - "\uC778\uD615\uC744 \uC62E\uAE30\uB824\uBA74 \uC2A4\uD398\uC774\uC2A4 \uBC14\uB85C
       \uC218\uC9D1 \uD6C4\n\uC778\uBCA4\uD1A0\uB9AC \uCC3D\uC5D0\uC11C \uAEBC\uB0B4
       \uC62C\uB824\uB450\uC138\uC694."
-    sprites:
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  d_camera:
-    contents:
-    - "\uC640!!!! \uCE74\uBA54\uB77C\uB2E4! \uCE74\uBA54\uB77C\uB85C! "
-    - "\uBE68\uB9AC....\u314B.... \uCF00\uC774\uD06C\uB97C %#@$!!!"
-    - "\uC5B4?...\uC5B4,,, \uC544!\t"
-    - "\uBE68\uB9AC \uCF00\uC774\uD06C\uB97C \uC62E\uAE30\uC790!"
-    - "\uCE74\uBA54\uB77C\uB97C \uD68D\uB4DD\uD558\uC600\uC2B5\uB2C8\uB2E4."
     sprites:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
@@ -13548,7 +13515,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  CameraUI: {fileID: 527049652}
   rend: {fileID: 730974880}
   Player_control: {fileID: 730974887}
   is_move: 1
@@ -13564,6 +13530,53 @@ MonoBehaviour:
   - {fileID: 1554170118}
   - {fileID: 1554170118}
   - {fileID: 1554170118}
+--- !u!114 &730974889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730974879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f5d8f864d4ce4bb0b63df954be6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_main_slot:
+  - 
+  - 
+  - 
+  - 
+  item_main_slot_Image:
+  - {fileID: 62631892}
+  - {fileID: 771593826}
+  - {fileID: 1600430777}
+  - {fileID: 1978578322}
+  BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+  PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+  YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+  Cake_Object: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  Camera: {fileID: 6965041605082161305, guid: 8de1dbe49ec221f44ba9eca985deb4dc, type: 3}
+  NPC_Object: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
+  BrownTeddyBear_Sprite: {fileID: 21300000, guid: edfc63567ad6d1040bf768a7e1709b11, type: 3}
+  PinkTeddyBear_Sprite: {fileID: 21300000, guid: f86b82721978889488301bd35bf6eb1b, type: 3}
+  YellowTeddyBear_Sprite: {fileID: 21300000, guid: 62ab146cc215d0e4a9c023859697d1de, type: 3}
+  Cake_Sprite: {fileID: 21300000, guid: d522466950a14e34f80ce6df926e5111, type: 3}
+  NPC_Sprite: {fileID: 21300000, guid: 4d185be5c15e9ef4c9094c7d531da437, type: 3}
+  d_camera:
+    contents:
+    - "\uC640!!! \uCE74\uBA54\uB77C\uB2E4! \uCE74\uBA54\uB77C\uB85C! \uCE74\uBA54\uB77C\uB85C....."
+    - "\uBE68\uB9AC... \u314B....\uCF00\uC774\uD06C%@$!!!"
+    - "\uC5B4?... \uC5B4... \uC544!"
+    - "\uBE68\uB9AC \uCF00\uC774\uD06C\uB97C \uC62E\uAE30\uC790!"
+    - "\uCE74\uBA54\uB77C\uB97C \uD68D\uB4DD\uD558\uC600\uC2B5\uB2C8\uB2E4."
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+  CameraUI: {fileID: 527049652}
 --- !u!1001 &739177304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14011,7 +14024,7 @@ GameObject:
   - component: {fileID: 771593827}
   - component: {fileID: 771593826}
   m_Layer: 5
-  m_Name: Image2
+  m_Name: Slot2_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72632,7 +72645,7 @@ GameObject:
   - component: {fileID: 1600430778}
   - component: {fileID: 1600430777}
   m_Layer: 5
-  m_Name: Image3
+  m_Name: Slot3_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77879,7 +77892,7 @@ GameObject:
   - component: {fileID: 1978578323}
   - component: {fileID: 1978578322}
   m_Layer: 5
-  m_Name: Image4
+  m_Name: Slot4_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
