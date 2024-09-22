@@ -380,12 +380,12 @@ public class UIManager : MonoBehaviour
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
     public bool Camera_setactive = false;
+
     //튜토리얼 맵 변수
     public static bool tutorialTrigger = false;
     public static bool is_bear = false;
     public static bool is_cake = false;
     public static bool is_playerPos = false;
-
 
     bool isMessageLogged = false;
 
@@ -419,48 +419,15 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------
 
-    public Image fadeImage;
-    public float fadeDuration = 1f;
-
-    IEnumerator FadeIn()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.black;
-
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);
-    }
-
-    IEnumerator FadeOut()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.clear;
-
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);
-    }
-
-    //--------------------------------------------------------------------
-
     public GameObject ExitUI;
+
+    public GameManager gameManager;
+    public Image fadeImage;
 
     public void tutorial_Exit_OK()
     {
-        StartCoroutine(FadeOut());
+        ExitUI.SetActive(false);
+        StartCoroutine(gameManager.FadeOut());
         Invoke("MainScene", 1f);
         Time.timeScale = 1;
     }
@@ -480,20 +447,20 @@ public class UIManager : MonoBehaviour
 
     public void StartFadeIn() // start fade in coroutine
     {
-        StartCoroutine(FadeIn());
+        StartCoroutine(gameManager.FadeIn());
 
     }
     public void StopFadeIn() // stop fade in coroutine
     {
-        StopCoroutine(FadeIn());
+        StopCoroutine(gameManager.FadeIn());
     }
     public void StartFadeOut() // start fade out coroutine
     {
-        StartCoroutine(FadeOut());
+        StartCoroutine(gameManager.FadeOut());
     }
     public void StopFadeOut() // stop fade out coroutine
     {
-        StopCoroutine(FadeIn());
+        StopCoroutine(gameManager.FadeIn());
     }
 
 

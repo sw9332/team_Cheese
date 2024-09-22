@@ -9,6 +9,8 @@ public class MainSceneManager : MonoBehaviour
     public GameObject SettingUI;
     public GameObject Load_UI;
 
+    public GameManager gameManager;
+
     //메인화면 버튼---------------------------------------------------------------------
 
     public void LoadUI()
@@ -22,7 +24,7 @@ public class MainSceneManager : MonoBehaviour
     //새 게임---------------------------------
     public void StartButton_Fade()
     {
-        StartCoroutine(FadeOut());
+        StartCoroutine(gameManager.FadeOut());
         Invoke("tutorial_start", 1f);
     }
 
@@ -41,44 +43,6 @@ public class MainSceneManager : MonoBehaviour
     public void ExitButton()
     {
         Application.Quit();
-    }
-
-    //-------------------------------------------------------------------------------
-
-    //페이드 인, 아웃
-    public Image fadeImage;
-    public float fadeDuration = 1f;
-
-    IEnumerator FadeIn()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.black;
-
-        float timer = 0f;
-        while(timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);
-    }
-
-    IEnumerator FadeOut()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.clear;
-
-        float timer = 0f;
-        while(timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);
     }
 
     //-------------------------------------------------------------------------------

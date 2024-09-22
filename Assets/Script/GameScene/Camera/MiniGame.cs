@@ -13,13 +13,14 @@ public class MiniGame : MonoBehaviour
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
     public GameObject player;
-    public Image fadeImage;
-    public float fadeDuration = 1f;
+    
     // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
     public static bool isImageChange = false;
 
     public Player player1;
     public DialogueManager dialogueManager;
+
+    public GameManager gameManager;
 
 
     //private bool is_next_stage = false;
@@ -106,7 +107,7 @@ public class MiniGame : MonoBehaviour
 
     IEnumerator NextStage()
     {
-        yield return StartCoroutine(FadeOut());
+        yield return StartCoroutine(gameManager.FadeOut());
         //is_transition = true;
         player.transform.position = new Vector3(60, 0, 0);
         mainCamera.transform.position = new Vector3(60, 0, -10);
@@ -117,40 +118,6 @@ public class MiniGame : MonoBehaviour
         minigamePanel.SetActive(false);
         is_minigame = false;
         //is_transition = false;
-        yield return StartCoroutine(FadeIn());
-    }
-
-    //페이드인 페이드아웃 관리
-
-    public IEnumerator FadeIn()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.black;
-        
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.gameObject.SetActive(false);
-    }
-
-    public IEnumerator FadeOut()
-    {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.clear;
-
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeImage.color = Color.black;
+        yield return StartCoroutine(gameManager.FadeIn());
     }
 }

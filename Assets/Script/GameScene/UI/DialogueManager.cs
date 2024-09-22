@@ -36,6 +36,8 @@ public class DialogueManager : MonoBehaviour
 
     public Player player;
 
+    public GameManager gameManager;
+
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
     public bool dialogue_continue = false;
@@ -166,12 +168,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //임시로 다이어로그에 페이드 해놓고 추후 페이드 관리 스크립트 추가 예정.
     public IEnumerator StartInGameFade()
     {
-        yield return StartCoroutine(minigame.FadeOut());
+        yield return StartCoroutine(gameManager.FadeOut());
         GameManager.GameState = "InGame";
-        yield return StartCoroutine(minigame.FadeIn());
+        yield return StartCoroutine(gameManager.FadeIn());
     }
 
 
