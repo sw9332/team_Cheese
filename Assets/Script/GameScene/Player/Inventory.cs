@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     public GameObject PinkTeddyBear_Object;
     public GameObject YellowTeddyBear_Object;
     public GameObject Cake_Object;
-    public GameObject Camera;
     public GameObject NPC_Object;
 
     public Sprite BrownTeddyBear_Sprite;
@@ -24,14 +23,13 @@ public class Inventory : MonoBehaviour
     public Sprite NPC_Sprite;
 
     private DialogueManager dialogueManager;
+    private UIManager uiManager;
 
     // 대화내용
     [SerializeField]
     public Dialogue d_camera;
-   
-    public GameObject CameraUI;
 
-    // 아이템  두기 / 올려두기
+    // 아이템 두기 / 올려두기
     public void Slot1()
     {
         if (Player.object_collision == "땅")
@@ -145,9 +143,7 @@ public class Inventory : MonoBehaviour
                     item_main_slot_Image[i].sprite = GetItemSprite(item_main_slot[i]);
                     Destroy(other.gameObject);
                     dialogueManager.ShowDialogue(d_camera);
-                    CameraUI.SetActive(true);
-
-                    Camera.SetActive(true); //쓰러진 곰돌이를 주우면 카메라 발견
+                    uiManager.CameraUI.SetActive(true);
                     break;
                 }
             }
@@ -156,7 +152,7 @@ public class Inventory : MonoBehaviour
         if (other.gameObject.tag == "Camera" && Input.GetKeyDown(KeyCode.Space))
         {
             dialogueManager.ShowDialogue(d_camera);
-            CameraUI.SetActive(true);
+            uiManager.CameraUI.SetActive(true);
             Destroy(other.gameObject);
         }
 
@@ -234,6 +230,7 @@ public class Inventory : MonoBehaviour
      void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     void Update()

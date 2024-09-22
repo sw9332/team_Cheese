@@ -363,13 +363,11 @@ public class PlayerControl : MonoBehaviour
 
 
     // Player HP ---------------------------------------------------------------------
-    public List<GameObject> hp = new List<GameObject>();
+
     private Collider2D[] nearEnemies;
     private float elapsedTime = 0f;
     private float destroyTime = 1f;
     private bool isCollidingWithEnemy = false;
-
-
 
     /* CollideWithEnemy 함수 설명
    'enemy' 태그를 가진 polygonCollider2D만 필터링
@@ -378,6 +376,7 @@ public class PlayerControl : MonoBehaviour
      OrderBy: 오름차순 정렬
      oArray: 배열로 변환
   */
+
     public bool CollideWithEnemy()
     {
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerCenterOffset, nearEnemyBoxSize, 0f);
@@ -398,7 +397,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Player_Collision()
     {
-        if (hp != null)
+        if (player.hp != null)
         {
             if (CollideWithEnemy() == true)
             {
@@ -413,11 +412,11 @@ public class PlayerControl : MonoBehaviour
             if (isCollidingWithEnemy == true)
             {
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime >= destroyTime && hp.Count > 0)
+                if (elapsedTime >= destroyTime && player.hp.Count > 0)
                 {
-                    GameObject lastHp = hp[hp.Count - 1];
+                    GameObject lastHp = player.hp[player.hp.Count - 1];
                     Destroy(lastHp);
-                    hp.RemoveAt(hp.Count - 1);
+                    player.hp.RemoveAt(player.hp.Count - 1);
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
             }
