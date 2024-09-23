@@ -43,34 +43,30 @@ public class Inventory : MonoBehaviour
     // 아이템 줍기 
     GameObject GetItemObject(string item_name)
     {
-        if (item_name == "BrownTeddyBear")
-            return BrownTeddyBear_Object;
-        else if (item_name == "PinkTeddyBear")
-            return PinkTeddyBear_Object;
-        else if (item_name == "YellowTeddyBear")
-            return YellowTeddyBear_Object;
-        else if (item_name == "Cake")
-            return Cake_Object;
-        else if (item_name == "NPC")
-            return NPC_Object;
+        switch(item_name)
+        {
+            case "BrownTeddyBear": return BrownTeddyBear_Object;
+            case "PinkTeddyBear": return PinkTeddyBear_Object;
+            case "YellowTeddyBear": return YellowTeddyBear_Object;
+            case "Cake": return Cake_Object;
+            case "NPC": return NPC_Object;
 
-        return null;
+            default: return null;
+        }
     }
 
     Sprite GetItemSprite(string item_name)
     {
-        if (item_name == "BrownTeddyBear")
-            return BrownTeddyBear_Sprite;
-        else if (item_name == "PinkTeddyBear")
-            return PinkTeddyBear_Sprite;
-        else if (item_name == "YellowTeddyBear")
-            return YellowTeddyBear_Sprite;
-        else if (item_name == "Cake")
-            return Cake_Sprite;
-        else if (item_name == "NPC")
-            return NPC_Sprite;
+        switch (item_name)
+        {
+            case "BrownTeddyBear": return BrownTeddyBear_Sprite;
+            case "PinkTeddyBear": return PinkTeddyBear_Sprite;
+            case "YellowTeddyBear": return YellowTeddyBear_Sprite;
+            case "Cake": return Cake_Sprite;
+            case "NPC": return NPC_Sprite;
 
-        return null;
+            default: return null;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
