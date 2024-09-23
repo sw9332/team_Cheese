@@ -5,7 +5,7 @@ using UnityEngine;
 public class Prologue : MonoBehaviour
 {
     public Dialogue d_prologue;
-    public UIManager uiManager;
+    public GameManager gameManager;
     private DialogueManager dialogueManager;
 
     void Start()
@@ -18,11 +18,11 @@ public class Prologue : MonoBehaviour
     {
         if(dialogueManager.count == 3)
         {
-            uiManager.StartFadeIn();
+            StartCoroutine(gameManager.FadeIn());
         }
         if(dialogueManager.count > 3 ) 
         {
-            uiManager.StopFadeIn();
+            StartCoroutine(gameManager.FadeIn());
         }
 
         if (dialogueManager.dialogue_continue == false)
