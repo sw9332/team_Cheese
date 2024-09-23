@@ -23,13 +23,16 @@ public class Inventory : MonoBehaviour
     private DialogueManager dialogueManager;
     private UIManager uiManager;
 
+    public bool canPickup = false;
+    private Collider2D currentItemCollider;
+
     // 대화내용
     [SerializeField]
     public Dialogue d_camera;
 
     GameObject GetItemObject(string item_name)
     {
-        switch(item_name)
+        switch (item_name)
         {
             case "BrownTeddyBear": return BrownTeddyBear_Object;
             case "PinkTeddyBear": return PinkTeddyBear_Object;
@@ -55,7 +58,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 아이템 배치
     public void PlaceItem(int slotIndex)
     {
         if (itemDB[slotIndex] == null) return;
@@ -68,8 +70,7 @@ public class Inventory : MonoBehaviour
         itemImageDB[slotIndex].sprite = null;
     }
 
-    //아이템 줍기
-    void ItemPickup(string itemName, Collider2D other)
+    void PickupItem(string itemName, Collider2D other)
     {
         for (int i = 0; i < itemDB.Length; i++)
         {
@@ -85,51 +86,84 @@ public class Inventory : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        switch (other.gameObject.tag)
         {
-            switch(other.gameObject.tag)
-            {
-                case "DroppedBrownTeddyBear":
-                    ItemPickup("BrownTeddyBear", other);
-
-                    dialogueManager.ShowDialogue(d_camera);
-                    uiManager.CameraUI.SetActive(true);
-                    break;
-
-                case "BrownTeddyBear":
-                    ItemPickup("BrownTeddyBear", other);
-                    break;
-
-                case "PinkTeddyBear":
-                    ItemPickup("PinkTeddyBear", other);
-                    break;
-
-                case "YellowTeddyBear":
-                    ItemPickup("YellowTeddyBear", other);
-                    break;
-
-                case "Cake":
-                    ItemPickup("Cake", other);
-                    break;
-
-                case "NPC":
-                    ItemPickup("NPC", other);
-                    break;
-            }
+            case "DroppedBrownTeddyBear":
+            case "BrownTeddyBear":
+            case "PinkTeddyBear":
+            case "YellowTeddyBear":
+            case "Cake":
+            case "NPC":
+                canPickup = true;
+                currentItemCollider = other;
+                break;
         }
     }
 
-     void Start()
+    void OnTriggerExit2D(Collider2D other)
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        uiManager = FindObjectOfType<UIManager>();
+        switch (other.gameObject.tag)
+        {
+            case "DroppedBrownTeddyBear":
+            case "BrownTeddyBear":
+            case "PinkTeddyBear":
+            case "YellowTeddyBear":
+            case "Cake":
+            case "NPC":
+                canPickup = false;
+                currentItemCollider = null;
+                break;
+        }
     }
 
     void Update()
     {
+        if (canPickup && Input.GetKeyDown(KeyCode.Space))
+        {
+            if (currentItemCollider != null)
+            {
+                string tag = currentItemCollider.gameObject.tag;
+
+                switch (tag)
+                {
+                    case "DroppedBrownTeddyBear":
+                        PickupItem("BrownTeddyBear", currentItemCollider);
+                        dialogueManager.ShowDialogue(d_camera);
+                        uiManager.CameraUI.SetActive(true);
+                        break;
+
+                    case "BrownTeddyBear":
+                        PickupItem("BrownTeddyBear", currentItemCollider);
+                        break;
+
+                    case "PinkTeddyBear":
+                        PickupItem("PinkTeddyBear", currentItemCollider);
+                        break;
+
+                    case "YellowTeddyBear":
+                        PickupItem("YellowTeddyBear", currentItemCollider);
+                        break;
+
+                    case "Cake":
+                        PickupItem("Cake", currentItemCollider);
+                        break;
+
+                    case "NPC":
+                        PickupItem("NPC", currentItemCollider);
+                        break;
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1)) PlaceItem(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) PlaceItem(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) PlaceItem(2);
         if (Input.GetKeyDown(KeyCode.Alpha4)) PlaceItem(3);
+    }
+
+    void Start()
+    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 }
