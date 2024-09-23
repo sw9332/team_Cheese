@@ -68,16 +68,16 @@ public class PlayerControl : MonoBehaviour
             isPush = false;
     }
 
-    void Control() //플레이어의 이동 및 인벤토리 컨트롤
+    void Control() //플레이어의 이동
     {
         Player_control.speed = 1;
 
-        if (isMove == false)
+        if (!isMove)
         {
             Player_control.Play("PlayerBack_Stop");
         }
 
-        if (isMove == true)
+        if (isMove)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
@@ -99,7 +99,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                playerDirection = 1;
+                playerDirection = 1;  // 위 방향
             }
 
             //아래로 이동
@@ -122,7 +122,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-                playerDirection = 2;
+                playerDirection = 2;  // 아래 방향
             }
 
             //왼쪽으로 이동
@@ -130,10 +130,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.RightArrow))
-                        Player_control.Play("PlayerLeft");
-                    else
-                        Player_control.Play("PlayerLeft");
+                    Player_control.Play("PlayerLeft");
                 }
 
                 MoveX = true;
@@ -141,7 +138,7 @@ public class PlayerControl : MonoBehaviour
 
                 playerCenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-                playerDirection = 3;
+                playerDirection = 3;  // 왼쪽 방향
             }
 
             //오른쪽으로 이동
@@ -149,33 +146,29 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                        Player_control.Play("PlayerLeft");
-                    else
-                        Player_control.Play("PlayerRight");
+                    Player_control.Play("PlayerRight");
                 }
 
                 MoveX = true;
                 MoveY = false;
 
-                // player가 오른쪽으로 이동할 경우 중심이 변경, offset값으로 중심점을 항상 일치하도록 
                 playerCenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-                playerDirection = 4;
+                playerDirection = 4;  // 오른쪽 방향
             }
 
-
-            // 방향키를 때면
-            if (Input.GetKeyUp(KeyCode.UpArrow))
+            if (Input.GetKeyUp(KeyCode.UpArrow) && playerDirection == 1)
                 Player_control.Play("PlayerUp_Stop");
-            else if (Input.GetKeyUp(KeyCode.DownArrow))
+            else if (Input.GetKeyUp(KeyCode.DownArrow) && playerDirection == 2)
                 Player_control.Play("PlayerBack_Stop");
-            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+
+            else if (Input.GetKeyUp(KeyCode.LeftArrow) && playerDirection == 3 && !Input.GetKey(KeyCode.RightArrow))
             {
                 playerCenterOffset = new Vector3(0f, -0.4f, 0f);
                 Player_control.Play("PlayerLeft_Stop");
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
+
+            else if (Input.GetKeyUp(KeyCode.RightArrow) && playerDirection == 4 && !Input.GetKey(KeyCode.LeftArrow))
             {
                 playerCenterOffset = new Vector3(0f, -0.4f, 0f);
                 Player_control.Play("PlayerRight_Stop");
@@ -196,6 +189,7 @@ public class PlayerControl : MonoBehaviour
                 else
                     Stamina.isPlayerRunning = false;
             }
+
             else
             {
                 Player_control.speed = 1;
@@ -204,8 +198,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-
-    
 
     void PlayerAttack()
     {
