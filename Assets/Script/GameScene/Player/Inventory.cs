@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public Sprite Cake_Sprite;
     public Sprite NPC_Sprite;
 
+    private Player player;
     private DialogueManager dialogueManager;
     private UIManager uiManager;
 
@@ -63,7 +64,7 @@ public class Inventory : MonoBehaviour
         if (itemDB[slotIndex] == null) return;
 
         GameObject itemObject = GetItemObject(itemDB[slotIndex]);
-        Vector3 position = Player.object_collision == "¶¥" ? Player.pos : Object.pos;
+        Vector3 position = Player.object_collision == "¶¥" ? player.pos : Object.pos;
 
         Instantiate(itemObject, position, Quaternion.identity);
         itemDB[slotIndex] = null;
@@ -163,6 +164,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
         dialogueManager = FindObjectOfType<DialogueManager>();
         uiManager = FindObjectOfType<UIManager>();
     }

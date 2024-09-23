@@ -12,18 +12,21 @@ public class PlayerControl : MonoBehaviour
 
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator Player_control; // player 이동 및 공격 애니메이션
-    public static float Velocity;
+
     public static float moveSpeed = 2.5f;
+
     public static bool MoveX = false;
     public static bool MoveY = false;
-    public bool is_move = true; // is_move가 false 일때는 움직일 수 없음.
+
+    public bool isMove = true; // isMove가 false 일때는 움직일 수 없음.
+    public bool isPush = false; // isPush가 false 일때는 Push Object를 밀 수 없음.
+
     private Vector3 playerCenterOffset; // player 범위판별 offset
-    public static bool is_Push = false;
 
     // 원거리 공격 관련
     public GameObject bullet;
     public Transform bulletPos;
-    public static int playerDirection = 2; // 1: 뒤, 2: 정면, 3: 왼쪽, 4: 오른쪽 
+    public static int playerDirection = 2; // 1: 뒤, 2: 정면, 3: 왼쪽, 4: 오른쪽
     public float fireCooltime;
     private float fireCurtime;
 
@@ -40,48 +43,46 @@ public class PlayerControl : MonoBehaviour
         //오브젝트 밀기
         if (other.gameObject.tag == "Push_Object")
         {
-            is_Push = true;
+            isPush = true;
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (is_Push && Input.GetKey(KeyCode.LeftArrow))
+                if (isPush && Input.GetKey(KeyCode.LeftArrow))
                     Player_control.Play("LeftPush");
-                else if (is_Push && Input.GetKey(KeyCode.RightArrow))
+                else if (isPush && Input.GetKey(KeyCode.RightArrow))
                     Player_control.Play("RightPush");
-                else if (is_Push && Input.GetKey(KeyCode.UpArrow))
+                else if (isPush && Input.GetKey(KeyCode.UpArrow))
                     Player_control.Play("UpPush");
-                else if (is_Push && Input.GetKey(KeyCode.DownArrow))
+                else if (isPush && Input.GetKey(KeyCode.DownArrow))
                     Player_control.Play("DownPush");
             }
 
             else
-                is_Push = false;
+                isPush = false;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Push_Object")
-            is_Push = false;
+            isPush = false;
     }
 
     void Control() //플레이어의 이동 및 인벤토리 컨트롤
     {
-        Player.pos = transform.position; //업데이트 될 때 마다 위치 초기화
         Player_control.speed = 1;
-        Velocity = 0;
 
-        if (is_move == false)
+        if (isMove == false)
         {
             Player_control.Play("PlayerBack_Stop");
         }
 
-        if (is_move == true)
+        if (isMove == true)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                if (!is_Push)
+                if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
                         Player_control.Play("PlayerLeft");
@@ -104,7 +105,7 @@ public class PlayerControl : MonoBehaviour
             //아래로 이동
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                if (!is_Push)
+                if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
                         Player_control.Play("PlayerLeft");
@@ -127,7 +128,7 @@ public class PlayerControl : MonoBehaviour
             //왼쪽으로 이동
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (!is_Push)
+                if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.RightArrow))
                         Player_control.Play("PlayerLeft");
@@ -146,7 +147,7 @@ public class PlayerControl : MonoBehaviour
             //오른쪽으로 이동
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (!is_Push)
+                if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
                         Player_control.Play("PlayerLeft");
@@ -185,12 +186,12 @@ public class PlayerControl : MonoBehaviour
             {
                 moveSpeed = 5;
 
-                if (!is_Push)
+                if (!isPush)
                     Player_control.speed = 2;
                 else
                     Player_control.speed = 1;
 
-                if (!is_Push)
+                if (!isPush)
                     Stamina.isPlayerRunning = true;
                 else
                     Stamina.isPlayerRunning = false;
