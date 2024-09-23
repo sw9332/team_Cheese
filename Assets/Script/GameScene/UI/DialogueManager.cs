@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(false);
         DialoguePanel.SetActive(true);
         StartCoroutine(startDialogueCoroutine());
-        playerControl.is_move = false;
+        playerControl.isMove = false;
     }
 
     public void ExitDialogue()
@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(true);
         DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        playerControl.is_move = true;
+        playerControl.isMove = true;
     }
 
     IEnumerator startDialogueCoroutine()
