@@ -27,20 +27,6 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public Dialogue d_camera;
 
-    // 아이템 배치
-    public void PlaceItem(int slotIndex)
-    {
-        if (itemDB[slotIndex] == null) return;
-
-        GameObject itemObject = GetItemObject(itemDB[slotIndex]);
-        Vector3 position = Player.object_collision == "땅" ? Player.pos : Object.pos;
-
-        Instantiate(itemObject, position, Quaternion.identity);
-        itemDB[slotIndex] = null;
-        itemImageDB[slotIndex].sprite = null;
-    }
-
-    // 아이템 줍기 
     GameObject GetItemObject(string item_name)
     {
         switch(item_name)
@@ -69,92 +55,66 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // 아이템 배치
+    public void PlaceItem(int slotIndex)
+    {
+        if (itemDB[slotIndex] == null) return;
+
+        GameObject itemObject = GetItemObject(itemDB[slotIndex]);
+        Vector3 position = Player.object_collision == "땅" ? Player.pos : Object.pos;
+
+        Instantiate(itemObject, position, Quaternion.identity);
+        itemDB[slotIndex] = null;
+        itemImageDB[slotIndex].sprite = null;
+    }
+
+    //아이템 줍기
+    void ItemPickup(string itemName, Collider2D other)
+    {
+        for (int i = 0; i < itemDB.Length; i++)
+        {
+            if (string.IsNullOrEmpty(itemDB[i]))
+            {
+                itemDB[i] = itemName;
+                itemImageDB[i].sprite = GetItemSprite(itemName);
+                Destroy(other.gameObject);
+                break;
+            }
+        }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "DroppedBrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < itemDB.Length; i++)
+            switch(other.gameObject.tag)
             {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "BrownTeddyBear";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "DroppedBrownTeddyBear":
+                    ItemPickup("BrownTeddyBear", other);
 
                     dialogueManager.ShowDialogue(d_camera);
                     uiManager.CameraUI.SetActive(true);
                     break;
-                }
-            }
-        }
 
-        if (other.gameObject.tag == "BrownTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < itemDB.Length; i++)
-            {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "BrownTeddyBear";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "BrownTeddyBear":
+                    ItemPickup("BrownTeddyBear", other);
                     break;
-                }
-            }
-        }
 
-        if (other.gameObject.tag == "PinkTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < itemDB.Length; i++)
-            {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "PinkTeddyBear";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "PinkTeddyBear":
+                    ItemPickup("PinkTeddyBear", other);
                     break;
-                }
-            }
-        }
 
-        if (other.gameObject.tag == "YellowTeddyBear" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < itemDB.Length; i++)
-            {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "YellowTeddyBear";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "YellowTeddyBear":
+                    ItemPickup("YellowTeddyBear", other);
                     break;
-                }
-            }
-        }
 
-        if (other.gameObject.tag == "Cake" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < itemDB.Length; i++)
-            {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "Cake";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "Cake":
+                    ItemPickup("Cake", other);
                     break;
-                }
-            }
-        }
 
-        if (other.gameObject.tag == "NPC" && Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < itemDB.Length; i++)
-            {
-                if (itemDB[i] == "" || itemDB[i] == null)
-                {
-                    itemDB[i] = "NPC";
-                    itemImageDB[i].sprite = GetItemSprite(itemDB[i]);
-                    Destroy(other.gameObject);
+                case "NPC":
+                    ItemPickup("NPC", other);
                     break;
-                }
             }
         }
     }
