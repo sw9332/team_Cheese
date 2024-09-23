@@ -6,10 +6,29 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static string GameState = "Tutorial";
+    public DialogueManager dialogueManager;
 
     void Start()
     {
         GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> InGame */
+    }
+
+    void Update()
+    {
+        if(GameState == "Tutorial Cut Scene")
+        {
+            if (dialogueManager.dialogue_continue && dialogueManager.is_talking == false)
+                if (dialogueManager.button_text.text == "´Ý±â")
+                    if (Input.GetKeyDown(KeyCode.Z))
+                        StartCoroutine(StartInGameFade());
+        }
+    }
+
+    IEnumerator StartInGameFade()
+    {
+        yield return StartCoroutine(FadeOut());
+        GameManager.GameState = "InGame";
+        yield return StartCoroutine(FadeIn());
     }
 
     public Image fadeImage;

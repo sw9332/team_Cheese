@@ -16797,6 +16797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce68ecfabb1e46439816a25d1e03136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1638264466}
   fadeImage: {fileID: 1201729923}
   fadeDuration: 1
 --- !u!4 &921938700
@@ -73357,7 +73358,6 @@ MonoBehaviour:
   ingameUiPanel: {fileID: 1790190305}
   DialoguePanel: {fileID: 1032883397}
   playerControl: {fileID: 730974890}
-  gameManager: {fileID: 921938699}
   count: 0
   dialogue_continue: 0
   is_talking: 0

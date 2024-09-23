@@ -36,8 +36,6 @@ public class DialogueManager : MonoBehaviour
 
     public PlayerControl playerControl;
 
-    public GameManager gameManager;
-
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
     public bool dialogue_continue = false;
@@ -128,7 +126,6 @@ public class DialogueManager : MonoBehaviour
             {
                 StopCoroutine(startDialogueCoroutine());
                 ExitDialogue();
-
             }
             else
             {
@@ -144,18 +141,16 @@ public class DialogueManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                if (count == contentsList.Count - 2)
+                {
+                    button_text.text = "닫기";
+                }
                 count++;
                 text.text = "";
                 if (count == contentsList.Count)
                 {
                     StopCoroutine(startDialogueCoroutine());
                     ExitDialogue();
-
-                    //마지막 대화 닫기를 눌렀을때 GameState가 "Tutorial Cut Scene 이면 MiniGame 클래스에 있는 StartInGameFade 코루틴 시작.
-                    if (GameManager.GameState == "Tutorial Cut Scene")
-                    {
-                        StartCoroutine(StartInGameFade());
-                    }
                 }
                 else
                 {
@@ -167,14 +162,6 @@ public class DialogueManager : MonoBehaviour
            
         }
     }
-
-    public IEnumerator StartInGameFade()
-    {
-        yield return StartCoroutine(gameManager.FadeOut());
-        GameManager.GameState = "InGame";
-        yield return StartCoroutine(gameManager.FadeIn());
-    }
-
 
     //혹시나 버그날 때 복구해서 사용할 코드...
 
