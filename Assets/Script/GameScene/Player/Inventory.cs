@@ -24,12 +24,8 @@ public class Inventory : MonoBehaviour
     private DialogueManager dialogueManager;
     private UIManager uiManager;
 
-    public bool canPickup = false;
+    private bool canPickup = false;
     private Collider2D currentItemCollider;
-
-    // 대화내용
-    [SerializeField]
-    public Dialogue d_camera;
 
     GameObject GetItemObject(string item_name)
     {
@@ -59,7 +55,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void PlaceItem(int slotIndex)
+    void PlaceItem(int slotIndex)
     {
         if (itemDB[slotIndex] == null) return;
 
@@ -127,31 +123,15 @@ public class Inventory : MonoBehaviour
 
                 switch (tag)
                 {
-                    case "DroppedBrownTeddyBear":
-                        PickupItem("BrownTeddyBear", currentItemCollider);
-                        dialogueManager.ShowDialogue(d_camera);
+                    case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider);
+                        dialogueManager.ShowDialogue(player.d_cake);
                         uiManager.CameraUI.SetActive(true);
                         break;
-
-                    case "BrownTeddyBear":
-                        PickupItem("BrownTeddyBear", currentItemCollider);
-                        break;
-
-                    case "PinkTeddyBear":
-                        PickupItem("PinkTeddyBear", currentItemCollider);
-                        break;
-
-                    case "YellowTeddyBear":
-                        PickupItem("YellowTeddyBear", currentItemCollider);
-                        break;
-
-                    case "Cake":
-                        PickupItem("Cake", currentItemCollider);
-                        break;
-
-                    case "NPC":
-                        PickupItem("NPC", currentItemCollider);
-                        break;
+                    case "BrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider); break;
+                    case "PinkTeddyBear": PickupItem("PinkTeddyBear", currentItemCollider); break;
+                    case "YellowTeddyBear": PickupItem("YellowTeddyBear", currentItemCollider); break;
+                    case "Cake": PickupItem("Cake", currentItemCollider); break;
+                    case "NPC": PickupItem("NPC", currentItemCollider); break;
                 }
             }
         }
