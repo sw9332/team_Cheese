@@ -25,21 +25,11 @@ public class Object_Being_Pushed : MonoBehaviour
                 rb.freezeRotation = true;
             }
 
-            else if (!FreezeX && !FreezeY)
-            {
-                rb.constraints = RigidbodyConstraints2D.None;
-            }
-
-            else
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
+            else if (!FreezeX && !FreezeY) rb.constraints = RigidbodyConstraints2D.None;
+            else rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
-        else
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
+        else rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

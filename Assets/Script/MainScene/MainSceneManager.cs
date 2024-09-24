@@ -11,9 +11,7 @@ public class MainSceneManager : MonoBehaviour
 
     public FadeManager fadeManager;
 
-    //메인화면 버튼---------------------------------------------------------------------
-
-    public void LoadUI()
+    public void LoadUI() //불러오기 버튼
     {
         if(Load_UI.activeSelf == false)
             Load_UI.SetActive(true);
@@ -21,11 +19,20 @@ public class MainSceneManager : MonoBehaviour
             Load_UI.SetActive(false);
     }
 
-    //새 게임---------------------------------
-    public void StartButton_Fade()
+    public void StartButton_Fade() //새 게임 버튼
     {
         StartCoroutine(fadeManager.FadeOut());
         Invoke("tutorial_start", 1f);
+    }
+
+    public void SettingButton() //설정 버튼
+    {
+        SettingUI.SetActive(true);
+    }
+
+    public void ExitButton() //나가기 버튼
+    {
+        Application.Quit();
     }
 
     void tutorial_start()
@@ -33,29 +40,11 @@ public class MainSceneManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    //설정-------------------------------------
-    public void SettingButton()
-    {
-        SettingUI.SetActive(true);
-    }
-    
-    //나가기------------------------------------
-    public void ExitButton()
-    {
-        Application.Quit();
-    }
-
-    //-------------------------------------------------------------------------------
-
-    //메인화면 효과
     public Collider2D flag;
     public Transform flag_pos;
     public GameObject TeddyBear;
     public GameObject TeddyBear_yellow;
     public GameObject TeddyBear_pink;
-
-    public Collider2D CameraObject;
-    public ParticleSystem CameraEffect;
 
     void MainObjectClick()
     {
@@ -65,52 +54,23 @@ public class MainSceneManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
             if (hit.collider != null && hit.collider == flag)
-            {
-                GameObject clickedObject = hit.collider.gameObject;
-                Debug.Log("Clicked on: " + clickedObject.name);
-                
+            {   
                 int Rand = Random.Range(1,4);
 
                 switch(Rand)
                 {
-                    case 1:
-                        Instantiate(TeddyBear, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
-                        break;
-                    case 2:
-                        Instantiate(TeddyBear_yellow, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
-                        break;
-                    case 3:
-                        Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation);
-                        break;
+                    case 1: Instantiate(TeddyBear, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
+                    case 2: Instantiate(TeddyBear_yellow, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
+                    case 3: Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
                 }                    
             }
-
-            if (hit.collider != null && hit.collider == CameraObject)
-            {
-                GameObject clickedObject = hit.collider.gameObject;
-                CameraEffect.Play();
-            }
         }
-    }
-
-    //-------------------------------------------------------------------------------
-
-    void Awake()
-    {
-        Application.targetFrameRate = 60;
-        print(Application.targetFrameRate+"FPS");
-    }
-
-    void Start()
-    {
-        //StartCoroutine(FadeIn());
     }
 
     void Update()
     {
         MainObjectClick();
 
-        if(Load_UI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
-            LoadUI();
+        if(Load_UI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
     }
 }
