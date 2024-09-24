@@ -6,20 +6,19 @@ using UnityEngine.UI;
 public class Stamina : MonoBehaviour
 {
     public Slider playerStaminaBar;
-    public static bool isPlayerRunning;
+    public bool isPlayerRunning;
     private PlayerControl playerControl;
 
     void staminaChage()
     {
-            if (isPlayerRunning== true && playerControl.isPush != true)
-            {
-                staminaDown();
-            }
-
-            else
-            {
-                staminaUp();
-            }
+        if (isPlayerRunning== true && playerControl.isPush != true)
+        {
+            staminaDown();
+        }
+        else
+        {
+            staminaUp();
+        }
     }
     void staminaDown()
     {

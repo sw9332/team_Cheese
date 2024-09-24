@@ -7,8 +7,9 @@ using Unity.VisualScripting; // 데이터 쿼리 언어
 
 public class PlayerControl : MonoBehaviour
 {
-    public Player player;
-    public EnemyManager enemyManager;
+    private Player player;
+    private EnemyManager enemyManager;
+    private Stamina stamina;
 
     public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator Player_control; // player 이동 및 공격 애니메이션
@@ -179,22 +180,18 @@ public class PlayerControl : MonoBehaviour
             {
                 moveSpeed = 5;
 
-                if (!isPush)
-                    Player_control.speed = 2;
-                else
-                    Player_control.speed = 1;
+                if (!isPush) Player_control.speed = 2;
+                else Player_control.speed = 1;
 
-                if (!isPush)
-                    Stamina.isPlayerRunning = true;
-                else
-                    Stamina.isPlayerRunning = false;
+                if (!isPush) stamina.isPlayerRunning = true;
+                else stamina.isPlayerRunning = false;
             }
 
             else
             {
                 Player_control.speed = 1;
                 moveSpeed = 2.5f;
-                Stamina.isPlayerRunning = false;
+                stamina.isPlayerRunning = false;
             }
         }
     }
@@ -427,10 +424,12 @@ public class PlayerControl : MonoBehaviour
         return false;
     }
 
-    // -----------------------------------------------------------------------------------------
-
     void Start()
     {
+        player = FindObjectOfType<Player>();
+        enemyManager = FindObjectOfType<EnemyManager>();
+        stamina = FindObjectOfType<Stamina>();
+
         // 범위 판정 offset 값
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);

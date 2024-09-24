@@ -27,9 +27,9 @@ public class Inventory : MonoBehaviour
     private bool canPickup = false;
     private Collider2D currentItemCollider;
 
-    GameObject GetItemObject(string item_name)
+    GameObject GetItemObject(string itemName)
     {
-        switch (item_name)
+        switch (itemName)
         {
             case "BrownTeddyBear": return BrownTeddyBear_Object;
             case "PinkTeddyBear": return PinkTeddyBear_Object;
@@ -41,9 +41,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    Sprite GetItemSprite(string item_name)
+    Sprite GetItemSprite(string itemName)
     {
-        switch (item_name)
+        switch (itemName)
         {
             case "BrownTeddyBear": return BrownTeddyBear_Sprite;
             case "PinkTeddyBear": return PinkTeddyBear_Sprite;

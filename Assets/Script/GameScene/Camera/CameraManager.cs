@@ -37,9 +37,9 @@ public class cameraManager : MonoBehaviour
             pos.y = 47f;
         }
 
-        else if (GameManager.GameState == "InGame")
+        else if (GameManager.GameState == "Stage1")
         {
-            //인게임 시 카메라
+            //Stage1 시 카메라
             pos.x = player.position.x + offset.x;
             pos.y = player.position.y + offset.y;
         }
