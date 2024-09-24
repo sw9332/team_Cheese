@@ -20,14 +20,14 @@ public class GameManager : MonoBehaviour
             if (dialogueManager.dialogue_continue && dialogueManager.is_talking == false)
                 if (dialogueManager.button_text.text == "´Ý±â")
                     if (Input.GetKeyDown(KeyCode.Z))
-                        StartCoroutine(StartInGameFade());
+                        StartCoroutine(Fade("InGame"));
         }
     }
 
-    IEnumerator StartInGameFade()
+    IEnumerator Fade(string state)
     {
         yield return StartCoroutine(FadeOut());
-        GameManager.GameState = "InGame";
+        GameState = state;
         yield return StartCoroutine(FadeIn());
     }
 
