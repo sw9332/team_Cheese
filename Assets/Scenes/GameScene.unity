@@ -77407,7 +77407,7 @@ GameObject:
   - component: {fileID: 1953450624}
   - component: {fileID: 1953450623}
   m_Layer: 5
-  m_Name: testImage
+  m_Name: gnomeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77453,7 +77453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67645a5e76b39284585eeb42ce35be39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83a485933e0f36c4d92e6d76575d548d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
