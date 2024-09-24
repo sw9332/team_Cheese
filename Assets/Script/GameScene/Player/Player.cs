@@ -21,14 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Dialogue d_cutScene;
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "사물")
-        {
-            object_collision = "사물";
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Cake Event") //케이크 이벤트
