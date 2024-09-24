@@ -8,23 +8,23 @@ public class GameManager : MonoBehaviour
     public static string GameState = "Tutorial";
 
     private DialogueManager dialogueManager;
-    public FadeManager fadeManager;
+    private FadeManager fadeManager;
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-
         GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> InGame */
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        fadeManager = FindObjectOfType<FadeManager>();
     }
 
     void Update()
     {
         if(GameState == "Tutorial Cut Scene")
         {
-            if (dialogueManager.dialogue_continue && dialogueManager.is_talking == false)
-                if (dialogueManager.button_text.text == "´Ý±â")
-                    if (Input.GetKeyDown(KeyCode.Z))
-                        StartCoroutine(fadeManager.NextSceneFade("InGame"));
+            if (dialogueManager.button_text.text == "´Ý±â")
+                if (Input.GetKeyDown(KeyCode.Z))
+                    StartCoroutine(fadeManager.NextSceneFade("InGame"));
         }
     }
 }
