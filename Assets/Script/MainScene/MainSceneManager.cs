@@ -9,7 +9,7 @@ public class MainSceneManager : MonoBehaviour
     public GameObject SettingUI;
     public GameObject Load_UI;
 
-    public GameManager gameManager;
+    public FadeManager fadeManager;
 
     //메인화면 버튼---------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ public class MainSceneManager : MonoBehaviour
     //새 게임---------------------------------
     public void StartButton_Fade()
     {
-        StartCoroutine(gameManager.FadeOut());
+        StartCoroutine(fadeManager.FadeOut());
         Invoke("tutorial_start", 1f);
     }
 

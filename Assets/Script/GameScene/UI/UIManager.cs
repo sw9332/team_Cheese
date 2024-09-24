@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    public FadeManager fadeManager;
 
     public GameObject CameraUI;
     public GameObject ExitUI;
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     public void Game_Exit_Yes()
     {
         ExitUI.SetActive(false);
-        StartCoroutine(gameManager.FadeOut());
+        StartCoroutine(fadeManager.FadeOut());
         Invoke("MainScene", 1f);
         Time.timeScale = 1;
     }
