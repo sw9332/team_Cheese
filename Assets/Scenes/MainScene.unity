@@ -334,6 +334,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13805130}
   m_CullTransparentMesh: 1
+--- !u!1 &22566720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22566722}
+  - component: {fileID: 22566721}
+  m_Layer: 0
+  m_Name: FadeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22566721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22566720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da712778979fd404191bd8b681963c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1357440138}
+  fadeDuration: 1
+--- !u!4 &22566722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22566720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -74.06408, y: 46.491283, z: 0.53735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &50949322
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,7 +6100,7 @@ GameObject:
   - component: {fileID: 1140336920}
   - component: {fileID: 1140336921}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: MainSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6073,7 +6119,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1140336921
 MonoBehaviour:
@@ -6089,7 +6135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingUI: {fileID: 436344993}
   Load_UI: {fileID: 750169855}
-  gameManager: {fileID: 1679908173}
+  fadeManager: {fileID: 22566721}
   flag: {fileID: 1149663746}
   flag_pos: {fileID: 1365456374}
   TeddyBear: {fileID: 88704244900918966, guid: 6ba867a7bb219264d9e0e435998817cf, type: 3}
@@ -9326,7 +9372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1679908173
 MonoBehaviour:
@@ -9340,8 +9386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce68ecfabb1e46439816a25d1e03136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeImage: {fileID: 1357440138}
-  fadeDuration: 1
+  fadeManager: {fileID: 22566721}
 --- !u!1 &1748039243
 GameObject:
   m_ObjectHideFlags: 0
@@ -11509,5 +11554,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

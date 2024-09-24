@@ -19,8 +19,7 @@ public class MiniGame : MonoBehaviour
 
     public Player player1;
     public DialogueManager dialogueManager;
-
-    public GameManager gameManager;
+    public FadeManager fadeManager;
 
 
     //private bool is_next_stage = false;
@@ -107,7 +106,7 @@ public class MiniGame : MonoBehaviour
 
     IEnumerator NextStage()
     {
-        yield return StartCoroutine(gameManager.FadeOut());
+        yield return StartCoroutine(fadeManager.FadeOut());
         //is_transition = true;
         player.transform.position = new Vector3(60, 0, 0);
         mainCamera.transform.position = new Vector3(60, 0, -10);
@@ -118,6 +117,6 @@ public class MiniGame : MonoBehaviour
         minigamePanel.SetActive(false);
         is_minigame = false;
         //is_transition = false;
-        yield return StartCoroutine(gameManager.FadeIn());
+        yield return StartCoroutine(fadeManager.FadeIn());
     }
 }
