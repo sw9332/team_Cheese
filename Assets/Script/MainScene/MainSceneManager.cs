@@ -44,6 +44,11 @@ public class MainSceneManager : MonoBehaviour
         ScreenStartCheck = true;
     }
 
+    void FadeInvoke()
+    {
+        StartCoroutine(fadeManager.FadeIn());
+    }
+
     void tutorial_start()
     {
         SceneManager.LoadScene("GameScene");
@@ -85,9 +90,10 @@ public class MainSceneManager : MonoBehaviour
     {
         fadeManager = FindObjectOfType<FadeManager>();
 
-        if(!ScreenStartCheck)
+        if (!ScreenStartCheck)
         {
-            StartCoroutine(fadeManager.FadeIn());
+            fadeManager.fadeImage.gameObject.SetActive(true);
+            Invoke("FadeInvoke", 0.3f);
             ScreenButton.SetActive(true);
         }
 
