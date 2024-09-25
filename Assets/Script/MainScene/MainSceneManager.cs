@@ -10,6 +10,8 @@ public class MainSceneManager : MonoBehaviour
     public GameObject Load_UI;
     public GameObject ScreenButton;
 
+    public static bool ScreenStartCheck = false;
+
     private FadeManager fadeManager;
 
     public void LoadUI() //불러오기 버튼
@@ -39,6 +41,7 @@ public class MainSceneManager : MonoBehaviour
     public void ScreenClickButton()
     {
         ScreenButton.SetActive(false);
+        ScreenStartCheck = true;
     }
 
     void tutorial_start()
@@ -81,6 +84,15 @@ public class MainSceneManager : MonoBehaviour
     void Start()
     {
         fadeManager = FindObjectOfType<FadeManager>();
+
+        if(!ScreenStartCheck)
+        {
+            StartCoroutine(fadeManager.FadeIn());
+            ScreenButton.SetActive(true);
+        }
+
+        else
+            ScreenButton.SetActive(false);
     }
     void Update()
     {
