@@ -8,8 +8,9 @@ public class MainSceneManager : MonoBehaviour
 {
     public GameObject SettingUI;
     public GameObject Load_UI;
+    public GameObject ScreenButton;
 
-    public FadeManager fadeManager;
+    private FadeManager fadeManager;
 
     public void LoadUI() //불러오기 버튼
     {
@@ -33,6 +34,11 @@ public class MainSceneManager : MonoBehaviour
     public void ExitButton() //나가기 버튼
     {
         Application.Quit();
+    }
+
+    public void ScreenClickButton()
+    {
+        ScreenButton.SetActive(false);
     }
 
     void tutorial_start()
@@ -67,6 +73,15 @@ public class MainSceneManager : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
+    void Start()
+    {
+        fadeManager = FindObjectOfType<FadeManager>();
+    }
     void Update()
     {
         MainObjectClick();
