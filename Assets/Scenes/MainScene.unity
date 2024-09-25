@@ -3380,10 +3380,10 @@ RectTransform:
   - {fileID: 51906129}
   - {fileID: 1194555383}
   - {fileID: 2010638532}
-  - {fileID: 1357440137}
   - {fileID: 436344994}
   - {fileID: 750169856}
   - {fileID: 1343781323}
+  - {fileID: 1357440137}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
