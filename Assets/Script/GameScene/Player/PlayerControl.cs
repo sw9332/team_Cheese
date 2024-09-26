@@ -338,7 +338,7 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-
+    // Player HP ---------------------------------------------------------------------
 
     /* HP ฐüทร Gizmo */
     public bool showHPGizmo = false;
@@ -351,8 +351,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
-    // Player HP ---------------------------------------------------------------------
 
     private Collider2D[] nearEnemies;
     private float elapsedTime = 0f;
