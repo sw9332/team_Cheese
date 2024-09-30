@@ -9,25 +9,26 @@ public class Bullet : MonoBehaviour
     public float distance;
     public LayerMask isLayer;
     private Vector2 direction;
+    private PlayerControl playerControl;
     private TilemapCollider2D wall;
     private EnemyManager enemyList;
 
 
     void bulletDirectionSettings()
     {
-        if (PlayerControl.playerDirection == 1)
+        if (playerControl.Direction == 1)
         {
             direction = Vector2.up;
         }
-        else if (PlayerControl.playerDirection == 2)
+        else if (playerControl.Direction == 2)
         {
             direction = Vector2.down;
         }
-        else if (PlayerControl.playerDirection == 3)
+        else if (playerControl.Direction == 3)
         {
             direction = Vector2.left;
         }
-        else if (PlayerControl.playerDirection == 4)
+        else if (playerControl.Direction == 4)
         {
             direction = Vector2.right;
         }
@@ -60,6 +61,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        playerControl = FindObjectOfType<PlayerControl>();
         enemyList = FindObjectOfType<EnemyManager> ();
         bulletDirectionSettings();
 
