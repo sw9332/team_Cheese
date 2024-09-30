@@ -32,9 +32,10 @@ public class PlayerControl : MonoBehaviour
     private float fireCurtime;
 
     // 근접공격 및 enemy와 충돌
+    [SerializeField] List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
-    public Vector2 meleeAttackBoxSize;
-    public Vector2 nearEnemyBoxSize;
+    private Vector2 meleeAttackBoxSize;
+    private Vector2 nearEnemyBoxSize;
 
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
@@ -339,6 +340,15 @@ public class PlayerControl : MonoBehaviour
 
 
     // Player HP ---------------------------------------------------------------------
+    void getPlayerHP()
+    {
+        int numHp = GameObject.Find("playerHP").transform.childCount;
+        for (int i = 0; i < numHp; i++)
+        {
+            GameObject hpObj = GameObject.Find("playerHP").transform.GetChild(i).gameObject;
+            hp.Add(hpObj);
+        }
+    }
 
     /* HP 관련 Gizmo */
     public bool showHPGizmo = false;
@@ -385,7 +395,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Player_Collision()
     {
-        if (player.hp != null)
+        if (hp != null)
         {
             if (CollideWithEnemy() == true)
             {
@@ -400,11 +410,11 @@ public class PlayerControl : MonoBehaviour
             if (isCollidingWithEnemy == true)
             {
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime >= destroyTime && player.hp.Count > 0)
+                if (elapsedTime >= destroyTime && hp.Count > 0)
                 {
-                    GameObject lastHp = player.hp[player.hp.Count - 1];
+                    GameObject lastHp = hp[hp.Count - 1];
                     Destroy(lastHp);
-                    player.hp.RemoveAt(player.hp.Count - 1);
+                    hp.RemoveAt(hp.Count - 1); 
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
             }
@@ -424,6 +434,8 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
+        getPlayerHP();
+
         player = FindObjectOfType<Player>();
         enemyManager = FindObjectOfType<EnemyManager>();
         stamina = FindObjectOfType<Stamina>();
