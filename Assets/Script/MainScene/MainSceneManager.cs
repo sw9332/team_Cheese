@@ -16,16 +16,12 @@ public class MainSceneManager : MonoBehaviour
 
     public void LoadUI() //불러오기 버튼
     {
-        if(Load_UI.activeSelf == false)
-            Load_UI.SetActive(true);
-        else if(Load_UI.activeSelf == true)
-            Load_UI.SetActive(false);
+        Load_UI.SetActive(!Load_UI.activeSelf);
     }
 
-    public void StartButton_Fade() //새 게임 버튼
+    public void NewGameStartButton() //새 게임 버튼
     {
-        StartCoroutine(fadeManager.FadeOut());
-        Invoke("tutorial_start", 1f);
+        StartCoroutine(NewGame());
     }
 
     public void SettingButton() //설정 버튼
@@ -49,36 +45,10 @@ public class MainSceneManager : MonoBehaviour
         StartCoroutine(fadeManager.FadeIn());
     }
 
-    void tutorial_start()
+    IEnumerator NewGame()
     {
+        yield return StartCoroutine(fadeManager.FadeOut());
         SceneManager.LoadScene("GameScene");
-    }
-
-    public Collider2D flag;
-    public Transform flag_pos;
-    public GameObject TeddyBear;
-    public GameObject TeddyBear_yellow;
-    public GameObject TeddyBear_pink;
-
-    void MainObjectClick()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-            if (hit.collider != null && hit.collider == flag)
-            {   
-                int Rand = Random.Range(1,4);
-
-                switch(Rand)
-                {
-                    case 1: Instantiate(TeddyBear, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
-                    case 2: Instantiate(TeddyBear_yellow, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
-                    case 3: Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f),flag_pos.position.y), flag.transform.rotation); break;
-                }                    
-            }
-        }
     }
 
     void Awake()
@@ -103,7 +73,33 @@ public class MainSceneManager : MonoBehaviour
     void Update()
     {
         MainObjectClick();
+        if(Load_UI.activeSelf && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
+    }
 
-        if(Load_UI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
+    public Collider2D flag;
+    public Transform flag_pos;
+    public GameObject TeddyBear;
+    public GameObject TeddyBear_yellow;
+    public GameObject TeddyBear_pink;
+
+    void MainObjectClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+            if (hit.collider != null && hit.collider == flag)
+            {
+                int Rand = Random.Range(1, 4);
+
+                switch (Rand)
+                {
+                    case 1: Instantiate(TeddyBear, new Vector2(Random.Range(2.8f, 7.5f), flag_pos.position.y), flag.transform.rotation); break;
+                    case 2: Instantiate(TeddyBear_yellow, new Vector2(Random.Range(2.8f, 7.5f), flag_pos.position.y), flag.transform.rotation); break;
+                    case 3: Instantiate(TeddyBear_pink, new Vector2(Random.Range(2.8f, 7.5f), flag_pos.position.y), flag.transform.rotation); break;
+                }
+            }
+        }
     }
 }
