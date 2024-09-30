@@ -13301,6 +13301,7 @@ GameObject:
   - component: {fileID: 730974886}
   - component: {fileID: 730974888}
   - component: {fileID: 730974890}
+  - component: {fileID: 730974891}
   - component: {fileID: 730974889}
   m_Layer: 0
   m_Name: Player
@@ -13484,10 +13485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0, z: 0}
   stamina: {fileID: 1046106979}
-  hp:
-  - {fileID: 1554170118}
-  - {fileID: 786270577}
-  - {fileID: 1054705958}
   d_cake:
     contents:
     - "\uC5B4?1 \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!"
@@ -13582,17 +13579,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb68a0cc07e8bcd40a21db1cf0b4820b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 730974888}
-  enemyManager: {fileID: 403567747}
   rend: {fileID: 730974880}
-  Player_control: {fileID: 730974887}
+  animator: {fileID: 730974887}
   isMove: 1
   isPush: 0
+  CenterOffset: {x: 0, y: 0, z: 0}
+  Direction: 2
+--- !u!114 &730974891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730974879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e979da18cafb394c85ed07a5688dcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.3
-  meleeAttackBoxSize: {x: 0, y: 0}
-  nearEnemyBoxSize: {x: 0, y: 0}
+  hp:
+  - {fileID: 1554170118}
+  - {fileID: 786270577}
+  - {fileID: 1054705958}
   showRangeGizmo: 0
   showHPGizmo: 0
 --- !u!1001 &739177304

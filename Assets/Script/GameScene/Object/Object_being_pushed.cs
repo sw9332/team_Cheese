@@ -11,7 +11,7 @@ public class Object_Being_Pushed : MonoBehaviour
 
     void Update()
     {
-        if (PlayerControl.moveSpeed == 5)
+        if (PlayerControl.MoveSpeed == 5)
         {
             if (PlayerControl.MoveX && !PlayerControl.MoveY && !FreezeX) // 가로로 밀었을 때
             {
