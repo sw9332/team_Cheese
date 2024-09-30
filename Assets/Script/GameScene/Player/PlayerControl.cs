@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.up * MoveSpeed * Time.deltaTime);
-                animator.speed = 1;  // 위 방향
+                Direction = 1;  // 위 방향
             }
 
             //아래로 이동
