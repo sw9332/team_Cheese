@@ -154,8 +154,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    
-
     public bool Minigame_PlayerPos()
     {
         //아래 조건문에도 스테이지 별로 || 연산자를 이용하여 조건식을 추가해줄 것.
