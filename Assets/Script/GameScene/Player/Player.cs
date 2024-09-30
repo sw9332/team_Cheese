@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private DialogueManager dialogueManager;
 
     public Slider stamina;
-    public List<GameObject> hp = new List<GameObject>();
 
     [SerializeField]
     public Dialogue d_cake;
@@ -64,18 +63,9 @@ public class Player : MonoBehaviour
             case "RoomF Exit": transform.position = new Vector3(28.05f, -63f, 0f); break;
         }
     }
-    void getPlayerHP()
-    {
-        int numHp = GameObject.Find("playerHP").transform.childCount;
-        for (int i = 0; i < numHp; i++)
-        {
-            GameObject hpObj = GameObject.Find("playerHP").transform.GetChild(i).gameObject;
-            hp.Add(hpObj);
-        }
-    }
+
     void Start()
     {
-        getPlayerHP();
         dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
