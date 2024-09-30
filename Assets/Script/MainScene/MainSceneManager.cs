@@ -34,17 +34,6 @@ public class MainSceneManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ScreenClickButton()
-    {
-        ScreenButton.SetActive(false);
-        ScreenStartCheck = true;
-    }
-
-    void FadeInvoke()
-    {
-        StartCoroutine(fadeManager.FadeIn());
-    }
-
     IEnumerator NewGame()
     {
         yield return StartCoroutine(fadeManager.FadeOut());
@@ -59,16 +48,6 @@ public class MainSceneManager : MonoBehaviour
     void Start()
     {
         fadeManager = FindObjectOfType<FadeManager>();
-
-        if (!ScreenStartCheck)
-        {
-            fadeManager.fadeImage.gameObject.SetActive(true);
-            Invoke("FadeInvoke", 0.3f);
-            ScreenButton.SetActive(true);
-        }
-
-        else
-            ScreenButton.SetActive(false);
     }
     void Update()
     {
