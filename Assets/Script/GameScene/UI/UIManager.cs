@@ -59,12 +59,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Setting()
+    public void SettingButton()
     {
         SettingUI.SetActive(true);
     }
 
-    public void Game_Exit_Yes()
+    public void GameExit()
     {
         Pause_UI.SetActive(false);
         StartCoroutine(fadeManager.FadeOut());
@@ -72,13 +72,13 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Game_Exit_No()
+    public void Close()
     {
         Pause_UI.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public void MainScene()
+    void MainScene()
     {
         SceneManager.LoadScene("MainScene");
     }
