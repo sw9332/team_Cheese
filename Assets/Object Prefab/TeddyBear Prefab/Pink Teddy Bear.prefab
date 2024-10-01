@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6749680202944883387}
   - component: {fileID: 6668227108988156852}
   - component: {fileID: 2376252531298945883}
+  - component: {fileID: 742347311933976546}
   m_Layer: 0
   m_Name: Pink Teddy Bear
   m_TagString: PinkTeddyBear
@@ -176,3 +177,15 @@ PolygonCollider2D:
       - {x: 0.3974007, y: 0.649724}
       - {x: 0.39793542, y: 0.70909345}
   m_UseDelaunayMesh: 0
+--- !u!114 &742347311933976546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609593712621222495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be5b3b1c2a4b264b8a95c9040c8e9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5155233655385528532}
   - component: {fileID: 6733207925772234725}
   - component: {fileID: 8714740609343767558}
+  - component: {fileID: 848613337103818111}
   m_Layer: 0
   m_Name: brown Teddy Bear
   m_TagString: BrownTeddyBear
@@ -173,3 +174,16 @@ PolygonCollider2D:
       - {x: 0.34203905, y: 0.65462244}
       - {x: 0.34247836, y: 0.7175463}
   m_UseDelaunayMesh: 0
+--- !u!114 &848613337103818111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2259940670080631774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be5b3b1c2a4b264b8a95c9040c8e9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6733207925772234725}
