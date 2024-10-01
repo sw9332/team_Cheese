@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour
     public FadeManager fadeManager;
 
     public GameObject CameraUI;
-    public GameObject ExitUI;
+    public GameObject Pause_UI;
+    public GameObject SettingUI;
 
     public Image fadeImage;
 
@@ -40,9 +41,32 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Pause_UI.activeSelf == false)
+            {
+                Pause_UI.SetActive(true);
+                Time.timeScale = 0;
+            }
+
+            else if (Pause_UI.activeSelf == true)
+            {
+                Pause_UI.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
+    }
+
+    public void Setting()
+    {
+        SettingUI.SetActive(true);
+    }
+
     public void Game_Exit_Yes()
     {
-        ExitUI.SetActive(false);
+        Pause_UI.SetActive(false);
         StartCoroutine(fadeManager.FadeOut());
         Invoke("MainScene", 1f);
         Time.timeScale = 1;
@@ -50,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void Game_Exit_No()
     {
-        ExitUI.SetActive(false);
+        Pause_UI.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -69,23 +93,9 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         Camera_effect(); //카메라 UI 효과
+        Pause();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (ExitUI.activeSelf == false)
-            {
-                ExitUI.SetActive(true);
-                Time.timeScale = 0;
-            }
-
-            else if (ExitUI.activeSelf == true)
-            {
-                ExitUI.SetActive(false);
-                Time.timeScale = 1;
-            }
-        }
-
-        if(is_bear == true && is_cake == true && is_playerPos == true)
+        if (is_bear == true && is_cake == true && is_playerPos == true)
         {
             tutorialTrigger = true;
         }
