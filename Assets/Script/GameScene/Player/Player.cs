@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public static string object_collision = "땅"; //충돌 확인 (땅/사물)
+    public static bool objectCollision = false; //충돌 확인 (땅 == false / 사물 == true)
     public Vector3 pos; //Player의 현재 위치
 
     private DialogueManager dialogueManager;
