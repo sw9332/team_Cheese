@@ -60,7 +60,7 @@ public class Inventory : MonoBehaviour
         if (itemDB[slotIndex] == null) return;
 
         GameObject itemObject = GetItemObject(itemDB[slotIndex]);
-        Vector3 position = Player.object_collision == "¶¥" ? player.pos : Object.pos;
+        Vector3 position = !Player.objectCollision ? player.pos : Object.pos;
 
         Instantiate(itemObject, position, Quaternion.identity);
         itemDB[slotIndex] = null;

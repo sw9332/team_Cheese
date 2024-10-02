@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using Unity.VisualScripting; // 데이터 쿼리 언어
-
 
 public class PlayerControl : MonoBehaviour
 {
@@ -48,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         if (other.gameObject.tag == "Push_Object") isPush = false;
     }
 
-    void Control() //플레이어의 이동
+    void MoveControl() //플레이어의 이동
     {
         animator.speed = 1;
 
@@ -172,7 +169,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        Control();
+        MoveControl();
         UIManager.is_playerPos = Minigame_PlayerPos();
     }
 }
