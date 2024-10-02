@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public string[] itemDB = new string[4];
-    public Image[] itemImageDB = new Image[4];
+    public Image[] SlotImageDB = new Image[4];
 
-    public GameObject BrownTeddyBear_Object;
-    public GameObject PinkTeddyBear_Object;
-    public GameObject YellowTeddyBear_Object;
-    public GameObject Cake_Object;
-    public GameObject NPC_Object;
+    public GameObject BrownTeddyBear_Item;
+    public GameObject PinkTeddyBear_Item;
+    public GameObject YellowTeddyBear_Item;
+    public GameObject Cake_Item;
+    public GameObject NPC_Item;
 
     public Sprite BrownTeddyBear_Sprite;
     public Sprite PinkTeddyBear_Sprite;
@@ -31,11 +31,11 @@ public class Inventory : MonoBehaviour
     {
         switch (itemName)
         {
-            case "BrownTeddyBear": return BrownTeddyBear_Object;
-            case "PinkTeddyBear": return PinkTeddyBear_Object;
-            case "YellowTeddyBear": return YellowTeddyBear_Object;
-            case "Cake": return Cake_Object;
-            case "NPC": return NPC_Object;
+            case "BrownTeddyBear": return BrownTeddyBear_Item;
+            case "PinkTeddyBear": return PinkTeddyBear_Item;
+            case "YellowTeddyBear": return YellowTeddyBear_Item;
+            case "Cake": return Cake_Item;
+            case "NPC": return NPC_Item;
 
             default: return null;
         }
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
 
         Instantiate(itemObject, position, Quaternion.identity);
         itemDB[slotIndex] = null;
-        itemImageDB[slotIndex].sprite = null;
+        SlotImageDB[slotIndex].sprite = null;
     }
 
     void PickupItem(string itemName, Collider2D other)
@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
             if (string.IsNullOrEmpty(itemDB[i]))
             {
                 itemDB[i] = itemName;
-                itemImageDB[i].sprite = GetItemSprite(itemName);
+                SlotImageDB[i].sprite = GetItemSprite(itemName);
                 Destroy(other.gameObject);
                 break;
             }
