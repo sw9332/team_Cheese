@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 62631893}
   - component: {fileID: 62631892}
   m_Layer: 5
-  m_Name: Slot1_Image
+  m_Name: Slot1 Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,8 +737,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000014067, y: 0.0000030398}
-  m_SizeDelta: {x: 88.9906, y: 117.5482}
+  m_AnchoredPosition: {x: -0.000014067, y: -0.00000047684}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62631892
 MonoBehaviour:
@@ -3596,7 +3596,7 @@ GameObject:
   - component: {fileID: 102123102}
   - component: {fileID: 102123101}
   m_Layer: 5
-  m_Name: Slot_1
+  m_Name: Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16472,21 +16472,21 @@ MonoBehaviour:
   - 
   - 
   - 
-  itemImageDB:
+  SlotImageDB:
   - {fileID: 62631892}
   - {fileID: 771593826}
   - {fileID: 1600430777}
   - {fileID: 1978578322}
-  BrownTeddyBear_Object: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
-  PinkTeddyBear_Object: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
-  YellowTeddyBear_Object: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
-  Cake_Object: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
-  NPC_Object: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
-  BrownTeddyBear_Sprite: {fileID: 21300000, guid: edfc63567ad6d1040bf768a7e1709b11, type: 3}
-  PinkTeddyBear_Sprite: {fileID: 21300000, guid: f86b82721978889488301bd35bf6eb1b, type: 3}
-  YellowTeddyBear_Sprite: {fileID: 21300000, guid: 62ab146cc215d0e4a9c023859697d1de, type: 3}
-  Cake_Sprite: {fileID: 21300000, guid: d522466950a14e34f80ce6df926e5111, type: 3}
-  NPC_Sprite: {fileID: -1814562832, guid: 4d185be5c15e9ef4c9094c7d531da437, type: 3}
+  BrownTeddyBear_Item: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+  PinkTeddyBear_Item: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+  YellowTeddyBear_Item: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+  Cake_Item: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  NPC_Item: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
+  BrownTeddyBear_Sprite: {fileID: 962155441, guid: 0f8029fcd87c88b41b9350db609325fc, type: 3}
+  PinkTeddyBear_Sprite: {fileID: 265498810, guid: 30ad2d84d82764c4cae3d0f62b67fdc1, type: 3}
+  YellowTeddyBear_Sprite: {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}
+  Cake_Sprite: {fileID: 103425051, guid: 8d02b4e8bba0c8b449c9b37f4e2404c7, type: 3}
+  NPC_Sprite: {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
 --- !u!114 &730974890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17107,7 +17107,7 @@ GameObject:
   - component: {fileID: 771593827}
   - component: {fileID: 771593826}
   m_Layer: 5
-  m_Name: Slot2_Image
+  m_Name: Slot2 Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17131,7 +17131,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000015259, y: 0}
-  m_SizeDelta: {x: 88.9906, y: 117.5482}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771593826
 MonoBehaviour:
@@ -79332,7 +79332,7 @@ GameObject:
   - component: {fileID: 1600430778}
   - component: {fileID: 1600430777}
   m_Layer: 5
-  m_Name: Slot3_Image
+  m_Name: Slot3 Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79356,7 +79356,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000015259, y: 0}
-  m_SizeDelta: {x: 88.9906, y: 117.5482}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600430777
 MonoBehaviour:
@@ -81379,7 +81379,7 @@ GameObject:
   - component: {fileID: 1739368324}
   - component: {fileID: 1739368323}
   m_Layer: 5
-  m_Name: Inventory_UI
+  m_Name: Inventory UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83775,7 +83775,7 @@ GameObject:
   - component: {fileID: 1825262997}
   - component: {fileID: 1825262996}
   m_Layer: 5
-  m_Name: Slot_3
+  m_Name: Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86161,7 +86161,7 @@ GameObject:
   - component: {fileID: 1978578323}
   - component: {fileID: 1978578322}
   m_Layer: 5
-  m_Name: Slot4_Image
+  m_Name: Slot4 Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86185,7 +86185,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00010681, y: 0}
-  m_SizeDelta: {x: 88.9906, y: 117.5482}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978578322
 MonoBehaviour:
@@ -86707,7 +86707,7 @@ GameObject:
   - component: {fileID: 2002466995}
   - component: {fileID: 2002466994}
   m_Layer: 5
-  m_Name: Slot_2
+  m_Name: Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86784,7 +86784,7 @@ GameObject:
   - component: {fileID: 2005522052}
   - component: {fileID: 2005522051}
   m_Layer: 5
-  m_Name: Slot_4
+  m_Name: Slot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

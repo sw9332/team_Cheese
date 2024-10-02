@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2259940670080631774
+--- !u!1 &8127878303061343821
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5155233655385528532}
-  - component: {fileID: 6733207925772234725}
-  - component: {fileID: 8714740609343767558}
-  - component: {fileID: 848613337103818111}
+  - component: {fileID: 6650303520368305167}
+  - component: {fileID: 1533000276559052040}
+  - component: {fileID: 6484863724539899939}
+  - component: {fileID: 88893140674986690}
   m_Layer: 0
-  m_Name: brown Teddy Bear
-  m_TagString: BrownTeddyBear
+  m_Name: Yellow Teddy Bear Item
+  m_TagString: YellowTeddyBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5155233655385528532
+--- !u!4 &6650303520368305167
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259940670080631774}
+  m_GameObject: {fileID: 8127878303061343821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6733207925772234725
+--- !u!212 &1533000276559052040
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259940670080631774}
+  m_GameObject: {fileID: 8127878303061343821}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: edfc63567ad6d1040bf768a7e1709b11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62ab146cc215d0e4a9c023859697d1de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8714740609343767558
+--- !u!60 &6484863724539899939
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259940670080631774}
+  m_GameObject: {fileID: 8127878303061343821}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -130,60 +130,56 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.02894656, y: 0.71664876}
-      - {x: -0.028428722, y: 0.6535546}
-      - {x: -0.09197803, y: 0.6542224}
-      - {x: -0.090770215, y: 0.22359824}
-      - {x: -0.02625738, y: 0.22309168}
-      - {x: -0.030211633, y: 0.089206055}
-      - {x: -0.09007032, y: 0.08954499}
-      - {x: -0.090754844, y: 0.028936189}
-      - {x: -0.21772537, y: 0.029555848}
-      - {x: -0.21717091, y: -0.03469766}
-      - {x: -0.2791728, y: -0.034616593}
-      - {x: -0.2790511, y: -0.2219067}
-      - {x: -0.40337962, y: -0.22219162}
-      - {x: -0.40371183, y: -0.28373814}
-      - {x: -0.46709454, y: -0.28347263}
-      - {x: -0.46660084, y: -0.40384895}
-      - {x: -0.40511382, y: -0.40373415}
-      - {x: -0.40447804, y: -0.46688443}
-      - {x: -0.34220648, y: -0.46701598}
-      - {x: -0.3420456, y: -0.52899176}
-      - {x: -0.2796243, y: -0.5294413}
-      - {x: -0.27900672, y: -0.59121484}
-      - {x: -0.21759608, y: -0.59078515}
-      - {x: -0.216694, y: -0.7160252}
-      - {x: 0.09077351, y: -0.7162154}
-      - {x: 0.091555834, y: -0.65383625}
-      - {x: 0.21620259, y: -0.65413785}
-      - {x: 0.2169737, y: -0.59154844}
-      - {x: 0.34243235, y: -0.5923191}
-      - {x: 0.3426338, y: -0.52962554}
-      - {x: 0.4042728, y: -0.52974445}
-      - {x: 0.40468436, y: -0.44953158}
-      - {x: 0.405167, y: -0.34281665}
-      - {x: 0.46840823, y: -0.34226418}
-      - {x: 0.46685043, y: 0.091823414}
-      - {x: 0.4043123, y: 0.09233157}
-      - {x: 0.4058063, y: 0.21888083}
-      - {x: 0.4668807, y: 0.21959455}
-      - {x: 0.46661153, y: 0.59149235}
-      - {x: 0.40296024, y: 0.5919511}
-      - {x: 0.40501714, y: 0.6535192}
-      - {x: 0.34203905, y: 0.65462244}
-      - {x: 0.34247836, y: 0.7175463}
+    - - {x: -0.024255037, y: 0.7132503}
+      - {x: -0.022553623, y: 0.6509652}
+      - {x: -0.08569959, y: 0.6503143}
+      - {x: -0.08377752, y: 0.20909923}
+      - {x: -0.14830217, y: 0.20992142}
+      - {x: -0.14944813, y: 0.02466923}
+      - {x: -0.21246427, y: 0.025303423}
+      - {x: -0.21271318, y: -0.04203105}
+      - {x: -0.27428204, y: -0.039621472}
+      - {x: -0.2760923, y: -0.22654277}
+      - {x: -0.39842904, y: -0.22601849}
+      - {x: -0.39798224, y: -0.28951305}
+      - {x: -0.46248448, y: -0.29041383}
+      - {x: -0.46399832, y: -0.3955641}
+      - {x: -0.40004128, y: -0.39570722}
+      - {x: -0.39669967, y: -0.4598673}
+      - {x: -0.33649248, y: -0.45773563}
+      - {x: -0.33567148, y: -0.5259012}
+      - {x: -0.274117, y: -0.5250275}
+      - {x: -0.27504128, y: -0.5837576}
+      - {x: -0.2087797, y: -0.585067}
+      - {x: -0.20812148, y: -0.710987}
+      - {x: 0.08563219, y: -0.7082416}
+      - {x: 0.08347064, y: -0.6459071}
+      - {x: 0.21131468, y: -0.64609385}
+      - {x: 0.21035112, y: -0.5861767}
+      - {x: 0.33503821, y: -0.58349687}
+      - {x: 0.33375755, y: -0.51750827}
+      - {x: 0.39770722, y: -0.5186335}
+      - {x: 0.39563695, y: -0.3257443}
+      - {x: 0.4580019, y: -0.3256887}
+      - {x: 0.45757914, y: 0.13009375}
+      - {x: 0.39611524, y: 0.12966669}
+      - {x: 0.3993089, y: 0.23273802}
+      - {x: 0.46207634, y: 0.22833991}
+      - {x: 0.45879668, y: 0.57879907}
+      - {x: 0.3999891, y: 0.5820045}
+      - {x: 0.39616036, y: 0.643864}
+      - {x: 0.3339994, y: 0.64600915}
+      - {x: 0.335693, y: 0.7137604}
   m_UseDelaunayMesh: 0
---- !u!114 &848613337103818111
+--- !u!114 &88893140674986690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259940670080631774}
+  m_GameObject: {fileID: 8127878303061343821}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1be5b3b1c2a4b264b8a95c9040c8e9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 6733207925772234725}

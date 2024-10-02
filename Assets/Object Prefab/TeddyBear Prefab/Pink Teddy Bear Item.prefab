@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2376252531298945883}
   - component: {fileID: 742347311933976546}
   m_Layer: 0
-  m_Name: Pink Teddy Bear
+  m_Name: Pink Teddy Bear Item
   m_TagString: PinkTeddyBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
