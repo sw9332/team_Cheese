@@ -203,6 +203,14 @@ public class GameSetting : MonoBehaviour
         effect_sound_text.text = "효과음 : "+effect_sound.value.ToString("F1")+"%";
     }
 
+    void SoundLoad()
+    {
+        background_sound.value = PlayerPrefs.GetFloat("Background Sound");
+        effect_sound.value = PlayerPrefs.GetFloat("Effect Sound");
+    }
+
+    //--------------------------------------------------------------------------------------------------------------
+
     public void OK_Button()
     {
         PlayerPrefs.SetFloat("Background Sound", background_sound.value);
@@ -214,9 +222,7 @@ public class GameSetting : MonoBehaviour
     {
         InitUI();
         Graphic();
-
-        background_sound.value = PlayerPrefs.GetFloat("Background Sound");
-        effect_sound.value = PlayerPrefs.GetFloat("Effect Sound");
+        SoundLoad();
     }
 
     void Update()
@@ -224,6 +230,6 @@ public class GameSetting : MonoBehaviour
         Background_sound_Setting();
         Effect_sound_Setting();
 
-        if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
+        if(gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
     }
 }
