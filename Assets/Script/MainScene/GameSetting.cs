@@ -125,21 +125,25 @@ public class GameSetting : MonoBehaviour
     public void GraphicsSettings_Ultra()
     {
         Graphics = "Ultra";
+        Graphic();
     }
 
     public void GraphicsSettings_High()
     {
         Graphics = "High";
+        Graphic();
     }
 
     public void GraphicsSettings_Medium()
     {
         Graphics = "Medium";
+        Graphic();
     }
 
     public void GraphicsSettings_Low()
     {
         Graphics = "Low";
+        Graphic();
     }
 
     void Graphic()
@@ -209,6 +213,7 @@ public class GameSetting : MonoBehaviour
     void Start()
     {
         InitUI();
+        Graphic();
 
         background_sound.value = PlayerPrefs.GetFloat("Background Sound");
         effect_sound.value = PlayerPrefs.GetFloat("Effect Sound");
@@ -217,8 +222,7 @@ public class GameSetting : MonoBehaviour
     void Update()
     {
         Background_sound_Setting();
-        Effect_sound_Setting();   
-        Graphic();
+        Effect_sound_Setting();
 
         if(gameObject.activeSelf == true && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
     }
