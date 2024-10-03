@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         //오브젝트 밀기
-        if (other.gameObject.tag == "Push_Object")
+        if (other.gameObject.CompareTag("Push_Object"))
         {
             isPush = true;
 
@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Push_Object") isPush = false;
+        if (other.gameObject.CompareTag("Push_Object")) isPush = false;
     }
 
     void MoveControl() //플레이어의 이동
