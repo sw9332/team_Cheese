@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
 
     private Player player;
     private DialogueManager dialogueManager;
-    private DialogueEventManager dialogueEventManager;
+    private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
 
     private bool canPickup = false;
@@ -125,7 +125,7 @@ public class Inventory : MonoBehaviour
                 switch (tag)
                 {
                     case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider);
-                        dialogueManager.ShowDialogue(dialogueEventManager.d_cake);
+                        dialogueManager.ShowDialogue(dialogueContentManager.d_cake);
                         uiManager.CameraUI.SetActive(true);
                         break;
                     case "BrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider); break;
@@ -147,7 +147,7 @@ public class Inventory : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueEventManager = FindObjectOfType<DialogueEventManager>();
+        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         uiManager = FindObjectOfType<UIManager>();
     }
 }
