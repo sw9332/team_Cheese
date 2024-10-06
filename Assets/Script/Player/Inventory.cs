@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
     private Player player;
     private DialogueManager dialogueManager;
+    private DialogueEventManager dialogueEventManager;
     private UIManager uiManager;
 
     private bool canPickup = false;
@@ -60,7 +61,7 @@ public class Inventory : MonoBehaviour
         if (itemDB[slotIndex] == null) return;
 
         GameObject itemObject = GetItemObject(itemDB[slotIndex]);
-        Vector3 position = !Player.objectCollision ? player.pos : Object.pos;
+        Vector3 position = !Player.objectCollision ? player.transform.position : Object.pos;
 
         Instantiate(itemObject, position, Quaternion.identity);
         itemDB[slotIndex] = null;
@@ -124,7 +125,7 @@ public class Inventory : MonoBehaviour
                 switch (tag)
                 {
                     case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider);
-                        dialogueManager.ShowDialogue(player.d_cake);
+                        dialogueManager.ShowDialogue(dialogueEventManager.d_cake);
                         uiManager.CameraUI.SetActive(true);
                         break;
                     case "BrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider); break;
@@ -146,6 +147,7 @@ public class Inventory : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueEventManager = FindObjectOfType<DialogueEventManager>();
         uiManager = FindObjectOfType<UIManager>();
     }
 }
