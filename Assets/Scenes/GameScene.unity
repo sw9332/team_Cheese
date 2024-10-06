@@ -61297,7 +61297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   d_cake:
     contents:
-    - "\uC5B4?1 \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!"
+    - "\uC5B4?! \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!"
     - "\uC5B4....\uC74C...."
     - "\uCF00\uC774\uD06C\uB97C \uC8FC\uC6B0\uB824\uBA74 \uC778\uD615\uC744 \uC62E\uACA8\uC57C\uACA0\uC5B4!"
     - "!@#$\uC744......"
@@ -61321,11 +61321,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_camera:
     contents:
-    - D_camera
-    - D_camera
-    - D_camera
-    - D_camera
-    - D_camera
+    - "\uC640!!! \uCE74\uBA54\uB77C\uB2E4! \uCE74\uBA54\uB77C\uB85C! \uCE74\uBA54\uB77C\uB85C......"
+    - "\uBE68\uB9AC...\u314B....\uCF00\uC774\uD06C\uB97C %#@$!!!"
+    - "\uC5B4?... \uC5B4... \uC544!"
+    - "\uBE68\uB9AC \uCF00\uC774\uD06C\uB97C \uC62E\uAE30\uC790!"
+    - "\uCE74\uBA54\uB77C\uB97C \uD68D\uB4DD\uD558\uC600\uC2B5\uB2C8\uB2E4."
     sprites:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}

@@ -125,7 +125,7 @@ public class Inventory : MonoBehaviour
                 switch (tag)
                 {
                     case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider);
-                        dialogueManager.ShowDialogue(dialogueContentManager.d_cake);
+                        dialogueManager.ShowDialogue(dialogueContentManager.d_camera);
                         uiManager.CameraUI.SetActive(true);
                         break;
                     case "BrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider); break;
