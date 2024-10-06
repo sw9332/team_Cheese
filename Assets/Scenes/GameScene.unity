@@ -61262,7 +61262,7 @@ GameObject:
   - component: {fileID: 1116343557}
   - component: {fileID: 1116343558}
   m_Layer: 0
-  m_Name: Dialouge Content Manager
+  m_Name: Dialogue Content Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
