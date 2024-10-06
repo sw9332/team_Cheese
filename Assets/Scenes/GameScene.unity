@@ -5812,7 +5812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210832107}
   m_Layer: 0
-  m_Name: Tutorial_Map
+  m_Name: Tutorial Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8395,7 +8395,7 @@ GameObject:
   - component: {fileID: 362198451}
   - component: {fileID: 362198450}
   m_Layer: 0
-  m_Name: TeleportManager
+  m_Name: Teleport Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8422,7 +8422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362198449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.65434, y: -13.695194, z: 9.045603}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12267,7 +12267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542243904}
   m_Layer: 0
-  m_Name: Game_Map
+  m_Name: Game Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17842,7 +17842,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  fadeManager: {fileID: 840480186}
 --- !u!1 &788612235
 GameObject:
   m_ObjectHideFlags: 0
@@ -18705,7 +18704,7 @@ GameObject:
   - component: {fileID: 840480185}
   - component: {fileID: 840480186}
   m_Layer: 0
-  m_Name: FadeManager
+  m_Name: Fade Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18719,7 +18718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840480184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74.06408, y: 46.491283, z: 0.53735}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20722,7 +20721,7 @@ GameObject:
   - component: {fileID: 921938700}
   - component: {fileID: 921938699}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20748,7 +20747,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921938698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.28584, y: 3.9857757, z: -9.909501}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80521,7 +80520,7 @@ GameObject:
   - component: {fileID: 1638264465}
   - component: {fileID: 1638264466}
   m_Layer: 5
-  m_Name: DialougeManager
+  m_Name: Dialouge Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80546,7 +80545,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638264466
 MonoBehaviour:
