@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
     public static bool objectCollision = false; //충돌 확인 (땅 == false / 사물 == true)
     public Vector3 pos; //Player의 현재 위치
 
+    private TeleportManager teleportManager;
     private DialogueManager dialogueManager;
 
     public Slider stamina;
+
+    private Collider2D PlayerCollider;
 
     [SerializeField]
     public Dialogue d_cake;
@@ -41,32 +44,34 @@ public class Player : MonoBehaviour
 
         switch(other.gameObject.tag)
         {
-            case "Tutorial Go": transform.position = new Vector3(57.5f, -1.8f, 0); break;
-            case "Tutorial Exit": transform.position = new Vector3(pos.x, -11.3f, 0); break;
+            case "Tutorial Go": teleportManager.teleport("Tutorial Room", PlayerCollider); break;
+            case "Tutorial Exit": teleportManager.teleport("In front Tutorial Room", PlayerCollider); break;
 
-            case "RoomA Go": transform.position = new Vector3(pos.x, 7.5f, 0f); break;
-            case "RoomA Exit": transform.position = new Vector3(pos.x, -2.33f, 0f); break;
+            case "RoomA Go": teleportManager.teleport("RoomA Go", PlayerCollider); break;
+            case "RoomA Exit": teleportManager.teleport("RoomA Exit", PlayerCollider); break;
 
-            case "RoomB Go": transform.position = new Vector3(59f, 19.67f, 0f); break;
-            case "RoomB Exit": transform.position = new Vector3(46.61f, 19.67f, 0f); break;
+            case "RoomB Go": teleportManager.teleport("RoomB Go", PlayerCollider); break;
+            case "RoomB Exit": teleportManager.teleport("RoomB Exit", PlayerCollider); break;
 
-            case "RoomC Go": transform.position = new Vector3(pos.x, -1.7f, 0f); break;
-            case "RoomC Exit": transform.position = new Vector3(pos.x, -11.6f, 0f); break;
+            case "RoomC Go": teleportManager.teleport("RoomC Go", PlayerCollider); break;
+            case "RoomC Exit": teleportManager.teleport("RoomC Exit", PlayerCollider); break;
 
-            case "RoomD Go": transform.position = new Vector3(pos.x, 18.5f, 0f); break;
-            case "RoomD Exit": transform.position = new Vector3(pos.x, 8.6f, 0f); break;
+            case "RoomD Go": teleportManager.teleport("RoomD Go", PlayerCollider); break;
+            case "RoomD Exit": teleportManager.teleport("RoomD Exit", PlayerCollider); break;
 
-            case "RoomE Go": transform.position = new Vector3(27.76f, -49.45f, 0f); break;
-            case "RoomE Exit": transform.position = new Vector3(41.15f, -42.31f, 0f); break;
+            case "RoomE Go": teleportManager.teleport("RoomE Go", PlayerCollider); break;
+            case "RoomE Exit": teleportManager.teleport("RoomE Exit", PlayerCollider); break;
 
-            case "RoomF Go": transform.position = new Vector3(40.97f, -58.25f, 0f); break;
-            case "RoomF Exit": transform.position = new Vector3(28.05f, -63f, 0f); break;
+            case "RoomF Go": teleportManager.teleport("RoomF Go", PlayerCollider); break;
+            case "RoomF Exit": teleportManager.teleport("RoomF Exit", PlayerCollider); break;
         }
     }
 
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        teleportManager = FindObjectOfType<TeleportManager>();
+        PlayerCollider = GetComponent<Collider2D>();
     }
 
     void Update()
