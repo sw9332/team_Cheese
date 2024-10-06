@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
     private Player player;
     private Stamina stamina;
 
-    public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
-    public Animator animator; // player 이동 및 공격 애니메이션
+    public Slider playerStamina;
+    public Animator animator;
 
-    public static float MoveSpeed = 2.5f;
+    public static float speed = 2.5f;
 
     public static bool MoveX = false;
     public static bool MoveY = false;
@@ -67,7 +68,7 @@ public class PlayerControl : MonoBehaviour
                 MoveX = false;
                 MoveY = true;
 
-                transform.Translate(Vector3.up * MoveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
                 Direction = 1;  // 위 방향
             }
 
@@ -85,7 +86,7 @@ public class PlayerControl : MonoBehaviour
                 MoveX = false;
                 MoveY = true;
 
-                transform.Translate(Vector3.down * MoveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
                 Direction = 2;  // 아래 방향
             }
 
@@ -98,7 +99,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 CenterOffset.x = -0.05f;
-                transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
                 Direction = 3;  // 왼쪽 방향
             }
 
@@ -111,7 +112,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 CenterOffset.x = 0.05f;
-                transform.Translate(Vector3.right * MoveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
                 Direction = 4;  // 오른쪽 방향
             }
 
@@ -131,9 +132,9 @@ public class PlayerControl : MonoBehaviour
             }
 
             //달리기
-            if (Input.GetKey(KeyCode.LeftShift) && player.stamina.value > 0.01f)
+            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.01f)
             {
-                MoveSpeed = 5;
+                speed = 5;
 
                 if (!isPush) animator.speed = 2;
                 else animator.speed = 1;
@@ -145,7 +146,7 @@ public class PlayerControl : MonoBehaviour
             else
             {
                 animator.speed = 1;
-                MoveSpeed = 2.5f;
+                speed = 2.5f;
                 stamina.isPlayerRunning = false;
             }
         }

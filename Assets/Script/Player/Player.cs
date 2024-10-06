@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public static bool objectCollision = false; //충돌 확인 (땅 == false / 사물 == true)
+    public static bool objectCollision = false;
 
     private TeleportManager teleportManager;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
-
-    public Slider stamina;
 
     private Collider2D playerCollider;
 
