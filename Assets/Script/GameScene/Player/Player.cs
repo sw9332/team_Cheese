@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
             case "RoomF Exit": teleportManager.teleport("RoomF Exit", PlayerCollider); break;
         }
     }
-
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
