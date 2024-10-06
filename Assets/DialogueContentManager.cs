@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueEventManager : MonoBehaviour
+public class DialogueContentManager : MonoBehaviour
 {
     [SerializeField]
     public Dialogue d_cake;

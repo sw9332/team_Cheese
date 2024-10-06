@@ -7378,9 +7378,6 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
-  player1: {fileID: 730974888}
-  dialogueManager: {fileID: 1638264466}
-  fadeManager: {fileID: 840480186}
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -16680,58 +16677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee4200447b99414dbeb4d62911f998f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0, z: 0}
   stamina: {fileID: 1046106979}
-  d_cake:
-    contents:
-    - "\uC5B4?1 \uC800\uAE30 \uCF00\uC774\uD06C\uB2E4!"
-    - "\uC5B4....\uC74C...."
-    - "\uCF00\uC774\uD06C\uB97C \uC8FC\uC6B0\uB824\uBA74 \uC778\uD615\uC744 \uC62E\uACA8\uC57C\uACA0\uC5B4!"
-    - "!@#$\uC744......"
-    - "\uC778\uD615\uC744 \uC62E\uAE30\uB824\uBA74 \uC2A4\uD398\uC774\uC2A4 \uBC14\uB85C
-      \uC218\uC9D1 \uD6C4\n\uC778\uBCA4\uD1A0\uB9AC \uCC3D\uC5D0\uC11C \uAEBC\uB0B4
-      \uC62C\uB824\uB450\uC138\uC694."
-    sprites:
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  d_photo:
-    contents:
-    - "\uC624!!"
-    - "\uCE74\uBA54\uB77C\uAC00 \uBE5B\uB09C\uB2E4!"
-    - "\uC774\uC81C \uCC0D\uC73C\uBA74 \uB418\uB098?"
-    sprites:
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  d_camera:
-    contents:
-    - "\uB0B4\uAC00 \uC548 \uB420\uAC70\uB77C \uD558\uC9C0 \uC54A\uC558\uB0D0..."
-    - .........
-    - .........
-    - "(\uD55C\uC228)..."
-    - "\uCC30\uCE75!!!"
-    sprites:
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  d_cutScene:
-    contents:
-    - "\uB0B4\uAC00 \uC548 \uB420\uAC70\uB77C \uD558\uC9C0 \uC54A\uC558\uB0D0...."
-    - ......
-    - ......
-    - "(\uD55C\uC228)....."
-    - "\uCC30\uCE75!!!"
-    sprites:
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
 --- !u!114 &730974889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61316,7 +61262,7 @@ GameObject:
   - component: {fileID: 1116343557}
   - component: {fileID: 1116343558}
   m_Layer: 0
-  m_Name: Dialouge Event Manager
+  m_Name: Dialouge Content Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63808,9 +63754,6 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
-  player1: {fileID: 730974888}
-  dialogueManager: {fileID: 1638264466}
-  fadeManager: {fileID: 840480186}
 --- !u!1 &1235198641
 GameObject:
   m_ObjectHideFlags: 0

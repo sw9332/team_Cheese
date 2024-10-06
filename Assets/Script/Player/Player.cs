@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     private TeleportManager teleportManager;
     private DialogueManager dialogueManager;
-    private DialogueEventManager dialogueEventManager;
+    private DialogueContentManager dialogueContentManager;
 
     public Slider stamina;
 
@@ -21,11 +21,11 @@ public class Player : MonoBehaviour
         switch(other.gameObject.tag)
         {
             case "Cake Event":
-                dialogueManager.ShowDialogue(dialogueEventManager.d_cake);
+                dialogueManager.ShowDialogue(dialogueContentManager.d_cake);
                 Destroy(other.gameObject);
                 break;
             case "Camera Event":
-                dialogueManager.ShowDialogue(dialogueEventManager.d_photo);
+                dialogueManager.ShowDialogue(dialogueContentManager.d_photo);
                 Destroy(other.gameObject);
                 break;
         }
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueEventManager = FindObjectOfType<DialogueEventManager>();
+        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         teleportManager = FindObjectOfType<TeleportManager>();
         playerCollider = GetComponent<Collider2D>();
     }

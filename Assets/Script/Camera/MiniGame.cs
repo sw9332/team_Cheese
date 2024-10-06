@@ -18,7 +18,7 @@ public class MiniGame : MonoBehaviour
     public static bool isImageChange = false;
 
     private DialogueManager dialogueManager;
-    private DialogueEventManager dialogueEventManager;
+    private DialogueContentManager dialogueContentManager;
     private FadeManager fadeManager;
 
     //private bool is_next_stage = false;
@@ -27,7 +27,7 @@ public class MiniGame : MonoBehaviour
     private void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueEventManager = FindObjectOfType<DialogueEventManager>();
+        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         fadeManager = FindObjectOfType<FadeManager>();
     }
 
@@ -108,7 +108,7 @@ public class MiniGame : MonoBehaviour
 
     void CutSceneText()
     {
-        dialogueManager.ShowDialogue(dialogueEventManager.d_cutScene);
+        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
     }
 
     IEnumerator NextStage()
