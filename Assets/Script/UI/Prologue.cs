@@ -5,12 +5,13 @@ using UnityEngine;
 public class Prologue : MonoBehaviour
 {
     public Dialogue d_prologue;
-    public FadeManager fadeManager;
+    private FadeManager fadeManager;
     private DialogueManager dialogueManager;
 
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        fadeManager = FindObjectOfType<FadeManager>();
         dialogueManager.ShowDialogue(d_prologue);
     }
 

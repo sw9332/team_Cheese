@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainSceneManager : MonoBehaviour
+public class MainScene : MonoBehaviour
 {
     public GameObject SettingUI;
     public GameObject Load_UI;
