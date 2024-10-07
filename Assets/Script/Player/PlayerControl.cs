@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
     private Player player;
+    private PlayerAttack playerAttack;
     private Stamina stamina;
 
-    public Slider playerStamina;
-    public Animator animator;
+   // public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
+    public Animator animator; // player 이동 및 공격 애니메이션
 
     public static float speed = 2.5f;
 
@@ -50,7 +51,7 @@ public class PlayerControl : MonoBehaviour
     {
         animator.speed = 1;
 
-        if (!isMove) animator.Play("PlayerBack_Stop");
+        if (!isMove && !playerAttack.isChangingSprite) animator.Play("PlayerBack_Stop");
 
         if (isMove)
         {
@@ -166,6 +167,7 @@ public class PlayerControl : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         stamina = FindObjectOfType<Stamina>();
+        playerAttack = FindObjectOfType<PlayerAttack>();
     }
 
     void Update()
