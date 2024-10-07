@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
 
+    
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
@@ -189,9 +192,11 @@ public class PlayerAttack : MonoBehaviour
 
 
     private Collider2D[] nearEnemies;
-    private float elapsedTime = 0f;
+    public float elapsedTime = 0f;
     private float destroyTime = 1f;
     private bool isCollidingWithEnemy = false;
+
+    public bool isChangingSprite = false; // playerControl.MoveControl에서 사용하기 위해 public - isMove
 
     /* CollideWithEnemy 함수 설명
    'enemy' 태그를 가진 polygonCollider2D만 필터링
@@ -219,7 +224,7 @@ public class PlayerAttack : MonoBehaviour
             return false;
     }
 
-    public void Player_Collision()
+     void Player_Collision()
     {
         if (hp != null)
         {
@@ -233,19 +238,51 @@ public class PlayerAttack : MonoBehaviour
                 elapsedTime = 0f;
             }
 
-            if (isCollidingWithEnemy == true)
+            // 1초이상 적과 대면 시 hp--
+            if (isCollidingWithEnemy == true  && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime >= destroyTime && hp.Count > 0)
                 {
                     GameObject lastHp = hp[hp.Count - 1];
-                    Destroy(lastHp);
+                    StartCoroutine(changeToDamaged());
                     hp.RemoveAt(hp.Count - 1);
+                    Destroy(lastHp);
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
             }
         }
     }
+
+    //void returnToNormalSprite()
+    //{
+    //}
+    IEnumerator changeToDamaged()
+    {
+        isChangingSprite = true;
+        playerControl.isMove = false;
+        if (playerControl.Direction == 1)
+        {
+            playerControl.animator.Play("playerDamagedBack");
+        }
+        if (playerControl.Direction == 2)
+        {
+            playerControl.animator.Play("playerDamagedFront");
+        }
+        if (playerControl.Direction == 3)
+        {
+            playerControl.animator.Play("playerDamagedLeft");
+        }
+        if (playerControl.Direction == 4)
+        {
+            playerControl.animator.Play("playerDamagedRight");
+        }
+        yield return new WaitForSeconds(0.5f);
+        isChangingSprite = false;
+        playerControl.isMove = true;
+        elapsedTime = 0f;
+    }
+    
 
     void Start()
     {
