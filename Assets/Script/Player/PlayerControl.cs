@@ -133,7 +133,7 @@ public class PlayerControl : MonoBehaviour
             }
 
             //´Ş¸®±â
-            if (Input.GetKey(KeyCode.LeftShift) && playerStamina.value > 0.01f)
+            if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
                 speed = 5;
 
