@@ -3807,7 +3807,6 @@ GameObject:
   - component: {fileID: 113407666}
   - component: {fileID: 113407665}
   - component: {fileID: 113407664}
-  - component: {fileID: 113407669}
   - component: {fileID: 113407670}
   m_Layer: 5
   m_Name: Canvas
@@ -3908,25 +3907,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &113407669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113407663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeManager: {fileID: 840480186}
-  CameraUI: {fileID: 527049652}
-  Pause_UI: {fileID: 1080693240}
-  SettingUI: {fileID: 1883287917}
-  fadeImage: {fileID: 1201729923}
-  Camera_Effect_Animation: {fileID: 527049656}
-  isCameraEffect: 0
 --- !u!114 &113407670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4234,7 +4214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 113407669}
+      - m_Target: {fileID: 750741480}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: SettingButton
         m_Mode: 1
@@ -8868,7 +8848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410108924
 GameObject:
@@ -17024,7 +17004,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 113407669}
+      - m_Target: {fileID: 750741480}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -17074,6 +17054,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749859774}
   m_CullTransparentMesh: 1
+--- !u!1 &750741479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750741481}
+  - component: {fileID: 750741480}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &750741480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750741479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532fce04dfd8bda42856fe5a3c78b9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraUI: {fileID: 527049652}
+  Pause_UI: {fileID: 1080693240}
+  SettingUI: {fileID: 1883287917}
+  fadeImage: {fileID: 1201729923}
+  Camera_Effect_Animation: {fileID: 527049656}
+  isCameraEffect: 0
+--- !u!4 &750741481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750741479}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751914504
 GameObject:
   m_ObjectHideFlags: 0
@@ -20574,7 +20604,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 113407669}
+      - m_Target: {fileID: 750741480}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GameExit
         m_Mode: 1
