@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public FadeManager fadeManager;
+    private FadeManager fadeManager;
 
     public GameObject CameraUI;
     public GameObject Pause_UI;
@@ -85,6 +85,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        fadeManager = FindObjectOfType<FadeManager>();
+
         Time.timeScale = 1;
         fadeImage.gameObject.SetActive(true);
         isCameraEffect = false;

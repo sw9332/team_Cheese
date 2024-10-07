@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 22566722}
   - component: {fileID: 22566721}
   m_Layer: 0
-  m_Name: FadeManager
+  m_Name: Fade Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3277,8 +3277,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -6100,7 +6100,7 @@ GameObject:
   - component: {fileID: 1140336920}
   - component: {fileID: 1140336921}
   m_Layer: 0
-  m_Name: MainSceneManager
+  m_Name: MainScene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9351,7 +9351,7 @@ GameObject:
   - component: {fileID: 1679908172}
   - component: {fileID: 1679908173}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

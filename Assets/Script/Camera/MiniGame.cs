@@ -17,19 +17,26 @@ public class MiniGame : MonoBehaviour
     // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
     public static bool isImageChange = false;
 
-    public Player player1;
-    public DialogueManager dialogueManager;
-    public FadeManager fadeManager;
-
+    private DialogueManager dialogueManager;
+    private DialogueContentManager dialogueContentManager;
+    private FadeManager fadeManager;
 
     //private bool is_next_stage = false;
     //private bool is_transition = false;
+
+    private void Start()
+    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
+        fadeManager = FindObjectOfType<FadeManager>();
+    }
 
     private void Update()
     {
         PhotoMode();
         TakePhoto();
     }
+
     private void PhotoMode()
     {
         if (is_take_photo == true && Input.GetKeyDown(KeyCode.P))
@@ -101,7 +108,7 @@ public class MiniGame : MonoBehaviour
 
     void CutSceneText()
     {
-        dialogueManager.ShowDialogue(player1.d_cutScene);
+        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
     }
 
     IEnumerator NextStage()

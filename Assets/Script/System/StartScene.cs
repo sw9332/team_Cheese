@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartManager : MonoBehaviour
+public class StartScene : MonoBehaviour
 {
     private FadeManager fadeManager;
     public GameObject fadeImage;
