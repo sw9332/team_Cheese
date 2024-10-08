@@ -16732,7 +16732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7f5d8f864d4ce4bb0b63df954be6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDB:
+  SlotDB:
   - 
   - 
   - 
@@ -16742,11 +16742,18 @@ MonoBehaviour:
   - {fileID: 630157510}
   - {fileID: 1144508920}
   - {fileID: 262532467}
-  BrownTeddyBear_Item: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
-  PinkTeddyBear_Item: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
-  YellowTeddyBear_Item: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
-  Cake_Item: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
-  NPC_Item: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
+  ItemDB:
+  - {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+  - {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
+  - {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
+  - {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
+  - {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
+  ItemSpriteDB:
+  - {fileID: 962155441, guid: 0f8029fcd87c88b41b9350db609325fc, type: 3}
+  - {fileID: 265498810, guid: 30ad2d84d82764c4cae3d0f62b67fdc1, type: 3}
+  - {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}
+  - {fileID: 103425051, guid: 8d02b4e8bba0c8b449c9b37f4e2404c7, type: 3}
+  - {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
   BrownTeddyBear_Sprite: {fileID: 962155441, guid: 0f8029fcd87c88b41b9350db609325fc, type: 3}
   PinkTeddyBear_Sprite: {fileID: 265498810, guid: 30ad2d84d82764c4cae3d0f62b67fdc1, type: 3}
   YellowTeddyBear_Sprite: {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}

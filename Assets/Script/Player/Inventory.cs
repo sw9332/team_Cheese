@@ -5,20 +5,11 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public string[] itemDB = new string[4];
+    public string[] SlotDB = new string[4];
     public Image[] SlotImageDB = new Image[4];
 
-    public GameObject BrownTeddyBear_Item;
-    public GameObject PinkTeddyBear_Item;
-    public GameObject YellowTeddyBear_Item;
-    public GameObject Cake_Item;
-    public GameObject NPC_Item;
-
-    public Sprite BrownTeddyBear_Sprite;
-    public Sprite PinkTeddyBear_Sprite;
-    public Sprite YellowTeddyBear_Sprite;
-    public Sprite Cake_Sprite;
-    public Sprite NPC_Sprite;
+    public GameObject[] ItemDB;
+    public Sprite[] ItemSpriteDB;
 
     private Player player;
     private DialogueManager dialogueManager;
@@ -32,11 +23,11 @@ public class Inventory : MonoBehaviour
     {
         switch (itemName)
         {
-            case "BrownTeddyBear": return BrownTeddyBear_Item;
-            case "PinkTeddyBear": return PinkTeddyBear_Item;
-            case "YellowTeddyBear": return YellowTeddyBear_Item;
-            case "Cake": return Cake_Item;
-            case "NPC": return NPC_Item;
+            case "BrownTeddyBear": return ItemDB[0];
+            case "PinkTeddyBear": return ItemDB[1];
+            case "YellowTeddyBear": return ItemDB[2];
+            case "Cake": return ItemDB[3];
+            case "NPC": return ItemDB[4];
 
             default: return null;
         }
@@ -46,11 +37,11 @@ public class Inventory : MonoBehaviour
     {
         switch (itemName)
         {
-            case "BrownTeddyBear": return BrownTeddyBear_Sprite;
-            case "PinkTeddyBear": return PinkTeddyBear_Sprite;
-            case "YellowTeddyBear": return YellowTeddyBear_Sprite;
-            case "Cake": return Cake_Sprite;
-            case "NPC": return NPC_Sprite;
+            case "BrownTeddyBear": return ItemSpriteDB[0];
+            case "PinkTeddyBear": return ItemSpriteDB[1];
+            case "YellowTeddyBear": return ItemSpriteDB[2];
+            case "Cake": return ItemSpriteDB[3];
+            case "NPC": return ItemSpriteDB[4];
 
             default: return null;
         }
@@ -58,23 +49,23 @@ public class Inventory : MonoBehaviour
 
     void PlaceItem(int slotIndex)
     {
-        if (itemDB[slotIndex] == null) return;
+        if (SlotDB[slotIndex] == null) return;
 
-        GameObject itemObject = GetItemObject(itemDB[slotIndex]);
+        GameObject itemObject = GetItemObject(SlotDB[slotIndex]);
         Vector3 position = !Player.objectCollision ? player.transform.position : Object.pos;
 
         Instantiate(itemObject, position, Quaternion.identity);
-        itemDB[slotIndex] = null;
+        SlotDB[slotIndex] = null;
         SlotImageDB[slotIndex].sprite = null;
     }
 
     void PickupItem(string itemName, Collider2D other)
     {
-        for (int i = 0; i < itemDB.Length; i++)
+        for (int i = 0; i < SlotDB.Length; i++)
         {
-            if (string.IsNullOrEmpty(itemDB[i]))
+            if (string.IsNullOrEmpty(SlotDB[i]))
             {
-                itemDB[i] = itemName;
+                SlotDB[i] = itemName;
                 SlotImageDB[i].sprite = GetItemSprite(itemName);
                 Destroy(other.gameObject);
                 break;
