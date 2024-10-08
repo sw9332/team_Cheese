@@ -46,6 +46,7 @@ TagManager:
   - back
   - NPC
   - TableA
+  - Room D floor
   layers:
   - Default
   - TransparentFX

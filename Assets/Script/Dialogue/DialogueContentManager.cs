@@ -12,4 +12,17 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue d_camera;
     [SerializeField]
     public Dialogue d_cutScene;
+
+    [SerializeField]
+    public Dialogue d_Demo_1;
+    [SerializeField]
+    public Dialogue d_Demo_2;
+    [SerializeField]
+    public Dialogue d_Demo_3;
+    [SerializeField]
+    public Dialogue d_Demo_4;
+    [SerializeField]
+    public Dialogue d_Demo_5;
+    [SerializeField]
+    public Dialogue d_Demo_6;
 }
