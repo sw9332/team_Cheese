@@ -53,7 +53,7 @@ public class MiniGame : MonoBehaviour
     private void TakePhoto()
     {
         //GameState가 Tutorial일 때.
-        if(GameManager.GameState == "Tutorial")
+        if (GameManager.GameState == "Tutorial")
         {
             if (is_minigame == true)
             {
@@ -101,8 +101,50 @@ public class MiniGame : MonoBehaviour
 
             //if (is_next_stage && !is_transition)
             //{
-                
+
             //}
+        }
+
+        //GameState가 Stage1일 때.
+        else if (GameManager.GameState == "Stage1")
+        {
+            if (is_minigame == true)
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    photoCamera.transform.Translate(-1f * 1.5f * Time.deltaTime, 0f, 0f);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    photoCamera.transform.Translate(1f * 1.5f * Time.deltaTime, 0f, 0f);
+                }
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    photoCamera.transform.Translate(0f, 1f * 1.5f * Time.deltaTime, 0f);
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    photoCamera.transform.Translate(0f, -1f * 1.5f * Time.deltaTime, 0f);
+                }
+
+                float ClampX = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.x, 11.8f, 12.8f);
+                float ClampY = Mathf.Clamp(photoCamera.transform.GetComponent<Transform>().position.y, 29.5f, 30.5f);
+
+                photoCamera.transform.GetComponent<Transform>().position = new Vector3(ClampX, ClampY, -1f);
+
+                x_Axis.GetComponent<Slider>().value = photoCamera.transform.position.x;
+                y_Axis.GetComponent<Slider>().value = photoCamera.transform.position.y;
+                Debug.Log("Slider X: " + x_Axis.value + " | Slider Y: " + y_Axis.value);
+
+                if (Input.GetKey(KeyCode.F)
+                    && x_Axis.GetComponent<Slider>().value <= -12.4f && x_Axis.GetComponent<Slider>().value >= -12.6f
+                    && y_Axis.GetComponent<Slider>().value <= 29.9f && y_Axis.GetComponent<Slider>().value >= 30.1f)
+                {
+                    is_take_photo = false;
+                    is_minigame = false;
+                    isImageChange = true;
+                }
+            }
         }
     }
 
