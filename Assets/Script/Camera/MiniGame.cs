@@ -13,6 +13,7 @@ public class MiniGame : MonoBehaviour
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
     public GameObject player;
+    public GameObject NPC;
 
     // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
     public static bool isImageChange = false;
@@ -47,8 +48,6 @@ public class MiniGame : MonoBehaviour
             ingameUIPanel.SetActive(false);
             minigamePanel.SetActive(true);
             is_minigame = true;
-
-            Debug.Log("Slider X : " + x_Axis.value + ", " + "Slider Y : " + y_Axis.value);
         }
     }
 
@@ -82,10 +81,10 @@ public class MiniGame : MonoBehaviour
                     UIManager.tutorialTrigger = false;
                     is_take_photo = false;
                     is_minigame = false;
-                    GameManager.GameState = "Tutorial Cut Scene";
                     isImageChange = true;
-                    StartCoroutine(NextStage());
-                    Invoke("CutSceneText", 1.5f);
+
+                    GameManager.GameState = "Tutorial Cut Scene";
+                    StartCoroutine(NextStage1());
                 }
             }
 
@@ -107,37 +106,49 @@ public class MiniGame : MonoBehaviour
                 y_Axis.value = photoCamera.transform.position.y;
 
                 if (Input.GetKey(KeyCode.F)
-                    && x_Axis.value <= 12.8f && x_Axis.value >= 13f
-                    && y_Axis.value <= 29.8f && y_Axis.value >= 30.2f)
+                    && x_Axis.value >= 12.8f && x_Axis.value <= 13.1f
+                    && y_Axis.value >= 29.8f && y_Axis.value <= 30.2f)
                 {
+                    // CutScene으로 넘어가는 로직
+                    UIManager.is_NPC = false;
                     is_take_photo = false;
                     is_minigame = false;
                     isImageChange = true;
-                    Debug.Log("데모 끝");
+
+                    StartCoroutine(DemoCutScene());
                 }
             }
         }
     }
 
-
-    void CutSceneText()
+    void ClearPhotoMode()
     {
-        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
-    }
-
-    IEnumerator NextStage()
-    {
-        yield return StartCoroutine(fadeManager.FadeOut());
-        //is_transition = true;
-        player.transform.position = new Vector3(60, 0, 0);
-        mainCamera.transform.position = new Vector3(60, 0, -10);
         player.SetActive(true);
         mainCamera.GetComponent<Camera>().enabled = true;
         photoCamera.GetComponent<Camera>().enabled = false;
         ingameUIPanel.SetActive(true);
         minigamePanel.SetActive(false);
         is_minigame = false;
-        //is_transition = false;
+    }
+
+    IEnumerator NextStage1()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut());
+        player.transform.position = new Vector3(60, 0, 0);
+        mainCamera.transform.position = new Vector3(60, 0, -10);
+        ClearPhotoMode();
         yield return StartCoroutine(fadeManager.FadeIn());
+        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
+    }
+
+    IEnumerator DemoCutScene()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut());
+        player.transform.position = new Vector3(12.5f, 28, 0);
+        Destroy(NPCItem.Instance.gameObject);
+        ClearPhotoMode();
+        NPC.SetActive(true);
+        yield return StartCoroutine(fadeManager.FadeIn());
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
     }
 }

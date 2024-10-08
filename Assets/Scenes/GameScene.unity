@@ -7353,6 +7353,7 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
+  NPC: {fileID: 1082658648}
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8764,6 +8765,7 @@ Transform:
   m_Children:
   - {fileID: 691012460}
   - {fileID: 1464094606}
+  - {fileID: 1082658647}
   m_Father: {fileID: 542243904}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8782,6 +8784,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 691012458}
   - {fileID: 1464094604}
+  - {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
 --- !u!1 &409197664
 GameObject:
   m_ObjectHideFlags: 0
@@ -60195,6 +60198,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080693240}
   m_CullTransparentMesh: 1
+--- !u!1001 &1082658646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 403567745}
+    m_Modifications:
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -49.158867
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 29.403248
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8098411
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_Name
+      value: NPC Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2807719016458251169, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+--- !u!4 &1082658647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+  m_PrefabInstance: {fileID: 1082658646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082658648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+  m_PrefabInstance: {fileID: 1082658646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1085843178
 GameObject:
   m_ObjectHideFlags: 0
@@ -61221,23 +61304,29 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_Demo_1:
-    contents: []
-    sprites: []
+    contents:
+    - "\uC790\uB124\uB294 \uBABB \uBC14\uAFC0\uAC78\uC138..."
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_Demo_2:
-    contents: []
-    sprites: []
+    contents:
+    - "\uC790... \uC790\uB124\uB294...."
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_Demo_3:
-    contents: []
-    sprites: []
+    contents:
+    - "\uCFE8\uB7ED!"
+    - "......\uC9C0\uAE08"
+    - "\uB0B4\uAC00 \uBB50..\uBB58\uB85C \uBCF4\uC774\uB098?"
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_Demo_4:
-    contents: []
-    sprites: []
-  d_Demo_5:
-    contents: []
-    sprites: []
-  d_Demo_6:
-    contents: []
-    sprites: []
+    contents:
+    - "\uCC30\uCE75!"
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
 --- !u!1 &1119333151
 GameObject:
   m_ObjectHideFlags: 0
@@ -63555,6 +63644,7 @@ MonoBehaviour:
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
   player: {fileID: 730974879}
+  NPC: {fileID: 0}
 --- !u!1 &1235198641
 GameObject:
   m_ObjectHideFlags: 0

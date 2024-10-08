@@ -47,6 +47,8 @@ TagManager:
   - NPC
   - TableA
   - Room D floor
+  - NPCEnemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

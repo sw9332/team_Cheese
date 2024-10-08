@@ -21,8 +21,4 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue d_Demo_3;
     [SerializeField]
     public Dialogue d_Demo_4;
-    [SerializeField]
-    public Dialogue d_Demo_5;
-    [SerializeField]
-    public Dialogue d_Demo_6;
 }
