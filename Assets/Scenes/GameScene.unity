@@ -16749,10 +16749,10 @@ MonoBehaviour:
   - {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
   - {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
   ItemSpriteDB:
-  - {fileID: 962155441, guid: 0f8029fcd87c88b41b9350db609325fc, type: 3}
-  - {fileID: 265498810, guid: 30ad2d84d82764c4cae3d0f62b67fdc1, type: 3}
-  - {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}
-  - {fileID: 103425051, guid: 8d02b4e8bba0c8b449c9b37f4e2404c7, type: 3}
+  - {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
+  - {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
+  - {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
+  - {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
   - {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
 --- !u!114 &730974890
 MonoBehaviour:
@@ -61323,11 +61323,6 @@ MonoBehaviour:
     sprites:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
-  d_Demo_4:
-    contents:
-    - "\uCC30\uCE75!"
-    sprites:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
 --- !u!1 &1119333151
 GameObject:
