@@ -150,6 +150,9 @@ public class PlayerControl : MonoBehaviour
                 speed = 2.5f;
                 stamina.isPlayerRunning = false;
             }
+
+            if (player.transform.position.x == 12.5f && player.transform.position.y == 28)
+                animator.Play("PlayerUp_Stop");
         }
     }
 
