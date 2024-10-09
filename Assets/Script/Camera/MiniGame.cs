@@ -20,6 +20,7 @@ public class MiniGame : MonoBehaviour
 
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
+    private PlayerControl playerControl;
     private FadeManager fadeManager;
 
     //private bool is_next_stage = false;
@@ -29,6 +30,7 @@ public class MiniGame : MonoBehaviour
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
+        playerControl = FindObjectOfType<PlayerControl>();
         fadeManager = FindObjectOfType<FadeManager>();
     }
 
@@ -82,23 +84,23 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     isImageChange = true;
-
                     GameManager.GameState = "Tutorial Cut Scene";
+                    
                     StartCoroutine(NextStage1());
                 }
             }
 
-            //GameState가 Stage1일 때.
-            if (GameManager.GameState == "Stage1")
+            //GameState가 Demo일 때.
+            if (GameManager.GameState == "Demo")
             {
                 x_Axis.minValue = 11.8f;
-                x_Axis.maxValue = 13.8f;
+                x_Axis.maxValue = 12.8f;
 
                 y_Axis.minValue = 29.5f;
-                y_Axis.maxValue = 31.5f;
+                y_Axis.maxValue = 30.5f;
 
-                float ClampX = Mathf.Clamp(photoCamera.transform.position.x, 11.8f, 13.8f);
-                float ClampY = Mathf.Clamp(photoCamera.transform.position.y, 29.5f, 31.5f);
+                float ClampX = Mathf.Clamp(photoCamera.transform.position.x, 11.8f, 12.8f);
+                float ClampY = Mathf.Clamp(photoCamera.transform.position.y, 29.5f, 30.5f);
 
                 photoCamera.transform.position = new Vector3(ClampX, ClampY, -1f);
 
@@ -106,8 +108,8 @@ public class MiniGame : MonoBehaviour
                 y_Axis.value = photoCamera.transform.position.y;
 
                 if (Input.GetKey(KeyCode.F)
-                    && x_Axis.value >= 12.8f && x_Axis.value <= 13.1f
-                    && y_Axis.value >= 29.8f && y_Axis.value <= 30.2f)
+                    && x_Axis.value >= 12.33f && x_Axis.value <= 12.44f
+                    && y_Axis.value >= 29.65f && y_Axis.value <= 29.85f)
                 {
                     // CutScene으로 넘어가는 로직
                     UIManager.is_NPC = false;
@@ -148,6 +150,7 @@ public class MiniGame : MonoBehaviour
         Destroy(NPCItem.Instance.gameObject);
         ClearPhotoMode();
         NPC.SetActive(true);
+        playerControl.isMove = false;
         yield return StartCoroutine(fadeManager.FadeIn());
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
     }

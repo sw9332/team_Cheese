@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> Stage1 */
+        GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> Stage1 -> Demo */
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         fadeManager = FindObjectOfType<FadeManager>();
