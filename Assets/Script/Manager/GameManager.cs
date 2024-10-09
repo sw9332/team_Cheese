@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             if (dialogueManager.button_text.text == "´Ý±â")
                 if (Input.GetKeyDown(KeyCode.Z))
-                    StartCoroutine(fadeManager.NextSceneFade("Stage1"));
+                    StartCoroutine(fadeManager.ChangeStateFade("Stage1"));
         }
     }
 }
