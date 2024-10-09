@@ -44,6 +44,13 @@ public class cameraManager : MonoBehaviour
             pos.y = player.position.y + offset.y;
         }
 
+        else if (GameManager.GameState == "Demo")
+        {
+            //Demo 시 카메라
+            pos.x = player.position.x + offset.x;
+            pos.y = player.position.y + offset.y;
+        }
+
         transform.position = pos;
     }
 }

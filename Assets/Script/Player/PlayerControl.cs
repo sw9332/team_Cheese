@@ -51,7 +51,13 @@ public class PlayerControl : MonoBehaviour
     {
         animator.speed = 1;
 
-        if (!isMove && !playerAttack.isChangingSprite) animator.Play("PlayerBack_Stop");
+        if (!isMove && !playerAttack.isChangingSprite)
+        {
+            if (GameManager.GameState == "Tutorial") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "Tutorial Cut Scene") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "Stage1") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "Demo") animator.Play("PlayerUp_Stop");
+        }
 
         if (isMove)
         {
@@ -150,9 +156,6 @@ public class PlayerControl : MonoBehaviour
                 speed = 2.5f;
                 stamina.isPlayerRunning = false;
             }
-
-            if (player.transform.position.x == 12.5f && player.transform.position.y == 28)
-                animator.Play("PlayerUp_Stop");
         }
     }
 

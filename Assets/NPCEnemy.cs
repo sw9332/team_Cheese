@@ -5,6 +5,7 @@ public class NPCEnemy : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
+    private FadeManager fadeManager;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public int HP = 5;
@@ -42,6 +43,7 @@ public class NPCEnemy : MonoBehaviour
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
+        fadeManager = FindObjectOfType<FadeManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }

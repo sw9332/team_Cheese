@@ -7421,7 +7421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286991893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -77, y: 48.8, z: -10}
+  m_LocalPosition: {x: -77, y: 48.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16754,11 +16754,6 @@ MonoBehaviour:
   - {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}
   - {fileID: 103425051, guid: 8d02b4e8bba0c8b449c9b37f4e2404c7, type: 3}
   - {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
-  BrownTeddyBear_Sprite: {fileID: 962155441, guid: 0f8029fcd87c88b41b9350db609325fc, type: 3}
-  PinkTeddyBear_Sprite: {fileID: 265498810, guid: 30ad2d84d82764c4cae3d0f62b67fdc1, type: 3}
-  YellowTeddyBear_Sprite: {fileID: -1819181770, guid: 0f43947d84b5ace47943d222d5979da2, type: 3}
-  Cake_Sprite: {fileID: 103425051, guid: 8d02b4e8bba0c8b449c9b37f4e2404c7, type: 3}
-  NPC_Sprite: {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
 --- !u!114 &730974890
 MonoBehaviour:
   m_ObjectHideFlags: 0
