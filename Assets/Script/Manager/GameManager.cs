@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> Stage1 */
+        GameState = "Tutorial"; /* Tutorial -> Tutorial Cut Scene -> Stage1 -> Demo */
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         fadeManager = FindObjectOfType<FadeManager>();
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(GameState == "Tutorial Cut Scene")
+        if (GameState == "Tutorial Cut Scene")
         {
             if (dialogueManager.button_text.text == "´Ý±â")
                 if (Input.GetKeyDown(KeyCode.Z))

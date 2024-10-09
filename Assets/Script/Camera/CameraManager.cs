@@ -25,9 +25,7 @@ public class cameraManager : MonoBehaviour
         {
             //튜토리얼 진행일 때 카메라
             if (player.position.y > 46.5f && player.position.y < 50.9f)
-            {
                 pos.y = player.position.y + offset.y;
-            }
         }
 
         else if (GameManager.GameState == "Tutorial Cut Scene")
@@ -41,6 +39,12 @@ public class cameraManager : MonoBehaviour
         {
             //Stage1 시 카메라
             pos.x = player.position.x + offset.x;
+            pos.y = player.position.y + offset.y;
+        }
+
+        else if (GameManager.GameState == "Demo")
+        {
+            //Demo 시 카메라
             pos.y = player.position.y + offset.y;
         }
 

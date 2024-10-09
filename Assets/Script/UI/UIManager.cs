@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class UIManager : MonoBehaviour
     public static bool is_bear = false;
     public static bool is_cake = false;
     public static bool is_playerPos = false;
+
+    //Stage1 변수
+    public static bool is_NPC = false;
 
     void Camera_effect()
     {
@@ -97,20 +101,22 @@ public class UIManager : MonoBehaviour
         Camera_effect(); //카메라 UI 효과
         Pause();
 
-        if (is_bear == true && is_cake == true && is_playerPos == true)
+        if (is_bear && is_cake && is_playerPos)
         {
             tutorialTrigger = true;
         }
+
         else
         {
             tutorialTrigger = false;
         }
 
-        if(tutorialTrigger == true) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
+        if(tutorialTrigger || is_NPC) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
         {
             isCameraEffect = true;
             MiniGame.is_take_photo = true;
         }
+
         else
         {
             isCameraEffect = false;

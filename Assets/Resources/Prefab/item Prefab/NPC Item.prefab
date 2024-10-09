@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6108032857981930240}
   - component: {fileID: 3942000327684453107}
   - component: {fileID: 1740106642416811452}
+  - component: {fileID: 3298655122830326170}
   m_Layer: 0
   m_Name: NPC Item
   m_TagString: NPC
@@ -176,3 +177,15 @@ PolygonCollider2D:
       - {x: 0.0013961792, y: 0.3133335}
       - {x: 0.0015792847, y: 0.37785625}
   m_UseDelaunayMesh: 0
+--- !u!114 &3298655122830326170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575412759122800928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b8a379a827bda4ab663dd202505eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
