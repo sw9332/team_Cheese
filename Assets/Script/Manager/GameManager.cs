@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(GameState == "Tutorial Cut Scene")
+        if (GameState == "Tutorial Cut Scene")
         {
             if (dialogueManager.button_text.text == "´Ý±â")
                 if (Input.GetKeyDown(KeyCode.Z))
