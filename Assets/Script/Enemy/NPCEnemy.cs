@@ -29,6 +29,9 @@ public class NPCEnemy : MonoBehaviour
             case 4: yield return null; dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
             case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
         }
+
+        yield return null;
+        StartCoroutine(fadeManager.FadeOut());
     }
 
     IEnumerator FlashRed()
