@@ -7,8 +7,11 @@ using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private GameObject player;
+    private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
+    public int count = 0;
 
     // 원거리 공격 관련
     public GameObject bullet;
@@ -17,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
     private float fireCurtime;
 
     // 근접공격 및 enemy와 충돌
-    [SerializeField] List<GameObject> hp = new List<GameObject>();
+    private List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
@@ -254,38 +257,34 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    //void returnToNormalSprite()
-    //{
-    //}
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
-        playerControl.isMove = false;
-        if (playerControl.Direction == 1)
+        while(count <= 5)
         {
-            playerControl.animator.Play("playerDamagedBack");
+            playerSpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            playerSpriteRenderer.color = Color.clear;
+            yield return new WaitForSeconds(0.05f);
+            count++;
         }
-        if (playerControl.Direction == 2)
-        {
-            playerControl.animator.Play("playerDamagedFront");
-        }
-        if (playerControl.Direction == 3)
-        {
-            playerControl.animator.Play("playerDamagedLeft");
-        }
-        if (playerControl.Direction == 4)
-        {
-            playerControl.animator.Play("playerDamagedRight");
-        }
-        yield return new WaitForSeconds(0.5f);
-        isChangingSprite = false;
-        playerControl.isMove = true;
+        playerSpriteRenderer.color = Color.white;
         elapsedTime = 0f;
+        count = 0;  // 다시 카운트 초기화
+        // yield return new WaitForSeconds(1f);
+        isChangingSprite = false;
+    }
+
+    SpriteRenderer getPlayerSpriteRenderer()
+    {
+        player = GameObject.Find("Player");
+        playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+        return playerSpriteRenderer;
     }
     
-
     void Start()
     {
+        getPlayerSpriteRenderer();
         playerControl = FindObjectOfType<PlayerControl>();
         enemyManager = FindObjectOfType<EnemyManager>();
 

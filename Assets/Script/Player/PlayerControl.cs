@@ -58,8 +58,55 @@ public class PlayerControl : MonoBehaviour
             if (GameManager.GameState == "Stage1") animator.Play("PlayerBack_Stop");
             if (GameManager.GameState == "Demo") animator.Play("PlayerUp_Stop");
         }
+        
+        // 피격 당했을 시 움직임
+        if (isMove && playerAttack.isChangingSprite == true)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                Direction = 1;
+                animator.Play("playerDamagedBack");
+                MoveX = false;
+                MoveY = true;
 
-        if (isMove)
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                Direction = 2;
+                animator.Play("playerDamagedFront");
+
+                MoveX = false;
+                MoveY = true;
+
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                Direction = 3;
+                animator.Play("playerDamagedLeft");
+                MoveX = true;
+                MoveY = false;
+
+                CenterOffset.x = -0.05f;
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                Direction = 4;
+                animator.Play("playerDamagedRight");
+                MoveX = true;
+                MoveY = false;
+
+                CenterOffset.x = 0.05f;
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+            }
+        }
+
+        if (isMove && playerAttack.isChangingSprite == false)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
