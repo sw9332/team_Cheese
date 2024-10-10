@@ -14,20 +14,20 @@ public class TeleportManager : MonoBehaviour
     {
         switch (locationName)
         {
-            case "Tutorial Room": other.transform.position = new Vector3(57.5f, -1.8f, 0); ShowMapNameText("튜토리얼 방"); break;
-            case "In front Tutorial Room": other.transform.position = new Vector3(other.transform.position.x, -11.3f, 0); ShowMapNameText("OO복도"); break;
+            case "Tutorial Room": other.transform.position = new Vector3(57.5f, -1.8f, 0); ShowMapNameText("파티룸"); break;
+            case "In front Tutorial Room": other.transform.position = new Vector3(other.transform.position.x, -11.3f, 0); ShowMapNameText("복도 #F"); break;
 
-            case "RoomA Go": other.transform.position = new Vector3(other.transform.position.x, 7.5f, 0f); break;
-            case "RoomA Exit": other.transform.position = new Vector3(other.transform.position.x, -2.33f, 0f); break;
+            case "RoomA Go": other.transform.position = new Vector3(other.transform.position.x, 7.5f, 0f); ShowMapNameText("연회장 입구"); break;
+            case "RoomA Exit": other.transform.position = new Vector3(other.transform.position.x, -2.33f, 0f); ShowMapNameText("복도 #F"); break;
 
-            case "RoomB Go": other.transform.position = new Vector3(59f, 19.67f, 0f); break;
-            case "RoomB Exit": other.transform.position = new Vector3(46.61f, 19.67f, 0f); break;
+            case "RoomB Go": other.transform.position = new Vector3(59f, 19.67f, 0f); ShowMapNameText("연회장"); break;
+            case "RoomB Exit": other.transform.position = new Vector3(46.61f, 19.67f, 0f); ShowMapNameText("연회장 입구"); break;
 
-            case "RoomC Go": other.transform.position = new Vector3(other.transform.position.x, -1.7f, 0f); break;
-            case "RoomC Exit": other.transform.position = new Vector3(other.transform.position.x, -11.6f, 0f); break;
+            case "RoomC Go": other.transform.position = new Vector3(other.transform.position.x, -1.7f, 0f); ShowMapNameText("창고 입구"); break;
+            case "RoomC Exit": other.transform.position = new Vector3(other.transform.position.x, -11.6f, 0f); ShowMapNameText("복도 #F"); break;
 
-            case "RoomD Go": other.transform.position = new Vector3(other.transform.position.x, 18.5f, 0f); break;
-            case "RoomD Exit": other.transform.position = new Vector3(other.transform.position.x, 8.6f, 0f); break;
+            case "RoomD Go": other.transform.position = new Vector3(other.transform.position.x, 18.5f, 0f); ShowMapNameText("창고"); break;
+            case "RoomD Exit": other.transform.position = new Vector3(other.transform.position.x, 8.6f, 0f); ShowMapNameText("창고 입구"); break;
 
             case "RoomE Go": other.transform.position = new Vector3(27.76f, -49.45f, 0f); break;
             case "RoomE Exit": other.transform.position = new Vector3(41.15f, -42.31f, 0f); break;

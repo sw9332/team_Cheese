@@ -60196,17 +60196,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1586206401}
     m_Modifications:
+    - target: {fileID: 5552012631399099744, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.3354
+      value: 12.48
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.073248
+      value: 29.79
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60246,7 +60250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6575412759122800928, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_IsActive
@@ -81644,7 +81648,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ff0dff4677d6b924b92e17498e7c1745, type: 3}
-    m_FontSize: 75
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
