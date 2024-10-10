@@ -45,8 +45,8 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator ChangeStateFade(string state) //State 바꾸기
     {
-        yield return StartCoroutine(FadeOut());
         playerControl.isMove = false;
+        yield return StartCoroutine(FadeOut());
         GameManager.GameState = state;
         yield return StartCoroutine(FadeIn());
         playerControl.isMove = true;
@@ -54,8 +54,8 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator ChangeSceneFade(string scene) //Scene 바꾸기
     {
-        yield return StartCoroutine(FadeOut());
         playerControl.isMove = false;
+        yield return StartCoroutine(FadeOut());
         SceneManager.LoadScene(scene);
         yield return StartCoroutine(FadeIn());
         playerControl.isMove = true;
