@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static string GameState = "Tutorial";
+    public string GameStatePrint;
 
     private DialogueManager dialogueManager;
     private FadeManager fadeManager;
@@ -26,5 +27,7 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Z))
                     StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         }
+
+        GameStatePrint = GameState;
     }
 }

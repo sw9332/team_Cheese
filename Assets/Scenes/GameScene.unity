@@ -3593,7 +3593,7 @@ GameObject:
   - component: {fileID: 104783517}
   m_Layer: 0
   m_Name: RoomE Go
-  m_TagString: RoomE Go
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3701,7 +3701,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -6805,8 +6805,8 @@ GameObject:
   - component: {fileID: 255804174}
   - component: {fileID: 255804173}
   m_Layer: 0
-  m_Name: RoomA Exit
-  m_TagString: RoomA Exit
+  m_Name: "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
+  m_TagString: "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6913,7 +6913,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -15054,7 +15054,7 @@ GameObject:
   - component: {fileID: 646682431}
   m_Layer: 0
   m_Name: RoomE Exit
-  m_TagString: RoomE Exit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15161,7 +15161,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -15274,8 +15274,8 @@ GameObject:
   - component: {fileID: 654105904}
   - component: {fileID: 654105903}
   m_Layer: 0
-  m_Name: RoomB Exit
-  m_TagString: RoomB Exit
+  m_Name: "\uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
+  m_TagString: "\uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15382,7 +15382,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -17642,8 +17642,8 @@ GameObject:
   - component: {fileID: 787070770}
   - component: {fileID: 787070769}
   m_Layer: 0
-  m_Name: RoomC Exit
-  m_TagString: RoomC Exit
+  m_Name: "\uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
+  m_TagString: "\uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17750,7 +17750,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -20492,6 +20492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce68ecfabb1e46439816a25d1e03136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStatePrint: 
 --- !u!4 &921938700
 Transform:
   m_ObjectHideFlags: 0
@@ -21858,8 +21859,8 @@ GameObject:
   - component: {fileID: 982495686}
   - component: {fileID: 982495685}
   m_Layer: 0
-  m_Name: RoomC Go
-  m_TagString: RoomC Go
+  m_Name: "\uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
+  m_TagString: "\uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21967,7 +21968,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -21989,8 +21990,8 @@ GameObject:
   - component: {fileID: 983361553}
   - component: {fileID: 983361552}
   m_Layer: 0
-  m_Name: Tutorial Exit
-  m_TagString: Tutorial Exit
+  m_Name: "\uD30C\uD2F0\uB8F8 (\uCD9C\uAD6C)"
+  m_TagString: "\uD30C\uD2F0\uB8F8 (\uCD9C\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22097,7 +22098,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -60206,11 +60207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.48
+      value: 12.502968
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.79
+      value: 29.4701
       objectReference: {fileID: 0}
     - target: {fileID: 6108032857981930240, guid: 5f6cbf3a4706e3e4db81ed53e25d90c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63646,8 +63647,8 @@ GameObject:
   - component: {fileID: 1235198644}
   - component: {fileID: 1235198643}
   m_Layer: 0
-  m_Name: RoomB Go
-  m_TagString: RoomB Go
+  m_Name: "\uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
+  m_TagString: "\uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63755,7 +63756,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -64165,8 +64166,8 @@ GameObject:
   - component: {fileID: 1269760209}
   - component: {fileID: 1269760208}
   m_Layer: 0
-  m_Name: Tutorial Go
-  m_TagString: Tutorial Go
+  m_Name: "\uD30C\uD2F0\uB8F8 (\uC785\uAD6C)"
+  m_TagString: "\uD30C\uD2F0\uB8F8 (\uC785\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64230,7 +64231,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1269760209
 SpriteRenderer:
@@ -64274,7 +64275,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -66689,8 +66690,8 @@ GameObject:
   - component: {fileID: 1442501652}
   - component: {fileID: 1442501651}
   m_Layer: 0
-  m_Name: RoomD Exit
-  m_TagString: RoomD Exit
+  m_Name: "\uCC3D\uACE0 (\uCD9C\uAD6C)"
+  m_TagString: "\uCC3D\uACE0 (\uCD9C\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66797,7 +66798,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -84199,7 +84200,7 @@ GameObject:
   - component: {fileID: 1838120961}
   m_Layer: 0
   m_Name: RoomF Go
-  m_TagString: RoomF Go
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84307,7 +84308,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -84329,8 +84330,8 @@ GameObject:
   - component: {fileID: 1849477236}
   - component: {fileID: 1849477235}
   m_Layer: 0
-  m_Name: RoomD Go
-  m_TagString: RoomD Go
+  m_Name: "\uCC3D\uACE0 (\uC785\uAD6C)"
+  m_TagString: "\uCC3D\uACE0 (\uC785\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84438,7 +84439,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -84646,8 +84647,8 @@ GameObject:
   - component: {fileID: 1861884914}
   - component: {fileID: 1861884913}
   m_Layer: 0
-  m_Name: RoomA Go
-  m_TagString: RoomA Go
+  m_Name: "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
+  m_TagString: "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84755,7 +84756,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -85140,7 +85141,7 @@ GameObject:
   - component: {fileID: 1890816148}
   m_Layer: 0
   m_Name: RoomF Exit
-  m_TagString: RoomF Exit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85247,7 +85248,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -110789,7 +110790,7 @@ GameObject:
   - component: {fileID: 2089408548}
   - component: {fileID: 2089408551}
   m_Layer: 0
-  m_Name: Square
+  m_Name: "\uCC3D\uACE0 NPC \uC704\uCE58"
   m_TagString: Room D floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
