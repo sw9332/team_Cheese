@@ -26,19 +26,6 @@ TagManager:
   - Enemy
   - Chair
   - Camera
-  - Tutorial Exit
-  - RoomA Go
-  - RoomB Go
-  - RoomC Go
-  - RoomD Go
-  - RoomE Go
-  - RoomF Go
-  - RoomA Exit
-  - RoomB Exit
-  - RoomC Exit
-  - RoomD Exit
-  - RoomE Exit
-  - RoomF Exit
   - pinkDollEnemy
   - rabbitDollEnemy
   - Tutorial Go
@@ -49,6 +36,16 @@ TagManager:
   - Room D floor
   - NPCEnemy
   - Bullet
+  - "\uD30C\uD2F0\uB8F8 (\uC785\uAD6C)"
+  - "\uD30C\uD2F0\uB8F8 (\uCD9C\uAD6C)"
+  - "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
+  - "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - "\uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
+  - "\uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
+  - "\uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
+  - "\uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - "\uCC3D\uACE0 (\uC785\uAD6C)"
+  - "\uCC3D\uACE0 (\uCD9C\uAD6C)"
   layers:
   - Default
   - TransparentFX

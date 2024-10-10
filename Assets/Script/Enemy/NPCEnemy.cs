@@ -7,6 +7,9 @@ public class NPCEnemy : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
     private FadeManager fadeManager;
     private SpriteRenderer spriteRenderer;
+    private PlayerControl playerControl;
+
+    public GameObject CtrlKey;
     private Color originalColor;
     public int HP = 5;
 
@@ -28,10 +31,8 @@ public class NPCEnemy : MonoBehaviour
         {
             case 4: yield return null; dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
             case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
+            case 2: StartCoroutine(fadeManager.ChangeSceneFade("MainScene")); break;
         }
-
-        yield return null;
-        StartCoroutine(fadeManager.FadeOut());
     }
 
     IEnumerator FlashRed()
@@ -46,7 +47,14 @@ public class NPCEnemy : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         fadeManager = FindObjectOfType<FadeManager>();
+        playerControl = FindObjectOfType<PlayerControl>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+    }
+
+    void Update()
+    {
+        if (!playerControl.isMove) CtrlKey.SetActive(false);
+        else CtrlKey.SetActive(true);
     }
 }

@@ -21,31 +21,26 @@ public class cameraManager : MonoBehaviour
     {
         pos = transform.position;
 
-        if(GameManager.GameState == "Tutorial")
+        switch (GameManager.GameState)
         {
-            //Æ©Åä¸®¾ó ÁøÇàÀÏ ¶§ Ä«¸Þ¶ó
-            if (player.position.y > 46.5f && player.position.y < 50.9f)
+            case "Æ©Åä¸®¾ó":
+                if (player.position.y > 46.5f && player.position.y < 50.9f)
+                    pos.y = player.position.y + offset.y;
+                break;
+
+            case "Æ©Åä¸®¾ó ÄÆ¾À":
+                pos.x = -51.9f;
+                pos.y = 47f;
+                break;
+
+            case "Ã¢°í":
                 pos.y = player.position.y + offset.y;
-        }
+                break;
 
-        else if (GameManager.GameState == "Tutorial Cut Scene")
-        {
-            //ÄÉÀÌÅ©¸¦ ÂïÀ» ½Ã ÄÆ¾À Ä«¸Þ¶ó
-            pos.x = -51.9f;
-            pos.y = 47f;
-        }
-
-        else if (GameManager.GameState == "Stage1")
-        {
-            //Stage1 ½Ã Ä«¸Þ¶ó
-            pos.x = player.position.x + offset.x;
-            pos.y = player.position.y + offset.y;
-        }
-
-        else if (GameManager.GameState == "Demo")
-        {
-            //Demo ½Ã Ä«¸Þ¶ó
-            pos.y = player.position.y + offset.y;
+            default:
+                pos.x = player.position.x + offset.x;
+                pos.y = player.position.y + offset.y;
+                break;
         }
 
         transform.position = pos;

@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeManager : MonoBehaviour
 {
+    private PlayerControl playerControl;
+
     public Image fadeImage;
     public float fadeDuration = 1f;
 
@@ -40,10 +43,26 @@ public class FadeManager : MonoBehaviour
         fadeImage.color = Color.black;
     }
 
-    public IEnumerator NextSceneFade(string state)
+    public IEnumerator ChangeStateFade(string state) //State 바꾸기
     {
+        playerControl.isMove = false;
         yield return StartCoroutine(FadeOut());
         GameManager.GameState = state;
         yield return StartCoroutine(FadeIn());
+        playerControl.isMove = true;
+    }
+
+    public IEnumerator ChangeSceneFade(string scene) //Scene 바꾸기
+    {
+        playerControl.isMove = false;
+        yield return StartCoroutine(FadeOut());
+        SceneManager.LoadScene(scene);
+        yield return StartCoroutine(FadeIn());
+        playerControl.isMove = true;
+    }
+
+    void Start()
+    {
+        playerControl = FindObjectOfType<PlayerControl>();
     }
 }
