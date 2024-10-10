@@ -41,8 +41,8 @@ public class Player : MonoBehaviour
             case "RoomC Go": teleportManager.teleport("RoomC Go", playerCollider); break;
             case "RoomC Exit": teleportManager.teleport("RoomC Exit", playerCollider); break;
 
-            case "RoomD Go": teleportManager.teleport("RoomD Go", playerCollider); GameManager.GameState = "Demo";  break;
-            case "RoomD Exit": teleportManager.teleport("RoomD Exit", playerCollider); GameManager.GameState = "Stage1"; break;
+            case "RoomD Go": teleportManager.teleport("RoomD Go", playerCollider); GameManager.GameState = "창고";  break;
+            case "RoomD Exit": teleportManager.teleport("RoomD Exit", playerCollider); GameManager.GameState = "창고 입구"; break;
 
             case "RoomE Go": teleportManager.teleport("RoomE Go", playerCollider); break;
             case "RoomE Exit": teleportManager.teleport("RoomE Exit", playerCollider); break;

@@ -53,10 +53,11 @@ public class PlayerControl : MonoBehaviour
 
         if (!isMove && !playerAttack.isChangingSprite)
         {
-            if (GameManager.GameState == "Tutorial") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "Tutorial Cut Scene") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "Stage1") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "Demo") animator.Play("PlayerUp_Stop");
+            if (GameManager.GameState == "Æ©Åä¸®¾ó") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "Æ©Åä¸®¾ó ÄÆ¾À") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "ÆÄÆ¼·ë") animator.Play("PlayerBack_Stop");
+            if (GameManager.GameState == "Ã¢°í") animator.Play("PlayerUp_Stop");
+            else animator.Play("PlayerBack_Stop");
         }
 
         if (isMove)

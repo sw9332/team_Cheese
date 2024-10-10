@@ -62,8 +62,8 @@ public class MiniGame : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow)) photoCamera.transform.Translate(0f, 1f * 1.5f * Time.deltaTime, 0f);
             if (Input.GetKey(KeyCode.DownArrow)) photoCamera.transform.Translate(0f, -1f * 1.5f * Time.deltaTime, 0f);
 
-            //GameState가 Tutorial일 때.
-            if (GameManager.GameState == "Tutorial")
+            //GameState가 '튜토리얼'일 때.
+            if (GameManager.GameState == "튜토리얼")
             {
                 float ClampX = Mathf.Clamp(photoCamera.transform.position.x, -78.2f, -76.2f);
                 float ClampY = Mathf.Clamp(photoCamera.transform.position.y, 48f, 50f);
@@ -84,14 +84,14 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     isImageChange = true;
-                    GameManager.GameState = "Tutorial Cut Scene";
+                    GameManager.GameState = "튜토리얼 컷씬";
                     
                     StartCoroutine(NextStage1());
                 }
             }
 
-            //GameState가 Demo일 때.
-            if (GameManager.GameState == "Demo")
+            //GameState가 '창고'일 때.
+            if (GameManager.GameState == "창고")
             {
                 x_Axis.minValue = 11.8f;
                 x_Axis.maxValue = 12.8f;
