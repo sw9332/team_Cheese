@@ -24,9 +24,9 @@ public class TeleportManager : MonoBehaviour
                 other.transform.position = new Vector3(other.transform.position.x, -2.33f, 0f); ShowMapNameText(GameManager.GameState); break;
 
             case "연회장 (입구)": GameManager.GameState = "연회장";
-                other.transform.position = new Vector3(59f, 19.67f, 0f); ShowMapNameText(GameManager.GameState); break;
+                other.transform.position = new Vector3(59f, other.transform.position.y, 0f); ShowMapNameText(GameManager.GameState); break;
             case "연회장 (출구)": GameManager.GameState = "연회장 입구";
-                other.transform.position = new Vector3(46.61f, 19.67f, 0f); ShowMapNameText(GameManager.GameState); break;
+                other.transform.position = new Vector3(46.61f, other.transform.position.y, 0f); ShowMapNameText(GameManager.GameState); break;
 
             case "창고 입구 (입구)": GameManager.GameState = "창고 입구";
                 other.transform.position = new Vector3(other.transform.position.x, -1.7f, 0f); ShowMapNameText(GameManager.GameState); break;
