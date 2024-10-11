@@ -17,14 +17,8 @@ public class Player : MonoBehaviour
     {
         switch(other.gameObject.tag)
         {
-            case "Cake Event":
-                dialogueManager.ShowDialogue(dialogueContentManager.d_cake);
-                Destroy(other.gameObject);
-                break;
-            case "Camera Event":
-                dialogueManager.ShowDialogue(dialogueContentManager.d_photo);
-                Destroy(other.gameObject);
-                break;
+            case "Cake Event": dialogueManager.ShowDialogue(dialogueContentManager.d_cake); Destroy(other.gameObject); break;
+            case "Camera Event": dialogueManager.ShowDialogue(dialogueContentManager.d_photo); Destroy(other.gameObject); break;
         }
 
         switch(other.gameObject.tag)
