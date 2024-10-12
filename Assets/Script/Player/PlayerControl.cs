@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class PlayerControl : MonoBehaviour
     private PlayerAttack playerAttack;
     private Stamina stamina;
 
-   // public SpriteRenderer rend; // player 스프라이트 (바라보는 방향 설정)
     public Animator animator; // player 이동 및 공격 애니메이션
 
     public static float speed = 2.5f;
@@ -67,10 +67,14 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("PlayerLeft");
-                    else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("PlayerRight");
-                    else animator.Play("PlayerUp");
-                    if (Input.GetKey(KeyCode.DownArrow)) animator.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        animator.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        animator.Play("PlayerRight");
+                    else if (Input.GetKey(KeyCode.DownArrow))
+                        animator.Play("PlayerBack");
+                    else
+                        animator.Play("PlayerUp");
                 }
 
                 MoveX = false;
@@ -85,10 +89,14 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("PlayerLeft");
-                    else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("PlayerRight");
-                    else animator.Play("PlayerBack");
-                    if (Input.GetKey(KeyCode.UpArrow)) animator.Play("PlayerUp");
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        animator.Play("PlayerLeft");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        animator.Play("PlayerRight");
+                    else if (Input.GetKey(KeyCode.UpArrow))
+                        animator.Play("PlayerBack");
+                    else
+                        animator.Play("PlayerBack");
                 }
 
                 MoveX = false;
@@ -101,7 +109,13 @@ public class PlayerControl : MonoBehaviour
             //왼쪽으로 이동
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (!isPush) animator.Play("PlayerLeft");
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                        animator.Play("PlayerLeft");
+                    else
+                        animator.Play("PlayerLeft");
+                }
 
                 MoveX = true;
                 MoveY = false;
@@ -114,7 +128,14 @@ public class PlayerControl : MonoBehaviour
             //오른쪽으로 이동
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (!isPush) animator.Play("PlayerRight");
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        animator.Play("PlayerLeft");
+                    else
+                        animator.Play("PlayerRight");
+                }
+                    
 
                 MoveX = true;
                 MoveY = false;
@@ -124,8 +145,10 @@ public class PlayerControl : MonoBehaviour
                 Direction = 4;  // 오른쪽 방향
             }
 
-            if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1) animator.Play("PlayerUp_Stop");
-            else if (Input.GetKeyUp(KeyCode.DownArrow) && Direction == 2) animator.Play("PlayerBack_Stop");
+            if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1)
+                animator.Play("PlayerUp_Stop");
+            else if (Input.GetKeyUp(KeyCode.DownArrow) && Direction == 2)
+                animator.Play("PlayerBack_Stop");
 
             else if (Input.GetKeyUp(KeyCode.LeftArrow) && Direction == 3 && !Input.GetKey(KeyCode.RightArrow))
             {
