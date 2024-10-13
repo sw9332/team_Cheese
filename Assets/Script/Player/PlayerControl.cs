@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour
                     else if (Input.GetKey(KeyCode.RightArrow))
                         animator.Play("PlayerRight");
                     else if (Input.GetKey(KeyCode.DownArrow))
-                        animator.Play("PlayerBack");
+                        animator.Play("PlayerBack_Stop");
                     else
                         animator.Play("PlayerUp");
                 }
@@ -94,7 +94,7 @@ public class PlayerControl : MonoBehaviour
                     else if (Input.GetKey(KeyCode.RightArrow))
                         animator.Play("PlayerRight");
                     else if (Input.GetKey(KeyCode.UpArrow))
-                        animator.Play("PlayerBack");
+                        animator.Play("PlayerBack_Stop");
                     else
                         animator.Play("PlayerBack");
                 }
@@ -112,7 +112,7 @@ public class PlayerControl : MonoBehaviour
                 if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.RightArrow))
-                        animator.Play("PlayerLeft");
+                        animator.Play("PlayerBack_Stop");
                     else
                         animator.Play("PlayerLeft");
                 }
@@ -131,7 +131,7 @@ public class PlayerControl : MonoBehaviour
                 if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
-                        animator.Play("PlayerLeft");
+                        animator.Play("PlayerBack_Stop");
                     else
                         animator.Play("PlayerRight");
                 }
