@@ -9,6 +9,8 @@ public class cameraManager : MonoBehaviour
     public Vector3 pos;
     public Vector3 offset;
 
+    public float CameraSpeed = 2f;
+
     void Start()
     {
         if (player == null)
@@ -24,7 +26,7 @@ public class cameraManager : MonoBehaviour
         switch (GameManager.GameState)
         {
             case "튜토리얼":
-                if (player.position.y > 46.5f && player.position.y < 50.9f)
+                if (player.position.y >= 47f && player.position.y <= 50f)
                     pos.y = player.position.y + offset.y;
                 break;
 
@@ -33,13 +35,33 @@ public class cameraManager : MonoBehaviour
                 pos.y = 47f;
                 break;
 
-            case "창고":
+            case "파티룸":
+                pos.x = player.position.x + offset.x;
                 pos.y = player.position.y + offset.y;
                 break;
 
+            case "복도 #F":
+                if(player.position.y >= -7.5f)
+                    pos.y = Mathf.Lerp(pos.y, player.position.y + offset.y, Time.deltaTime * CameraSpeed);
+                else
+                {
+                    pos.y = Mathf.Lerp(pos.y, -12.5f, Time.deltaTime * CameraSpeed);
+                    pos.x = player.position.x + offset.x;
+                }
+                break;
+
+            case "연회장 입구":
+                pos.x = Mathf.Lerp(pos.x, 44f, Time.deltaTime * CameraSpeed);
+                pos.y = Mathf.Lerp(pos.y, player.position.y + offset.y, Time.deltaTime * CameraSpeed);
+                break;
+
+            case "창고":
+                pos.y = Mathf.Lerp(pos.y, player.position.y + offset.y, Time.deltaTime * CameraSpeed);
+                break;
+
             default:
-                pos.x = player.position.x + offset.x;
-                pos.y = player.position.y + offset.y;
+                pos.x = Mathf.Lerp(pos.x, player.position.x + offset.x, Time.deltaTime * CameraSpeed);
+                pos.y = Mathf.Lerp(pos.y, player.position.y + offset.y, Time.deltaTime * CameraSpeed);
                 break;
         }
 
