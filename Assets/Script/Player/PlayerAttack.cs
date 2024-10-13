@@ -24,7 +24,6 @@ public class PlayerAttack : MonoBehaviour
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
-
     
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
@@ -34,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null)  // 근접 공격 범위 내에 적군이 감지되었다면
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
@@ -43,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0) // 쿨타임 확인
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove) // 쿨타임 확인
         {
             rangedAttack();
         }
@@ -105,7 +104,7 @@ public class PlayerAttack : MonoBehaviour
 
     void attackStop()
     {
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && playerControl.isMove)
         {
             if (playerControl.Direction == 1)
             {

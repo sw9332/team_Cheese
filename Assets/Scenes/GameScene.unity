@@ -8386,9 +8386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17d79f3954a31240b38e43258a9c192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: 
   MapNameText: {fileID: 1723241594}
-  fadeDuration: 1
 --- !u!4 &362198451
 Transform:
   m_ObjectHideFlags: 0
@@ -17926,7 +17924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 429233718349716679, guid: b36987d2166d3924a847408d854d424a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.177
+      value: -11.3
       objectReference: {fileID: 0}
     - target: {fileID: 429233718349716679, guid: b36987d2166d3924a847408d854d424a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64108,7 +64106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 429233718349716679, guid: b36987d2166d3924a847408d854d424a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.213
+      value: -11.3
       objectReference: {fileID: 0}
     - target: {fileID: 429233718349716679, guid: b36987d2166d3924a847408d854d424a, type: 3}
       propertyPath: m_LocalPosition.z
