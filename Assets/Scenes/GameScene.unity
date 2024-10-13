@@ -11583,6 +11583,7 @@ MonoBehaviour:
   player: {fileID: 730974881}
   pos: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: 0}
+  cameraSpeed: 20
 --- !u!1001 &521897455
 PrefabInstance:
   m_ObjectHideFlags: 0
