@@ -84,6 +84,7 @@ public class MiniGame : MonoBehaviour
                     is_take_photo = false;
                     is_minigame = false;
                     isImageChange = true;
+                    playerControl.isMove = false;
                     GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
                     
                     StartCoroutine(NextStage1());
@@ -140,6 +141,7 @@ public class MiniGame : MonoBehaviour
         mainCamera.transform.position = new Vector3(60, 0, -10);
         ClearPhotoMode();
         yield return StartCoroutine(fadeManager.FadeIn());
+        playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
     }
 
