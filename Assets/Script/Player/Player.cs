@@ -23,26 +23,26 @@ public class Player : MonoBehaviour
 
         switch(other.gameObject.tag)
         {
-            case "파티룸 (입구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "파티룸 (출구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "파티룸 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "파티룸 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "연회장 입구 (입구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "연회장 입구 (출구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "연회장 입구 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "연회장 입구 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "연회장 (입구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "연회장 (출구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "연회장 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "연회장 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "창고 입구 (입구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "창고 입구 (출구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "창고 입구 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "창고 입구 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "창고 (입구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "창고 (출구)": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "창고 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "창고 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "RoomE Go": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "RoomE Exit": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "RoomE Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "RoomE Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
-            case "RoomF Go": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
-            case "RoomF Exit": teleportManager.teleport(other.gameObject.tag, playerCollider); break;
+            case "RoomF Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "RoomF Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
         }
     }
 
