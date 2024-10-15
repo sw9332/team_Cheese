@@ -18,6 +18,7 @@ public class Stage1_MovableBoxes : MonoBehaviour
         if (col.tag == "Player")
         {
             dialogueManager.ShowDialogue(movableBoxes);
+            this.gameObject.SetActive(false);
         }
     }
 }
