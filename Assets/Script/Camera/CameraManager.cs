@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -7,10 +8,7 @@ public class CameraManager : MonoBehaviour
     public Transform player;
 
     public Vector3 pos;
-    public Vector3 offset;
     private Vector3 velocity = Vector3.zero;
-
-    public float cameraSpeed = 20f; 
 
     void LateUpdate()
     {
@@ -19,7 +17,8 @@ public class CameraManager : MonoBehaviour
         switch (GameManager.GameState)
         {
             case "∆©≈‰∏ÆæÛ":
-                pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                if(player.position.y >= 47 && player.position.y <= 50)
+                    pos.y = player.position.y;
                 break;
 
             case "∆©≈‰∏ÆæÛ ƒ∆æ¿":
@@ -28,32 +27,36 @@ public class CameraManager : MonoBehaviour
                 break;
 
             case "∆ƒ∆º∑Î":
-                pos.x = Mathf.SmoothDamp(pos.x, player.position.x + offset.x, ref velocity.x, cameraSpeed * Time.deltaTime);
-                pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                pos.x = 60f;
+                pos.y = player.position.y;
                 break;
 
             case "∫πµµ #F":
                 if (player.position.y >= -7.5f)
-                    pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                {
+                    pos.x = player.position.x;
+                    pos.y = player.position.y;
+                }
+                    
                 else
                 {
-                    pos.y = Mathf.SmoothDamp(pos.y, -12.5f, ref velocity.y, cameraSpeed * Time.deltaTime);
-                    pos.x = Mathf.SmoothDamp(pos.x, player.position.x + offset.x, ref velocity.x, cameraSpeed * Time.deltaTime);
+                    pos.x = player.position.x;
+                    pos.y = -12.5f;
                 }
                 break;
 
             case "ø¨»∏¿Â ¿‘±∏":
-                pos.x = Mathf.SmoothDamp(pos.x, 44f, ref velocity.x, cameraSpeed * Time.deltaTime);
-                pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                pos.x = 44f;
+                pos.y = player.position.y;
                 break;
 
             case "√¢∞Ì":
-                pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                pos.y = player.position.y;
                 break;
 
             default:
-                pos.x = Mathf.SmoothDamp(pos.x, player.position.x + offset.x, ref velocity.x, cameraSpeed * Time.deltaTime);
-                pos.y = Mathf.SmoothDamp(pos.y, player.position.y + offset.y, ref velocity.y, cameraSpeed * Time.deltaTime);
+                pos.x = player.position.x;
+                pos.y = player.position.y;
                 break;
         }
 
