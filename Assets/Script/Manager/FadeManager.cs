@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class FadeManager : MonoBehaviour
 {
     private PlayerControl playerControl;
+    private DialogueManager dialogueManager;
 
     public Image fadeImage;
     public float fadeDuration = 1f;
+    public bool isFade = false;
 
     public IEnumerator FadeIn()
     {
@@ -24,9 +26,10 @@ public class FadeManager : MonoBehaviour
             yield return null;
         }
 
+        isFade = false;
         fadeImage.gameObject.SetActive(false);
 
-        if(playerControl != null)
+        if(playerControl != null && !dialogueManager.DialoguePanel.activeSelf)
             playerControl.isMove = true;
     }
 
@@ -35,6 +38,7 @@ public class FadeManager : MonoBehaviour
         if(playerControl != null)
             playerControl.isMove = false;
 
+        isFade = true;
         fadeImage.gameObject.SetActive(true);
         fadeImage.color = Color.clear;
 
@@ -70,5 +74,6 @@ public class FadeManager : MonoBehaviour
     void Start()
     {
         playerControl = FindObjectOfType<PlayerControl>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 }

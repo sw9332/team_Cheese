@@ -34,15 +34,15 @@ public class DialogueManager : MonoBehaviour
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
 
-    public PlayerControl playerControl;
-
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
     public bool dialogue_continue = false;
 
     public bool is_talking = false;
 
+    public PlayerControl playerControl;
     public MiniGame minigame;
+    public FadeManager fadeManager;
 
     private void Start()
     {
@@ -76,7 +76,8 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(true);
         DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        playerControl.isMove = true;
+        if(!fadeManager.isFade)
+            playerControl.isMove = true;
     }
 
     IEnumerator startDialogueCoroutine()
