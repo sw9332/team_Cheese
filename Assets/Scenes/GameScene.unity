@@ -11579,7 +11579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5bef2de92f46648b00f4d969833911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 730974881}
   pos: {x: 0, y: 0, z: 0}
 --- !u!1001 &521897455
 PrefabInstance:
@@ -80564,11 +80563,12 @@ MonoBehaviour:
   spriteList: []
   ingameUiPanel: {fileID: 1790190305}
   DialoguePanel: {fileID: 1032883397}
-  playerControl: {fileID: 730974890}
   count: 0
   dialogue_continue: 0
   is_talking: 0
+  playerControl: {fileID: 730974890}
   minigame: {fileID: 1233675659}
+  fadeManager: {fileID: 840480186}
 --- !u!1 &1647946622
 GameObject:
   m_ObjectHideFlags: 0
