@@ -17,24 +17,24 @@ public class CameraManager : MonoBehaviour
         switch (GameManager.GameState)
         {
             case "∆©≈‰∏ÆæÛ":
-                if(player.transform.position.y >= 47 && player.transform.position.y <= 50)
-                    pos.y = player.transform.position.y;
+                pos.x = -77f;
+                if (player.transform.position.y >= 47.5f && player.transform.position.y <= 49f) pos.y = player.transform.position.y;
                 break;
 
             case "∆©≈‰∏ÆæÛ ƒ∆æ¿":
                 pos.x = -51.9f;
-                pos.y = 47f;
+                pos.y = 47.5f;
                 break;
 
             case "∆ƒ∆º∑Î":
                 pos.x = 60f;
-                pos.y = player.transform.position.y;
+                if (player.transform.position.y >= 0f && player.transform.position.y <= 1.3f) pos.y = player.transform.position.y;
                 break;
 
             case "∫πµµ #F":
                 if (player.transform.position.y >= -7.5f)
                 {
-                    pos.x = player.transform.position.x;
+                    pos.x = 44f;
                     pos.y = player.transform.position.y;
                 }
                     
@@ -52,10 +52,15 @@ public class CameraManager : MonoBehaviour
 
             case "ø¨»∏¿Â":
                 bool posX = (player.transform.position.x >= 58.3f && player.transform.position.x <= 73.8f);
-                bool posY = (player.transform.position.y <= 19.5f && player.transform.position.y >= 15f);
+                bool posY = (player.transform.position.y <= 21f && player.transform.position.y >= 16f);
                 if (posX) pos.x = player.transform.position.x;
                 if (posY) pos.y = player.transform.position.y;
                 if (!posX && !posY) pos = transform.position;
+                break;
+
+            case "√¢∞Ì ¿‘±∏":
+                pos.x = 12f;
+                pos.y = player.transform.position.y;
                 break;
 
             case "√¢∞Ì":
