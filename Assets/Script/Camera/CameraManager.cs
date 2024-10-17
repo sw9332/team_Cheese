@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     public Vector3 pos;
     private Vector3 velocity = Vector3.zero;
 
-    void FixedUpdate()
+    void Update()
     {
         pos = transform.position;
 
