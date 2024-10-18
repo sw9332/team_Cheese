@@ -61,7 +61,7 @@ public class CameraManager : MonoBehaviour
                 break;
 
             case "Ã¢°í":
-                pos.y = player.transform.position.y;
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.5f, 28.8f);
                 break;
 
             default:
