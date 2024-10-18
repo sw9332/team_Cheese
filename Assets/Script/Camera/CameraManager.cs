@@ -9,10 +9,12 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 pos;
     private Vector3 velocity = Vector3.zero;
+    private string lastGameState;
 
     void Update()
     {
         pos = transform.position;
+        bool isGameStateChanged = GameManager.GameState != lastGameState;
 
         switch (GameManager.GameState)
         {
@@ -70,7 +72,9 @@ public class CameraManager : MonoBehaviour
                 break;
         }
 
-        transform.position = pos;
+        if (isGameStateChanged || GameManager.GameState == "Æ©Åä¸®¾ó ÄÆ¾À") transform.position = pos;
+        else transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, 0.1f);
+        lastGameState = GameManager.GameState;
     }
 
     void Start()
