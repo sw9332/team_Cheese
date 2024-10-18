@@ -18,7 +18,7 @@ public class CameraManager : MonoBehaviour
         {
             case "∆©≈‰∏ÆæÛ":
                 pos.x = -77f;
-                if (player.transform.position.y >= 47.5f && player.transform.position.y <= 49f) pos.y = player.transform.position.y;
+                pos.y = Mathf.Clamp(player.transform.position.y, 47.5f, 49f);
                 break;
 
             case "∆©≈‰∏ÆæÛ ƒ∆æ¿":
@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour
 
             case "∆ƒ∆º∑Î":
                 pos.x = 60f;
-                if (player.transform.position.y >= 0f && player.transform.position.y <= 1.3f) pos.y = player.transform.position.y;
+                pos.y = Mathf.Clamp(player.transform.position.y, 0, 1.3f);
                 break;
 
             case "∫πµµ #F":
@@ -51,11 +51,8 @@ public class CameraManager : MonoBehaviour
                 break;
 
             case "ø¨»∏¿Â":
-                bool posX = (player.transform.position.x >= 58.3f && player.transform.position.x <= 73.8f);
-                bool posY = (player.transform.position.y <= 21f && player.transform.position.y >= 16f);
-                if (posX) pos.x = player.transform.position.x;
-                if (posY) pos.y = player.transform.position.y;
-                if (!posX && !posY) pos = transform.position;
+                pos.x = Mathf.Clamp(player.transform.position.x, 65.5f, 73.8f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 16.4f, 19.5f);
                 break;
 
             case "√¢∞Ì ¿‘±∏":
