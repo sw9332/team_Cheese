@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
-    public int count = 0;
+    private int count = 0; // 피격당했을 때 사용되는 변수
 
     // 원거리 공격 관련
     public GameObject bullet;
@@ -37,17 +37,17 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                meleeAttack();
+                meleeAttackMotion();
                 enemyManager.takeDamage(enemyCollider.tag);
             }
         }
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove) // 쿨타임 확인
         {
-            rangedAttack();
+            rangedAttackMotion();
         }
 
-        attackStop();
+        attackMotionStop();
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
         if (fireCurtime > 0)
@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void meleeAttack()
+    void meleeAttackMotion()
     {
         if (playerControl.Direction == 1)
         {
@@ -76,9 +76,8 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void rangedAttack()
+    void rangedAttackMotion()
     {
-        // 방향에 따른 애니메이션 설정
         if (playerControl.Direction == 1) // 뒤
         {
             playerControl.animator.Play("PlayerLongAttackBack");
@@ -100,9 +99,10 @@ public class PlayerAttack : MonoBehaviour
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
         fireCurtime = fireCooltime; // 쿨타임 초기화
+        //  모션 수정되면 yield return으로 모션 끝날때까지 대기하도록 
     }
 
-    void attackStop()
+    void attackMotionStop()
     {
         if (Input.GetKeyUp(KeyCode.LeftControl) && playerControl.isMove)
         {
@@ -171,15 +171,12 @@ public class PlayerAttack : MonoBehaviour
 
 
     // Player HP ---------------------------------------------------------------------
-    void getPlayerHP()
-    {
-        int numHp = GameObject.Find("playerHP").transform.childCount;
-        for (int i = 0; i < numHp; i++)
-        {
-            GameObject hpObj = GameObject.Find("playerHP").transform.GetChild(i).gameObject;
-            hp.Add(hpObj);
-        }
-    }
+    private Collider2D[] nearEnemies;
+    public float elapsedTime = 0f;
+    private float destroyTime = 1f;
+    private bool isCollidingWithEnemy = false;
+
+    public bool isChangingSprite = false; // playerControl.MoveControl에서 사용하기 위해 public - isMove
 
     /* HP 관련 Gizmo */
     public bool showHPGizmo = false;
@@ -191,14 +188,6 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.DrawCube(this.transform.position + playerControl.CenterOffset, new Vector2(nearEnemyBoxSize.x, nearEnemyBoxSize.y));
         }
     }
-
-
-    private Collider2D[] nearEnemies;
-    public float elapsedTime = 0f;
-    private float destroyTime = 1f;
-    private bool isCollidingWithEnemy = false;
-
-    public bool isChangingSprite = false; // playerControl.MoveControl에서 사용하기 위해 public - isMove
 
     /* CollideWithEnemy 함수 설명
    'enemy' 태그를 가진 polygonCollider2D만 필터링
@@ -270,15 +259,23 @@ public class PlayerAttack : MonoBehaviour
         playerSpriteRenderer.color = Color.white;
         elapsedTime = 0f;
         count = 0;  // 다시 카운트 초기화
-        // yield return new WaitForSeconds(1f);
         isChangingSprite = false;
     }
 
-    SpriteRenderer getPlayerSpriteRenderer()
+    void getPlayerHP()
+    {
+        int numHp = GameObject.Find("playerHP").transform.childCount;
+        for (int i = 0; i < numHp; i++)
+        {
+            GameObject hpObj = GameObject.Find("playerHP").transform.GetChild(i).gameObject;
+            hp.Add(hpObj);
+        }
+    }
+
+    void getPlayerSpriteRenderer()
     {
         player = GameObject.Find("Player");
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
-        return playerSpriteRenderer;
     }
     
     void Start()
