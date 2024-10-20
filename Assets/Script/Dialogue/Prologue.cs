@@ -7,11 +7,14 @@ public class Prologue : MonoBehaviour
     public Dialogue d_prologue;
     private FadeManager fadeManager;
     private DialogueManager dialogueManager;
+    private UIManager uiManager;
+    
 
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
         fadeManager = FindObjectOfType<FadeManager>();
+        uiManager = FindObjectOfType<UIManager>();
         dialogueManager.ShowDialogue(d_prologue);
     }
 
@@ -29,6 +32,7 @@ public class Prologue : MonoBehaviour
         if (dialogueManager.dialogue_continue == false)
         {
             this.gameObject.SetActive(false);
+            uiManager.TutorialUI.SetActive(true);
         }
     }
 }

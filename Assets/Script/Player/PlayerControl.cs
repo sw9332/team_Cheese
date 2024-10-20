@@ -165,13 +165,19 @@ public class PlayerControl : MonoBehaviour
             //´Þ¸®±â
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
-                speed = 5;
+                if (!isPush)
+                {
+                    speed = 5f;
+                    animator.speed = 2f;
+                    stamina.isPlayerRunning = true;
+                }
 
-                if (!isPush) animator.speed = 2;
-                else animator.speed = 1;
-
-                if (!isPush) stamina.isPlayerRunning = true;
-                else stamina.isPlayerRunning = false;
+                else
+                {
+                    speed = 2f;
+                    animator.speed = 1f;
+                    stamina.isPlayerRunning = false;
+                }
             }
 
             else
