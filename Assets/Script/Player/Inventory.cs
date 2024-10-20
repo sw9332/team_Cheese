@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public string[] SlotDB = new string[4];
-    public Image[] SlotImageDB = new Image[4];
+    public string[] SlotDB;
+    public Image[] SlotImageDB;
 
     public GameObject[] ItemDB;
     public Sprite[] ItemSpriteDB;

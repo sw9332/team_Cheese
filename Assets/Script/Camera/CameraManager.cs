@@ -9,32 +9,34 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 pos;
     private Vector3 velocity = Vector3.zero;
+    private string lastGameState;
 
-    void FixedUpdate()
+    void Update()
     {
         pos = transform.position;
+        bool isGameStateChanged = GameManager.GameState != lastGameState;
 
         switch (GameManager.GameState)
         {
             case "Æ©Åä¸®¾ó":
-                if(player.transform.position.y >= 47 && player.transform.position.y <= 50)
-                    pos.y = player.transform.position.y;
+                pos.x = -77f;
+                pos.y = Mathf.Clamp(player.transform.position.y, 47.5f, 49f);
                 break;
 
             case "Æ©Åä¸®¾ó ÄÆ¾À":
                 pos.x = -51.9f;
-                pos.y = 47f;
+                pos.y = 47.5f;
                 break;
 
             case "ÆÄÆ¼·ë":
                 pos.x = 60f;
-                pos.y = player.transform.position.y;
+                pos.y = Mathf.Clamp(player.transform.position.y, 0, 1.3f);
                 break;
 
             case "º¹µµ #F":
                 if (player.transform.position.y >= -7.5f)
                 {
-                    pos.x = player.transform.position.x;
+                    pos.x = 44f;
                     pos.y = player.transform.position.y;
                 }
                     
@@ -51,15 +53,17 @@ public class CameraManager : MonoBehaviour
                 break;
 
             case "¿¬È¸Àå":
-                bool posX = (player.transform.position.x >= 58.3f && player.transform.position.x <= 73.8f);
-                bool posY = (player.transform.position.y <= 19.5f && player.transform.position.y >= 15f);
-                if (posX) pos.x = player.transform.position.x;
-                if (posY) pos.y = player.transform.position.y;
-                if (!posX && !posY) pos = transform.position;
+                pos.x = Mathf.Clamp(player.transform.position.x, 65.5f, 73.8f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 16.4f, 19.5f);
+                break;
+
+            case "Ã¢°í ÀÔ±¸":
+                pos.x = 12f;
+                pos.y = player.transform.position.y;
                 break;
 
             case "Ã¢°í":
-                pos.y = player.transform.position.y;
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.5f, 28.8f);
                 break;
 
             default:
@@ -68,7 +72,9 @@ public class CameraManager : MonoBehaviour
                 break;
         }
 
-        transform.position = pos;
+        if (isGameStateChanged || GameManager.GameState == "Æ©Åä¸®¾ó ÄÆ¾À") transform.position = pos;
+        else transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, 0.1f);
+        lastGameState = GameManager.GameState;
     }
 
     void Start()

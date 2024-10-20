@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject CameraUI;
     public GameObject Pause_UI;
     public GameObject SettingUI;
+    public GameObject TutorialUI;
 
     public Image fadeImage;
 
@@ -122,5 +123,9 @@ public class UIManager : MonoBehaviour
             isCameraEffect = false;
             MiniGame.is_take_photo = false;
         }
+
+        if (TutorialUI.activeSelf == true)
+            if (Input.GetKeyDown(KeyCode.Z))
+                TutorialUI.SetActive(false);
     }
 }
