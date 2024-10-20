@@ -73,7 +73,7 @@ public class CameraManager : MonoBehaviour
         }
 
         if (isGameStateChanged || GameManager.GameState == "Æ©Åä¸®¾ó ÄÆ¾À") transform.position = pos;
-        else transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, 0.1f);
+        else transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, 0.15f);
         lastGameState = GameManager.GameState;
     }
 
