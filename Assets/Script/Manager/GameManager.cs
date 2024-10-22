@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static string GameState = "Tutorial";
+    public static string GameState = "Æ©Åä¸®¾ó";
     public string GameStatePrint;
 
     private DialogueManager dialogueManager;
@@ -22,12 +22,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (GameState == "Æ©Åä¸®¾ó ÄÆ¾À")
-        {
             if (dialogueManager.button_text.text == "´Ý±â")
                 if (Input.GetKeyDown(KeyCode.Z))
                     StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
-        }
-
         GameStatePrint = GameState;
     }
 }

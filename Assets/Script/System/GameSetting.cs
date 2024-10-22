@@ -47,9 +47,8 @@ public class GameSetting : MonoBehaviour
     { 
         {1920, 1080},
         {1600, 900},
-        {1280, 960},
+        {1366, 768},
         {1280, 720},
-        {800, 600}
     };
 
     void InitUI()
@@ -71,10 +70,7 @@ public class GameSetting : MonoBehaviour
             option.text = item.width + "x" + item.height + " " + Application.targetFrameRate + "Hz";
             resolutionDropdown.options.Add(option);
 
-            if (item.width == Screen.width && item.height == Screen.height)
-            {
-                resolutionDropdown.value = optionNum;
-            }
+            if (item.width == Screen.width && item.height == Screen.height) resolutionDropdown.value = optionNum;
 
             optionNum++;
         }
@@ -87,10 +83,7 @@ public class GameSetting : MonoBehaviour
     {
         for (int i = 0; i < allowedResolutions.GetLength(0); i++)
         {
-            if (allowedResolutions[i, 0] == width && allowedResolutions[i, 1] == height)
-            {
-                return true;
-            }
+            if (allowedResolutions[i, 0] == width && allowedResolutions[i, 1] == height) return true;
         }
         return false;
     }
@@ -98,16 +91,16 @@ public class GameSetting : MonoBehaviour
     public void DropdownOptionChange(int x)
     {
         resolutionNum = x;
-        OkBtnClick();
+        ScreenApply();
     }
 
     public void FullScreenBtn(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-        OkBtnClick();
+        ScreenApply();
     }
 
-    public void OkBtnClick()
+    void ScreenApply()
     {
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }

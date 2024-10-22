@@ -22,6 +22,7 @@ public class MiniGame : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
     private PlayerControl playerControl;
     private FadeManager fadeManager;
+    private TutorialManager tutorialManager;
 
     //private bool is_next_stage = false;
     //private bool is_transition = false;
@@ -32,6 +33,7 @@ public class MiniGame : MonoBehaviour
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         playerControl = FindObjectOfType<PlayerControl>();
         fadeManager = FindObjectOfType<FadeManager>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
     private void Update()
@@ -154,6 +156,7 @@ public class MiniGame : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(tutorialManager.ShowTutorialUI());
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
     }
 }

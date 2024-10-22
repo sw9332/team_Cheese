@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private TeleportManager teleportManager;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
+    private UIManager uiManager;
+    private TutorialManager tutorialManager;
 
     private Collider2D playerCollider;
 
@@ -17,8 +19,15 @@ public class Player : MonoBehaviour
     {
         switch(other.gameObject.tag)
         {
-            case "Cake Event": dialogueManager.ShowDialogue(dialogueContentManager.d_cake); Destroy(other.gameObject); break;
-            case "Camera Event": dialogueManager.ShowDialogue(dialogueContentManager.d_photo); Destroy(other.gameObject); break;
+            case "Cake Event": dialogueManager.ShowDialogue(dialogueContentManager.d_cake);
+                StartCoroutine(tutorialManager.ShowTutorialUI());
+                Destroy(other.gameObject);
+                break;
+
+            case "Camera Event": dialogueManager.ShowDialogue(dialogueContentManager.d_photo);
+                StartCoroutine(tutorialManager.ShowTutorialUI());
+                Destroy(other.gameObject);
+                break;
         }
 
         switch(other.gameObject.tag)
@@ -52,5 +61,7 @@ public class Player : MonoBehaviour
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         teleportManager = FindObjectOfType<TeleportManager>();
         playerCollider = GetComponent<Collider2D>();
+        uiManager = FindObjectOfType<UIManager>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
     }
 }

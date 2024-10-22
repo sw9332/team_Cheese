@@ -5,20 +5,28 @@ using UnityEngine;
 public class Stage1_MovableBoxes : MonoBehaviour
 {
     private DialogueManager dialogueManager;
+    private TutorialManager tutorialManager;
 
     public Dialogue movableBoxes;
 
-    private void Start()
+    IEnumerator CheckDialogueEnd()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
+        yield return StartCoroutine(tutorialManager.ShowTutorialUI());
+        this.gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player")
+        if (col.CompareTag("Player"))
         {
             dialogueManager.ShowDialogue(movableBoxes);
-            this.gameObject.SetActive(false);
+            StartCoroutine(CheckDialogueEnd());
         }
+    }
+
+    void Start()
+    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
     }
 }
