@@ -16865,7 +16865,6 @@ MonoBehaviour:
   CameraUI: {fileID: 527049652}
   Pause_UI: {fileID: 1080693240}
   SettingUI: {fileID: 1883287917}
-  TutorialUI: {fileID: 435824462}
   fadeImage: {fileID: 1201729923}
   Camera_Effect_Animation: {fileID: 527049656}
   isCameraEffect: 0
@@ -62930,6 +62929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918f498b3a02d344791c639ce04b7a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TutorialUI: {fileID: 435824462}
 --- !u!1 &1627772212
 GameObject:
   m_ObjectHideFlags: 0
