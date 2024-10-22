@@ -170,10 +170,10 @@ public class PlayerAttack : MonoBehaviour
     // Player HP ---------------------------------------------------------------------
     void getPlayerHP()
     {
-        int numHp = GameObject.Find("playerHP").transform.childCount;
+        int numHp = GameObject.Find("Player HP").transform.childCount;
         for (int i = 0; i < numHp; i++)
         {
-            GameObject hpObj = GameObject.Find("playerHP").transform.GetChild(i).gameObject;
+            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(i).gameObject;
             hp.Add(hpObj);
         }
     }
