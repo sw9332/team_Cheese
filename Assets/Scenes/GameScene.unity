@@ -3920,8 +3920,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Album: {fileID: 1152546717}
-  player: {fileID: 730974879}
   InGameUI: {fileID: 1790190305}
+  player: {fileID: 730974879}
   imageObjects: []
   albumImages: []
   presentImage: {fileID: 0}
@@ -16877,16 +16877,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e979da18cafb394c85ed07a5688dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerSpriteRenderer: {fileID: 0}
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.3
-  hp: []
   showRangeGizmo: 0
-  showHPGizmo: 0
   elapsedTime: 0
   isChangingSprite: 0
+  showHPGizmo: 0
 --- !u!1001 &739177304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81594,7 +81591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

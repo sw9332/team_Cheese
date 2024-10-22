@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class CameraAlbumUI : MonoBehaviour
 {
     public GameObject Album;
-    public GameObject player;
     public GameObject InGameUI;
+    public GameObject player;
 
     [SerializeField] List<GameObject> imageObjects = new(); // Image 관련 GameObject 리스트
     [SerializeField] List<Image> albumImages = new(); // Image 컴포넌트 리스트
