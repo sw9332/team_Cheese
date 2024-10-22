@@ -9,18 +9,12 @@ public class Stage1_MovableBoxes : MonoBehaviour
 
     public Dialogue movableBoxes;
 
-    IEnumerator CheckDialogueEnd()
-    {
-        yield return StartCoroutine(tutorialManager.ShowTutorialUI());
-        this.gameObject.SetActive(false);
-    }
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            dialogueManager.ShowDialogue(movableBoxes);
-            StartCoroutine(CheckDialogueEnd());
+            StartCoroutine(tutorialManager.ShowTutorialUI(false, movableBoxes));
+            this.gameObject.SetActive(false);
         }
     }
 

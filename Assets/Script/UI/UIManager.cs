@@ -12,10 +12,6 @@ public class UIManager : MonoBehaviour
     public GameObject CameraUI;
     public GameObject Pause_UI;
     public GameObject SettingUI;
-    public GameObject TutorialUI;
-
-    public delegate void TutorialUIClose();
-    public event TutorialUIClose tutorialUIClose;
 
     public Image fadeImage;
 
@@ -31,13 +27,6 @@ public class UIManager : MonoBehaviour
 
     //Stage1 변수
     public static bool is_NPC = false;
-
-    public void CloseTutorialUI()
-    {
-        TutorialUI.SetActive(false);
-
-        if (tutorialUIClose != null) tutorialUIClose.Invoke();
-    }
 
     void Camera_effect()
     {
@@ -133,9 +122,5 @@ public class UIManager : MonoBehaviour
             isCameraEffect = false;
             MiniGame.is_take_photo = false;
         }
-
-        if (TutorialUI.activeSelf == true)
-            if (Input.GetKeyDown(KeyCode.Z))
-                TutorialUI.SetActive(false);
     }
 }

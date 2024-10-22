@@ -7,53 +7,56 @@ using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private GameObject player;
+    private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
+    private int count = 0; // í”¼ê²©ë‹¹í–ˆì„ ë•Œ ì‚¬ìš©ë˜ëŠ” ë³€ìˆ˜
 
-    // ¿ø°Å¸® °ø°İ °ü·Ã
+    // ì›ê±°ë¦¬ ê³µê²© ê´€ë ¨
     public GameObject bullet;
     public Transform bulletPos;
     public float fireCooltime;
     private float fireCurtime;
 
-    // ±ÙÁ¢°ø°İ ¹× enemy¿Í Ãæµ¹
-    [SerializeField] List<GameObject> hp = new List<GameObject>();
+    // ê·¼ì ‘ê³µê²© ë° enemyì™€ ì¶©ëŒ
+    private List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
     
-    // ±ÙÁ¢ °ø°İ¿¡¼­ enemy Á¤º¸¸¦ ¹Ş¾Æ¿À±â À§ÇØ¼­ ¼³Á¤
+    // ê·¼ì ‘ ê³µê²©ì—ì„œ enemy ì •ë³´ë¥¼ ë°›ì•„ì˜¤ê¸° ìœ„í•´ì„œ ì„¤ì •
     private Collider2D enemyCollider;
 
     void PlayerAttacks()
     {
         enemyCollider = meleeAttackableEnemy();
 
-        // ±ÙÁ¢ °ø°İ Ã³¸®
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove)  // ±ÙÁ¢ °ø°İ ¹üÀ§ ³»¿¡ Àû±ºÀÌ °¨ÁöµÇ¾ú´Ù¸é
+        // ê·¼ì ‘ ê³µê²© ì²˜ë¦¬
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove)  // ê·¼ì ‘ ê³µê²© ë²”ìœ„ ë‚´ì— ì êµ°ì´ ê°ì§€ë˜ì—ˆë‹¤ë©´
         {
             if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                meleeAttack();
+                meleeAttackMotion();
                 enemyManager.takeDamage(enemyCollider.tag);
             }
         }
-        // ¿ø°Å¸® °ø°İ Ã³¸®
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove) // ÄğÅ¸ÀÓ È®ÀÎ
+        // ì›ê±°ë¦¬ ê³µê²© ì²˜ë¦¬
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove) // ì¿¨íƒ€ì„ í™•ì¸
         {
-            rangedAttack();
+            rangedAttackMotion();
         }
 
-        attackStop();
+        attackMotionStop();
 
-        // bullet¿¡ ÀÖ´ø ÄÚµå¸¦ ²ø¾î¿È , ´Ü¹ß »ç°İ
+        // bulletì— ìˆë˜ ì½”ë“œë¥¼ ëŒì–´ì˜´ , ë‹¨ë°œ ì‚¬ê²©
         if (fireCurtime > 0)
         {
-            fireCurtime -= Time.deltaTime;  // ÄğÅ¸ÀÓ °¨¼Ò
+            fireCurtime -= Time.deltaTime;  // ì¿¨íƒ€ì„ ê°ì†Œ
         }
     }
 
-    void meleeAttack()
+    void meleeAttackMotion()
     {
         if (playerControl.Direction == 1)
         {
@@ -73,33 +76,33 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void rangedAttack()
+    void rangedAttackMotion()
     {
-        // ¹æÇâ¿¡ µû¸¥ ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
-        if (playerControl.Direction == 1) // µÚ
+        if (playerControl.Direction == 1) // ë’¤
         {
             playerControl.animator.Play("PlayerLongAttackBack");
         }
-        else if (playerControl.Direction == 2) // Á¤¸é
+        else if (playerControl.Direction == 2) // ì •ë©´
         {
             playerControl.animator.Play("PlayerLongAttackFront");
         }
-        else if (playerControl.Direction == 3) // ¿ŞÂÊ
+        else if (playerControl.Direction == 3) // ì™¼ìª½
         {
             playerControl.animator.Play("PlayerLongAttackLeft");
         }
-        else if (playerControl.Direction == 4) // ¿À¸¥ÂÊ
+        else if (playerControl.Direction == 4) // ì˜¤ë¥¸ìª½
         {
             playerControl.animator.Play("PlayerLongAttackRight");
         }
 
 
-        // ¹ß»ç ÄğÅ¸ÀÓÀÌ ³¡³µÀ» ¶§¸¸ ÃÑ¾Ë ¹ß»ç
-        Instantiate(bullet, bulletPos.position, transform.rotation);  // ÃÑ¾Ë »ı¼º
-        fireCurtime = fireCooltime; // ÄğÅ¸ÀÓ ÃÊ±âÈ­
+        // ë°œì‚¬ ì¿¨íƒ€ì„ì´ ëë‚¬ì„ ë•Œë§Œ ì´ì•Œ ë°œì‚¬
+        Instantiate(bullet, bulletPos.position, transform.rotation);  // ì´ì•Œ ìƒì„±
+        fireCurtime = fireCooltime; // ì¿¨íƒ€ì„ ì´ˆê¸°í™”
+        //  ëª¨ì…˜ ìˆ˜ì •ë˜ë©´ yield returnìœ¼ë¡œ ëª¨ì…˜ ëë‚ ë•Œê¹Œì§€ ëŒ€ê¸°í•˜ë„ë¡ 
     }
 
-    void attackStop()
+    void attackMotionStop()
     {
         if (Input.GetKeyUp(KeyCode.LeftControl) && playerControl.isMove)
         {
@@ -123,10 +126,10 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    // ±ÙÁ¢ °ø°İ   -------------------------------------------------------------------------------------------
+    // ê·¼ì ‘ ê³µê²©   -------------------------------------------------------------------------------------------
 
     public bool showRangeGizmo = false;
-    /* PlayerÀÇ enemy Å½Áö Gizmo */
+    /* Playerì˜ enemy íƒì§€ Gizmo */
     private void OnDrawGizmosSelected()
     {
         if (showRangeGizmo)
@@ -136,14 +139,14 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    /*  ±ÙÁ¢ °ø°İ ¼³¸í
-     linq(µ¥ÀÌÅÍ Äõ¸® ¾ğ¾î)¸¦ ÀÌ¿ëÇØ¼­ ºü¸¥ Á¤·Ä
-     GizmoÀÇ ¹üÀ§ ¾È¿¡ Á¸ÀçÇÏ´Â ¸ğµç 2D Äİ¶óÀÌ´õ¸¦ °¡Á®¿È
-     => : ¶÷´Ù
-        Where : Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ¿ä¼Ò ÇÊÅÍ¸µ
-        OrderBy: ¿À¸§Â÷¼ø Á¤·Ä
-        oArray: ¹è¿­·Î º¯È¯
-     'enemy' ÅÂ±×¸¦ °¡Áø PolygonCollider2D¸¸ ÇÊÅÍ¸µ
+    /*  ê·¼ì ‘ ê³µê²© ì„¤ëª…
+     linq(ë°ì´í„° ì¿¼ë¦¬ ì–¸ì–´)ë¥¼ ì´ìš©í•´ì„œ ë¹ ë¥¸ ì •ë ¬
+     Gizmoì˜ ë²”ìœ„ ì•ˆì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  2D ì½œë¼ì´ë”ë¥¼ ê°€ì ¸ì˜´
+     => : ëŒë‹¤
+        Where : ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìš”ì†Œ í•„í„°ë§
+        OrderBy: ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+        oArray: ë°°ì—´ë¡œ ë³€í™˜
+     'enemy' íƒœê·¸ë¥¼ ê°€ì§„ PolygonCollider2Dë§Œ í•„í„°ë§
 
      */
 
@@ -152,7 +155,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerControl.CenterOffset, meleeAttackBoxSize, 0f);
 
         meleeAttackableEnemies = enemyArray
-        .Where(collider => collider.gameObject.layer == 6 /*6¹ø Layer°¡ enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+        .Where(collider => collider.gameObject.layer == 6 /*6ë²ˆ Layerê°€ enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
 
@@ -168,17 +171,16 @@ public class PlayerAttack : MonoBehaviour
 
 
     // Player HP ---------------------------------------------------------------------
-    void getPlayerHP()
-    {
-        int numHp = GameObject.Find("Player HP").transform.childCount;
-        for (int i = 0; i < numHp; i++)
-        {
-            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(i).gameObject;
-            hp.Add(hpObj);
-        }
-    }
 
-    /* HP °ü·Ã Gizmo */
+    private Collider2D[] nearEnemies;
+    public float elapsedTime = 0f;
+    private float destroyTime = 1f;
+    private bool isCollidingWithEnemy = false;
+
+    public bool isChangingSprite = false; // playerControl.MoveControlì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ public - isMove
+
+
+    /* HP ê´€ë ¨ Gizmo */
     public bool showHPGizmo = false;
     private void OnDrawGizmos()
     {
@@ -189,20 +191,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-
-    private Collider2D[] nearEnemies;
-    public float elapsedTime = 0f;
-    private float destroyTime = 1f;
-    private bool isCollidingWithEnemy = false;
-
-    public bool isChangingSprite = false; // playerControl.MoveControl¿¡¼­ »ç¿ëÇÏ±â À§ÇØ public - isMove
-
-    /* CollideWithEnemy ÇÔ¼ö ¼³¸í
-   'enemy' ÅÂ±×¸¦ °¡Áø polygonCollider2D¸¸ ÇÊÅÍ¸µ
-    => : ¶÷´Ù
-     Where : Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ¿ä¼Ò ÇÊÅÍ¸µ
-     OrderBy: ¿À¸§Â÷¼ø Á¤·Ä
-     oArray: ¹è¿­·Î º¯È¯
+    /* CollideWithEnemy í•¨ìˆ˜ ì„¤ëª…
+   'enemy' íƒœê·¸ë¥¼ ê°€ì§„ polygonCollider2Dë§Œ í•„í„°ë§
+    => : ëŒë‹¤
+     Where : ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìš”ì†Œ í•„í„°ë§
+     OrderBy: ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+     oArray: ë°°ì—´ë¡œ ë³€í™˜
   */
 
     public bool CollideWithEnemy()
@@ -237,7 +231,7 @@ public class PlayerAttack : MonoBehaviour
                 elapsedTime = 0f;
             }
 
-            // 1ÃÊÀÌ»ó Àû°ú ´ë¸é ½Ã hp--
+            // 1ì´ˆì´ìƒ ì ê³¼ ëŒ€ë©´ ì‹œ hp--
             if (isCollidingWithEnemy == true  && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
@@ -247,50 +241,54 @@ public class PlayerAttack : MonoBehaviour
                     StartCoroutine(changeToDamaged());
                     hp.RemoveAt(hp.Count - 1);
                     Destroy(lastHp);
-                    elapsedTime = 0f; // ´Ù½Ã ½Ã°£ ÃÊ±âÈ­
+                    elapsedTime = 0f; // ë‹¤ì‹œ ì‹œê°„ ì´ˆê¸°í™”
                 }
             }
         }
     }
 
-    //void returnToNormalSprite()
-    //{
-    //}
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
-        playerControl.isMove = false;
-        if (playerControl.Direction == 1)
+        while(count <= 5)
         {
-            playerControl.animator.Play("playerDamagedBack");
+            playerSpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            playerSpriteRenderer.color = Color.clear;
+            yield return new WaitForSeconds(0.05f);
+            count++;
         }
-        if (playerControl.Direction == 2)
-        {
-            playerControl.animator.Play("playerDamagedFront");
-        }
-        if (playerControl.Direction == 3)
-        {
-            playerControl.animator.Play("playerDamagedLeft");
-        }
-        if (playerControl.Direction == 4)
-        {
-            playerControl.animator.Play("playerDamagedRight");
-        }
-        yield return new WaitForSeconds(0.5f);
-        isChangingSprite = false;
-        playerControl.isMove = true;
+        playerSpriteRenderer.color = Color.white;
         elapsedTime = 0f;
+        count = 0;  // ë‹¤ì‹œ ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
+        isChangingSprite = false;
+    }
+
+    void getPlayerHP()
+    {
+        int numHp = GameObject.Find("Player HP").transform.childCount;
+        for (int i = 0; i < numHp; i++)
+        {
+            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(i).gameObject;
+            hp.Add(hpObj);
+        }
+    }
+
+    void getPlayerSpriteRenderer()
+    {
+        player = GameObject.Find("Player");
+        playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
     }
     
-
     void Start()
     {
+        getPlayerSpriteRenderer();
         playerControl = FindObjectOfType<PlayerControl>();
         enemyManager = FindObjectOfType<EnemyManager>();
 
         getPlayerHP();
 
-        // ¹üÀ§ ÆÇÁ¤ offset °ª
+        // ë²”ìœ„ íŒì • offset ê°’
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
         fireCooltime = 0.2f;
