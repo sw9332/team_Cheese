@@ -42,7 +42,7 @@ public class CameraManager : MonoBehaviour
                     
                 else
                 {
-                    pos.x = player.transform.position.x;
+                    pos.x = Mathf.Clamp(player.transform.position.x, 16.4f, 80f);
                     pos.y = -12.5f;
                 }
                 break;

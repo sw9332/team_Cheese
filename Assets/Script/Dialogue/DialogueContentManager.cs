@@ -5,6 +5,8 @@ using UnityEngine;
 public class DialogueContentManager : MonoBehaviour
 {
     [SerializeField]
+    public Dialogue d_prologue;
+    [SerializeField]
     public Dialogue d_cake;
     [SerializeField]
     public Dialogue d_photo;
