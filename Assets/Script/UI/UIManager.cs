@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     public GameObject SettingUI;
     public GameObject TutorialUI;
 
+    public delegate void TutorialUIClose();
+    public event TutorialUIClose tutorialUIClose;
+
     public Image fadeImage;
 
     //카메라 UI 효과
@@ -28,6 +31,13 @@ public class UIManager : MonoBehaviour
 
     //Stage1 변수
     public static bool is_NPC = false;
+
+    public void CloseTutorialUI()
+    {
+        TutorialUI.SetActive(false);
+
+        if (tutorialUIClose != null) tutorialUIClose.Invoke();
+    }
 
     void Camera_effect()
     {
