@@ -63,20 +63,31 @@ public class EnemyManager : MonoBehaviour
 
     void destroyEnemy(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
-        string enemyTag = enemy.name;
-        switch (enemyTag)
+        string enemyName = enemy.name;
+        if (enemy.hp <= 0)
         {
-            case "pinkDollEnemy":
-                {
-                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
-                    break;
-                }
-            case "rabbitDollEnemy":
-                {
-                    deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
-                    break;
-                }
+            switch (enemyName)
+            {
+                case "pinkDollEnemy":
+                    {
+                        deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
+                        break;
+                    }
+                case "rabbitDollEnemy":
+                    {
+                        deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
+                        break;
+                    }
+                case "NPC Enemy":
+                    {
+                        deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
+                        break;
+                    }
+            }
         }
+
+        if(enemy == null)
+            deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
     }
 
     // 파괴되는 것 또한 자동으로 되게끔
