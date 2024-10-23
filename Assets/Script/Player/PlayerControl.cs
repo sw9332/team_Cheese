@@ -51,7 +51,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (!isMove && !playerAttack.isChangingSprite)
         {
-            animator.Play("PlayerBack_Stop");
+            switch(GameManager.GameState)
+            {
+                case "Ã¢°í": animator.Play("PlayerUp_Stop"); break;
+                default: animator.Play("PlayerBack_Stop"); break;
+            }
+
             animator.speed = 1;
         }
 
