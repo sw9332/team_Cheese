@@ -7,7 +7,8 @@ public class CameraAlbumUI : MonoBehaviour
 {
     public GameObject Album;
     public GameObject InGameUI;
-    public GameObject player;
+
+    private PlayerControl playerControl;
 
     [SerializeField] List<GameObject> imageObjects = new(); // Image 관련 GameObject 리스트
     [SerializeField] List<Image> albumImages = new(); // Image 컴포넌트 리스트
@@ -18,13 +19,14 @@ public class CameraAlbumUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Album.activeSelf == false)
         {
             Album.SetActive(true);
-            player.SetActive(false);
+            playerControl.isMove = false;
             InGameUI.SetActive(false);
         }
+
         else if (Input.GetKeyDown(KeyCode.E) && Album.activeSelf == true)
         {
             Album.SetActive(false);
-            player.SetActive(true);
+            playerControl.isMove = true;
             InGameUI.SetActive(true);
         }
     }
@@ -33,13 +35,7 @@ public class CameraAlbumUI : MonoBehaviour
     {
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
 
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.name == name)
-            {
-                return obj;
-            }
-        }
+        foreach (GameObject obj in allObjects) if (obj.name == name) return obj;
         return null;
     }
 
@@ -53,18 +49,13 @@ public class CameraAlbumUI : MonoBehaviour
             Transform[] childrenTransforms = imagesParent.GetComponentsInChildren<Transform>(true);
 
             foreach (Transform child in childrenTransforms)
-            {
                 if (child != imagesParent.transform)
                 {
                     imageObjects.Add(child.gameObject);
 
                     Image img = child.GetComponent<Image>();
-                    if (img != null)
-                    {
-                        albumImages.Add(img);
-                    }
+                    if (img != null) albumImages.Add(img);
                 }
-            }
         }
     }
 
@@ -96,10 +87,8 @@ public class CameraAlbumUI : MonoBehaviour
                 ActivateImageAt(0); // 새로 0번째가 된 이미지 활성화
                 presentImage = albumImages[0]; // 새로 0번째가 된 이미지를 presentImage로 설정
             }
-            else
-            {
-                presentImage = null; // 이미지가 없다면 presentImage를 null로 설정
-            }
+
+            else presentImage = null; // 이미지가 없다면 presentImage를 null로 설정
         }
     }
 
@@ -114,50 +103,26 @@ public class CameraAlbumUI : MonoBehaviour
     void ActivateImageAt(int index)
     {
         for (int i = 0; i < imageObjects.Count; i++)
-        {
-            if (i == index)
-            {
-                imageObjects[i].SetActive(true);  // 해당 인덱스의 오브젝트 활성화
-            }
-            else
-            {
-                imageObjects[i].SetActive(false); // 나머지 비활성화
-            }
-        }
+            if (i == index) imageObjects[i].SetActive(true);  // 해당 인덱스의 오브젝트 활성화
+            else imageObjects[i].SetActive(false); // 나머지 비활성화
     }
 
     // null reference 방지
     void removeNullImagesFromLists()
     {
         for (int i = imageObjects.Count - 1; i >= 0; i--)
-        {
             if (imageObjects[i] == null)
             {
                 imageObjects.RemoveAt(i);
                 albumImages.RemoveAt(i);
             }
-        }
     }
 
     // 현재 활성화된 이미지 설정
     public void switchImage(string imageName)
     {
         (GameObject objImage, Image img) = getImageInformation(imageName);
-        if (img != null)
-        {
-            presentImage = img; // 현재 표시되는 이미지로 설정
-        }
-    }
-
-    void Start()
-    {
-        addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
-
-        if (imageObjects.Count > 0)
-        {
-            ActivateImageAt(0); // 처음에 0번째 오브젝트만 활성화
-            presentImage = albumImages[0]; // 기본으로 첫 번째 이미지 설정
-        }
+        if (img != null) presentImage = img; // 현재 표시되는 이미지로 설정
     }
 
     void Update()
@@ -170,6 +135,19 @@ public class CameraAlbumUI : MonoBehaviour
         {
             destroyImage(imageObjects[0].name); // 0번째 이미지 삭제
             MiniGame.isImageChange = false; // 상태를 false로 전환
+        }
+    }
+
+    void Start()
+    {
+        playerControl = FindObjectOfType<PlayerControl>();
+
+        addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
+
+        if (imageObjects.Count > 0)
+        {
+            ActivateImageAt(0); // 처음에 0번째 오브젝트만 활성화
+            presentImage = albumImages[0]; // 기본으로 첫 번째 이미지 설정
         }
     }
 }

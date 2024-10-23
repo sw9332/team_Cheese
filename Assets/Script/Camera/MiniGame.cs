@@ -13,7 +13,6 @@ public class MiniGame : MonoBehaviour
     public Slider y_Axis;
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
-    public GameObject player;
     public GameObject NPC;
 
     // E키 카메라앨범 이미지에 어떤 이미지가 들어가야 할 지 판단하는 변수들
@@ -35,7 +34,7 @@ public class MiniGame : MonoBehaviour
     {
         if (is_take_photo == true && Input.GetKeyDown(KeyCode.P))
         {
-            player.SetActive(false);
+            playerControl.gameObject.SetActive(false);
             mainCamera.GetComponent<Camera>().enabled = false;
             photoCamera.GetComponent<Camera>().enabled = true;
             ingameUIPanel.SetActive(false);
@@ -46,7 +45,7 @@ public class MiniGame : MonoBehaviour
 
     void ClearPhotoMode()
     {
-        player.SetActive(true);
+        playerControl.gameObject.SetActive(true);
         mainCamera.GetComponent<Camera>().enabled = true;
         photoCamera.GetComponent<Camera>().enabled = false;
         ingameUIPanel.SetActive(true);
@@ -125,7 +124,7 @@ public class MiniGame : MonoBehaviour
     IEnumerator NextStage1()
     {
         yield return StartCoroutine(fadeManager.FadeOut());
-        player.transform.position = new Vector3(60, 0, 0);
+        playerControl.transform.position = new Vector3(60, 0, 0);
         mainCamera.transform.position = new Vector3(60, 0, -10);
         ClearPhotoMode();
         yield return StartCoroutine(fadeManager.FadeIn());
@@ -136,7 +135,7 @@ public class MiniGame : MonoBehaviour
     IEnumerator NpcCutScene()
     {
         yield return StartCoroutine(fadeManager.FadeOut());
-        player.transform.position = new Vector3(12.5f, 28, 0);
+        playerControl.transform.position = new Vector3(12.5f, 28, 0);
         Destroy(NPCItem.Instance.gameObject);
         ClearPhotoMode();
         NPC.SetActive(true);

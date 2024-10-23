@@ -17,9 +17,6 @@ public class Object : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Player.objectCollision = false;
-        }
+        if (other.gameObject.CompareTag("Player")) Player.objectCollision = false;
     }
 }

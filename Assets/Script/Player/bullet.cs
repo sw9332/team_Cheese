@@ -13,33 +13,24 @@ public class Bullet : MonoBehaviour
     private TilemapCollider2D wall;
     private EnemyManager enemyList;
 
-
     void bulletDirectionSettings()
     {
-        if (playerControl.Direction == 1)
-        {
-            direction = Vector2.up;
-        }
-        else if (playerControl.Direction == 2)
-        {
-            direction = Vector2.down;
-        }
-        else if (playerControl.Direction == 3)
-        {
-            direction = Vector2.left;
-        }
-        else if (playerControl.Direction == 4)
-        {
-            direction = Vector2.right;
-        }
-
+        if (playerControl.Direction == 1) direction = Vector2.up;
+        else if (playerControl.Direction == 2) direction = Vector2.down;
+        else if (playerControl.Direction == 3) direction = Vector2.left;
+        else if (playerControl.Direction == 4) direction = Vector2.right;
         Invoke("DestroyBullet", 1);
     }
     void bulletMove()
     {
         transform.Translate(direction * speed * Time.deltaTime);
-
     }
+
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("enemy"))  // 적 레이어와 충돌했을 때
@@ -59,20 +50,15 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        playerControl = FindObjectOfType<PlayerControl>();
-        enemyList = FindObjectOfType<EnemyManager> ();
-        bulletDirectionSettings();
-
-    }
     void Update()
     {
         bulletMove();
     }
 
-    void DestroyBullet()
+    void Start()
     {
-        Destroy(gameObject);
+        playerControl = FindObjectOfType<PlayerControl>();
+        enemyList = FindObjectOfType<EnemyManager>();
+        bulletDirectionSettings();
     }
 }
