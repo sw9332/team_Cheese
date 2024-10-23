@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public static bool objectCollision = false;
 
     private TeleportManager teleportManager;
-    private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
     private TutorialManager tutorialManager;
@@ -57,11 +56,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         teleportManager = FindObjectOfType<TeleportManager>();
-        playerCollider = GetComponent<Collider2D>();
         uiManager = FindObjectOfType<UIManager>();
         tutorialManager = FindObjectOfType<TutorialManager>();
+        playerCollider = GetComponent<Collider2D>();
     }
 }

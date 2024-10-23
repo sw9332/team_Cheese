@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
     private UIManager uiManager;
 
     private bool canPickup = false;
-    private Collider2D currentItemCollider;
+    private Collider2D ItemCollider;
 
     GameObject GetItemObject(string itemName)
     {
@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemDB[2];
             case "Cake": return ItemDB[3];
             case "NPC": return ItemDB[4];
-
             default: return null;
         }
     }
@@ -42,7 +41,6 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemSpriteDB[2];
             case "Cake": return ItemSpriteDB[3];
             case "NPC": return ItemSpriteDB[4];
-
             default: return null;
         }
     }
@@ -62,7 +60,6 @@ public class Inventory : MonoBehaviour
     void PickupItem(string itemName, Collider2D other)
     {
         for (int i = 0; i < SlotDB.Length; i++)
-        {
             if (string.IsNullOrEmpty(SlotDB[i]))
             {
                 SlotDB[i] = itemName;
@@ -70,7 +67,6 @@ public class Inventory : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
             }
-        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -84,7 +80,7 @@ public class Inventory : MonoBehaviour
             case "Cake":
             case "NPC":
                 canPickup = true;
-                currentItemCollider = other;
+                ItemCollider = other;
                 break;
         }
     }
@@ -100,7 +96,7 @@ public class Inventory : MonoBehaviour
             case "Cake":
             case "NPC":
                 canPickup = false;
-                currentItemCollider = null;
+                ItemCollider = null;
                 break;
         }
     }
@@ -109,21 +105,21 @@ public class Inventory : MonoBehaviour
     {
         if (canPickup && Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentItemCollider != null)
+            if (ItemCollider != null)
             {
-                string tag = currentItemCollider.gameObject.tag;
+                string tag = ItemCollider.gameObject.tag;
 
                 switch (tag)
                 {
-                    case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider);
+                    case "DroppedBrownTeddyBear": PickupItem("BrownTeddyBear", ItemCollider);
                         dialogueManager.ShowDialogue(dialogueContentManager.d_camera);
                         uiManager.CameraUI.SetActive(true);
                         break;
-                    case "BrownTeddyBear": PickupItem("BrownTeddyBear", currentItemCollider); break;
-                    case "PinkTeddyBear": PickupItem("PinkTeddyBear", currentItemCollider); break;
-                    case "YellowTeddyBear": PickupItem("YellowTeddyBear", currentItemCollider); break;
-                    case "Cake": PickupItem("Cake", currentItemCollider); break;
-                    case "NPC": PickupItem("NPC", currentItemCollider); break;
+                    case "BrownTeddyBear": PickupItem("BrownTeddyBear", ItemCollider); break;
+                    case "PinkTeddyBear": PickupItem("PinkTeddyBear", ItemCollider); break;
+                    case "YellowTeddyBear": PickupItem("YellowTeddyBear", ItemCollider); break;
+                    case "Cake": PickupItem("Cake", ItemCollider); break;
+                    case "NPC": PickupItem("NPC", ItemCollider); break;
                 }
             }
         }

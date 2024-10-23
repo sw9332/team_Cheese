@@ -8,9 +8,9 @@ public class TeleportManager : MonoBehaviour
     private FadeManager fadeManager;
     private MapNameManager mapNameManager;
 
-    public void Teleport(string locationName, Collider2D other)
+    public void Teleport(string stateName, Collider2D other)
     {
-        switch (locationName)
+        switch (stateName)
         {
             case "ÆÄÆ¼·ë (ÀÔ±¸)": StartCoroutine(TeleportFade("ÆÄÆ¼·ë", other, 57.5f, -1.8f)); break;
             case "ÆÄÆ¼·ë (Ãâ±¸)": StartCoroutine(TeleportFade("º¹µµ #F", other, other.transform.position.x, -10.3f)); break;

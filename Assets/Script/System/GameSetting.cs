@@ -69,9 +69,7 @@ public class GameSetting : MonoBehaviour
             Dropdown.OptionData option = new Dropdown.OptionData();
             option.text = item.width + "x" + item.height + " " + Application.targetFrameRate + "Hz";
             resolutionDropdown.options.Add(option);
-
             if (item.width == Screen.width && item.height == Screen.height) resolutionDropdown.value = optionNum;
-
             optionNum++;
         }
 
@@ -81,10 +79,7 @@ public class GameSetting : MonoBehaviour
 
     bool IsAllowedResolution(int width, int height)
     {
-        for (int i = 0; i < allowedResolutions.GetLength(0); i++)
-        {
-            if (allowedResolutions[i, 0] == width && allowedResolutions[i, 1] == height) return true;
-        }
+        for (int i = 0; i < allowedResolutions.GetLength(0); i++) if (allowedResolutions[i, 0] == width && allowedResolutions[i, 1] == height) return true;
         return false;
     }
 
@@ -94,7 +89,7 @@ public class GameSetting : MonoBehaviour
         ScreenApply();
     }
 
-    public void FullScreenBtn(bool isFull)
+    public void FullScreen(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
         ScreenApply();

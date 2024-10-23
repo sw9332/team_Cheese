@@ -3844,7 +3844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Album: {fileID: 1152546717}
   InGameUI: {fileID: 1790190305}
-  player: {fileID: 730974879}
   imageObjects: []
   albumImages: []
   presentImage: {fileID: 0}
@@ -9715,7 +9714,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: FullScreenBtn
+        m_MethodName: FullScreen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

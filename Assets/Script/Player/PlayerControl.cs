@@ -49,17 +49,12 @@ public class PlayerControl : MonoBehaviour
 
     void MoveControl() //플레이어의 이동
     {
-        animator.speed = 1;
-
         if (!isMove && !playerAttack.isChangingSprite)
         {
-            if (GameManager.GameState == "튜토리얼") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "튜토리얼 컷씬") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "파티룸") animator.Play("PlayerBack_Stop");
-            if (GameManager.GameState == "창고") animator.Play("PlayerUp_Stop");
-            else animator.Play("PlayerBack_Stop");
+            animator.Play("PlayerBack_Stop");
+            animator.speed = 1;
         }
-        
+
         // 피격 당했을 시 움직임
         if (isMove && playerAttack.isChangingSprite == true)
         {
@@ -107,7 +102,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (isMove && playerAttack.isChangingSprite == false)
+        if (isMove && !playerAttack.isChangingSprite)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
@@ -158,10 +153,8 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.RightArrow))
-                        animator.Play("PlayerBack_Stop");
-                    else
-                        animator.Play("PlayerLeft");
+                    if (Input.GetKey(KeyCode.RightArrow)) animator.Play("PlayerBack_Stop");
+                    else animator.Play("PlayerLeft");
                 }
 
                 MoveX = true;
@@ -177,10 +170,8 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                        animator.Play("PlayerBack_Stop");
-                    else
-                        animator.Play("PlayerRight");
+                    if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("PlayerBack_Stop");
+                    else animator.Play("PlayerRight");
                 }
                     
 
@@ -192,10 +183,8 @@ public class PlayerControl : MonoBehaviour
                 Direction = 4;  // 오른쪽 방향
             }
 
-            if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1)
-                animator.Play("PlayerUp_Stop");
-            else if (Input.GetKeyUp(KeyCode.DownArrow) && Direction == 2)
-                animator.Play("PlayerBack_Stop");
+            if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1) animator.Play("PlayerUp_Stop");
+            else if (Input.GetKeyUp(KeyCode.DownArrow) && Direction == 2) animator.Play("PlayerBack_Stop");
 
             else if (Input.GetKeyUp(KeyCode.LeftArrow) && Direction == 3 && !Input.GetKey(KeyCode.RightArrow))
             {
@@ -246,16 +235,16 @@ public class PlayerControl : MonoBehaviour
         return false;
     }
 
+    void Update()
+    {
+        MoveControl();
+        UIManager.is_playerPos = Minigame_PlayerPos();
+    }
+
     void Start()
     {
         player = FindObjectOfType<Player>();
         stamina = FindObjectOfType<Stamina>();
         playerAttack = FindObjectOfType<PlayerAttack>();
-    }
-
-    void Update()
-    {
-        MoveControl();
-        UIManager.is_playerPos = Minigame_PlayerPos();
     }
 }
