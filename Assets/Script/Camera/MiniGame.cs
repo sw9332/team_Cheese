@@ -7,8 +7,6 @@ public class MiniGame : MonoBehaviour
 {
     public static bool is_take_photo;
     public bool is_minigame = false;
-    public GameObject mainCamera;
-    public GameObject photoCamera;
     public Slider x_Axis;
     public Slider y_Axis;
     public GameObject minigamePanel;
@@ -19,6 +17,8 @@ public class MiniGame : MonoBehaviour
 
     private PlayerControl playerControl;
     private CutSceneManager cutSceneManager;
+    private CameraManager mainCamera;
+    private MiniGame photoCamera;
 
     private float ClampX;
     private float ClampY;
@@ -123,5 +123,7 @@ public class MiniGame : MonoBehaviour
     {
         playerControl = FindObjectOfType<PlayerControl>();
         cutSceneManager = FindObjectOfType<CutSceneManager>();
+        mainCamera = FindObjectOfType<CameraManager>();
+        photoCamera = FindObjectOfType<MiniGame>();
     }
 }
