@@ -7119,8 +7119,6 @@ MonoBehaviour:
   y_Axis: {fileID: 1556865391}
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
-  player: {fileID: 730974879}
-  NPC: {fileID: 1082658648}
 --- !u!81 &286991895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -19222,6 +19220,7 @@ Transform:
   - {fileID: 1217465355}
   - {fileID: 750741481}
   - {fileID: 1627079290}
+  - {fileID: 1089886898}
   - {fileID: 921938700}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -50515,6 +50514,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &1089886897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089886898}
+  - component: {fileID: 1089886899}
+  m_Layer: 0
+  m_Name: CutScene Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089886898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089886897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 870308619}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1089886899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089886897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ce43bf6a3900e4c9e15d736247f7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 1082658648}
 --- !u!1 &1091889205
 GameObject:
   m_ObjectHideFlags: 0
@@ -53810,8 +53854,6 @@ MonoBehaviour:
   y_Axis: {fileID: 1556865391}
   minigamePanel: {fileID: 1233675655}
   ingameUIPanel: {fileID: 1790190305}
-  player: {fileID: 730974879}
-  NPC: {fileID: 0}
 --- !u!1 &1235198641
 GameObject:
   m_ObjectHideFlags: 0
