@@ -7113,8 +7113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_minigame: 0
-  mainCamera: {fileID: 519420028}
-  photoCamera: {fileID: 286991893}
   x_Axis: {fileID: 1580590824}
   y_Axis: {fileID: 1556865391}
   minigamePanel: {fileID: 1233675655}
@@ -53848,8 +53846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_minigame: 0
-  mainCamera: {fileID: 519420028}
-  photoCamera: {fileID: 286991893}
   x_Axis: {fileID: 1580590824}
   y_Axis: {fileID: 1556865391}
   minigamePanel: {fileID: 1233675655}
@@ -63431,6 +63427,7 @@ MonoBehaviour:
   playerControl: {fileID: 730974890}
   minigame: {fileID: 1233675659}
   fadeManager: {fileID: 840480186}
+  tutorialManager: {fileID: 1627079291}
 --- !u!1 &1647946622
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,9 +77,7 @@ public class MiniGame : MonoBehaviour
 
             switch(GameManager.GameState)
             {
-                case "튜토리얼":
-                    PhotoModeControl(-78.2f, -76.2f, 48f, 50f);
-
+                case "튜토리얼": PhotoModeControl(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.F)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
@@ -95,9 +93,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고":
-                    PhotoModeControl(11.8f, 12.8f, 29.5f, 30.5f);
-
+                case "창고": PhotoModeControl(11.8f, 12.8f, 29.5f, 30.5f);
                     if (Input.GetKey(KeyCode.F)
                         && x_Axis.value >= 12.33f && x_Axis.value <= 12.44f
                         && y_Axis.value >= 29.65f && y_Axis.value <= 29.85f)
@@ -106,6 +102,7 @@ public class MiniGame : MonoBehaviour
                         is_take_photo = false;
                         is_minigame = false;
                         isImageChange = true;
+                        playerControl.isMove = false;
                         StartCoroutine(cutSceneManager.NpcCutScene());
                     }
                     break;
