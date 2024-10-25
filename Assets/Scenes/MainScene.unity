@@ -9289,7 +9289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 436344997}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: FullScreenBtn
+        m_MethodName: FullScreen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
