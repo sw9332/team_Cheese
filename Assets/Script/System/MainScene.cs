@@ -18,7 +18,7 @@ public class MainScene : MonoBehaviour
 
     public void NewGameStartButton() //새 게임 버튼
     {
-        StartCoroutine(NewGame());
+        StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }
 
     public void SettingButton() //설정 버튼
@@ -31,15 +31,9 @@ public class MainScene : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator NewGame()
+    void Update()
     {
-        yield return StartCoroutine(fadeManager.FadeOut());
-        SceneManager.LoadScene("GameScene");
-    }
-
-    void Awake()
-    {
-        Application.targetFrameRate = 60;
+        if (Load_UI.activeSelf && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
     }
 
     void Start()
@@ -47,8 +41,8 @@ public class MainScene : MonoBehaviour
         fadeManager = FindObjectOfType<FadeManager>();
     }
 
-    void Update()
+    void Awake()
     {
-        if(Load_UI.activeSelf && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
+        Application.targetFrameRate = 60;
     }
 }
