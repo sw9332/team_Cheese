@@ -56,7 +56,6 @@ public class DialogueManager : MonoBehaviour
         {
             contentsList.Add(dialogue.contents[i]);
             spriteList.Add(dialogue.sprites[i]);
-
         }
         dialogue_continue = true;
         button_text.text = "¥Ÿ¿Ω";
@@ -76,8 +75,7 @@ public class DialogueManager : MonoBehaviour
         ingameUiPanel.SetActive(true);
         DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        if(!fadeManager.isFade)
-            playerControl.isMove = true;
+        if(!fadeManager.isFade) playerControl.isMove = true;
     }
 
     IEnumerator startDialogueCoroutine()
