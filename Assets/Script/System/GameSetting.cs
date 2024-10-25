@@ -103,73 +103,42 @@ public class GameSetting : MonoBehaviour
 
     //그래픽 품질 설정 부분---------------------------------------------------------------------------------------
 
-    public static string Graphics = "Ultra";
-
     public GameObject U_Check;
     public GameObject H_Check;
     public GameObject M_Check;
     public GameObject L_Check;
 
-    public void GraphicsSettings_Ultra()
+    public void Graphic(string graphics)
     {
-        Graphics = "Ultra";
-        Graphic();
-    }
-
-    public void GraphicsSettings_High()
-    {
-        Graphics = "High";
-        Graphic();
-    }
-
-    public void GraphicsSettings_Medium()
-    {
-        Graphics = "Medium";
-        Graphic();
-    }
-
-    public void GraphicsSettings_Low()
-    {
-        Graphics = "Low";
-        Graphic();
-    }
-
-    void Graphic()
-    {
-        if(Graphics == "Ultra")
+        switch(graphics)
         {
-            QualitySettings.SetQualityLevel(5);
-            U_Check.SetActive(true);
-            H_Check.SetActive(false);
-            M_Check.SetActive(false);
-            L_Check.SetActive(false);
-        }
+            case "Ultra": QualitySettings.SetQualityLevel(5);
+                U_Check.SetActive(true);
+                H_Check.SetActive(false);
+                M_Check.SetActive(false);
+                L_Check.SetActive(false);
+                break;
 
-        else if(Graphics == "High")
-        {
-            QualitySettings.SetQualityLevel(3);
-            U_Check.SetActive(false);
-            H_Check.SetActive(true);
-            M_Check.SetActive(false);
-            L_Check.SetActive(false);
-        }
+            case "High": QualitySettings.SetQualityLevel(3);
+                U_Check.SetActive(false);
+                H_Check.SetActive(true);
+                M_Check.SetActive(false);
+                L_Check.SetActive(false);
+                break;
 
-        else if(Graphics == "Medium")
-        {
-            QualitySettings.SetQualityLevel(2);
-            U_Check.SetActive(false);
-            H_Check.SetActive(false);
-            M_Check.SetActive(true);
-            L_Check.SetActive(false);
-        }
+            case "Medium": QualitySettings.SetQualityLevel(2);
+                U_Check.SetActive(false);
+                H_Check.SetActive(false);
+                M_Check.SetActive(true);
+                L_Check.SetActive(false);
+                break;
 
-        else if(Graphics == "Low")
-        {
-            QualitySettings.SetQualityLevel(1);
-            U_Check.SetActive(false);
-            H_Check.SetActive(false);
-            M_Check.SetActive(false);
-            L_Check.SetActive(true);
+            case "Low": QualitySettings.SetQualityLevel(1);
+                U_Check.SetActive(false);
+                H_Check.SetActive(false);
+                M_Check.SetActive(false);
+                L_Check.SetActive(true);
+                break;
         }
     }
 
@@ -209,7 +178,7 @@ public class GameSetting : MonoBehaviour
     void Start()
     {
         InitUI();
-        Graphic();
+        Graphic("Ultra");
         SoundLoad();
     }
 
