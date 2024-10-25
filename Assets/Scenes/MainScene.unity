@@ -5634,14 +5634,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 436344997}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsSettings_Medium
-        m_Mode: 1
+        m_MethodName: Graphic
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Medium
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1095913070
@@ -6163,14 +6163,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 436344997}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsSettings_High
-        m_Mode: 1
+        m_MethodName: Graphic
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: High
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1192941013
@@ -8647,14 +8647,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 436344997}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsSettings_Low
-        m_Mode: 1
+        m_MethodName: Graphic
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Low
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1628793540
@@ -9424,14 +9424,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 436344997}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsSettings_Ultra
-        m_Mode: 1
+        m_MethodName: Graphic
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ultra
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1819077873
