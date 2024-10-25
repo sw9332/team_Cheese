@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CutSceneManager : MonoBehaviour
+{
+    private PlayerControl playerControl;
+    private DialogueManager dialogueManager;
+    private DialogueContentManager dialogueContentManager;
+    private FadeManager fadeManager;
+    private CameraManager mainCamera;
+    private TutorialManager tutorialManager;
+    private MiniGame miniGame;
+
+    public GameObject NPC;
+
+    public IEnumerator TutorialCutScene()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut());
+        playerControl.transform.position = new Vector3(60, 0, 0);
+        mainCamera.transform.position = new Vector3(60, 0, -10);
+        miniGame.ClearPhotoMode();
+        GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
+        yield return StartCoroutine(fadeManager.FadeIn());
+        playerControl.isMove = true;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
+    }
+
+    public IEnumerator NpcCutScene()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut());
+        playerControl.transform.position = new Vector3(12.5f, 28, 0);
+        Destroy(NPCItem.Instance.gameObject);
+        miniGame.ClearPhotoMode();
+        NPC.SetActive(true);
+        playerControl.isMove = false;
+        yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(tutorialManager.ShowTutorialUI(true, dialogueContentManager.d_Demo_1));
+    }
+
+    void Start()
+    {
+        playerControl = FindObjectOfType<PlayerControl>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
+        fadeManager = FindObjectOfType<FadeManager>();
+        mainCamera = FindObjectOfType<CameraManager>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
+        miniGame = FindObjectOfType<MiniGame>();
+    }
+}
