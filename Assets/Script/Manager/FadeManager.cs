@@ -64,11 +64,8 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator ChangeSceneFade(string scene) //Scene ¹Ù²Ù±â
     {
-        playerControl.isMove = false;
         yield return StartCoroutine(FadeOut());
         SceneManager.LoadScene(scene);
-        yield return StartCoroutine(FadeIn());
-        playerControl.isMove = true;
     }
 
     void Start()
