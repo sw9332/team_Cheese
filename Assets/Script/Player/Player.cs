@@ -27,10 +27,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(tutorialManager.ShowTutorialUI(false, dialogueContentManager.d_photo));
                 Destroy(other.gameObject);
                 break;
-        }
 
-        switch(other.gameObject.tag)
-        {
             case "파티룸 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "파티룸 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
