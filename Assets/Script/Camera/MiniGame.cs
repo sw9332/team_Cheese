@@ -17,7 +17,7 @@ public class MiniGame : MonoBehaviour
 
     private PlayerControl playerControl;
     private CutSceneManager cutSceneManager;
-    private CameraManager mainCamera;
+    private MainCamera mainCamera;
     private MiniGame photoCamera;
 
     private float ClampX;
@@ -120,7 +120,7 @@ public class MiniGame : MonoBehaviour
     {
         playerControl = FindObjectOfType<PlayerControl>();
         cutSceneManager = FindObjectOfType<CutSceneManager>();
-        mainCamera = FindObjectOfType<CameraManager>();
+        mainCamera = FindObjectOfType<MainCamera>();
         photoCamera = FindObjectOfType<MiniGame>();
     }
 }

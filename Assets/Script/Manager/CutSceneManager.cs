@@ -8,7 +8,7 @@ public class CutSceneManager : MonoBehaviour
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private FadeManager fadeManager;
-    private CameraManager mainCamera;
+    private MainCamera mainCamera;
     private TutorialManager tutorialManager;
     private MiniGame miniGame;
 
@@ -46,7 +46,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueContentManager = FindObjectOfType<DialogueContentManager>();
         fadeManager = FindObjectOfType<FadeManager>();
-        mainCamera = FindObjectOfType<CameraManager>();
+        mainCamera = FindObjectOfType<MainCamera>();
         tutorialManager = FindObjectOfType<TutorialManager>();
         miniGame = FindObjectOfType<MiniGame>();
     }
