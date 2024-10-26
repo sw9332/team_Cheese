@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class MainCamera : MonoBehaviour
 {
     private Player player;
 
