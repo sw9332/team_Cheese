@@ -10,25 +10,27 @@ public class GameSetting : MonoBehaviour
     public GameObject AudioTab;
     public GameObject KeyTab;
 
-    public void GraphicsTabButton()
+    public void Tab(int tabValue)
     {
-        GraphicTab.SetActive(true);
-        AudioTab.SetActive(false);
-        KeyTab.SetActive(false);
-    }
+        switch(tabValue)
+        {
+            case 1:
+                GraphicTab.SetActive(true);
+                AudioTab.SetActive(false);
+                KeyTab.SetActive(false);
+                break;
+            case 2:
+                GraphicTab.SetActive(false);
+                AudioTab.SetActive(true);
+                KeyTab.SetActive(false);
+                break;
+            case 3:
+                GraphicTab.SetActive(false);
+                AudioTab.SetActive(false);
+                KeyTab.SetActive(true);
+                break;
 
-    public void AudioTabButton()
-    {
-        GraphicTab.SetActive(false);
-        AudioTab.SetActive(true);
-        KeyTab.SetActive(false);
-    }
-
-    public void KeyTabButton()
-    {
-        GraphicTab.SetActive(false);
-        AudioTab.SetActive(false);
-        KeyTab.SetActive(true);
+        }
     }
 
     //해상도 설정 부분-------------------------------------------------------------------------
