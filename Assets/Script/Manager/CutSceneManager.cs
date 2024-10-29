@@ -11,6 +11,7 @@ public class CutSceneManager : MonoBehaviour
     private MainCamera mainCamera;
     private TutorialManager tutorialManager;
     private MiniGame miniGame;
+    private Inventory inventory;
 
     public GameObject NPC;
 
@@ -36,6 +37,7 @@ public class CutSceneManager : MonoBehaviour
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);
         playerControl.isMove = false;
+        inventory.Clean();
         yield return StartCoroutine(fadeManager.FadeIn());
         yield return StartCoroutine(tutorialManager.ShowTutorialUI(true, dialogueContentManager.d_Demo_1));
     }
@@ -49,5 +51,6 @@ public class CutSceneManager : MonoBehaviour
         mainCamera = FindObjectOfType<MainCamera>();
         tutorialManager = FindObjectOfType<TutorialManager>();
         miniGame = FindObjectOfType<MiniGame>();
+        inventory = FindObjectOfType<Inventory>();
     }
 }
