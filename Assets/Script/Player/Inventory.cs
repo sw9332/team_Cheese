@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,6 +68,15 @@ public class Inventory : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
             }
+    }
+
+    public void Clean()
+    {
+        for(int i=0; i < SlotDB.Length; i++)
+        {
+            SlotDB[i] = null;
+            SlotImageDB[i].sprite = null;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
