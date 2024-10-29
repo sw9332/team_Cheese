@@ -102,7 +102,6 @@ public class GameSetting : MonoBehaviour
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
     }
 
-
     //그래픽 품질 설정 부분---------------------------------------------------------------------------------------
 
     public GameObject U_Check;
@@ -110,8 +109,13 @@ public class GameSetting : MonoBehaviour
     public GameObject M_Check;
     public GameObject L_Check;
 
+    private string SaveGraphics;
+    private string LoadGraphics;
+
     public void Graphic(string graphics)
     {
+        SaveGraphics = graphics;
+
         switch(graphics)
         {
             case "Ultra": QualitySettings.SetQualityLevel(5);
@@ -142,6 +146,14 @@ public class GameSetting : MonoBehaviour
                 L_Check.SetActive(true);
                 break;
         }
+
+        PlayerPrefs.SetString("Graphic", SaveGraphics);
+    }
+
+    void GraphicLoad()
+    {
+        LoadGraphics = PlayerPrefs.GetString("Graphic", "Ultra");
+        Graphic(LoadGraphics);
     }
 
     //배경음, 효과음 설정 부분------------------------------------------------------------------------------------
@@ -177,18 +189,18 @@ public class GameSetting : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Start()
-    {
-        InitUI();
-        Graphic("Ultra");
-        SoundLoad();
-    }
-
     void Update()
     {
         Background_sound_Setting();
         Effect_sound_Setting();
 
-        if(gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
+        if (gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
+    }
+
+    void Start()
+    {
+        InitUI();
+        GraphicLoad();
+        SoundLoad();
     }
 }
