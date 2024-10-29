@@ -8785,12 +8785,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14507,12 +14507,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16862,7 +16862,6 @@ MonoBehaviour:
   SettingUI: {fileID: 1883287917}
   fadeImage: {fileID: 1201729923}
   Camera_Effect_Animation: {fileID: 527049656}
-  isCameraEffect: 0
 --- !u!4 &750741481
 Transform:
   m_ObjectHideFlags: 0
@@ -17048,12 +17047,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: KeyTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -20790,12 +20789,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: AudioTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -50806,12 +50805,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: GraphicsTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -52307,15 +52306,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1883287919}
-        m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: AudioTabButton
-        m_Mode: 1
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopCoroutine
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1175424340
@@ -54651,12 +54650,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: KeyTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -64141,12 +64140,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: AudioTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -65876,12 +65875,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883287919}
         m_TargetAssemblyTypeName: GameSetting, Assembly-CSharp
-        m_MethodName: KeyTabButton
-        m_Mode: 1
+        m_MethodName: Tab
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
