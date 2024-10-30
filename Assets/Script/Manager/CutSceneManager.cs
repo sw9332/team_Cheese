@@ -38,6 +38,7 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         inventory.Clean();
+        tutorialManager.TutorialType(6);
         yield return StartCoroutine(fadeManager.FadeIn());
         yield return StartCoroutine(tutorialManager.ShowTutorialUI(true, dialogueContentManager.d_Demo_1));
     }

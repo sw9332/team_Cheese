@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
         {
             case "Cake Event":
                 StartCoroutine(tutorialManager.ShowTutorialUI(false, dialogueContentManager.d_cake));
+                tutorialManager.TutorialType(2);
                 Destroy(other.gameObject);
                 break;
 
             case "Camera Event":
                 StartCoroutine(tutorialManager.ShowTutorialUI(false, dialogueContentManager.d_photo));
+                tutorialManager.TutorialType(2);
                 Destroy(other.gameObject);
                 break;
 

@@ -13,9 +13,16 @@ public class Stage1_MovableBoxes : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            StartCoroutine(tutorialManager.ShowTutorialUI(false, movableBoxes));
-            this.gameObject.SetActive(false);
+            StartCoroutine(ShowTutorialUI());
+            tutorialManager.TutorialType(3);
+            
         }
+    }
+
+    IEnumerator ShowTutorialUI()
+    {
+        yield return StartCoroutine(tutorialManager.ShowTutorialUI(false, movableBoxes));
+        this.gameObject.SetActive(false);
     }
 
     void Start()
