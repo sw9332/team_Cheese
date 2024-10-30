@@ -27,6 +27,7 @@ public class Prologue : MonoBehaviour
         if (dialogueManager.dialogue_continue == false)
         {
             gameObject.SetActive(false);
+            tutorialManager.TutorialType(1);
             tutorialManager.TutorialUI.SetActive(true);
         }
     }
