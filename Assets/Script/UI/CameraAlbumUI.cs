@@ -140,7 +140,7 @@ public class CameraAlbumUI : MonoBehaviour
 
     void Start()
     {
-        playerControl = FindObjectOfType<PlayerControl>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
 
         addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
 

@@ -55,10 +55,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        teleportManager = FindObjectOfType<TeleportManager>();
-        uiManager = FindObjectOfType<UIManager>();
-        tutorialManager = FindObjectOfType<TutorialManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        teleportManager = FindFirstObjectByType<TeleportManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
         playerCollider = GetComponent<Collider2D>();
     }
 }

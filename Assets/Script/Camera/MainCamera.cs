@@ -79,6 +79,6 @@ public class MainCamera : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindFirstObjectByType<Player>();
     }
 }

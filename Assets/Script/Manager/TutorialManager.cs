@@ -88,7 +88,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        uiManager = FindObjectOfType<UIManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 }

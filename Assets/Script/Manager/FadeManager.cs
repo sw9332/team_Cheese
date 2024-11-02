@@ -70,7 +70,7 @@ public class FadeManager : MonoBehaviour
 
     void Start()
     {
-        playerControl = FindObjectOfType<PlayerControl>();
-        dialogueManager = FindObjectOfType<DialogueManager>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 }

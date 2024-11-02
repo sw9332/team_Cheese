@@ -283,8 +283,8 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         getPlayerSpriteRenderer();
-        playerControl = FindObjectOfType<PlayerControl>();
-        enemyManager = FindObjectOfType<EnemyManager>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        enemyManager = FindFirstObjectByType<EnemyManager>();
 
         getPlayerHP();
 
