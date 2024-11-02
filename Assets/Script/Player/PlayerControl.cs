@@ -248,8 +248,8 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        stamina = FindObjectOfType<Stamina>();
-        playerAttack = FindObjectOfType<PlayerAttack>();
+        player = FindFirstObjectByType<Player>();
+        stamina = FindFirstObjectByType<Stamina>();
+        playerAttack = FindFirstObjectByType<PlayerAttack>();
     }
 }

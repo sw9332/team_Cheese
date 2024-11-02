@@ -45,13 +45,13 @@ public class CutSceneManager : MonoBehaviour
 
     void Start()
     {
-        playerControl = FindObjectOfType<PlayerControl>();
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        fadeManager = FindObjectOfType<FadeManager>();
-        mainCamera = FindObjectOfType<MainCamera>();
-        tutorialManager = FindObjectOfType<TutorialManager>();
-        miniGame = FindObjectOfType<MiniGame>();
-        inventory = FindObjectOfType<Inventory>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
+        mainCamera = FindFirstObjectByType<MainCamera>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
+        miniGame = FindFirstObjectByType<MiniGame>();
+        inventory = FindFirstObjectByType<Inventory>();
     }
 }

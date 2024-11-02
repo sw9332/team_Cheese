@@ -11,10 +11,10 @@ public class Prologue : MonoBehaviour
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        fadeManager = FindObjectOfType<FadeManager>();
-        tutorialManager = FindObjectOfType<TutorialManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
     }

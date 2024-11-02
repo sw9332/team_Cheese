@@ -145,9 +145,9 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        uiManager = FindObjectOfType<UIManager>();
+        player = FindFirstObjectByType<Player>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 }

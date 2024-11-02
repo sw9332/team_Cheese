@@ -47,8 +47,8 @@ public class Table : MonoBehaviour
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        inventory = FindObjectOfType<Inventory>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        inventory = FindFirstObjectByType<Inventory>();
     }
 }

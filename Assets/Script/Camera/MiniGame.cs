@@ -118,9 +118,9 @@ public class MiniGame : MonoBehaviour
 
     void Start()
     {
-        playerControl = FindObjectOfType<PlayerControl>();
-        cutSceneManager = FindObjectOfType<CutSceneManager>();
-        mainCamera = FindObjectOfType<MainCamera>();
-        photoCamera = FindObjectOfType<MiniGame>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        mainCamera = FindFirstObjectByType<MainCamera>();
+        photoCamera = FindFirstObjectByType<MiniGame>();
     }
 }

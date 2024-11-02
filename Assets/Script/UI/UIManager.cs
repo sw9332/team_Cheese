@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        fadeManager = FindObjectOfType<FadeManager>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
 
         Time.timeScale = 1;
         fadeImage.gameObject.SetActive(true);

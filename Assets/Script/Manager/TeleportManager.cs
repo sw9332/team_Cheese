@@ -48,7 +48,7 @@ public class TeleportManager : MonoBehaviour
 
     void Start()
     {
-        fadeManager = FindObjectOfType<FadeManager>();
-        mapNameManager = FindObjectOfType<MapNameManager>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
+        mapNameManager = FindFirstObjectByType<MapNameManager>();
     }
 }
