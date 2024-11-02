@@ -51666,6 +51666,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
     - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
+  d_not_a_cake:
+    contents:
+    - "\uC544\uB2C8! \uB2E4\uB978 \uAC78 \uC62C\uB9AC\uACE0 \uC2F6\uC5B4!"
+    sprites:
+    - {fileID: 21300000, guid: 08ca430d50500a8448f39a19087a625c, type: 3}
   d_photo:
     contents:
     - "\uC624!!"

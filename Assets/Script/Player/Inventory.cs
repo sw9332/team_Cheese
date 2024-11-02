@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     private bool canPickup = false;
     private Collider2D ItemCollider;
 
-    GameObject GetItemObject(string itemName)
+    public GameObject GetItemObject(string itemName)
     {
         switch (itemName)
         {
@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    Sprite GetItemSprite(string itemName)
+    public Sprite GetItemSprite(string itemName)
     {
         switch (itemName)
         {
@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void PlaceItem(int slotIndex)
+    public void PlaceItem(int slotIndex)
     {
         if (SlotDB[slotIndex] == null) return;
 
@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
         SlotImageDB[slotIndex].sprite = null;
     }
 
-    void PickupItem(string itemName, Collider2D other)
+    public void PickupItem(string itemName, Collider2D other)
     {
         for (int i = 0; i < SlotDB.Length; i++)
             if (string.IsNullOrEmpty(SlotDB[i]))
@@ -134,10 +134,13 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) PlaceItem(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) PlaceItem(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) PlaceItem(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) PlaceItem(3);
+        if (!dialogueManager.dialogue_continue)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) PlaceItem(0);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) PlaceItem(1);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) PlaceItem(2);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) PlaceItem(3);
+        }
     }
 
     void Start()

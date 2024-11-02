@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TeddyBearItem : MonoBehaviour
 {
+    public bool isInstalled = false;
     Vector3 Scale;
 
     void OnTriggerEnter2D(Collider2D other)

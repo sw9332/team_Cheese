@@ -9,6 +9,8 @@ public class DialogueContentManager : MonoBehaviour
     [SerializeField]
     public Dialogue d_cake;
     [SerializeField]
+    public Dialogue d_not_a_cake;
+    [SerializeField]
     public Dialogue d_photo;
     [SerializeField]
     public Dialogue d_camera;
