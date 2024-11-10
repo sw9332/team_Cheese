@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     public bool isPush = false; // isPush가 false 일때는 Push Object를 밀 수 없음.
 
     public Vector3 CenterOffset; // player 범위판별 offset
-    public int Direction = 2; // 1: 뒤, 2: 정면, 3: 왼쪽, 4: 오른쪽
+    public int Direction = 2; // 방향키 기준, 1: 위, 2: 아래, 3: 왼쪽, 4: 오른쪽
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -107,7 +107,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (isMove && !playerAttack.isChangingSprite)
+        if (isMove && !playerAttack.isChangingSprite && !playerAttack.isAttacking)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
