@@ -9,9 +9,9 @@ public class TeddyBearItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player")) return;
+        if (other.CompareTag("Player")) return;
 
-        if(other.gameObject.CompareTag("Chair"))
+        if(other.CompareTag("Chair"))
         {
             switch(other.transform.localScale.x)
             {
