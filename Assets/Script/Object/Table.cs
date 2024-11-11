@@ -22,7 +22,7 @@ public class Table : MonoBehaviour
 
         if (TeddyBearItem != null && TeddyBearItem.isInstalled) return;
 
-        if (other.gameObject.CompareTag("Cake") && !isCake) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
+        if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
         {
             CamaraEvent.SetActive(true);
             UIManager.is_cake = true;

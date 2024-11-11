@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         //오브젝트 밀기
-        if (other.gameObject.CompareTag("Push_Object"))
+        if (other.CompareTag("Push_Object"))
         {
             isPush = true;
 
@@ -40,11 +40,21 @@ public class PlayerControl : MonoBehaviour
 
             else isPush = false;
         }
+
+        if(other.CompareTag("MiniGame_Tutorial"))
+        {
+            UIManager.is_playerPos = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Push_Object")) isPush = false;
+        if (other.CompareTag("Push_Object")) isPush = false;
+
+        if(other.CompareTag("MiniGame_Tutorial"))
+        {
+            UIManager.is_playerPos = false;
+        }
     }
 
     void MoveControl() //플레이어의 이동
@@ -233,7 +243,7 @@ public class PlayerControl : MonoBehaviour
     public bool Minigame_PlayerPos()
     {
         //아래 조건문에도 스테이지 별로 || 연산자를 이용하여 조건식을 추가해줄 것.
-        if (transform.position.y <= 48.5 && transform.position.y >= 47.5 && transform.position.x <= -76 && transform.position.x >= -78) //튜토리얼 Pos값.
+        if (transform.position.x <= -76f && transform.position.x >= -78f && transform.position.y <= 48.5f && transform.position.y >= 47.5f) //튜토리얼 Pos값.
         {
             return true;
         }
@@ -243,7 +253,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         MoveControl();
-        UIManager.is_playerPos = Minigame_PlayerPos();
+        //UIManager.is_playerPos = Minigame_PlayerPos();
     }
 
     void Start()
