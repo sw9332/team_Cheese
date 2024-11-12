@@ -12,20 +12,20 @@ public class TeleportManager : MonoBehaviour
     {
         switch (stateName)
         {
-            case "파티룸 (입구)": StartCoroutine(TeleportFade("파티룸", other, 57.5f, -1.8f)); break;
-            case "파티룸 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -10.3f)); break;
+            case "파티룸 (입구)": StartCoroutine(TeleportFade("파티룸", other, -4f, -3.7f)); break;
+            case "파티룸 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -11.8f)); break;
 
-            case "연회장 입구 (입구)": StartCoroutine(TeleportFade("연회장 입구", other, other.transform.position.x, 7.3f)); break;
-            case "연회장 입구 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -1.3f)); break;
+            case "연회장 입구 (입구)": StartCoroutine(TeleportFade("연회장 입구", other, other.transform.position.x, 5.5f)); break;
+            case "연회장 입구 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -2.85f)); break;
 
-            case "연회장 (입구)": StartCoroutine(TeleportFade("연회장", other, 58.3f, other.transform.position.y)); break;
-            case "연회장 (출구)": StartCoroutine(TeleportFade("연회장 입구", other, 47.8f, other.transform.position.y)); break;
+            case "연회장 (입구)": StartCoroutine(TeleportFade("연회장", other, -3.5f, other.transform.position.y)); break;
+            case "연회장 (출구)": StartCoroutine(TeleportFade("연회장 입구", other, -13.3f, other.transform.position.y)); break;
 
-            case "창고 입구 (입구)": StartCoroutine(TeleportFade("창고 입구", other, other.transform.position.x, -1.7f)); break;
-            case "창고 입구 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -10.3f)); break;
+            case "창고 입구 (입구)": StartCoroutine(TeleportFade("창고 입구", other, other.transform.position.x, -3.8f)); break;
+            case "창고 입구 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -12f)); break;
 
-            case "창고 (입구)": StartCoroutine(TeleportFade("창고", other, other.transform.position.x, 18.5f)); break;
-            case "창고 (출구)": StartCoroutine(TeleportFade("창고 입구", other, other.transform.position.x,9.7f)); break;
+            case "창고 (입구)": StartCoroutine(TeleportFade("창고", other, other.transform.position.x, 16.5f)); break;
+            case "창고 (출구)": StartCoroutine(TeleportFade("창고 입구", other, other.transform.position.x,8.1f)); break;
 
             case "RoomE Go": StartCoroutine(TeleportFade("-", other, 27.76f, -49.45f)); break;
             case "RoomE Exit": StartCoroutine(TeleportFade("-", other, 41.15f, -42.31f)); break;
