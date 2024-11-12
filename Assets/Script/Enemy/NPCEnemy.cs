@@ -8,6 +8,7 @@ public class NPCEnemy : MonoBehaviour
     private FadeManager fadeManager;
     private SpriteRenderer spriteRenderer;
     private PlayerControl playerControl;
+    private CutSceneManager cutSceneManager;
 
     public GameObject CtrlKey;
     private Color originalColor;
@@ -31,7 +32,7 @@ public class NPCEnemy : MonoBehaviour
         {
             case 4: yield return null; dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
             case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
-            case 2: StartCoroutine(fadeManager.ChangeSceneFade("MainScene")); break;
+            case 2: StartCoroutine(cutSceneManager.CutScene_Stage1()); break;
         }
     }
 
@@ -44,17 +45,18 @@ public class NPCEnemy : MonoBehaviour
 
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueContentManager = FindObjectOfType<DialogueContentManager>();
-        fadeManager = FindObjectOfType<FadeManager>();
-        playerControl = FindObjectOfType<PlayerControl>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
-        if (!playerControl.isMove) CtrlKey.SetActive(false);
+        if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
         else CtrlKey.SetActive(true);
     }
 }

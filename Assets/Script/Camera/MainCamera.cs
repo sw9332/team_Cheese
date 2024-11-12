@@ -6,13 +6,41 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour
 {
     private Player player;
+    private PlayerControl playerControl;
 
     public Vector3 pos;
     private Vector3 velocity = Vector3.zero;
     private string lastGameState;
+    private bool isShaking = false;
+
+    public IEnumerator VibrationEffect(float duration, float magnitude)
+    {
+        playerControl.isMove = false;
+        isShaking = true;
+        Vector3 originalPos = transform.position;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * magnitude;
+            float offsetY = Random.Range(-1f, 1f) * magnitude;
+
+            transform.position = new Vector3(originalPos.x + offsetX, originalPos.y + offsetY, originalPos.z);
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = originalPos;
+        playerControl.isMove = true;
+        isShaking = false;
+    }
 
     void Update()
     {
+        if (isShaking) return;
+
         pos = transform.position;
         bool isGameStateChanged = GameManager.GameState != lastGameState;
 
@@ -80,5 +108,6 @@ public class MainCamera : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<Player>();
+        playerControl = FindFirstObjectByType<PlayerControl>();
     }
 }

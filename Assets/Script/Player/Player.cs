@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
             case "창고 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "창고 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
+            case "Stage1 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
             case "RoomE Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "RoomE Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
