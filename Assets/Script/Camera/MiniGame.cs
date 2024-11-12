@@ -49,7 +49,7 @@ public class MiniGame : MonoBehaviour
         is_minigame = false;
     }
 
-    void PhotoModeControl(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
+    void ControlPhotoMode(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
     {
         x_Axis.minValue = x_minValue;
         x_Axis.maxValue = x_maxValue;
@@ -77,7 +77,7 @@ public class MiniGame : MonoBehaviour
 
             switch(GameManager.GameState)
             {
-                case "튜토리얼": PhotoModeControl(-78.2f, -76.2f, 48f, 50f);
+                case "튜토리얼": ControlPhotoMode(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.F)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
@@ -93,10 +93,10 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고": PhotoModeControl(11.8f, 12.8f, 29.5f, 30.5f);
+                case "창고": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
                     if (Input.GetKey(KeyCode.F)
-                        && x_Axis.value >= 12.33f && x_Axis.value <= 12.44f
-                        && y_Axis.value >= 29.65f && y_Axis.value <= 29.85f)
+                        && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
+                        && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
                     {
                         UIManager.is_NPC = false;
                         is_take_photo = false;

@@ -18,8 +18,8 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator TutorialCutScene()
     {
         yield return StartCoroutine(fadeManager.FadeOut());
-        playerControl.transform.position = new Vector3(60, 0, 0);
-        mainCamera.transform.position = new Vector3(60, 0, -10);
+        playerControl.transform.position = new Vector3(-1.5f, -1.5f, 0);
+        mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn());
@@ -32,7 +32,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator NpcCutScene()
     {
         yield return StartCoroutine(fadeManager.FadeOut());
-        playerControl.transform.position = new Vector3(12.5f, 28, 0);
+        playerControl.transform.position = new Vector3(-49f, 27, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);

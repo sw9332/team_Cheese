@@ -29,41 +29,41 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "파티룸":
-                pos.x = 60f;
-                pos.y = Mathf.Clamp(player.transform.position.y, 0, 1.3f);
+                pos.x = -1.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -1f, 1f);
                 break;
 
             case "복도 #F":
-                if (player.transform.position.y >= -7.5f)
+                if (player.transform.position.y >= -7.8f)
                 {
-                    pos.x = 44f;
+                    pos.x = -17.5f;
                     pos.y = player.transform.position.y;
                 }
                     
                 else
                 {
-                    pos.x = Mathf.Clamp(player.transform.position.x, 16.4f, 80f);
-                    pos.y = -12.5f;
+                    pos.x = Mathf.Clamp(player.transform.position.x, -45.5f, 0f);
+                    pos.y = -13.15f;
                 }
                 break;
 
             case "연회장 입구":
-                pos.x = 44f;
+                pos.x = -17.5f;
                 pos.y = player.transform.position.y;
                 break;
 
             case "연회장":
-                pos.x = Mathf.Clamp(player.transform.position.x, 65.5f, 73.8f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 16.4f, 19.5f);
+                pos.x = Mathf.Clamp(player.transform.position.x, 4f, 12f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 16f, 18.7f);
                 break;
 
             case "창고 입구":
-                pos.x = 12f;
+                pos.x = -49.7f;
                 pos.y = player.transform.position.y;
                 break;
 
             case "창고":
-                pos.y = Mathf.Clamp(player.transform.position.y, 19.5f, 28.8f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
                 break;
 
             default:
