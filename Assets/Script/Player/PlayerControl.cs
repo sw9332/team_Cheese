@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     private Player player;
     private PlayerAttack playerAttack;
     private Stamina stamina;
+    private CutSceneManager cutSceneManager;
 
     public Animator animator; // player 이동 및 공격 애니메이션
 
@@ -117,7 +118,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (isMove && !playerAttack.isChangingSprite)
+        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite)
         {
             //위로 이동
             if (Input.GetKey(KeyCode.UpArrow))
@@ -261,5 +262,6 @@ public class PlayerControl : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         stamina = FindFirstObjectByType<Stamina>();
         playerAttack = FindFirstObjectByType<PlayerAttack>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
     }
 }

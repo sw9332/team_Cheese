@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
     private TutorialManager tutorialManager;
+    private CutSceneManager cutSceneManager;
 
     private Collider2D playerCollider;
 
@@ -30,6 +31,10 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
+            case "Last Vibration":
+                StartCoroutine(cutSceneManager.isVibrationEvent());
+                break;
+
             case "파티룸 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "파티룸 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
@@ -45,6 +50,10 @@ public class Player : MonoBehaviour
             case "창고 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "창고 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
+            case "Stage1 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "보스 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
             case "RoomE Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "RoomE Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
@@ -59,6 +68,7 @@ public class Player : MonoBehaviour
         teleportManager = FindFirstObjectByType<TeleportManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         playerCollider = GetComponent<Collider2D>();
     }
 }
