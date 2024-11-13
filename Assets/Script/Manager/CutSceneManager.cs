@@ -22,6 +22,11 @@ public class CutSceneManager : MonoBehaviour
 
     public GameObject VibrationEvent;
 
+    public GameObject BigTeddyBearBos;
+    public Animator BigTeddyBearBosAnimation;
+
+    public GameObject BlackBackground;
+
     public bool isCutScene = false;
 
     public IEnumerator TutorialCutScene()
@@ -76,6 +81,46 @@ public class CutSceneManager : MonoBehaviour
         Stage1.SetActive(true);
         VibrationEvent.SetActive(true);
         isCutScene = false;
+    }
+
+    public IEnumerator isVibrationEvent()
+    {
+        isCutScene = true;
+        yield return StartCoroutine(mainCamera.VibrationEffect(1, 0.1f));
+        yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = false;
+    }
+
+    public IEnumerator Bos()
+    {
+        isCutScene = true;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
+        yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
+        while (dialogueManager.dialogue_continue) yield return null;
+
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Bos2);
+        yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
+        while (dialogueManager.dialogue_continue) yield return null;
+
+        Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
+        float moveSpeed = 8f;
+        BigTeddyBearBosAnimation.speed = 2f;
+        BigTeddyBearBosAnimation.Play("BigTeddyBearMove");
+
+        while ((Vector2)BigTeddyBearBos.transform.position != targetPosition)
+        {
+            BigTeddyBearBos.transform.position = Vector2.MoveTowards(
+                BigTeddyBearBos.transform.position,
+                targetPosition,
+                moveSpeed * Time.deltaTime
+            );
+            yield return null;
+        }
+
+        BigTeddyBearBosAnimation.Play("BigTeddyBearStop");
+        BlackBackground.SetActive(true);
     }
 
     void Start()

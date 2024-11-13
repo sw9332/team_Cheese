@@ -29,6 +29,8 @@ public class TeleportManager : MonoBehaviour
 
             case "Stage1 (입구)": StartCoroutine(TeleportFade("Stage1", other, -63.48f, -26f)); break;
 
+            case "보스 (입구)": StartCoroutine(TeleportFade("보스", other, -63f, -56.8f)); break;
+
             case "RoomE Go": StartCoroutine(TeleportFade("-", other, 27.76f, -49.45f)); break;
             case "RoomE Exit": StartCoroutine(TeleportFade("-", other, 41.15f, -42.31f)); break;
 
