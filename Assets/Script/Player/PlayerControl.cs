@@ -11,22 +11,22 @@ public class PlayerControl : MonoBehaviour
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
 
-    public Animator animator; // player �̵� �� ���� �ִϸ��̼�
+    public Animator animator; // player attack and movement
 
     public static float speed = 2.5f;
 
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public bool isMove = true; // isMove�� false �϶��� ������ �� ����.
-    public bool isPush = false; // isPush�� false �϶��� Push Object�� �� �� ����.
+    public bool isMove = true; // if isMove == false -> can't move
+    public bool isPush = false; // if isPush == false -> can't push Push Object.
 
-    public Vector3 CenterOffset; // player �����Ǻ� offset
-    public int Direction = 2; // ����Ű ����, 1: ��, 2: �Ʒ�, 3: ����, 4: ������
+    public Vector3 CenterOffset; // player Gizmo function related
+    public int Direction = 2; // 1: UpArrow, 2: DownArrow, 3:LeftArrow, 4:RightArrow
 
     void OnTriggerStay2D(Collider2D other)
     {
-        //������Ʈ �б�
+        // Push Object movement
         if (other.CompareTag("Push_Object"))
         {
             isPush = true;
@@ -64,14 +64,14 @@ public class PlayerControl : MonoBehaviour
         {
             switch(GameManager.GameState)
             {
-                case "â��": animator.Play("PlayerUp_Stop"); break;
+                case "창고": animator.Play("PlayerUp_Stop"); break;
                 default: animator.Play("PlayerBack_Stop"); break;
             }
 
             animator.speed = 1;
         }
 
-        // �ǰ� ������ �� ������
+        // if player gets attack
         if (isMove && playerAttack.isChangingSprite == true)
         {
 
@@ -120,7 +120,6 @@ public class PlayerControl : MonoBehaviour
 
         if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite&& !playerAttack.isAttacking)
         {
-            //���� �̵�
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (!isPush)
@@ -142,7 +141,6 @@ public class PlayerControl : MonoBehaviour
                 Direction = 1;  // �� ����
             }
 
-            //�Ʒ��� �̵�
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 if (!isPush)
@@ -164,7 +162,6 @@ public class PlayerControl : MonoBehaviour
                 Direction = 2;  // �Ʒ� ����
             }
 
-            //�������� �̵�
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 if (!isPush)
@@ -180,7 +177,6 @@ public class PlayerControl : MonoBehaviour
                 Direction = 3;  // ���� ����
             }
 
-            //���������� �̵�
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 if (!isPush)
@@ -210,7 +206,6 @@ public class PlayerControl : MonoBehaviour
                 animator.Play("PlayerRight_Stop");
             }
 
-            //�޸���
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
                 if (!isPush)

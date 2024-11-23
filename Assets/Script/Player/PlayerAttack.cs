@@ -293,7 +293,7 @@ public class PlayerAttack : MonoBehaviour
 
         getPlayerHP();
 
-        // 범위 판정 Gizmo 크기 값
+        // Gizmo box size settings
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
         fireCooltime = 0.2f;
