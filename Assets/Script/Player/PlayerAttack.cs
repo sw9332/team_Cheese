@@ -13,6 +13,9 @@ public class PlayerAttack : MonoBehaviour
     private EnemyManager enemyManager;
     private int count = 0; // 피격당했을 때 사용되는 변수
 
+    // 공격(공격 애니메이션)이 진행중인지 체크하는 변수
+    public bool isAttacking = false;
+
     // 원거리 공격 관련
     public GameObject bullet;
     public Transform bulletPos;
@@ -33,21 +36,25 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove)  // 근접 공격 범위 내에 적군이 감지되었다면
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
-            if (enemyCollider.gameObject.layer == LayerMask.NameToLayer("enemy"))
-            {
-                meleeAttackMotion();
-                enemyManager.takeDamage(enemyCollider.tag);
-            }
+            meleeAttackMotion();
+            enemyManager.takeDamage(enemyCollider.tag);
+            isAttacking = true;
         }
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove) // 쿨타임 확인
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove && !isAttacking) // 쿨타임 확인
         {
             rangedAttackMotion();
+            isAttacking = true;
         }
 
-        attackMotionStop();
+
+        if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        {
+            isAttacking = false;
+            attackMotionStop();
+        }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
         if (fireCurtime > 0)
@@ -58,19 +65,19 @@ public class PlayerAttack : MonoBehaviour
 
     void meleeAttackMotion()
     {
-        if (playerControl.Direction == 1)
+        if (playerControl.Direction == 1) // 위
         {
-            playerControl.animator.Play("PlayerMeleeAttackBack");
+            playerControl.animator.Play("PlayerMeleeAttackUp");
         }
-        if (playerControl.Direction == 2)
+        if (playerControl.Direction == 2) // 아래
         {
-            playerControl.animator.Play("PlayerMeleeAttackFront");
+            playerControl.animator.Play("PlayerMeleeAttackDown");
         }
-        if (playerControl.Direction == 3)
+        if (playerControl.Direction == 3) //왼
         {
             playerControl.animator.Play("PlayerMeleeAttackLeft");
         }
-        if (playerControl.Direction == 4)
+        if (playerControl.Direction == 4) // 오
         {
             playerControl.animator.Play("PlayerMeleeAttackRight");
         }
@@ -78,13 +85,13 @@ public class PlayerAttack : MonoBehaviour
 
     void rangedAttackMotion()
     {
-        if (playerControl.Direction == 1) // 뒤
+        if (playerControl.Direction == 1) 
         {
-            playerControl.animator.Play("PlayerLongAttackBack");
+            playerControl.animator.Play("PlayerLongAttackUp");
         }
-        else if (playerControl.Direction == 2) // 정면
+        else if (playerControl.Direction == 2) 
         {
-            playerControl.animator.Play("PlayerLongAttackFront");
+            playerControl.animator.Play("PlayerLongAttackDown");
         }
         else if (playerControl.Direction == 3) // 왼쪽
         {
@@ -104,8 +111,6 @@ public class PlayerAttack : MonoBehaviour
 
     void attackMotionStop()
     {
-        if (Input.GetKeyUp(KeyCode.LeftControl) && playerControl.isMove)
-        {
             if (playerControl.Direction == 1)
             {
                 playerControl.animator.Play("PlayerUp_Stop");
@@ -122,7 +127,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 playerControl.animator.Play("PlayerRight_Stop");
             }
-        }
     }
 
 
@@ -235,7 +239,7 @@ public class PlayerAttack : MonoBehaviour
             if (isCollidingWithEnemy == true  && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime >= destroyTime && hp.Count > 0)
+                if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
                 {
                     GameObject lastHp = hp[hp.Count - 1];
                     StartCoroutine(changeToDamaged());
@@ -247,6 +251,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // 피격 애니메이션 재생은 PlayerControl.cs
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
@@ -288,7 +293,7 @@ public class PlayerAttack : MonoBehaviour
 
         getPlayerHP();
 
-        // 범위 판정 offset 값
+        // 범위 판정 Gizmo 크기 값
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
         fireCooltime = 0.2f;

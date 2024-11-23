@@ -11,22 +11,22 @@ public class PlayerControl : MonoBehaviour
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
 
-    public Animator animator; // player ÀÌµ¿ ¹× °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç
+    public Animator animator; // player ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
 
     public static float speed = 2.5f;
 
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public bool isMove = true; // isMove°¡ false ÀÏ¶§´Â ¿òÁ÷ÀÏ ¼ö ¾øÀ½.
-    public bool isPush = false; // isPush°¡ false ÀÏ¶§´Â Push Object¸¦ ¹Ð ¼ö ¾øÀ½.
+    public bool isMove = true; // isMoveï¿½ï¿½ false ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    public bool isPush = false; // isPushï¿½ï¿½ false ï¿½Ï¶ï¿½ï¿½ï¿½ Push Objectï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-    public Vector3 CenterOffset; // player ¹üÀ§ÆÇº° offset
-    public int Direction = 2; // 1: µÚ, 2: Á¤¸é, 3: ¿ÞÂÊ, 4: ¿À¸¥ÂÊ
+    public Vector3 CenterOffset; // player ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½ offset
+    public int Direction = 2; // ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½, 1: ï¿½ï¿½, 2: ï¿½Æ·ï¿½, 3: ï¿½ï¿½ï¿½ï¿½, 4: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     void OnTriggerStay2D(Collider2D other)
     {
-        //¿ÀºêÁ§Æ® ¹Ð±â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ð±ï¿½
         if (other.CompareTag("Push_Object"))
         {
             isPush = true;
@@ -58,26 +58,27 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void MoveControl() //ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿
+    void MoveControl() //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     {
         if (!isMove && !playerAttack.isChangingSprite)
         {
             switch(GameManager.GameState)
             {
-                case "Ã¢°í": animator.Play("PlayerUp_Stop"); break;
+                case "Ã¢ï¿½ï¿½": animator.Play("PlayerUp_Stop"); break;
                 default: animator.Play("PlayerBack_Stop"); break;
             }
 
             animator.speed = 1;
         }
 
-        // ÇÇ°Ý ´çÇßÀ» ½Ã ¿òÁ÷ÀÓ
+        // ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (isMove && playerAttack.isChangingSprite == true)
         {
+
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 Direction = 1;
-                animator.Play("playerDamagedBack");
+                animator.Play("PlayerDamagedUp");
                 MoveX = false;
                 MoveY = true;
 
@@ -87,7 +88,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 Direction = 2;
-                animator.Play("playerDamagedFront");
+                animator.Play("PlayerDamagedDown");
 
                 MoveX = false;
                 MoveY = true;
@@ -98,29 +99,28 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 Direction = 3;
-                animator.Play("playerDamagedLeft");
+                animator.Play("PlayerDamagedLeft");
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 Direction = 4;
-                animator.Play("playerDamagedRight");
+                animator.Play("PlayerDamagedRight");
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
         }
 
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite)
+
+        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite&& !playerAttack.isAttacking)
         {
-            //À§·Î ÀÌµ¿
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (!isPush)
@@ -139,10 +139,10 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
-                Direction = 1;  // À§ ¹æÇâ
+                Direction = 1;  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
 
-            //¾Æ·¡·Î ÀÌµ¿
+            //ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 if (!isPush)
@@ -161,10 +161,10 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
-                Direction = 2;  // ¾Æ·¡ ¹æÇâ
+                Direction = 2;  // ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
 
-            //¿ÞÂÊÀ¸·Î ÀÌµ¿
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 if (!isPush)
@@ -176,12 +176,11 @@ public class PlayerControl : MonoBehaviour
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
-                Direction = 3;  // ¿ÞÂÊ ¹æÇâ
+                Direction = 3;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
 
-            //¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 if (!isPush)
@@ -194,9 +193,8 @@ public class PlayerControl : MonoBehaviour
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
-                Direction = 4;  // ¿À¸¥ÂÊ ¹æÇâ
+                Direction = 4;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
 
             if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1) animator.Play("PlayerUp_Stop");
@@ -204,17 +202,15 @@ public class PlayerControl : MonoBehaviour
 
             else if (Input.GetKeyUp(KeyCode.LeftArrow) && Direction == 3 && !Input.GetKey(KeyCode.RightArrow))
             {
-                CenterOffset = new Vector3(0f, -0.4f, 0f);
                 animator.Play("PlayerLeft_Stop");
             }
 
             else if (Input.GetKeyUp(KeyCode.RightArrow) && Direction == 4 && !Input.GetKey(KeyCode.LeftArrow))
             {
-                CenterOffset = new Vector3(0f, -0.4f, 0f);
                 animator.Play("PlayerRight_Stop");
             }
 
-            //´Þ¸®±â
+            //ï¿½Þ¸ï¿½ï¿½ï¿½
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
                 if (!isPush)
@@ -243,8 +239,8 @@ public class PlayerControl : MonoBehaviour
 
     public bool Minigame_PlayerPos()
     {
-        //¾Æ·¡ Á¶°Ç¹®¿¡µµ ½ºÅ×ÀÌÁö º°·Î || ¿¬»êÀÚ¸¦ ÀÌ¿ëÇÏ¿© Á¶°Ç½ÄÀ» Ãß°¡ÇØÁÙ °Í.
-        if (transform.position.x <= -76f && transform.position.x >= -78f && transform.position.y <= 48.5f && transform.position.y >= 47.5f) //Æ©Åä¸®¾ó Pos°ª.
+        //ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ || ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+        if (transform.position.x <= -76f && transform.position.x >= -78f && transform.position.y <= 48.5f && transform.position.y >= 47.5f) //Æ©ï¿½ä¸®ï¿½ï¿½ Posï¿½ï¿½.
         {
             return true;
         }
