@@ -239,7 +239,7 @@ public class PlayerAttack : MonoBehaviour
             if (isCollidingWithEnemy == true  && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime >= destroyTime && hp.Count > 0)
+                if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
                 {
                     GameObject lastHp = hp[hp.Count - 1];
                     StartCoroutine(changeToDamaged());
@@ -251,6 +251,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // 피격 애니메이션 재생은 PlayerControl.cs
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
@@ -292,7 +293,7 @@ public class PlayerAttack : MonoBehaviour
 
         getPlayerHP();
 
-        // 범위 판정 offset 값
+        // 범위 판정 Gizmo 크기 값
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
         fireCooltime = 0.2f;

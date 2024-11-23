@@ -63,10 +63,27 @@ public class PlayerControl : MonoBehaviour
         // 피격 당했을 시 움직임
         if (isMove && playerAttack.isChangingSprite == true)
         {
+            //if(Direction == 1)
+            //{
+            //    animator.Play("PlayerDamagedUp");
+            //}
+            //if (Direction == 2)
+            //{
+            //    animator.Play("PlayerDamagedDown");
+            //}
+            //if (Direction == 3)
+            //{
+            //    animator.Play("PlayerDamagedLeft");
+            //}
+            //if (Direction == 4)
+            //{
+            //    animator.Play("PlayerDamagedRight");
+            //}
+
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 Direction = 1;
-                animator.Play("playerDamagedBack");
+                animator.Play("PlayerDamagedUp");
                 MoveX = false;
                 MoveY = true;
 
@@ -76,7 +93,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 Direction = 2;
-                animator.Play("playerDamagedFront");
+                animator.Play("PlayerDamagedDown");
 
                 MoveX = false;
                 MoveY = true;
@@ -87,22 +104,20 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 Direction = 3;
-                animator.Play("playerDamagedLeft");
+                animator.Play("PlayerDamagedLeft");
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 Direction = 4;
-                animator.Play("playerDamagedRight");
+                animator.Play("PlayerDamagedRight");
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
         }
@@ -165,7 +180,6 @@ public class PlayerControl : MonoBehaviour
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = -0.05f;
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
                 Direction = 3;  // 왼쪽 방향
             }
@@ -183,7 +197,6 @@ public class PlayerControl : MonoBehaviour
                 MoveX = true;
                 MoveY = false;
 
-                CenterOffset.x = 0.05f;
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
                 Direction = 4;  // 오른쪽 방향
             }
@@ -193,13 +206,11 @@ public class PlayerControl : MonoBehaviour
 
             else if (Input.GetKeyUp(KeyCode.LeftArrow) && Direction == 3 && !Input.GetKey(KeyCode.RightArrow))
             {
-                CenterOffset = new Vector3(0f, -0.4f, 0f);
                 animator.Play("PlayerLeft_Stop");
             }
 
             else if (Input.GetKeyUp(KeyCode.RightArrow) && Direction == 4 && !Input.GetKey(KeyCode.LeftArrow))
             {
-                CenterOffset = new Vector3(0f, -0.4f, 0f);
                 animator.Play("PlayerRight_Stop");
             }
 

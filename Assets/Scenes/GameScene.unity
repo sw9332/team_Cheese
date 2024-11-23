@@ -16739,7 +16739,7 @@ MonoBehaviour:
   animator: {fileID: 730974887}
   isMove: 1
   isPush: 0
-  CenterOffset: {x: 0, y: 0, z: 0}
+  CenterOffset: {x: 0, y: -0.7, z: 0}
   Direction: 2
 --- !u!114 &730974891
 MonoBehaviour:
@@ -16760,7 +16760,7 @@ MonoBehaviour:
   showRangeGizmo: 0
   elapsedTime: 0
   isChangingSprite: 0
-  showHPGizmo: 0
+  showHPGizmo: 1
 --- !u!1001 &739177304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62988,7 +62988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
