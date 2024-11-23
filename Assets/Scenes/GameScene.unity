@@ -17264,7 +17264,7 @@ MonoBehaviour:
   animator: {fileID: 730974887}
   isMove: 1
   isPush: 0
-  CenterOffset: {x: 0, y: 0, z: 0}
+  CenterOffset: {x: 0, y: 0.3, z: 0}
   Direction: 2
 --- !u!114 &730974891
 MonoBehaviour:
@@ -17278,6 +17278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e979da18cafb394c85ed07a5688dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.3
@@ -64082,7 +64083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
