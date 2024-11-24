@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerAttack : MonoBehaviour
     public float fireCooltime;
     private float fireCurtime;
 
+    private int bulletNum = 20;
+    public Text bulletNumText;
+
     // 근접공격 및 enemy와 충돌
     private List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
@@ -31,29 +35,36 @@ public class PlayerAttack : MonoBehaviour
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
+    bool isbulletAvailable()
+    {
+        if (bulletNum <= 0)
+        {
+            return false;
+        }
+        else
+            return true;
+    }
     void PlayerAttacks()
     {
         enemyCollider = meleeAttackableEnemy();
+        bulletNumText.text = bulletNum.ToString();
 
         // 근접 공격 처리
         if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
-            isAttacking = true;
         }
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove && !isAttacking) // 쿨타임 확인
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
+            && playerControl.isMove && !isAttacking && isbulletAvailable() == true) // 쿨타임 확인
         {
             rangedAttackMotion();
-            isAttacking = true;
         }
-
 
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
-            attackMotionStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
@@ -65,6 +76,7 @@ public class PlayerAttack : MonoBehaviour
 
     void meleeAttackMotion()
     {
+        isAttacking = true;
         if (playerControl.Direction == 1) // 위
         {
             playerControl.animator.Play("PlayerMeleeAttackUp");
@@ -85,51 +97,32 @@ public class PlayerAttack : MonoBehaviour
 
     void rangedAttackMotion()
     {
+        isAttacking = true;
         if (playerControl.Direction == 1) 
         {
-            playerControl.animator.Play("PlayerLongAttackUp");
+            playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
         }
         else if (playerControl.Direction == 2) 
         {
-            playerControl.animator.Play("PlayerLongAttackDown");
+            playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
         }
         else if (playerControl.Direction == 3) // 왼쪽
         {
-            playerControl.animator.Play("PlayerLongAttackLeft");
+            playerControl.animator.Play("PlayerLongAttackLeft", 0, 0f);
         }
         else if (playerControl.Direction == 4) // 오른쪽
         {
-            playerControl.animator.Play("PlayerLongAttackRight");
+            playerControl.animator.Play("PlayerLongAttackRight", 0, 0f);
         }
 
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
+        bulletNum--;
         fireCurtime = fireCooltime; // 쿨타임 초기화
-        //  모션 수정되면 yield return으로 모션 끝날때까지 대기하도록 
     }
 
-    void attackMotionStop()
-    {
-            if (playerControl.Direction == 1)
-            {
-                playerControl.animator.Play("PlayerUp_Stop");
-            }
-            else if (playerControl.Direction == 2)
-            {
-                playerControl.animator.Play("PlayerBack_Stop");
-            }
-            else if (playerControl.Direction == 3)
-            {
-                playerControl.animator.Play("PlayerLeft_Stop");
-            }
-            else if (playerControl.Direction == 4)
-            {
-                playerControl.animator.Play("PlayerRight_Stop");
-            }
-    }
-
-
+  
     // 근접 공격   -------------------------------------------------------------------------------------------
 
     public bool showRangeGizmo = false;
@@ -296,7 +289,7 @@ public class PlayerAttack : MonoBehaviour
         // Gizmo box size settings
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
-        fireCooltime = 0.2f;
+        fireCooltime = 0.1f;
     }
 
     void Update()
