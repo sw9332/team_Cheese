@@ -12,19 +12,19 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
+    public Bullet bullet;
+    public Text bulletNumText;
+
     private int count = 0; // 피격당했을 때 사용되는 변수
 
     // 공격(공격 애니메이션)이 진행중인지 체크하는 변수
     public bool isAttacking = false;
 
     // 원거리 공격 관련
-    public GameObject bullet;
     public Transform bulletPos;
     public float fireCooltime;
     private float fireCurtime;
 
-    private int bulletNum = 20;
-    public Text bulletNumText;
 
     // 근접공격 및 enemy와 충돌
     private List<GameObject> hp = new List<GameObject>();
@@ -35,19 +35,9 @@ public class PlayerAttack : MonoBehaviour
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
-    bool isbulletAvailable()
-    {
-        if (bulletNum <= 0)
-        {
-            return false;
-        }
-        else
-            return true;
-    }
     void PlayerAttacks()
     {
         enemyCollider = meleeAttackableEnemy();
-        bulletNumText.text = bulletNum.ToString();
 
         // 근접 공격 처리
         if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking)  // 근접 공격 범위 내에 적군이 감지되었다면
@@ -57,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         }
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
-            && playerControl.isMove && !isAttacking && isbulletAvailable() == true) // 쿨타임 확인
+            && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true) // 쿨타임 확인
         {
             rangedAttackMotion();
         }
@@ -118,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
-        bulletNum--;
+        bullet.bulletNum--;
         fireCurtime = fireCooltime; // 쿨타임 초기화
     }
 
@@ -277,12 +267,22 @@ public class PlayerAttack : MonoBehaviour
         player = GameObject.Find("Player");
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
     }
-    
+    void setBulletAmount()
+    {
+        bullet.bulletNum = 20;
+    }
+    void showBulletNum()
+    {
+        bulletNumText.text = bullet.bulletNum.ToString();
+    }
     void Start()
     {
         getPlayerSpriteRenderer();
+        setBulletAmount();
+
         playerControl = FindFirstObjectByType<PlayerControl>();
         enemyManager = FindFirstObjectByType<EnemyManager>();
+
 
         getPlayerHP();
 
@@ -296,5 +296,7 @@ public class PlayerAttack : MonoBehaviour
     {
         PlayerAttacks();
         Player_Collision();
+
+        showBulletNum();
     }
 }

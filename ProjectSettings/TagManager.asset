@@ -50,6 +50,7 @@ TagManager:
   - "Stage1 (\uC785\uAD6C)"
   - "\uBCF4\uC2A4 (\uC785\uAD6C)"
   - Last Vibration
+  - LootItem
   layers:
   - Default
   - TransparentFX

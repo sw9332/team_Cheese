@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemDB[2];
             case "Cake": return ItemDB[3];
             case "NPC": return ItemDB[4];
+            case "Ammo": return ItemDB[5];
             default: return null;
         }
     }
@@ -42,6 +43,7 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemSpriteDB[2];
             case "Cake": return ItemSpriteDB[3];
             case "NPC": return ItemSpriteDB[4];
+            case "Ammo": return ItemSpriteDB[5];
             default: return null;
         }
     }
@@ -87,6 +89,7 @@ public class Inventory : MonoBehaviour
             case "BrownTeddyBear":
             case "PinkTeddyBear":
             case "YellowTeddyBear":
+            case "LootItem":
             case "Cake":
             case "NPC":
                 canPickup = true;
@@ -104,6 +107,7 @@ public class Inventory : MonoBehaviour
             case "PinkTeddyBear":
             case "YellowTeddyBear":
             case "Cake":
+            case "LootItem":
             case "NPC":
                 canPickup = false;
                 ItemCollider = null;
@@ -130,6 +134,8 @@ public class Inventory : MonoBehaviour
                     case "YellowTeddyBear": PickupItem("YellowTeddyBear", ItemCollider); break;
                     case "Cake": PickupItem("Cake", ItemCollider); break;
                     case "NPC": PickupItem("NPC", ItemCollider); break;
+
+                    case "LootItem": PickupItem(ItemCollider.gameObject.name, ItemCollider); break;
                 }
             }
         }

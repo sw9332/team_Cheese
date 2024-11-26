@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public void destroyEnemy()
     {
         Destroy(gameObject);
+        // Item Drop
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
     }
 
     public IEnumerator PlayDeathAnimationAndDestroy()
