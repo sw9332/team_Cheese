@@ -8,20 +8,13 @@ public class Stage1_Calender : MonoBehaviour
 
     public Dialogue calender;
 
-    public bool is_checked = false;
-
-    private void Start()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
+        if (col.CompareTag("Player")) dialogueManager.ShowDialogue(calender);
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    void Start()
     {
-        if(col.tag == "Player" && Input.GetKeyDown(KeyCode.Z))
-        {
-            dialogueManager.ShowDialogue(calender);
-            is_checked = true;
-        }
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 }
-

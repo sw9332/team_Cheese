@@ -41,7 +41,8 @@ public class CutSceneManager : MonoBehaviour
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
         while (dialogueManager.dialogue_continue) yield return null;
-        StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
+        yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
+        dialogueManager.ShowDialogue(dialogueContentManager.d_calender);
         isCutScene = false;
     }
 
@@ -55,9 +56,8 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         inventory.Clean();
-        tutorialManager.TutorialType(6);
         yield return StartCoroutine(fadeManager.FadeIn());
-        yield return StartCoroutine(tutorialManager.ShowTutorialUI(true, dialogueContentManager.d_Demo_1));
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
     }
 
     public IEnumerator CutScene_Stage1()

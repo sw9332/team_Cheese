@@ -16,6 +16,8 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue d_camera;
     [SerializeField]
     public Dialogue d_cutScene;
+    [SerializeField]
+    public Dialogue d_calender;
 
     [SerializeField]
     public Dialogue d_Demo_1;
