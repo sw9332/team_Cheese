@@ -22,12 +22,4 @@ public class Stage1_CalenderCheck : MonoBehaviour
             dialogueManager.ShowDialogue(Check);
         }
     }
-
-    private void Update()
-    {
-        if(Dcalender.is_checked == true)
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
 }
