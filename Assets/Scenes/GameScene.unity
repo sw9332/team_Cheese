@@ -5124,7 +5124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.946563, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16497,6 +16497,7 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 958779660442518404, guid: 6f05f8d5a0268bc4bbe0bc18c361d086, type: 3}
   lootList:
   - {fileID: 11400000, guid: cfd22fbfedfc274408ffa464291a520e, type: 2}
+  - {fileID: 11400000, guid: 0fb1af8eb92ce2045817a500744eaf25, type: 2}
 --- !u!1 &693464526
 GameObject:
   m_ObjectHideFlags: 0
@@ -17199,7 +17200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730974879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.88, y: 46.14, z: 0}
+  m_LocalPosition: {x: -76.8, y: 45.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17341,13 +17342,19 @@ MonoBehaviour:
   - {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
   - {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
   - {fileID: 5943330359769631928, guid: 42f3af53a8058b64097b8d4cc0056065, type: 3}
+  - {fileID: 5943330359769631928, guid: f2513c9be2a49374c813bec3b1e9cb93, type: 3}
   ItemSpriteDB:
   - {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
   - {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
   - {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
   - {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
   - {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
-  - {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
+  - {fileID: 21300000, guid: 17216d9a02c022a4186ee7a8ab38aee8, type: 3}
+  - {fileID: 21300000, guid: 50653a6b9d063504d80d3be390005636, type: 3}
+  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: cfd22fbfedfc274408ffa464291a520e, type: 2}
+  - {fileID: 11400000, guid: 0fb1af8eb92ce2045817a500744eaf25, type: 2}
 --- !u!114 &730974890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59031,6 +59038,7 @@ GameObject:
   - component: {fileID: 1464094608}
   - component: {fileID: 1464094609}
   - component: {fileID: 1464094610}
+  - component: {fileID: 1464094611}
   m_Layer: 6
   m_Name: pinkDollEnemy
   m_TagString: pinkDollEnemy
@@ -59190,6 +59198,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1464094611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464094604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8cb5b5dacfa8e48be63d3125adb7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 958779660442518404, guid: 6f05f8d5a0268bc4bbe0bc18c361d086, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: cfd22fbfedfc274408ffa464291a520e, type: 2}
+  - {fileID: 11400000, guid: 0fb1af8eb92ce2045817a500744eaf25, type: 2}
 --- !u!1 &1467240979
 GameObject:
   m_ObjectHideFlags: 0

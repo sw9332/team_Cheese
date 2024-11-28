@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
     public GameObject[] ItemDB;
     public Sprite[] ItemSpriteDB;
 
+    public Bullet bullet;
+    public Loot[] lootList;
+
     private Player player;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
@@ -19,6 +22,8 @@ public class Inventory : MonoBehaviour
 
     private bool canPickup = false;
     private Collider2D ItemCollider;
+
+    
 
     public GameObject GetItemObject(string itemName)
     {
@@ -30,6 +35,9 @@ public class Inventory : MonoBehaviour
             case "Cake": return ItemDB[3];
             case "NPC": return ItemDB[4];
             case "Ammo": return ItemDB[5];
+            case "Ammo(Clone)":return ItemDB[5];
+            case "ChocoBar": return ItemDB[6];
+            case "ChocoBar(Clone)":return ItemDB[6];
             default: return null;
         }
     }
@@ -44,6 +52,10 @@ public class Inventory : MonoBehaviour
             case "Cake": return ItemSpriteDB[3];
             case "NPC": return ItemSpriteDB[4];
             case "Ammo": return ItemSpriteDB[5];
+            case "Ammo(Clone)": return ItemSpriteDB[5];
+            case "ChocoBar": return ItemSpriteDB[6];
+            case "ChocoBar(Clone)": return ItemSpriteDB[6];
+
             default: return null;
         }
     }
@@ -55,7 +67,20 @@ public class Inventory : MonoBehaviour
         GameObject itemObject = GetItemObject(SlotDB[slotIndex]);
         Vector3 position = !Player.objectCollision ? player.transform.position : Object.pos;
 
-        Instantiate(itemObject, position, Quaternion.identity);
+        if (itemObject.name == "Ammo" || itemObject.name == "Ammo(Clone)")
+        {
+            bullet.bulletNum += 5;
+            DestroyImmediate(itemObject,true);  // Destroy를 쓰려고 했지만 editor에선 DestroyImmediate를 권장
+        }
+        //else if (itemObject.name == "ChocoBar" || itemObject.name == "ChocoBar(Clone)")
+        //{
+
+        //}
+        else
+        { 
+            Instantiate(itemObject, position, Quaternion.identity);
+        }
+
         SlotDB[slotIndex] = null;
         SlotImageDB[slotIndex].sprite = null;
     }
@@ -134,8 +159,9 @@ public class Inventory : MonoBehaviour
                     case "YellowTeddyBear": PickupItem("YellowTeddyBear", ItemCollider); break;
                     case "Cake": PickupItem("Cake", ItemCollider); break;
                     case "NPC": PickupItem("NPC", ItemCollider); break;
-
-                    case "LootItem": PickupItem(ItemCollider.gameObject.name, ItemCollider); break;
+                    case "LootItem":
+                        Debug.Log($"Loot Item Name: {ItemCollider.name}");
+                        PickupItem(ItemCollider.name, ItemCollider); break;
                 }
             }
         }
@@ -155,5 +181,6 @@ public class Inventory : MonoBehaviour
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         uiManager = FindFirstObjectByType<UIManager>();
+
     }
 }

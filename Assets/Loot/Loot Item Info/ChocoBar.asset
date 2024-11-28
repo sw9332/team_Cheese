@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 049ea479a676a9242bd56f25663d8b10, type: 3}
-  m_Name: Ammo
+  m_Name: ChocoBar
   m_EditorClassIdentifier: 
-  lootSprite: {fileID: 21300000, guid: 17216d9a02c022a4186ee7a8ab38aee8, type: 3}
-  lootName: Ammo
+  lootSprite: {fileID: 21300000, guid: 50653a6b9d063504d80d3be390005636, type: 3}
+  lootName: ChocoBar
   dropChance: 100

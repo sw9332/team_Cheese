@@ -17,14 +17,7 @@ public class LootBag : MonoBehaviour
             {
                 possibleItems.Add(item);
             }
-
-            if (possibleItems.Count > 0)
-            {
-                return possibleItems;
-            }
-
             // 이 기능은 아이템 중 랜덤으로 1개만 리턴하는 기능
-
             /*
             if (possibleItems.Count > 0)
             {
@@ -33,10 +26,7 @@ public class LootBag : MonoBehaviour
             }
             */
         }
-         
-        // 아이템이 드랍되지 않았을 때
-        Debug.Log("No dropped item");
-        return null;
+        return possibleItems;
     }
 
     public void InstantiateLoot(Vector3 spawnPosition)
@@ -49,12 +39,6 @@ public class LootBag : MonoBehaviour
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
                 lootGameObject.name = droppedItem.name;
-
-                // 아이템이 겹치지 않고 조금씩 다른 위치에 스폰되도록
-                spawnPosition += new Vector3(1, 1, 0);
-
-                // 죽는 조건에 넣기
-                // GetComponent<LootBag>().InstantiateLoot(transform.position);
             }
         }
 
