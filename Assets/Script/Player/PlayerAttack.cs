@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     // 근접공격 및 enemy와 충돌
-    private List<GameObject> hp = new List<GameObject>();
+    public List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
@@ -273,7 +273,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void showBulletNum()
     {
-        bulletNumText.text = "Bullet: "+  bullet.bulletNum.ToString();
+        bulletNumText.text = " Bullet: "+  bullet.bulletNum.ToString();
     }
     void Start()
     {

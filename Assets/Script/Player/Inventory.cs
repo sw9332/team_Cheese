@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     public Loot[] lootList;
 
     private Player player;
+    private PlayerAttack playerAttack;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
@@ -34,6 +35,7 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemDB[2];
             case "Cake": return ItemDB[3];
             case "NPC": return ItemDB[4];
+            // Ammo(Clone), ChocoBar(Clone) -> when object is duplicated
             case "Ammo": return ItemDB[5];
             case "Ammo(Clone)":return ItemDB[5];
             case "ChocoBar": return ItemDB[6];
@@ -51,6 +53,7 @@ public class Inventory : MonoBehaviour
             case "YellowTeddyBear": return ItemSpriteDB[2];
             case "Cake": return ItemSpriteDB[3];
             case "NPC": return ItemSpriteDB[4];
+            // Ammo(Clone), ChocoBar(Clone) -> when object is duplicated
             case "Ammo": return ItemSpriteDB[5];
             case "Ammo(Clone)": return ItemSpriteDB[5];
             case "ChocoBar": return ItemSpriteDB[6];
@@ -66,23 +69,42 @@ public class Inventory : MonoBehaviour
 
         GameObject itemObject = GetItemObject(SlotDB[slotIndex]);
         Vector3 position = !Player.objectCollision ? player.transform.position : Object.pos;
-
         if (itemObject.name == "Ammo" || itemObject.name == "Ammo(Clone)")
         {
             bullet.bulletNum += 5;
-            DestroyImmediate(itemObject,true);  // Destroy를 쓰려고 했지만 editor에선 DestroyImmediate를 권장
-        }
-        //else if (itemObject.name == "ChocoBar" || itemObject.name == "ChocoBar(Clone)")
-        //{
 
-        //}
+            // Destroy 안쓰는 이유: 원본 삭제의 우려 /  false변수 -> 현재 실행되는 객체만 삭제
+
+            DestroyImmediate(itemObject,false); 
+            SlotDB[slotIndex] = null;
+            SlotImageDB[slotIndex].sprite = null;
+        }
+        else if (itemObject.name == "ChocoBar" || itemObject.name == "ChocoBar(Clone)")
+        {
+            // get last hp and set for new position for new HP
+            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
+            RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
+            Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
+
+            // Locate newly generated Hp 
+            GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // 부모 유지
+            RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
+            newRectTransform.anchoredPosition = newAnchoredPosition;
+
+            playerAttack.hp.Add(hpObj);
+            // Why DestroyImmediate -> in case original asset can be deleted / false변수 -> 현재 실행되는 객체만 삭제
+            DestroyImmediate(itemObject, false);
+            SlotDB[slotIndex] = null;
+            SlotImageDB[slotIndex].sprite = null;
+        }
         else
         { 
             Instantiate(itemObject, position, Quaternion.identity);
+            SlotDB[slotIndex] = null;
+            SlotImageDB[slotIndex].sprite = null;
         }
 
-        SlotDB[slotIndex] = null;
-        SlotImageDB[slotIndex].sprite = null;
+        
     }
 
     public void PickupItem(string itemName, Collider2D other)
@@ -178,6 +200,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<Player>();
+        playerAttack = FindFirstObjectByType<PlayerAttack>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         uiManager = FindFirstObjectByType<UIManager>();

@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
             }
         }
         Destroy(gameObject);
-
     }
 
     public IEnumerator PlayDeathAnimationAndDestroy()

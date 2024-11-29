@@ -5108,8 +5108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -132.22}
-  m_SizeDelta: {x: 249.2975, y: 84.4337}
+  m_AnchoredPosition: {x: -31.489, y: -87.17}
+  m_SizeDelta: {x: 337.0225, y: 84.4337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163799850
 MonoBehaviour:
@@ -5138,7 +5138,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 213
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -14617,8 +14617,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -710, y: 420}
-  m_SizeDelta: {x: 450, y: 180}
+  m_AnchoredPosition: {x: -710, y: 380.61328}
+  m_SizeDelta: {x: 450, y: 258.7736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597561409
 MonoBehaviour:
@@ -17389,6 +17389,7 @@ MonoBehaviour:
   isAttacking: 0
   bulletPos: {fileID: 658994212}
   fireCooltime: 0.1
+  hp: []
   showRangeGizmo: 0
   elapsedTime: 0
   isChangingSprite: 0
@@ -21105,7 +21106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: -66, y: -13}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &909576902
@@ -67544,7 +67545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 45}
+  m_AnchoredPosition: {x: 0, y: 69}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1760627724
