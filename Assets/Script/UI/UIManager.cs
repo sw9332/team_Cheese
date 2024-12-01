@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
 
     //Stage1 변수
     public static bool is_NPC = false;
+    public static bool is_CutScene_4 = false;
 
     public void CameraEffect(bool isCameraEffect)
     {
@@ -83,7 +84,7 @@ public class UIManager : MonoBehaviour
         if (is_bear && is_cake && is_playerPos) tutorialTrigger = true;
         else tutorialTrigger = false;
 
-        if (tutorialTrigger || is_NPC) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
+        if (tutorialTrigger || is_NPC || is_CutScene_4) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
         {
             CameraEffect(true);
             MiniGame.is_take_photo = true;

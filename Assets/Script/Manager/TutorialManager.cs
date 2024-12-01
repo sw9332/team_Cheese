@@ -18,7 +18,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator ShowTutorialUI(bool isTutorial, Dialogue dialoge)
     {
-        if(isTutorial)
+        if (isTutorial)
         {
             TutorialUI.SetActive(true);
             while (TutorialUI.activeSelf) yield return null;
@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             dialogueManager.ShowDialogue(dialoge);
-            while(dialogueManager.dialogue_continue) yield return null;
+            while (dialogueManager.dialogue_continue) yield return null;
             TutorialUI.SetActive(true);
             while(TutorialUI.activeSelf) yield return null;
         }
@@ -98,7 +98,10 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (TutorialUI.activeSelf == true && Input.GetKeyDown(KeyCode.Z)) TutorialUI.SetActive(false);
+        if (TutorialUI.activeSelf == true && Input.GetKeyDown(KeyCode.Z))
+        {
+            TutorialUI.SetActive(false);
+        }
     }
 
     void Start()

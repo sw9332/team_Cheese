@@ -65,19 +65,19 @@ public class PlayerAttack : MonoBehaviour
 
     void meleeAttackMotion()
     {
-        if (playerControl.Direction == 1) // 위
+        if (playerControl.Direction == "Up") // 위
         {
             playerControl.animator.Play("PlayerMeleeAttackUp");
         }
-        if (playerControl.Direction == 2) // 아래
+        if (playerControl.Direction == "Down") // 아래
         {
             playerControl.animator.Play("PlayerMeleeAttackDown");
         }
-        if (playerControl.Direction == 3) //왼
+        if (playerControl.Direction == "Left") //왼
         {
             playerControl.animator.Play("PlayerMeleeAttackLeft");
         }
-        if (playerControl.Direction == 4) // 오
+        if (playerControl.Direction == "Right") // 오
         {
             playerControl.animator.Play("PlayerMeleeAttackRight");
         }
@@ -85,19 +85,19 @@ public class PlayerAttack : MonoBehaviour
 
     void rangedAttackMotion()
     {
-        if (playerControl.Direction == 1) 
+        if (playerControl.Direction == "Up") 
         {
             playerControl.animator.Play("PlayerLongAttackUp");
         }
-        else if (playerControl.Direction == 2) 
+        else if (playerControl.Direction == "Down") 
         {
             playerControl.animator.Play("PlayerLongAttackDown");
         }
-        else if (playerControl.Direction == 3) // 왼쪽
+        else if (playerControl.Direction == "Left")
         {
             playerControl.animator.Play("PlayerLongAttackLeft");
         }
-        else if (playerControl.Direction == 4) // 오른쪽
+        else if (playerControl.Direction == "Right")
         {
             playerControl.animator.Play("PlayerLongAttackRight");
         }
@@ -111,22 +111,13 @@ public class PlayerAttack : MonoBehaviour
 
     void attackMotionStop()
     {
-            if (playerControl.Direction == 1)
-            {
-                playerControl.animator.Play("PlayerUp_Stop");
-            }
-            else if (playerControl.Direction == 2)
-            {
-                playerControl.animator.Play("PlayerBack_Stop");
-            }
-            else if (playerControl.Direction == 3)
-            {
-                playerControl.animator.Play("PlayerLeft_Stop");
-            }
-            else if (playerControl.Direction == 4)
-            {
-                playerControl.animator.Play("PlayerRight_Stop");
-            }
+        switch (playerControl.Direction)
+        {
+            case "Up": playerControl.StopDirection(playerControl.Direction); break;
+            case "Down": playerControl.StopDirection(playerControl.Direction); break;
+            case "Left": playerControl.StopDirection(playerControl.Direction); break;
+            case "Right": playerControl.StopDirection(playerControl.Direction); break;
+        }
     }
 
 

@@ -12,10 +12,13 @@ public class CutSceneManager : MonoBehaviour
     private TutorialManager tutorialManager;
     private MiniGame miniGame;
     private Inventory inventory;
+    private UIManager uiManager;
+    private NPCEnemy npcEnemy;
 
     public GameObject Effect;
     public GameObject Blocking;
     public GameObject NPC;
+    public GameObject NPC_Bos;
 
     public GameObject Stage1;
     public GameObject BlockedWay;
@@ -26,10 +29,11 @@ public class CutSceneManager : MonoBehaviour
     public Animator BigTeddyBearBosAnimation;
 
     public GameObject BlackBackground;
+    public GameObject WhiteBackground;
 
     public bool isCutScene = false;
 
-    public IEnumerator TutorialCutScene()
+    public IEnumerator CutScene_1()
     {
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut());
@@ -39,14 +43,14 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn());
         playerControl.isMove = true;
-        dialogueManager.ShowDialogue(dialogueContentManager.d_cutScene);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
-        dialogueManager.ShowDialogue(dialogueContentManager.d_calender);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         isCutScene = false;
     }
 
-    public IEnumerator NpcCutScene()
+    public IEnumerator CutScene_2()
     {
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut());
@@ -55,13 +59,12 @@ public class CutSceneManager : MonoBehaviour
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);
         playerControl.isMove = false;
+        playerControl.Direction = "Up";
         inventory.Clean();
         yield return StartCoroutine(fadeManager.FadeIn());
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
-    }
+        while (GameManager.GameState != "CutScene2") yield return null;
 
-    public IEnumerator CutScene_Stage1()
-    {
         yield return StartCoroutine(fadeManager.FadeOut());
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn());
@@ -83,17 +86,7 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = false;
     }
 
-    public IEnumerator isVibrationEvent()
-    {
-        isCutScene = true;
-        yield return StartCoroutine(mainCamera.VibrationEffect(1, 0.1f));
-        yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_3);
-        while (dialogueManager.dialogue_continue) yield return null;
-        isCutScene = false;
-    }
-
-    public IEnumerator Bos()
+    public IEnumerator CutScene_3()
     {
         isCutScene = true;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
@@ -121,6 +114,50 @@ public class CutSceneManager : MonoBehaviour
 
         BigTeddyBearBosAnimation.Play("BigTeddyBearStop");
         BlackBackground.SetActive(true);
+        StartCoroutine(CutScene_4());
+    }
+
+    public IEnumerator CutScene_4()
+    {
+        GameManager.GameState = "CutScene4";
+        UIManager.is_CutScene_4 = true;
+        yield return new WaitForSeconds(3);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_1);
+        while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(2);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(2);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_3);
+    }
+
+    public IEnumerator CutScene_5()
+    {
+        miniGame.ClearPhotoMode();
+        GameManager.GameState = "CutScene5";
+        WhiteBackground.SetActive(true);
+        playerControl.Direction = "Up";
+        playerControl.transform.position = new Vector3(-49f, 21f, 0);
+        NPC_Bos.SetActive(true);
+        yield return new WaitForSeconds(2);
+        Effect.SetActive(false);
+        BlackBackground.SetActive(false);
+        WhiteBackground.SetActive(false);
+        yield return new WaitForSeconds(1);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
+        while (dialogueManager.dialogue_continue) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
+        dialogueManager.ChoiceButton(true, "³­ÀïÀÌ", "ÀÎÇü");
+    }
+
+    public IEnumerator isVibrationEvent()
+    {
+        isCutScene = true;
+        yield return StartCoroutine(mainCamera.VibrationEffect(1, 0.1f));
+        yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = false;
     }
 
     void Start()
@@ -133,5 +170,7 @@ public class CutSceneManager : MonoBehaviour
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         miniGame = FindFirstObjectByType<MiniGame>();
         inventory = FindFirstObjectByType<Inventory>();
+        uiManager = FindFirstObjectByType<UIManager>();
+        npcEnemy = FindFirstObjectByType<NPCEnemy>();
     }
 }
