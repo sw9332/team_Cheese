@@ -15,10 +15,10 @@ public class Bullet : MonoBehaviour
 
     void bulletDirectionSettings()
     {
-        if (playerControl.Direction == 1) direction = Vector2.up;
-        else if (playerControl.Direction == 2) direction = Vector2.down;
-        else if (playerControl.Direction == 3) direction = Vector2.left;
-        else if (playerControl.Direction == 4) direction = Vector2.right;
+        if (playerControl.Direction == "Up") direction = Vector2.up;
+        else if (playerControl.Direction == "Down") direction = Vector2.down;
+        else if (playerControl.Direction == "Left") direction = Vector2.left;
+        else if (playerControl.Direction == "Right") direction = Vector2.right;
         Invoke("DestroyBullet", 1);
     }
     void bulletMove()

@@ -33,12 +33,18 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
+    public GameObject ChoiceButtonPanel;
+
+    public Text ChoiceText_1;
+    public Text ChoiceText_2;
+
+    public GameObject CloseButton;
 
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
 
     public bool dialogue_continue = false;
-
     public bool is_talking = false;
+    public bool is_ChoiceButton = false;
 
     public PlayerControl playerControl;
     public MiniGame minigame;
@@ -111,6 +117,25 @@ public class DialogueManager : MonoBehaviour
         yield return null;
     }
 
+    public void ChoiceButton(bool isChoice, string ChoiceButton_1, string ChoiceButton_2)
+    {
+        if (isChoice)
+        {
+            ChoiceText_1.text = ChoiceButton_1;
+            ChoiceText_2.text = ChoiceButton_2;
+            ChoiceButtonPanel.SetActive(true);
+            CloseButton.SetActive(false);
+            is_ChoiceButton = true;
+        }
+
+        else
+        {
+            ChoiceButtonPanel.SetActive(false);
+            CloseButton.SetActive(true);
+            is_ChoiceButton = false;
+        }
+    }
+
     public void NextSentence()
     {
         if (dialogue_continue && is_talking == false)
@@ -136,9 +161,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (dialogue_continue && is_talking == false)
+        if (dialogue_continue && !is_talking)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) && !is_ChoiceButton)
             {
                 if (count == contentsList.Count - 2)
                 {

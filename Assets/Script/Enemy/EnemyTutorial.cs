@@ -12,6 +12,7 @@ public class EnemyTutorial : MonoBehaviour
         {
             tutorialManager.TutorialUI.SetActive(true);
             tutorialManager.TutorialType(6);
+            gameObject.SetActive(false);
         }
     }
 

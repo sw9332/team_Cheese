@@ -91,12 +91,18 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "창고":
+                pos.x = Mathf.Clamp(player.transform.position.x, -50f, -49f);
                 pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
                 break;
 
             case "보스":
                 pos.x = player.transform.position.x;
                 pos.y = Mathf.Clamp(player.transform.position.y, -60f, -58.3f);
+                break;
+
+            case "CutScene2":
+                pos.x = Mathf.Clamp(player.transform.position.x, -50f, -49f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
                 break;
 
             default:
