@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CutSceneManager : MonoBehaviour
 {
@@ -98,7 +99,7 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
-        float moveSpeed = 8f;
+        float moveSpeed = 13f;
         BigTeddyBearBosAnimation.speed = 2f;
         BigTeddyBearBosAnimation.Play("BigTeddyBearMove");
 
@@ -142,7 +143,8 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         Effect.SetActive(false);
         BlackBackground.SetActive(false);
-        WhiteBackground.SetActive(false);
+        UnityEngine.UI.Image image = WhiteBackground.GetComponent<UnityEngine.UI.Image>();
+        yield return StartCoroutine(FadeOutImage(image, 1f));
         yield return new WaitForSeconds(1);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -159,6 +161,23 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         isCutScene = false;
     }
+
+    IEnumerator FadeOutImage(UnityEngine.UI.Image image, float duration)
+    {
+        Color color = image.color;
+        float startAlpha = color.a;
+
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            float alpha = Mathf.Lerp(startAlpha, 0f, t / duration);
+            image.color = new Color(color.r, color.g, color.b, alpha);
+            yield return null;
+        }
+
+        image.color = new Color(color.r, color.g, color.b, 0f);
+        image.gameObject.SetActive(false);
+    }
+
 
     void Start()
     {
