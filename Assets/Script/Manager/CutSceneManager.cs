@@ -12,7 +12,7 @@ public class CutSceneManager : MonoBehaviour
     private MainCamera mainCamera;
     private TutorialManager tutorialManager;
     private MiniGame miniGame;
-    private Inventory inventory;
+    private InventoryManager inventoryManager;
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
 
@@ -61,7 +61,7 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         playerControl.Direction = "Up";
-        inventory.Clean();
+        inventoryManager.Clean();
         yield return StartCoroutine(fadeManager.FadeIn());
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
         while (GameManager.GameState != "CutScene2") yield return null;
@@ -188,7 +188,7 @@ public class CutSceneManager : MonoBehaviour
         mainCamera = FindFirstObjectByType<MainCamera>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         miniGame = FindFirstObjectByType<MiniGame>();
-        inventory = FindFirstObjectByType<Inventory>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
     }

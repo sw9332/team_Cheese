@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9145100731216763071}
   - component: {fileID: 464609197116012168}
   - component: {fileID: 6619317292119853964}
+  - component: {fileID: 8789685749600727112}
   m_Layer: 0
   m_Name: Dropped Brown Teddy Bear
   m_TagString: DroppedBrownTeddyBear
@@ -216,3 +217,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.14, y: 0.59}
   m_EdgeRadius: 0
+--- !u!114 &8789685749600727112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473509884464117161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dd937457d6e524a8e23d5672d854c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPickUp: 0
+  isInstalled: 0
