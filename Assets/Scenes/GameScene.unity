@@ -15746,7 +15746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b28f9dd00d98e44b9016b91ecbfe19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
+  itemDB:
   - id: DroppedBrownTeddyBear
     type: 0
     prefab: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
