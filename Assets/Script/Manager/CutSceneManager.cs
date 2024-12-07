@@ -15,11 +15,11 @@ public class CutSceneManager : MonoBehaviour
     private InventoryManager inventoryManager;
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
+    private NPC npc;
 
     public GameObject Effect;
     public GameObject Blocking;
     public GameObject NPC;
-    public GameObject NPC_Bos;
 
     public GameObject Stage1;
     public GameObject BlockedWay;
@@ -31,6 +31,8 @@ public class CutSceneManager : MonoBehaviour
 
     public GameObject BlackBackground;
     public GameObject WhiteBackground;
+
+    public Text BosUI;
 
     public bool isCutScene = false;
 
@@ -138,8 +140,8 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "CutScene5";
         WhiteBackground.SetActive(true);
         playerControl.Direction = "Up";
-        playerControl.transform.position = new Vector3(-49f, 21f, 0);
-        NPC_Bos.SetActive(true);
+        playerControl.transform.position = new Vector3(-49f, 22f, 0);
+        npc.transform.position = new Vector3(-49f, 25f, 0);
         yield return new WaitForSeconds(2);
         Effect.SetActive(false);
         BlackBackground.SetActive(false);
@@ -150,6 +152,23 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
         dialogueManager.ChoiceButton(true, "≥≠¿Ô¿Ã", "¿Œ«¸");
+        while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(true);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(false);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(true);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(false);
+        StartCoroutine(mainCamera.VibrationEffect(4, 0.1f));
+        npc.BosMode(true);
+        yield return new WaitForSeconds(2f);
+        BosUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        BosUI.gameObject.SetActive(false);
+        yield return null;
+        isCutScene = false;
     }
 
     public IEnumerator isVibrationEvent()
@@ -191,5 +210,6 @@ public class CutSceneManager : MonoBehaviour
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
+        npc = FindFirstObjectByType<NPC>();
     }
 }
