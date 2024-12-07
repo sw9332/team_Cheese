@@ -15746,19 +15746,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b28f9dd00d98e44b9016b91ecbfe19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BrownTeddyBear:
+  items:
+  - id: DroppedBrownTeddyBear
+    type: 0
     prefab: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
     sprite: {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
-  YellowTeddyBear:
+  - id: BrownTeddyBear
+    type: 0
+    prefab: {fileID: 2259940670080631774, guid: f1b2eb734b1b1344bbd3fa5bfb28722c, type: 3}
+    sprite: {fileID: 21300000, guid: ae2ce13ff3713be479f9a1141456afc4, type: 3}
+  - id: YellowTeddyBear
+    type: 0
     prefab: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
     sprite: {fileID: 21300000, guid: 0b724f9a861aceb48b214b796a8c7b59, type: 3}
-  PinkTeddyBear:
+  - id: PinkTeddyBear
+    type: 0
     prefab: {fileID: 609593712621222495, guid: 674ca4b777559234280a0ef221f74d4d, type: 3}
     sprite: {fileID: 21300000, guid: 339425b156dce1543afa9be5399ffcc6, type: 3}
-  Cake:
+  - id: Cake
+    type: 0
     prefab: {fileID: 2551561005460144523, guid: aad32f6eab0e51c4b9e50dd126c9a3d4, type: 3}
     sprite: {fileID: 21300000, guid: bb9e4292201904940b96c235fc0e4758, type: 3}
-  NPC:
+  - id: NPC
+    type: 0
     prefab: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
     sprite: {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
 --- !u!1 &601522779
@@ -53310,7 +53320,6 @@ MonoBehaviour:
   Effect: {fileID: 712216064}
   Blocking: {fileID: 1903158457}
   NPC: {fileID: 1082658648}
-  NPC_Bos: {fileID: 391688338}
   Stage1: {fileID: 322541699}
   BlockedWay: {fileID: 2089835061}
   VibrationEvent: {fileID: 1566354125}
@@ -58790,7 +58799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotDB:
-  - NPC
+  - 
   - 
   - 
   - 

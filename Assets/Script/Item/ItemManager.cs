@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public Item BrownTeddyBear;
-    public Item YellowTeddyBear;
-    public Item PinkTeddyBear;
-    public Item Cake;
-    public Item NPC;
+    public List<Item> itemDB;
 
-    public Item GetItem(string itemName)
+    private Dictionary<string, Item> itemDictionary;
+
+    public Item GetItem(string id)
     {
-        switch(itemName)
-        {
-            case "DroppedBrownTeddyBear": return BrownTeddyBear;
-            case "BrownTeddyBear": return BrownTeddyBear;
-            case "YellowTeddyBear": return YellowTeddyBear;
-            case "PinkTeddyBear": return PinkTeddyBear;
-            case "Cake": return Cake;
-            case "NPC": return NPC;
-            default: return null;
-        }
+        return itemDictionary.ContainsKey(id) ? itemDictionary[id] : null;
     }
 
-    public Sprite GetItemSprite(string itemName)
+    public Sprite GetItemSprite(string id)
     {
-        Item item = GetItem(itemName);
+        Item item = GetItem(id);
         return item != null ? item.sprite : null;
+    }
+
+    void Awake()
+    {
+        itemDictionary = new Dictionary<string, Item>();
+        foreach (Item item in itemDB)
+        {
+            itemDictionary[item.id] = item;
+        }
     }
 }
