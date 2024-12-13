@@ -141,70 +141,70 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1565087010723645416}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 30, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5182136799320646091}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: 30, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8386883454538576948}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 260, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 280959427554978885}
-    m_Position: {x: 300, y: 200, z: 0}
+    m_Position: {x: 260, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4714923280525364309}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 30, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9216306769523544323}
-    m_Position: {x: 380, y: 320, z: 0}
+    m_Position: {x: 30, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4235479480002253148}
-    m_Position: {x: 410, y: 390, z: 0}
+    m_Position: {x: 250, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4114222554590895063}
-    m_Position: {x: 445, y: 455, z: 0}
+    m_Position: {x: 250, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5813068198996962744}
-    m_Position: {x: 755, y: 635, z: 0}
+    m_Position: {x: 250, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7765361087740638527}
-    m_Position: {x: 790, y: 700, z: 0}
+    m_Position: {x: 250, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1411054698738253014}
-    m_Position: {x: 825, y: 765, z: 0}
+    m_Position: {x: 30, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4345982462881206878}
-    m_Position: {x: 860, y: 830, z: 0}
+    m_Position: {x: 30, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7831425153935078318}
-    m_Position: {x: 680, y: 280, z: 0}
+    m_Position: {x: -440, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8863343434836519312}
-    m_Position: {x: 670, y: 360, z: 0}
+    m_Position: {x: -440, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5310219588779527261}
-    m_Position: {x: 720, y: 430, z: 0}
+    m_Position: {x: -440, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5561497552784318335}
-    m_Position: {x: 100, y: 300, z: 0}
+    m_Position: {x: -440, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8128581569879859855}
-    m_Position: {x: 160, y: 360, z: 0}
+    m_Position: {x: -220, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6874490903232981678}
-    m_Position: {x: 190, y: 430, z: 0}
+    m_Position: {x: -220, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -281726806970086691}
-    m_Position: {x: 200, y: 490, z: 0}
+    m_Position: {x: -440, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6844582100222507469}
-    m_Position: {x: 910, y: 230, z: 0}
+    m_Position: {x: -220, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6181415679687160263}
-    m_Position: {x: 910, y: 290, z: 0}
+    m_Position: {x: -220, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2388379276847985306}
-    m_Position: {x: 930, y: 340, z: 0}
+    m_Position: {x: -220, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3384475031859997332}
     m_Position: {x: 970, y: 400, z: 0}
@@ -216,9 +216,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_AnyStatePosition: {x: -180, y: 70, z: 0}
+  m_EntryPosition: {x: 50, y: 70, z: 0}
+  m_ExitPosition: {x: 250, y: 70, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1565087010723645416}
 --- !u!1102 &-5561497552784318335
@@ -385,7 +385,13 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: Blend
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -406,7 +412,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerBack_Stop
+  m_Name: PlayerDown_Stop
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -666,7 +672,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerBack
+  m_Name: PlayerDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

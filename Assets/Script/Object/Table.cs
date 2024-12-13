@@ -10,7 +10,8 @@ public class Table : MonoBehaviour
 
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
-    private Inventory inventory;
+    private InventoryManager inventoryManager;
+    private ItemManager itemManager;
 
     private bool isCake = false;
 
@@ -18,9 +19,9 @@ public class Table : MonoBehaviour
     {
         if (dialogueManager.dialogue_continue) return;
 
-        var TeddyBearItem = other.gameObject.GetComponent<TeddyBearItem>();
+        var TeddyBear = other.gameObject.GetComponent<TeddyBear>();
 
-        if (TeddyBearItem != null && TeddyBearItem.isInstalled) return;
+        if (TeddyBear != null && TeddyBear.isInstalled) return;
 
         if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
         {
@@ -33,12 +34,12 @@ public class Table : MonoBehaviour
         {
             dialogueManager.ShowDialogue(dialogueContentManager.d_not_a_cake);
 
-            for (int i = 0; i < inventory.SlotDB.Length; i++)
-                if (inventory.SlotDB[i] == null)
+            for (int i = 0; i < inventoryManager.SlotDB.Length; i++)
+                if (inventoryManager.SlotDB[i] == null)
                 {
-                    inventory.SlotDB[i] = other.tag;
-                    inventory.SlotImageDB[i].sprite = inventory.GetItemSprite(other.tag);
-                    TeddyBearItem.isInstalled = true;
+                    inventoryManager.SlotDB[i] = other.tag;
+                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(other.tag);
+                    TeddyBear.isInstalled = true;
                     Destroy(other.gameObject);
                     break;
                 }
@@ -49,6 +50,7 @@ public class Table : MonoBehaviour
     {
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
-        inventory = FindFirstObjectByType<Inventory>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        itemManager = FindFirstObjectByType<ItemManager>();
     }
 }

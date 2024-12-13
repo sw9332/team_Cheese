@@ -67,19 +67,19 @@ public class PlayerAttack : MonoBehaviour
     void meleeAttackMotion()
     {
         isAttacking = true;
-        if (playerControl.Direction == 1) // 위
+        if (playerControl.Direction == "Up") // 위
         {
             playerControl.animator.Play("PlayerMeleeAttackUp");
         }
-        if (playerControl.Direction == 2) // 아래
+        if (playerControl.Direction == "Down") // 아래
         {
             playerControl.animator.Play("PlayerMeleeAttackDown");
         }
-        if (playerControl.Direction == 3) //왼
+        if (playerControl.Direction == "Left") //왼
         {
             playerControl.animator.Play("PlayerMeleeAttackLeft");
         }
-        if (playerControl.Direction == 4) // 오
+        if (playerControl.Direction == "Right") // 오
         {
             playerControl.animator.Play("PlayerMeleeAttackRight");
         }
@@ -88,19 +88,19 @@ public class PlayerAttack : MonoBehaviour
     void rangedAttackMotion()
     {
         isAttacking = true;
-        if (playerControl.Direction == 1) 
+        if (playerControl.Direction == "Up") 
         {
             playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
         }
-        else if (playerControl.Direction == 2) 
+        else if (playerControl.Direction == "Down") 
         {
             playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
         }
-        else if (playerControl.Direction == 3) // 왼쪽
+        else if (playerControl.Direction == "Left")
         {
             playerControl.animator.Play("PlayerLongAttackLeft", 0, 0f);
         }
-        else if (playerControl.Direction == 4) // 오른쪽
+        else if (playerControl.Direction == "Right")
         {
             playerControl.animator.Play("PlayerLongAttackRight", 0, 0f);
         }
@@ -113,6 +113,17 @@ public class PlayerAttack : MonoBehaviour
     }
 
   
+    void attackMotionStop()
+    {
+        switch (playerControl.Direction)
+        {
+            case "Up": playerControl.StopDirection(playerControl.Direction); break;
+            case "Down": playerControl.StopDirection(playerControl.Direction); break;
+            case "Left": playerControl.StopDirection(playerControl.Direction); break;
+            case "Right": playerControl.StopDirection(playerControl.Direction); break;
+        }
+    }
+
     // 근접 공격   -------------------------------------------------------------------------------------------
 
     public bool showRangeGizmo = false;

@@ -89,7 +89,7 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
-                        StartCoroutine(cutSceneManager.TutorialCutScene());
+                        StartCoroutine(cutSceneManager.CutScene_1());
                     }
                     break;
 
@@ -103,7 +103,21 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
-                        StartCoroutine(cutSceneManager.NpcCutScene());
+                        StartCoroutine(cutSceneManager.CutScene_2());
+                    }
+                    break;
+
+                case "CutScene4": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
+                    if (Input.GetKey(KeyCode.F)
+                        && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
+                        && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
+                    {
+                        UIManager.is_CutScene_4 = false;
+                        is_take_photo = false;
+                        is_minigame = false;
+                        isImageChange = true;
+                        playerControl.isMove = false;
+                        StartCoroutine(cutSceneManager.CutScene_5());
                     }
                     break;
             }

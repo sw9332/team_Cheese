@@ -27,7 +27,7 @@ public class TeleportManager : MonoBehaviour
             case "창고 (입구)": StartCoroutine(TeleportFade("창고", other, other.transform.position.x, 16.5f)); break;
             case "창고 (출구)": StartCoroutine(TeleportFade("창고 입구", other, other.transform.position.x,8.1f)); break;
 
-            case "Stage1 (입구)": StartCoroutine(TeleportFade("Stage1", other, -63.48f, -26f)); break;
+            case "Stage1 (입구)": StartCoroutine(TeleportFade("Stage1", other, -63.45f, -31f)); break;
 
             case "보스 (입구)": StartCoroutine(TeleportFade("보스", other, -63f, -56.8f)); break;
 

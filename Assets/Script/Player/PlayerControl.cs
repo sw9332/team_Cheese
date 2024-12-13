@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private PlayerAttack playerAttack;
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
+    private TutorialManager tutorialManager;
 
     public Animator animator; // player attack and movement
 
@@ -22,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     public bool isPush = false; // if isPush == false -> can't push Push Object.
 
     public Vector3 CenterOffset; // player Gizmo function related
-    public int Direction = 2; // 1: UpArrow, 2: DownArrow, 3:LeftArrow, 4:RightArrow
+    public string Direction = "Down"; // Up, Down, Left, Right
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -52,93 +53,57 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.CompareTag("Push_Object")) isPush = false;
 
-        if(other.CompareTag("MiniGame_Tutorial"))
+        if (other.CompareTag("MiniGame_Tutorial"))
         {
             UIManager.is_playerPos = false;
         }
     }
 
-    void MoveControl() //�÷��̾��� �̵�
+    public void MoveDirection(string direction)
     {
-        if (!isMove && !playerAttack.isChangingSprite)
+        switch (direction)
         {
-            switch(GameManager.GameState)
-            {
-                case "창고": animator.Play("PlayerUp_Stop"); break;
-                default: animator.Play("PlayerBack_Stop"); break;
-            }
-
-            animator.speed = 1;
+            case "Up": animator.Play("PlayerUp"); Direction = direction; break;
+            case "Down": animator.Play("PlayerDown"); Direction = direction; break;
+            case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
+            case "Right": animator.Play("PlayerRight"); Direction = direction; break;
         }
+    }
 
-        // if player gets attack
-        if (isMove && playerAttack.isChangingSprite == true)
+
+    public void StopDirection(string direction)
+    {
+        switch(direction)
         {
-
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                Direction = 1;
-                animator.Play("PlayerDamagedUp");
-                MoveX = false;
-                MoveY = true;
-
-                transform.Translate(Vector3.up * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                Direction = 2;
-                animator.Play("PlayerDamagedDown");
-
-                MoveX = false;
-                MoveY = true;
-
-                transform.Translate(Vector3.down * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                Direction = 3;
-                animator.Play("PlayerDamagedLeft");
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                Direction = 4;
-                animator.Play("PlayerDamagedRight");
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.right * speed * Time.deltaTime);
-            }
+            case "Up":animator.Play("PlayerUp_Stop"); Direction = direction; break;
+            case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
+            case "Left":animator.Play("PlayerLeft_Stop"); Direction = direction; break;
+            case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
         }
+    }
 
-
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite&& !playerAttack.isAttacking)
+    void MoveControl()
+    {
+        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
-                        animator.Play("PlayerLeft");
+                        MoveDirection("Left");
                     else if (Input.GetKey(KeyCode.RightArrow))
-                        animator.Play("PlayerRight");
+                        MoveDirection("Right");
                     else if (Input.GetKey(KeyCode.DownArrow))
-                        animator.Play("PlayerBack_Stop");
+                        StopDirection("Down");
                     else
-                        animator.Play("PlayerUp");
+                        MoveDirection("Up");
                 }
 
                 MoveX = false;
                 MoveY = true;
 
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
-                Direction = 1;  // �� ����
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
@@ -146,65 +111,54 @@ public class PlayerControl : MonoBehaviour
                 if (!isPush)
                 {
                     if (Input.GetKey(KeyCode.LeftArrow))
-                        animator.Play("PlayerLeft");
+                        MoveDirection("Left");
                     else if (Input.GetKey(KeyCode.RightArrow))
-                        animator.Play("PlayerRight");
+                        MoveDirection("Right");
                     else if (Input.GetKey(KeyCode.UpArrow))
-                        animator.Play("PlayerBack_Stop");
+                        StopDirection("Down");
                     else
-                        animator.Play("PlayerBack");
+                        MoveDirection("Down");
                 }
 
                 MoveX = false;
                 MoveY = true;
 
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
-                Direction = 2;  // �Ʒ� ����
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.RightArrow)) animator.Play("PlayerBack_Stop");
-                    else animator.Play("PlayerLeft");
+                    if (Input.GetKey(KeyCode.RightArrow)) StopDirection("Down");
+                    else MoveDirection("Left");
                 }
 
                 MoveX = true;
                 MoveY = false;
 
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
-                Direction = 3;  // ���� ����
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("PlayerBack_Stop");
-                    else animator.Play("PlayerRight");
+                    if (Input.GetKey(KeyCode.LeftArrow)) StopDirection("Down");
+                    else MoveDirection("Right");
                 }
-                    
+
 
                 MoveX = true;
                 MoveY = false;
 
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
-                Direction = 4;  // ������ ����
             }
 
-            if (Input.GetKeyUp(KeyCode.UpArrow) && Direction == 1) animator.Play("PlayerUp_Stop");
-            else if (Input.GetKeyUp(KeyCode.DownArrow) && Direction == 2) animator.Play("PlayerBack_Stop");
-
-            else if (Input.GetKeyUp(KeyCode.LeftArrow) && Direction == 3 && !Input.GetKey(KeyCode.RightArrow))
-            {
-                animator.Play("PlayerLeft_Stop");
-            }
-
-            else if (Input.GetKeyUp(KeyCode.RightArrow) && Direction == 4 && !Input.GetKey(KeyCode.LeftArrow))
-            {
-                animator.Play("PlayerRight_Stop");
-            }
+            if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && Direction == "Up") StopDirection("Up");
+            if (Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && Direction == "Down") StopDirection("Down");
+            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left")StopDirection("Left");
+            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right")StopDirection("Right");
 
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
@@ -230,22 +184,75 @@ public class PlayerControl : MonoBehaviour
                 stamina.isPlayerRunning = false;
             }
         }
+
+        else if (!isMove)
+        {
+            switch (Direction)
+            {
+                case "Up": StopDirection(Direction); break;
+                case "Down": StopDirection(Direction); break;
+                case "Left": StopDirection(Direction); break;
+                case "Right": StopDirection(Direction); break;
+            }
+
+            animator.speed = 1;
+        }
     }
 
-    public bool Minigame_PlayerPos()
+    void DamageControl()
     {
-        //�Ʒ� ���ǹ����� �������� ���� || �����ڸ� �̿��Ͽ� ���ǽ��� �߰����� ��.
-        if (transform.position.x <= -76f && transform.position.x >= -78f && transform.position.y <= 48.5f && transform.position.y >= 47.5f) //Ʃ�丮�� Pos��.
+        if (isMove && playerAttack.isChangingSprite)
         {
-            return true;
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                Direction = "Up";
+                animator.Play("PlayerDamagedUp");
+
+                MoveX = false;
+                MoveY = true;
+
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                Direction = "Down";
+                animator.Play("PlayerDamagedDown");
+
+                MoveX = false;
+                MoveY = true;
+
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                Direction = "Left";
+                animator.Play("PlayerDamagedLeft");
+
+                MoveX = true;
+                MoveY = false;
+
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                Direction = "Right";
+                animator.Play("PlayerDamagedRight");
+
+                MoveX = true;
+                MoveY = false;
+
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+            }
         }
-        return false;
     }
 
     void Update()
     {
         MoveControl();
-        //UIManager.is_playerPos = Minigame_PlayerPos();
+        DamageControl();
     }
 
     void Start()
@@ -254,5 +261,6 @@ public class PlayerControl : MonoBehaviour
         stamina = FindFirstObjectByType<Stamina>();
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
     }
 }

@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
             case "Camera Event":
                 StartCoroutine(tutorialManager.ShowTutorialUI(false, dialogueContentManager.d_photo));
-                tutorialManager.TutorialType(2);
+                tutorialManager.TutorialType(7);
                 Destroy(other.gameObject);
                 break;
 

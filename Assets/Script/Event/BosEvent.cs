@@ -10,7 +10,7 @@ public class BosEvent : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            StartCoroutine(cutSceneManager.Bos());
+            StartCoroutine(cutSceneManager.CutScene_3());
         }
     }
 
