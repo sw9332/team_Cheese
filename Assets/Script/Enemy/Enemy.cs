@@ -12,6 +12,15 @@ public class Enemy : MonoBehaviour
 
     public void destroyEnemy()
     {
+        // Item Drop
+        LootBag[] lootBags = GetComponents<LootBag>();
+        foreach (LootBag lootBag in lootBags)
+        {
+            if (lootBag != null)
+            {
+                lootBag.InstantiateLoot(transform.position);
+            }
+        }
         Destroy(gameObject);
     }
 

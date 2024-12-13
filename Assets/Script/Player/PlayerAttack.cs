@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,19 +12,22 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
+    public Bullet bullet;
+    public Text bulletNumText;
+
     private int count = 0; // 피격당했을 때 사용되는 변수
 
     // 공격(공격 애니메이션)이 진행중인지 체크하는 변수
     public bool isAttacking = false;
 
     // 원거리 공격 관련
-    public GameObject bullet;
     public Transform bulletPos;
     public float fireCooltime;
     private float fireCurtime;
 
+
     // 근접공격 및 enemy와 충돌
-    private List<GameObject> hp = new List<GameObject>();
+    public List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
@@ -40,20 +44,17 @@ public class PlayerAttack : MonoBehaviour
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
-            isAttacking = true;
         }
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 && playerControl.isMove && !isAttacking) // 쿨타임 확인
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
+            && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true) // 쿨타임 확인
         {
             rangedAttackMotion();
-            isAttacking = true;
         }
-
 
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
-            attackMotionStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
@@ -65,6 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     void meleeAttackMotion()
     {
+        isAttacking = true;
         if (playerControl.Direction == "Up") // 위
         {
             playerControl.animator.Play("PlayerMeleeAttackUp");
@@ -85,30 +87,32 @@ public class PlayerAttack : MonoBehaviour
 
     void rangedAttackMotion()
     {
+        isAttacking = true;
         if (playerControl.Direction == "Up") 
         {
-            playerControl.animator.Play("PlayerLongAttackUp");
+            playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
         }
         else if (playerControl.Direction == "Down") 
         {
-            playerControl.animator.Play("PlayerLongAttackDown");
+            playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
         }
         else if (playerControl.Direction == "Left")
         {
-            playerControl.animator.Play("PlayerLongAttackLeft");
+            playerControl.animator.Play("PlayerLongAttackLeft", 0, 0f);
         }
         else if (playerControl.Direction == "Right")
         {
-            playerControl.animator.Play("PlayerLongAttackRight");
+            playerControl.animator.Play("PlayerLongAttackRight", 0, 0f);
         }
 
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
+        bullet.bulletNum--;
         fireCurtime = fireCooltime; // 쿨타임 초기화
-        //  모션 수정되면 yield return으로 모션 끝날때까지 대기하도록 
     }
 
+  
     void attackMotionStop()
     {
         switch (playerControl.Direction)
@@ -119,7 +123,6 @@ public class PlayerAttack : MonoBehaviour
             case "Right": playerControl.StopDirection(playerControl.Direction); break;
         }
     }
-
 
     // 근접 공격   -------------------------------------------------------------------------------------------
 
@@ -275,24 +278,36 @@ public class PlayerAttack : MonoBehaviour
         player = GameObject.Find("Player");
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
     }
-    
+    void setBulletAmount()
+    {
+        bullet.bulletNum = 20;
+    }
+    void showBulletNum()
+    {
+        bulletNumText.text = " Bullet: "+  bullet.bulletNum.ToString();
+    }
     void Start()
     {
         getPlayerSpriteRenderer();
+        setBulletAmount();
+
         playerControl = FindFirstObjectByType<PlayerControl>();
         enemyManager = FindFirstObjectByType<EnemyManager>();
+
 
         getPlayerHP();
 
         // Gizmo box size settings
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
         nearEnemyBoxSize = new Vector2(1.2f, 1.7f);
-        fireCooltime = 0.2f;
+        fireCooltime = 0.1f;
     }
 
     void Update()
     {
         PlayerAttacks();
         Player_Collision();
+
+        showBulletNum();
     }
 }

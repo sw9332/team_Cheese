@@ -4233,7 +4233,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -5368,6 +5368,86 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158676677}
+  m_CullTransparentMesh: 1
+--- !u!1 &163799848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163799849}
+  - component: {fileID: 163799851}
+  - component: {fileID: 163799850}
+  m_Layer: 5
+  m_Name: PlayerBulletAmount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &163799849
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163799848}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 597561408}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -31.489, y: -87.17}
+  m_SizeDelta: {x: 337.0225, y: 84.4337}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &163799850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163799848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.946563, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ff0dff4677d6b924b92e17498e7c1745, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 213
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: (Bullet Number)
+--- !u!222 &163799851
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163799848}
   m_CullTransparentMesh: 1
 --- !u!1 &163850026
 GameObject:
@@ -15544,13 +15624,14 @@ RectTransform:
   - {fileID: 1760627723}
   - {fileID: 527049653}
   - {fileID: 909576901}
+  - {fileID: 163799849}
   m_Father: {fileID: 1790190306}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -710, y: 420}
-  m_SizeDelta: {x: 450, y: 180}
+  m_AnchoredPosition: {x: -710, y: 380.61328}
+  m_SizeDelta: {x: 450, y: 258.7736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597561409
 MonoBehaviour:
@@ -17472,6 +17553,7 @@ GameObject:
   - component: {fileID: 691012462}
   - component: {fileID: 691012463}
   - component: {fileID: 691012464}
+  - component: {fileID: 691012465}
   m_Layer: 6
   m_Name: rabbitDollEnemy
   m_TagString: rabbitDollEnemy
@@ -17632,6 +17714,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &691012465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691012458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8cb5b5dacfa8e48be63d3125adb7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 958779660442518404, guid: 6f05f8d5a0268bc4bbe0bc18c361d086, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: cfd22fbfedfc274408ffa464291a520e, type: 2}
+  - {fileID: 11400000, guid: 0fb1af8eb92ce2045817a500744eaf25, type: 2}
 --- !u!1 &693464526
 GameObject:
   m_ObjectHideFlags: 0
@@ -18593,7 +18691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730974879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -77, y: 46.5, z: 0}
+  m_LocalPosition: {x: -76.8, y: 45.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18735,10 +18833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e979da18cafb394c85ed07a5688dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 5292853000070109127, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
+  bulletNumText: {fileID: 163799850}
   isAttacking: 0
-  bullet: {fileID: 3386876616857250725, guid: 5634552d58d68674f9c0699ec5e4178b, type: 3}
   bulletPos: {fileID: 658994212}
-  fireCooltime: 0.3
+  fireCooltime: 0.1
+  hp: []
   showRangeGizmo: 0
   elapsedTime: 0
   isChangingSprite: 0
@@ -22856,7 +22956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: -35}
+  m_AnchoredPosition: {x: -66, y: -13}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &909576902
@@ -61701,6 +61801,7 @@ GameObject:
   - component: {fileID: 1464094608}
   - component: {fileID: 1464094609}
   - component: {fileID: 1464094610}
+  - component: {fileID: 1464094611}
   m_Layer: 6
   m_Name: pinkDollEnemy
   m_TagString: pinkDollEnemy
@@ -66915,7 +67016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127878303061343821, guid: e7037e99a27af834eae4f40dc9fd6261, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70768,7 +70869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 45}
+  m_AnchoredPosition: {x: 0, y: 69}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1760627724
