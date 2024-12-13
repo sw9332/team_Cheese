@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,12 +113,12 @@ TextureImporter:
       name: boss_box_right_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 0
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: boss_box_right_1
       rect:
         serializedVersion: 2
-        x: 171
-        y: 2
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 160
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: boss_box_right_2
       rect:
         serializedVersion: 2
-        x: 332
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 320
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: boss_box_right_3
       rect:
         serializedVersion: 2
-        x: 492
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 480
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: boss_box_right_4
       rect:
         serializedVersion: 2
-        x: 653
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 640
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: boss_box_right_5
       rect:
         serializedVersion: 2
-        x: 812
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 800
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: boss_box_right_6
       rect:
         serializedVersion: 2
-        x: 973
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 960
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: boss_box_right_7
       rect:
         serializedVersion: 2
-        x: 1132
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1120
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -281,12 +281,12 @@ TextureImporter:
       name: boss_box_right_8
       rect:
         serializedVersion: 2
-        x: 1293
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1280
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -302,12 +302,12 @@ TextureImporter:
       name: boss_box_right_9
       rect:
         serializedVersion: 2
-        x: 1452
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1440
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -323,12 +323,12 @@ TextureImporter:
       name: boss_box_right_10
       rect:
         serializedVersion: 2
-        x: 1612
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1600
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -344,12 +344,12 @@ TextureImporter:
       name: boss_box_right_11
       rect:
         serializedVersion: 2
-        x: 1771
-        y: 2
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1760
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: boss_box_right_12
       rect:
         serializedVersion: 2
-        x: 1932
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 1920
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -386,12 +386,12 @@ TextureImporter:
       name: boss_box_right_13
       rect:
         serializedVersion: 2
-        x: 2092
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 2080
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -407,12 +407,12 @@ TextureImporter:
       name: boss_box_right_14
       rect:
         serializedVersion: 2
-        x: 2252
-        y: 1
-        width: 147
-        height: 61
-      alignment: 9
-      pivot: {x: 0.1, y: 0.5}
+        x: 2240
+        y: 0
+        width: 160
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

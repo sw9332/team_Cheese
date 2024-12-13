@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,10 +113,10 @@ TextureImporter:
       name: boss_left_damaged_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 1
-        width: 27
-        height: 59
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: boss_left_damaged_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 4
-        width: 50
-        height: 57
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: boss_left_damaged_3
       rect:
         serializedVersion: 2
-        x: 94
-        y: 5
-        width: 40
-        height: 55
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: boss_left_damaged_4
       rect:
         serializedVersion: 2
-        x: 159
-        y: 2
-        width: 31
-        height: 50
+        x: 192
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: boss_left_damaged_6
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1
-        width: 29
-        height: 50
+        x: 288
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,13 +215,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_left_damaged_7
+      name: boss_left_damaged_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1
-        width: 29
-        height: 50
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 902949ed7828805408b006f324f8c40a
-      internalID: -140600448
+      spriteID: fb378e326974ee34dab4ac1740971b4a
+      internalID: 512305152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_left_damaged_8
+      name: boss_left_damaged_5
       rect:
         serializedVersion: 2
-        x: 304
-        y: 1
-        width: 29
-        height: 50
+        x: 240
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7b84ef575d98d44086324975ab98542
-      internalID: -643338872
+      spriteID: 9579ffb99f4b8054eb492fc7565b87dd
+      internalID: -889077943
       vertices: []
       indices: 
       edges: []
@@ -269,16 +269,11 @@ TextureImporter:
     nameFileIdTable:
       boss_left_damaged_0: -1699293577
       boss_left_damaged_1: 1000544815
-      boss_left_damaged_10: -1489182367
-      boss_left_damaged_11: -905096924
       boss_left_damaged_2: 512305152
       boss_left_damaged_3: 752869532
       boss_left_damaged_4: -1950447305
       boss_left_damaged_5: -889077943
       boss_left_damaged_6: 756397372
-      boss_left_damaged_7: -140600448
-      boss_left_damaged_8: -643338872
-      boss_left_damaged_9: -154435071
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
