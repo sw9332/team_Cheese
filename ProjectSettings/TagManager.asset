@@ -53,6 +53,7 @@ TagManager:
   - LootItem
   - ChocoBar
   - Ammo
+  - Wall
   layers:
   - Default
   - TransparentFX
