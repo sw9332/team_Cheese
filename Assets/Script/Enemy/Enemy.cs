@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     public void destroyEnemy()
     {
+        Destroy(gameObject);
         // Item Drop
         LootBag[] lootBags = GetComponents<LootBag>();
         foreach (LootBag lootBag in lootBags)
@@ -21,7 +22,6 @@ public class Enemy : MonoBehaviour
                 lootBag.InstantiateLoot(transform.position);
             }
         }
-        Destroy(gameObject);
     }
 
     public IEnumerator PlayDeathAnimationAndDestroy()

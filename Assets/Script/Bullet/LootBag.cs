@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LootBag : MonoBehaviour
 {
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
+
+
 
     List<Loot> GetDroppedItems()    // item 여러개 드랍 가능
     {
@@ -17,7 +20,7 @@ public class LootBag : MonoBehaviour
             {
                 possibleItems.Add(item);
             }
-            // 이 기능은 아이템 중 랜덤으로 1개만 리턴하는 기능
+            // below code: only 1 item dropped fucntion 
             /*
             if (possibleItems.Count > 0)
             {
@@ -37,12 +40,17 @@ public class LootBag : MonoBehaviour
             foreach (Loot droppedItem in droppedItems)
             {
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
+                // item pickup 때문에 필요
+                lootGameObject.tag = droppedItem.name;
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
                 lootGameObject.name = droppedItem.name;
             }
         }
 
     }
+
+    
+  
 }
 
     

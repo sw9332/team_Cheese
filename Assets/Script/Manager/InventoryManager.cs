@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public Image[] SlotImageDB;
 
     private Player player;
+    private PlayerAttack playerattack;
     private ItemManager itemManager;
 
     public void PickUpItem(Collider2D item)
@@ -31,11 +32,45 @@ public class InventoryManager : MonoBehaviour
 
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
 
-        if (!Player.objectCollision && item != null) Instantiate(item.prefab, player.transform.position, Quaternion.identity);
+        // 이 순서를 먼저 해야 사용 type의 item 조건이 발동됨
+        if (!Player.objectCollision && item != null && item.type == Type.사용)
+        {
+            UseItem(item);
+            SlotDB[slotIndex] = null;
+            SlotImageDB[slotIndex].sprite = null;
+            return;
+        }
+        else if (!Player.objectCollision && item != null) Instantiate(item.prefab, player.transform.position, Quaternion.identity);
         else if (Player.objectCollision && item != null) Instantiate(item.prefab, Object.pos, Quaternion.identity);
+        
 
         SlotDB[slotIndex] = null;
         SlotImageDB[slotIndex].sprite = null;
+    }
+
+    public void UseItem(Item item)
+    {
+        if (item.id=="Ammo")
+        {
+            playerattack.bullet.bulletNum += 5;
+        }
+
+        if(item.id=="ChocoBar")
+        {
+            // get HP Object on Player HP
+            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
+
+            // set hpObj's position on UI system
+            RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
+            Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
+
+            // Locate newly generated Hp 
+            GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // 부모 유지
+            RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
+            newRectTransform.anchoredPosition = newAnchoredPosition;
+
+            playerattack.hp.Add(hpObj);
+        }
     }
 
     public void Clean()
@@ -58,6 +93,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<Player>();
+        playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
     }
 }
