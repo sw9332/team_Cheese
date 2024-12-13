@@ -15852,6 +15852,14 @@ MonoBehaviour:
     type: 0
     prefab: {fileID: 6575412759122800928, guid: c2df6e0f382ddf84694bb925c55d6d5b, type: 3}
     sprite: {fileID: -1814562832, guid: fc658714ec9f16c43a6fa0430edd3038, type: 3}
+  - id: Ammo
+    type: 2
+    prefab: {fileID: 5943330359769631928, guid: 42f3af53a8058b64097b8d4cc0056065, type: 3}
+    sprite: {fileID: 21300000, guid: 17216d9a02c022a4186ee7a8ab38aee8, type: 3}
+  - id: ChocoBar
+    type: 2
+    prefab: {fileID: 5943330359769631928, guid: f2513c9be2a49374c813bec3b1e9cb93, type: 3}
+    sprite: {fileID: 21300000, guid: 50653a6b9d063504d80d3be390005636, type: 3}
 --- !u!1 &601522779
 GameObject:
   m_ObjectHideFlags: 0
@@ -18691,7 +18699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730974879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.8, y: 45.6, z: 0}
+  m_LocalPosition: {x: -77, y: 45.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22169,7 +22177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0.28993878
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_Pivot.y
@@ -22241,7 +22249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: -172.6
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -22956,8 +22964,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66, y: -13}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -14.5352, y: -13}
+  m_SizeDelta: {x: 402.9297, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &909576902
 CanvasRenderer:
@@ -55923,7 +55931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -61149,7 +61157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -51.8
       objectReference: {fileID: 0}
     - target: {fileID: 1907471630562791216, guid: 690d6a32821ed7f499c4305bf5164883, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -61801,7 +61809,6 @@ GameObject:
   - component: {fileID: 1464094608}
   - component: {fileID: 1464094609}
   - component: {fileID: 1464094610}
-  - component: {fileID: 1464094611}
   m_Layer: 6
   m_Name: pinkDollEnemy
   m_TagString: pinkDollEnemy

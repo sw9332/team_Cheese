@@ -70,7 +70,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
     public void StopDirection(string direction)
     {
         switch(direction)
