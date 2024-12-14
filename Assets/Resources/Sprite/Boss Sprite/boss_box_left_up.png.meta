@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20e3c99624f7abc4589507cf6b42a09b
+guid: d54dca168b1393f498d271d07c2c9fce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss_box_left_0
+      name: boss_box_left_up_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f719fa28fe9028428e857e8571011ae
-      internalID: -1282403869
+      spriteID: 1022dea346f2e0b428f6823f525ab344
+      internalID: 396378702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_1
+      name: boss_box_left_up_1
       rect:
         serializedVersion: 2
         x: 160
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c5f68e71e458ef4ba78e8cea4b6e377
-      internalID: -397653812
+      spriteID: c3f0c2aed4a5c6d4680138e3fd6ff84f
+      internalID: 1738683536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_2
+      name: boss_box_left_up_2
       rect:
         serializedVersion: 2
         x: 320
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a28ef58c760c5424c9506011540f287f
-      internalID: -219110340
+      spriteID: deb9ecc0a60be6e4a817a5ed1b833fc5
+      internalID: -1815044840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_3
+      name: boss_box_left_up_3
       rect:
         serializedVersion: 2
         x: 480
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46c431cb87bd365428181f2288e29013
-      internalID: 1616457070
+      spriteID: f41d9db786774254184cec0ddf6bdb9d
+      internalID: -972984341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_4
+      name: boss_box_left_up_4
       rect:
         serializedVersion: 2
         x: 640
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16dffac0faa6279408534b79c34d497e
-      internalID: 1463670702
+      spriteID: 65c37cefaf6698743b5344a57d6f6017
+      internalID: 1753580780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_5
+      name: boss_box_left_up_5
       rect:
         serializedVersion: 2
         x: 800
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d35e14eb4b84d34eb2367ef7a8dcfcd
-      internalID: 499809732
+      spriteID: 39396856c5401444c938fe71cc197638
+      internalID: 1685577819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_6
+      name: boss_box_left_up_6
       rect:
         serializedVersion: 2
         x: 960
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19f0fdd18f94f3647a5a79dd810beadf
-      internalID: 645589270
+      spriteID: dad8234a6eb3bbc4599f08acb94e39aa
+      internalID: 1954541029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_7
+      name: boss_box_left_up_7
       rect:
         serializedVersion: 2
         x: 1120
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05649c300ea68234ea24703e114cfd78
-      internalID: -991308009
+      spriteID: 206bb1dd5cff186498cdf3b5bc515a7c
+      internalID: 1553188697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_8
+      name: boss_box_left_up_8
       rect:
         serializedVersion: 2
         x: 1280
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 354ab98108d63d549aaeafb06c98af3d
-      internalID: -379820100
+      spriteID: da799548f133a7e40b0fccf825d587ef
+      internalID: -618726588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_9
+      name: boss_box_left_up_9
       rect:
         serializedVersion: 2
         x: 1440
@@ -313,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dbd95df4c3a93c4c90221b10398d96b
-      internalID: 88065689
+      spriteID: 716ac0c2fbb84d74d8f8dbb28b83bcc2
+      internalID: -1977515315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_10
+      name: boss_box_left_up_10
       rect:
         serializedVersion: 2
         x: 1600
@@ -334,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6d42d8569f3c20418367ed91a81d7de
-      internalID: -1225784404
+      spriteID: 8e5d4444fac5fb9458d51dc31a5ab9c2
+      internalID: -891661433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_11
+      name: boss_box_left_up_11
       rect:
         serializedVersion: 2
         x: 1760
@@ -355,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58496367f99fa5d4dabb5eb6fc7345ac
-      internalID: 1421561760
+      spriteID: f016d8bcaf303d74dbee161ab1ee5ae1
+      internalID: 1894276451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_12
+      name: boss_box_left_up_12
       rect:
         serializedVersion: 2
         x: 1920
@@ -376,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c1c034e60077bb4180176f2121fe41d
-      internalID: -2140435405
+      spriteID: 1200bdd82b8a6cb42ba47c37ce144806
+      internalID: 1521027009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_13
+      name: boss_box_left_up_13
       rect:
         serializedVersion: 2
         x: 2080
@@ -397,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e947edc7241ce7544a0a27cdab8e58b7
-      internalID: -776722646
+      spriteID: 07e812a3561e48041b50f2905ccd2a18
+      internalID: -695003995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_box_left_14
+      name: boss_box_left_up_14
       rect:
         serializedVersion: 2
         x: 2240
@@ -418,8 +418,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 478e9a7dd8ccd3f40a7771fd73add3ad
-      internalID: -196747962
+      spriteID: 0357c2325f63d644a8eeb1f97323df41
+      internalID: -1394127368
       vertices: []
       indices: 
       edges: []
@@ -435,21 +435,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss_box_left_0: -1282403869
-      boss_box_left_1: -397653812
-      boss_box_left_10: -1225784404
-      boss_box_left_11: 1421561760
-      boss_box_left_12: -2140435405
-      boss_box_left_13: -776722646
-      boss_box_left_14: -196747962
-      boss_box_left_2: -219110340
-      boss_box_left_3: 1616457070
-      boss_box_left_4: 1463670702
-      boss_box_left_5: 499809732
-      boss_box_left_6: 645589270
-      boss_box_left_7: -991308009
-      boss_box_left_8: -379820100
-      boss_box_left_9: 88065689
+      boss_box_left_up_0: 396378702
+      boss_box_left_up_1: 1738683536
+      boss_box_left_up_10: -891661433
+      boss_box_left_up_11: 1894276451
+      boss_box_left_up_12: 1521027009
+      boss_box_left_up_13: -695003995
+      boss_box_left_up_14: -1394127368
+      boss_box_left_up_2: -1815044840
+      boss_box_left_up_3: -972984341
+      boss_box_left_up_4: 1753580780
+      boss_box_left_up_5: 1685577819
+      boss_box_left_up_6: 1954541029
+      boss_box_left_up_7: 1553188697
+      boss_box_left_up_8: -618726588
+      boss_box_left_up_9: -1977515315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
