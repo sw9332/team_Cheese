@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LootBag : MonoBehaviour
 {
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
+
+
 
     List<Loot> GetDroppedItems()    // item 여러개 드랍 가능
     {
@@ -17,46 +20,37 @@ public class LootBag : MonoBehaviour
             {
                 possibleItems.Add(item);
             }
-
+            // below code: only 1 item dropped fucntion 
+            /*
             if (possibleItems.Count > 0)
             {
-                return possibleItems;
+                Loot droppedItems = possibleItems[Random.Range(0, possibleItems.Count)];
+                return droppeditem;
             }
-
-            // 이 기능은 아이템 중 랜덤으로 1개만 리턴하는 기능
-
-            //if(possibleItems.Count > 0)
-            //{
-            //    Loot droppedItems = possibleItems[Random.Range(0, possibleItems.Count)];
-            //     return droppeditem;
-            //}
-
+            */
         }
-         
-        // 아이템이 드랍되지 않았을 때
-        Debug.Log("No dropped item");
-        return null;
+        return possibleItems;
     }
 
     public void InstantiateLoot(Vector3 spawnPosition)
     {
-       List<Loot> droppedItems = GetDroppedItems();
-        if (droppedItems != null)    // 아이템이 드랍된 경우
+       List<Loot> droppedItems = GetDroppedItems(); // Dropped Items
+        if (droppedItems != null)    // If items are dropped
         {
             foreach (Loot droppedItem in droppedItems)
-
             {
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
+                // item pickup 때문에 필요
+                lootGameObject.tag = droppedItem.name;
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
-
-                // 아이템이 겹치지 않고 조금씩 다른 위치에 스폰되도록
-                spawnPosition += new Vector3(1, 1, 0);
-
-                // 죽는 조건에 넣기
-                // GetComponent<LootBag>().InstantiateLoot(transform.position);
+                lootGameObject.name = droppedItem.name;
             }
         }
 
     }
+
+    
+  
 }
 
+    

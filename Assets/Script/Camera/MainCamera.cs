@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainCamera : MonoBehaviour
@@ -91,7 +90,7 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "Ã¢°í":
-                pos.x = Mathf.Clamp(player.transform.position.x, -50f, -49f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
                 pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
                 break;
 
@@ -101,7 +100,12 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "CutScene2":
-                pos.x = Mathf.Clamp(player.transform.position.x, -50f, -49f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
+                break;
+
+            case "CutScene5":
+                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
                 pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
                 break;
 

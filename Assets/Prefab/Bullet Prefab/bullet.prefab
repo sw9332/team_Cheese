@@ -104,6 +104,8 @@ MonoBehaviour:
   isLayer:
     serializedVersion: 2
     m_Bits: 64
+  bulletNum: 20
+  bulletNumText: {fileID: 0}
 --- !u!58 &-101488562830223766
 CircleCollider2D:
   m_ObjectHideFlags: 0

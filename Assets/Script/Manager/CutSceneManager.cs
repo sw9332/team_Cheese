@@ -162,13 +162,14 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         BlackBackground.SetActive(false);
         StartCoroutine(mainCamera.VibrationEffect(4, 0.1f));
-        npc.BosMode(true);
+        npc.Transformation(true);
         yield return new WaitForSeconds(2f);
         BosUI.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         BosUI.gameObject.SetActive(false);
         yield return null;
         isCutScene = false;
+        StartCoroutine(npc.Boss());
     }
 
     public IEnumerator isVibrationEvent()
