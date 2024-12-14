@@ -9,8 +9,14 @@ public class NPC : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject Bullet_Up;
+    public GameObject Bullet_Down;
+    public GameObject Bullet_Left;
+    public GameObject Bullet_Right;
+
     public bool walking = false;
-    public bool attack = false;
+    public bool meleeAttack = false;
+    public bool rangedAttack = false;
     public bool rushing = false;
     public bool isRush = false;
 
@@ -19,13 +25,17 @@ public class NPC : MonoBehaviour
     public string direction = "Down";
     private Vector3 lastPlayerDirection;
 
+    private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
+    public bool isMoving = false;
+
+    private const float RUSH_SPEED = 15f;
+    private const float MOVE_STEP = 5f;
+    private const float ANIMATION_DELAY = 0.1f;
+    private const float MELEE_ATTACK_DELAY = 1f;
+
     public void Transformation(bool transformation)
     {
-        switch (transformation)
-        {
-            case true: animator.Play("transformation"); break;
-            case false: animator.Play("NPC"); break;
-        }
+        animator.Play(transformation ? "transformation" : "NPC");
     }
 
     public void UpdateDirection()
@@ -33,46 +43,50 @@ public class NPC : MonoBehaviour
         Vector3 toPlayer = player.transform.position - transform.position;
 
         if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y))
-        {
-            if (toPlayer.x > 0) direction = "Right";
-            else direction = "Left";
-        }
+            direction = toPlayer.x > 0 ? "Right" : "Left";
         else
-        {
-            if (toPlayer.y > 0) direction = "Up";
-            else direction = "Down";
-        }
+            direction = toPlayer.y > 0 ? "Up" : "Down";
     }
 
     public void Walking()
     {
         animator.speed = 1f;
+        UpdateDirection();
 
-        if (walking)
-        {
-            UpdateDirection();
+        Vector3 toPlayer = (player.transform.position - transform.position).normalized;
+        transform.position += toPlayer * (PlayerControl.speed * 1.3f) * Time.deltaTime;
 
-            Vector3 toPlayer = (player.transform.position - transform.position).normalized;
-            transform.position += toPlayer * (PlayerControl.speed * 1.3f) * Time.deltaTime;
-
-            animator.Play("Boss Walking");
-        }
+        animator.Play("Boss Walking");
     }
 
-    public void Attack()
+    public void Melee_Attack()
     {
         animator.speed = 1f;
-
-        if (attack)
+        string animationName = direction switch
         {
-            switch (direction)
-            {
-                case "Left": animator.Play("Boss Box Left"); break;
-                case "Right": animator.Play("Boss Box Right"); break;
-                case "Up": animator.Play("Boss Box Back"); break;
-                case "Down": animator.Play("Boss Box Front"); break;
-            }
-        }
+            "Up" => "Boss Box Back",
+            "Down" => "Boss Box Front",
+            "Left" => "Boss Box Left",
+            "Right" => "Boss Box Right",
+            _ => ""
+        };
+
+        animator.Play(animationName);
+    }
+
+    public void Ranged_Attack()
+    {
+        animator.speed = 1f;
+        string animationName = direction switch
+        {
+            "Up" => "Boss Box Back",
+            "Down" => "Boss Box Front",
+            "Left" => "Boss Box Left",
+            "Right" => "Boss Box Right",
+            _ => ""
+        };
+
+        animator.Play(animationName);
     }
 
     public void Rush()
@@ -80,17 +94,7 @@ public class NPC : MonoBehaviour
         if (!rushing)
         {
             rushing = true;
-
-            if (player.transform.position.x < transform.position.x)
-            {
-                direction = "Left";
-            }
-
-            else
-            {
-                direction = "Right";
-            }
-
+            direction = player.transform.position.x < transform.position.x ? "Left" : "Right";
             lastPlayerDirection = (player.transform.position - transform.position).normalized;
             StartCoroutine(PerformRush());
         }
@@ -102,46 +106,68 @@ public class NPC : MonoBehaviour
 
         while (rushing)
         {
-            transform.position += lastPlayerDirection * 15f * Time.deltaTime;
+            switch (direction)
+            {
+                case "Left": spriteRenderer.flipX = true; break;
+                case "Right": spriteRenderer.flipX = false; break;
+            }
+
+            transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
             yield return null;
         }
     }
 
-    private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
-    public bool isMoving = false;
-
-
-    public void Ranged_Attack()
+    public void Center()
     {
         isMoving = true;
+        spriteRenderer.flipX = false;
     }
 
-    private void MoveTowardsTarget()
+    void MoveTowardsTarget()
     {
-        float step = 5f * Time.deltaTime;
+        float step = MOVE_STEP * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
         animator.Play("Boss Walking");
 
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-        {
-            isMoving = false;
-        }
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f) isMoving = false;
     }
 
-    public IEnumerator RangedAttack()
+    public IEnumerator RangedAttack(string direction)
     {
-        Ranged_Attack();
+        animator.Play(direction);
+        yield return new WaitForSeconds(ANIMATION_DELAY);
+
+        GameObject bullet = direction switch
+        {
+            "Up" => Bullet_Up,
+            "Down" => Bullet_Down,
+            "Left" => Bullet_Left,
+            "Right" => Bullet_Right,
+            _ => null
+        };
+
+        Instantiate(bullet, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(ANIMATION_DELAY);
+    }
+
+    public IEnumerator RangedAttackSequence()
+    {
+        Center();
 
         while (isMoving) yield return null;
 
-        while (true)
+        int number = 0;
+        while (number < 5)
         {
             UpdateDirection();
-            attack = true;
+            rangedAttack = true;
             yield return new WaitForSeconds(1f);
-            attack = false;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return StartCoroutine(RangedAttack(direction));
+
+            rangedAttack = false;
+            yield return new WaitForSeconds(1f);
+            number++;
         }
     }
 
@@ -152,29 +178,42 @@ public class NPC : MonoBehaviour
             rushing = false;
             isRush = false;
 
-            switch (direction)
-            {
-                case "Left": animator.Play("Boss Damaged"); spriteRenderer.flipX = false; break;
-                case "Right": animator.Play("Boss Damaged"); spriteRenderer.flipX = true; break;
-                default: animator.Play("Boss Damaged"); break;
-            }
+            animator.Play("Boss Damaged");
+            spriteRenderer.flipX = direction == "Right";
         }
+    }
+
+    public IEnumerator Boss()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            meleeAttack = true;
+            yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
+            meleeAttack = false;
+
+            walking = true;
+            yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
+            walking = false;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            isRush = true;
+            while (isRush) yield return null;
+            yield return new WaitForSeconds(3f);
+        }
+
+        yield return StartCoroutine(RangedAttackSequence());
+        yield return StartCoroutine(Boss());
     }
 
     void Update()
     {
-        Walking();
-        Attack();
-
-        if (isRush)
-        {
-            Rush();
-        }
-
-        if (isMoving)
-        {
-            MoveTowardsTarget();
-        }
+        if (walking) Walking();
+        if (meleeAttack) Melee_Attack();
+        if (rangedAttack) Ranged_Attack();
+        if (isRush) Rush();
+        if (isMoving) MoveTowardsTarget();
     }
 
     void Start()

@@ -169,42 +169,7 @@ public class CutSceneManager : MonoBehaviour
         BosUI.gameObject.SetActive(false);
         yield return null;
         isCutScene = false;
-
-        npc.attack = true; //공격 1번
-        yield return new WaitForSeconds(1f);
-        npc.attack = false;
-        npc.walking = true;
-        yield return new WaitForSeconds(1f);
-        npc.walking = false;
-        npc.attack = true; //공격 2번
-        yield return new WaitForSeconds(1f);
-        npc.attack = false;
-        npc.walking = true;
-        yield return new WaitForSeconds(1f);
-        npc.walking = false;
-        npc.attack = true; //공격 3번
-        yield return new WaitForSeconds(1f);
-        npc.attack = false;
-        npc.walking = true;
-        yield return new WaitForSeconds(1f);
-        npc.walking = false;
-        npc.attack = true; //공격 4번
-        yield return new WaitForSeconds(1f);
-        npc.attack = false;
-
-        //보스 돌진 후 3번 충돌
-        npc.isRush = true;
-        while(npc.isRush) yield return null;
-        yield return new WaitForSeconds(3f);
-        npc.isRush = true;
-        while (npc.isRush) yield return null;
-        yield return new WaitForSeconds(3f);
-        npc.isRush = true;
-        while (npc.isRush) yield return null;
-        yield return new WaitForSeconds(3f);
-
-        //가운데 위치 후 원거리 공격 시작
-        StartCoroutine(npc.RangedAttack());
+        StartCoroutine(npc.Boss());
     }
 
     public IEnumerator isVibrationEvent()
