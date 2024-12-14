@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     private PlayerControl player;
-    private SpriteRenderer spriteRenderer;
 
     public Animator animator;
 
@@ -30,10 +29,11 @@ public class NPC : MonoBehaviour
 
     private const float RUSH_SPEED = 15f;
     private const float MOVE_STEP = 5f;
-    private const float ANIMATION_DELAY = 0.1f;
+    private const float RANGED_ATTACK_DELAY = 0.1f;
     private const float MELEE_ATTACK_DELAY = 1f;
+    private const float DAMAGE_DELAY = 3f;
 
-    public void Transformation(bool transformation)
+    public void Transformation(bool transformation) //NPC에서 보스로 변경
     {
         animator.Play(transformation ? "transformation" : "NPC");
     }
@@ -48,7 +48,7 @@ public class NPC : MonoBehaviour
             direction = toPlayer.y > 0 ? "Up" : "Down";
     }
 
-    public void Walking()
+    public void Walking() //플레이어를 따라가는 함수
     {
         animator.speed = 1f;
         UpdateDirection();
@@ -56,10 +56,16 @@ public class NPC : MonoBehaviour
         Vector3 toPlayer = (player.transform.position - transform.position).normalized;
         transform.position += toPlayer * (PlayerControl.speed * 1.3f) * Time.deltaTime;
 
-        animator.Play("Boss Walking");
+        switch (direction)
+        {
+            case "Up": animator.Play("Boss Walking Up"); break;
+            case "Down": animator.Play("Boss Walking Down"); break;
+            case "Left": animator.Play("Boss Walking Left"); break;
+            case "Right": animator.Play("Boss Walking Right"); break;
+        }
     }
 
-    public void Melee_Attack()
+    public void Melee_Attack() //근접 공격 함수
     {
         animator.speed = 1f;
         string animationName = direction switch
@@ -74,7 +80,7 @@ public class NPC : MonoBehaviour
         animator.Play(animationName);
     }
 
-    public void Ranged_Attack()
+    public void Ranged_Attack() //원거리 공격 함수
     {
         animator.speed = 1f;
         string animationName = direction switch
@@ -89,27 +95,31 @@ public class NPC : MonoBehaviour
         animator.Play(animationName);
     }
 
-    public void Rush()
+    public void Rush() //플레이어 방향으로 돌진
     {
         if (!rushing)
         {
             rushing = true;
-            direction = player.transform.position.x < transform.position.x ? "Left" : "Right";
-            lastPlayerDirection = (player.transform.position - transform.position).normalized;
+            Vector3 toPlayer = player.transform.position - transform.position;
+
+            if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y)) direction = toPlayer.x > 0 ? "Right" : "Left";
+            else direction = toPlayer.y > 0 ? "Up" : "Down";
+
+            lastPlayerDirection = toPlayer.normalized;
             StartCoroutine(PerformRush());
         }
     }
 
     IEnumerator PerformRush()
     {
-        animator.Play("Boss Walking");
-
         while (rushing)
         {
             switch (direction)
             {
-                case "Left": spriteRenderer.flipX = true; break;
-                case "Right": spriteRenderer.flipX = false; break;
+                case "Up": animator.Play("Boss Walking Up"); break;
+                case "Down": animator.Play("Boss Walking Down"); break;
+                case "Left": animator.Play("Boss Walking Left"); break;
+                case "Right": animator.Play("Boss Walking Right"); break;
             }
 
             transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
@@ -117,17 +127,41 @@ public class NPC : MonoBehaviour
         }
     }
 
-    public void Center()
-    {
-        isMoving = true;
-        spriteRenderer.flipX = false;
-    }
-
-    void MoveTowardsTarget()
+    void MoveTowardsTarget() //가운데 위치
     {
         float step = MOVE_STEP * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
-        animator.Play("Boss Walking");
+        Vector3 directionToTarget = (targetPosition - transform.position).normalized;
+
+        if (Mathf.Abs(directionToTarget.x) > Mathf.Abs(directionToTarget.y))
+        {
+            if (directionToTarget.x > 0)
+            {
+                direction = "Right";
+                animator.Play("Boss Walking Right");
+            }
+
+            else
+            {
+                direction = "Left";
+                animator.Play("Boss Walking Left");
+            }
+        }
+
+        else
+        {
+            if (directionToTarget.y > 0)
+            {
+                direction = "Up";
+                animator.Play("Boss Walking Up");
+            }
+
+            else
+            {
+                direction = "Down";
+                animator.Play("Boss Walking Down");
+            }
+        }
 
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f) isMoving = false;
     }
@@ -135,7 +169,7 @@ public class NPC : MonoBehaviour
     public IEnumerator RangedAttack(string direction)
     {
         animator.Play(direction);
-        yield return new WaitForSeconds(ANIMATION_DELAY);
+        yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
 
         GameObject bullet = direction switch
         {
@@ -147,44 +181,12 @@ public class NPC : MonoBehaviour
         };
 
         Instantiate(bullet, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(ANIMATION_DELAY);
-    }
-
-    public IEnumerator RangedAttackSequence()
-    {
-        Center();
-
-        while (isMoving) yield return null;
-
-        int number = 0;
-        while (number < 5)
-        {
-            UpdateDirection();
-            rangedAttack = true;
-            yield return new WaitForSeconds(1f);
-
-            yield return StartCoroutine(RangedAttack(direction));
-
-            rangedAttack = false;
-            yield return new WaitForSeconds(1f);
-            number++;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Wall") && rushing)
-        {
-            rushing = false;
-            isRush = false;
-
-            animator.Play("Boss Damaged");
-            spriteRenderer.flipX = direction == "Right";
-        }
+        yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
     }
 
     public IEnumerator Boss()
     {
+        //1번 패턴
         for (int i = 0; i < 4; i++)
         {
             meleeAttack = true;
@@ -196,15 +198,48 @@ public class NPC : MonoBehaviour
             walking = false;
         }
 
+        //2번 패턴
         for (int i = 0; i < 3; i++)
         {
             isRush = true;
             while (isRush) yield return null;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(DAMAGE_DELAY);
         }
 
-        yield return StartCoroutine(RangedAttackSequence());
+        //3번 패턴
+        isMoving = true;
+        while (isMoving) yield return null;
+
+        for (int i = 0; i < 6; i++)
+        {
+            UpdateDirection();
+            rangedAttack = true;
+            yield return new WaitForSeconds(0.8f);
+
+            yield return StartCoroutine(RangedAttack(direction));
+
+            rangedAttack = false;
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        //패턴 반복
         yield return StartCoroutine(Boss());
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall") && rushing)
+        {
+            rushing = false;
+            isRush = false;
+
+            switch (direction)
+            {
+                case "Left": animator.Play("Boss Damaged Left"); break;
+                case "Right": animator.Play("Boss Damaged Right"); break;
+                default: animator.Play("Boss Damaged Left"); break;
+            }
+        }
     }
 
     void Update()
@@ -219,7 +254,6 @@ public class NPC : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<PlayerControl>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator.Play("NPC");
     }
 }
