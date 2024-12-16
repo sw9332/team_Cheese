@@ -13,25 +13,25 @@ public class NPC : MonoBehaviour
     public GameObject Bullet_Left;
     public GameObject Bullet_Right;
 
+    public string direction = "Down";
+
+    public float speed = 5f;
+
+    public bool isMoving = false;
     public bool walking = false;
     public bool meleeAttack = false;
     public bool rangedAttack = false;
     public bool rushing = false;
     public bool isRush = false;
 
-    public float speed = 0f;
-
-    public string direction = "Down";
-    private Vector3 lastPlayerDirection;
-
-    private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
-    public bool isMoving = false;
-
     private const float RUSH_SPEED = 15f;
     private const float MOVE_STEP = 5f;
     private const float RANGED_ATTACK_DELAY = 0.1f;
     private const float MELEE_ATTACK_DELAY = 1f;
     private const float DAMAGE_DELAY = 3f;
+
+    private Vector3 lastPlayerDirection;
+    private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
 
     public void Transformation(bool transformation) //NPC에서 보스로 변경
     {
@@ -54,7 +54,7 @@ public class NPC : MonoBehaviour
         UpdateDirection();
 
         Vector3 toPlayer = (player.transform.position - transform.position).normalized;
-        transform.position += toPlayer * (PlayerControl.speed * 1.3f) * Time.deltaTime;
+        transform.position += toPlayer * speed * Time.deltaTime;
 
         switch (direction)
         {
@@ -70,10 +70,10 @@ public class NPC : MonoBehaviour
         animator.speed = 1f;
         string animationName = direction switch
         {
-            "Up" => "Boss Box Back",
-            "Down" => "Boss Box Front",
-            "Left" => "Boss Box Left",
-            "Right" => "Boss Box Right",
+            "Up" => "Boss Melee Attack Up",
+            "Down" => "Boss Melee Attack Down",
+            "Left" => "Boss Melee Attack Left",
+            "Right" => "Boss Melee Attack Right",
             _ => ""
         };
 
@@ -85,10 +85,10 @@ public class NPC : MonoBehaviour
         animator.speed = 1f;
         string animationName = direction switch
         {
-            "Up" => "Boss Box Back",
-            "Down" => "Boss Box Front",
-            "Left" => "Boss Box Left",
-            "Right" => "Boss Box Right",
+            "Up" => "Boss Ranged Attack Up",
+            "Down" => "Boss Ranged Attack Down",
+            "Left" => "Boss Ranged Attack Left",
+            "Right" => "Boss Ranged Attack Right",
             _ => ""
         };
 
@@ -100,6 +100,7 @@ public class NPC : MonoBehaviour
         if (!rushing)
         {
             rushing = true;
+            animator.speed = 2;
             Vector3 toPlayer = player.transform.position - transform.position;
 
             if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y)) direction = toPlayer.x > 0 ? "Right" : "Left";
@@ -232,6 +233,7 @@ public class NPC : MonoBehaviour
         {
             rushing = false;
             isRush = false;
+            animator.speed = 1;
 
             switch (direction)
             {
