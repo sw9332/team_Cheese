@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     private CutSceneManager cutSceneManager;
     private TutorialManager tutorialManager;
     private GameManager gameManager;
+    private NPC npc;
 
     public Animator animator; // player attack and movement
 
@@ -29,7 +30,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        if (other.CompareTag("Boss") && npc.attackDamage || other.CompareTag("Boss Bullet"))
         {
             if (playerAttack.hp != null && playerAttack.hp.Count > 0)
             {
@@ -293,5 +294,6 @@ public class PlayerControl : MonoBehaviour
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        npc = FindFirstObjectByType<NPC>();
     }
 }

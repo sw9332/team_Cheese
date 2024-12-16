@@ -22,6 +22,7 @@ public class NPC : MonoBehaviour
     public float speed = 5f;
 
     private bool meleeAttack = false;
+    public bool attackDamage = false;
     private bool rushing = false;
     private bool wall = false;
 
@@ -80,8 +81,10 @@ public class NPC : MonoBehaviour
             }
 
             AnimationDirection("Melee Attack", 1f);
+            attackDamage = true;
             yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
             meleeAttack = false;
+            attackDamage = false;
         }
     }
 
@@ -92,6 +95,7 @@ public class NPC : MonoBehaviour
             while (!wall)
             {
                 rushing = true;
+                attackDamage = true;
                 animator.speed = 2;
 
                 Vector3 toPlayer = player.transform.position - transform.position;
@@ -112,6 +116,7 @@ public class NPC : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
             wall = false;
+            attackDamage = false;
         }
     }
 
