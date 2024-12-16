@@ -169,6 +169,7 @@ public class CutSceneManager : MonoBehaviour
         BosUI.gameObject.SetActive(false);
         yield return null;
         isCutScene = false;
+        npc.Hp.gameObject.SetActive(true);
         StartCoroutine(npc.Boss());
     }
 

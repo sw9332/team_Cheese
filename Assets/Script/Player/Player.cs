@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public static bool objectCollision = false;
 
+    private PlayerAttack playerAttack;
     private TeleportManager teleportManager;
     private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
@@ -60,10 +61,31 @@ public class Player : MonoBehaviour
             case "RoomF Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "RoomF Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
         }
+
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        {
+            if (playerAttack.hp != null)
+            {
+                GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                Destroy(lastHp);
+                StartCoroutine(Damage());
+            }
+        }
+    }
+
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = originalColor;
     }
 
     void Start()
     {
+        playerAttack = FindFirstObjectByType<PlayerAttack>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         teleportManager = FindFirstObjectByType<TeleportManager>();
         uiManager = FindFirstObjectByType<UIManager>();
