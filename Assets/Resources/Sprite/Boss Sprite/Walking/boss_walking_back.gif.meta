@@ -113,10 +113,10 @@ TextureImporter:
       name: boss_walking_back_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 0
-        width: 33
-        height: 61
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: boss_walking_back_1
       rect:
         serializedVersion: 2
-        x: 56
-        y: 1
-        width: 33
-        height: 59
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: boss_walking_back_2
       rect:
         serializedVersion: 2
-        x: 104
+        x: 96
         y: 0
-        width: 33
-        height: 61
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: boss_walking_back_3
       rect:
         serializedVersion: 2
-        x: 152
-        y: 1
-        width: 33
-        height: 59
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
