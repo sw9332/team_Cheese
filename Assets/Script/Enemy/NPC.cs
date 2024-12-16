@@ -20,12 +20,9 @@ public class NPC : MonoBehaviour
 
     public float speed = 5f;
 
-    public bool isMoving = false;
-    public bool walking = false;
-    public bool meleeAttack = false;
-    public bool rangedAttack = false;
-    public bool rushing = false;
-    public bool isRush = false;
+    private bool meleeAttack = false;
+    private bool rushing = false;
+    private bool wall = false;
 
     private const float RUSH_SPEED = 15f;
     private const float MOVE_STEP = 5f;
@@ -41,7 +38,7 @@ public class NPC : MonoBehaviour
         animator.Play(transformation ? "transformation" : "NPC");
     }
 
-    public void UpdateDirection()
+    public void UpdateDirection() //방향 업데이트 (플레이어가 있는 방향)
     {
         Vector3 toPlayer = player.transform.position - transform.position;
 
@@ -51,141 +48,120 @@ public class NPC : MonoBehaviour
             direction = toPlayer.y > 0 ? "Up" : "Down";
     }
 
-    public void Walking() //플레이어를 따라가는 함수
+    public void AnimationDirection(string animation, float speed) //해당 방향으로 애니메이션 출력
     {
-        animator.speed = 1f;
-        UpdateDirection();
-
-        Vector3 toPlayer = (player.transform.position - transform.position).normalized;
-        transform.position += toPlayer * speed * Time.deltaTime;
-
-        switch (direction)
-        {
-            case "Up": animator.Play("Boss Walking Up"); break;
-            case "Down": animator.Play("Boss Walking Down"); break;
-            case "Left": animator.Play("Boss Walking Left"); break;
-            case "Right": animator.Play("Boss Walking Right"); break;
-        }
-    }
-
-    public void Melee_Attack() //근접 공격 함수
-    {
-        animator.speed = 1f;
         string animationName = direction switch
         {
-            "Up" => "Boss Melee Attack Up",
-            "Down" => "Boss Melee Attack Down",
-            "Left" => "Boss Melee Attack Left",
-            "Right" => "Boss Melee Attack Right",
+            "Up" => "Boss " + animation + " Up",
+            "Down" => "Boss " + animation + " Down",
+            "Left" => "Boss " + animation + " Left",
+            "Right" => "Boss " + animation + " Right",
             _ => ""
         };
 
+        animator.speed = speed;
         animator.Play(animationName);
     }
 
-    public void Ranged_Attack() //원거리 공격 함수
+    IEnumerator Melee_Attack(int repeat) //근접 공격 패턴
     {
-        animator.speed = 1f;
-        string animationName = direction switch
+        for (int i = 0; i < repeat; i++)
         {
-            "Up" => "Boss Ranged Attack Up",
-            "Down" => "Boss Ranged Attack Down",
-            "Left" => "Boss Ranged Attack Left",
-            "Right" => "Boss Ranged Attack Right",
-            _ => ""
-        };
-
-        animator.Play(animationName);
-    }
-
-    public void Rush() //플레이어 방향으로 돌진
-    {
-        if (!rushing)
-        {
-            rushing = true;
-            animator.speed = 2;
-            Vector3 toPlayer = player.transform.position - transform.position;
-
-            if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y)) direction = toPlayer.x > 0 ? "Right" : "Left";
-            else direction = toPlayer.y > 0 ? "Up" : "Down";
-
-            lastPlayerDirection = toPlayer.normalized;
-            StartCoroutine(PerformRush());
-        }
-    }
-
-    IEnumerator PerformRush()
-    {
-        while (rushing)
-        {
-            switch (direction)
+            while (!meleeAttack)
             {
-                case "Up": animator.Play("Boss Walking Up"); break;
-                case "Down": animator.Play("Boss Walking Down"); break;
-                case "Left": animator.Play("Boss Walking Left"); break;
-                case "Right": animator.Play("Boss Walking Right"); break;
+                UpdateDirection();
+                AnimationDirection("Walking", 1f);
+
+                Vector3 toPlayer = (player.transform.position - transform.position).normalized;
+                transform.position += toPlayer * speed * Time.deltaTime;
+
+                yield return null;
             }
 
-            transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
+            AnimationDirection("Melee Attack", 1f);
+            yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
+            meleeAttack = false;
+        }
+    }
+
+    IEnumerator Rush(int repeat) //돌진 패턴
+    {
+        for (int i = 0; i < repeat; i++)
+        {
+            while (!wall)
+            {
+                rushing = true;
+                animator.speed = 2;
+
+                Vector3 toPlayer = player.transform.position - transform.position;
+                lastPlayerDirection = toPlayer.normalized;
+
+                if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y))
+                    direction = toPlayer.x > 0 ? "Right" : "Left";
+                else
+                    direction = toPlayer.y > 0 ? "Up" : "Down";
+
+                while (rushing)
+                {
+                    AnimationDirection("Walking", 2f);
+                    transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
+                    yield return null;
+                }
+            }
+
+            yield return new WaitForSeconds(3f);
+            wall = false;
+        }
+    }
+
+    public IEnumerator Ranged_Attack(int repeat) //원거리 공격 패턴
+    {
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            float step = MOVE_STEP * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+
+            Vector3 directionToTarget = (targetPosition - transform.position).normalized;
+
+            if (Mathf.Abs(directionToTarget.x) > Mathf.Abs(directionToTarget.y))
+            {
+                direction = directionToTarget.x > 0 ? "Right" : "Left";
+                AnimationDirection("Walking", 1f);
+            }
+
+            else
+            {
+                direction = directionToTarget.y > 0 ? "Up" : "Down";
+                AnimationDirection("Walking", 1f);
+            }
+
             yield return null;
         }
-    }
 
-    void MoveTowardsTarget() //가운데 위치
-    {
-        float step = MOVE_STEP * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
-        Vector3 directionToTarget = (targetPosition - transform.position).normalized;
-
-        if (Mathf.Abs(directionToTarget.x) > Mathf.Abs(directionToTarget.y))
+        for (int i = 0; i < repeat; i++)
         {
-            if (directionToTarget.x > 0)
+            UpdateDirection();
+            AnimationDirection("Ranged Attack", 1f);
+
+            yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
+
+            GameObject bullet = direction switch
             {
-                direction = "Right";
-                animator.Play("Boss Walking Right");
+                "Up" => Bullet_Up,
+                "Down" => Bullet_Down,
+                "Left" => Bullet_Left,
+                "Right" => Bullet_Right,
+                _ => null
+            };
+
+            if (bullet)
+            {
+                Instantiate(bullet, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(1.5f);
             }
 
-            else
-            {
-                direction = "Left";
-                animator.Play("Boss Walking Left");
-            }
+            yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
         }
-
-        else
-        {
-            if (directionToTarget.y > 0)
-            {
-                direction = "Up";
-                animator.Play("Boss Walking Up");
-            }
-
-            else
-            {
-                direction = "Down";
-                animator.Play("Boss Walking Down");
-            }
-        }
-
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f) isMoving = false;
-    }
-
-    public IEnumerator RangedAttack(string direction)
-    {
-        animator.Play(direction);
-        yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
-
-        GameObject bullet = direction switch
-        {
-            "Up" => Bullet_Up,
-            "Down" => Bullet_Down,
-            "Left" => Bullet_Left,
-            "Right" => Bullet_Right,
-            _ => null
-        };
-
-        Instantiate(bullet, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
     }
 
     public IEnumerator Damage()
@@ -197,62 +173,23 @@ public class NPC : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
-    public IEnumerator Boss()
+    public IEnumerator Boss_Pattern()
     {
-        //1번 패턴
-        for (int i = 0; i < 4; i++)
+        while (true)
         {
-            meleeAttack = true;
-            yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
-            meleeAttack = false;
-
-            walking = true;
-            yield return new WaitForSeconds(MELEE_ATTACK_DELAY);
-            walking = false;
+            yield return StartCoroutine(Melee_Attack(5));
+            yield return StartCoroutine(Rush(3));
+            yield return StartCoroutine(Ranged_Attack(5));
         }
-
-        //2번 패턴
-        for (int i = 0; i < 3; i++)
-        {
-            isRush = true;
-            while (isRush) yield return null;
-            yield return new WaitForSeconds(DAMAGE_DELAY);
-        }
-
-        //3번 패턴
-        isMoving = true;
-        while (isMoving) yield return null;
-
-        for (int i = 0; i < 6; i++)
-        {
-            UpdateDirection();
-            rangedAttack = true;
-            yield return new WaitForSeconds(0.8f);
-
-            yield return StartCoroutine(RangedAttack(direction));
-
-            rangedAttack = false;
-            yield return new WaitForSeconds(0.8f);
-        }
-
-        //패턴 반복
-        yield return StartCoroutine(Boss());
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Wall") && rushing)
         {
+            wall = true;
             rushing = false;
-            isRush = false;
-            animator.speed = 1;
-
-            switch (direction)
-            {
-                case "Left": animator.Play("Boss Damaged Left"); break;
-                case "Right": animator.Play("Boss Damaged Right"); break;
-                default: animator.Play("Boss Damaged Left"); break;
-            }
+            AnimationDirection("Damaged", 1f);
         }
 
         if (other.CompareTag("Bullet"))
@@ -262,21 +199,14 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && walking && !isRush || !rushing)
-        {
-            Melee_Attack();
-        }
+        if (other.CompareTag("Player")) meleeAttack = true;
     }
 
-    void Update()
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (walking) Walking();
-        if (meleeAttack) Melee_Attack();
-        if (rangedAttack) Ranged_Attack();
-        if (isRush) Rush();
-        if (isMoving) MoveTowardsTarget();
+        if (other.CompareTag("Player")) meleeAttack = false;
     }
 
     void Start()

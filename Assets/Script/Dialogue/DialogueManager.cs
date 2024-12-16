@@ -41,6 +41,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject CloseButton;
 
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
+    public float delay = 0.03f;
 
     public bool dialogue_continue = false;
     public bool is_talking = false;
@@ -93,7 +94,7 @@ public class DialogueManager : MonoBehaviour
             for (int i = 0; i < contentsList[count].Length; i++)
             {
                 text.text += contentsList[count][i];
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(delay);
             }
             is_talking = false;
         }
@@ -108,7 +109,7 @@ public class DialogueManager : MonoBehaviour
             for (int i = 0; i < contentsList[count].Length; i++)
             {
                 text.text += contentsList[count][i];
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(delay);
             }
             is_talking = false;
         }

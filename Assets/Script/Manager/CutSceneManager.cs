@@ -179,7 +179,7 @@ public class CutSceneManager : MonoBehaviour
         yield return null;
         isCutScene = false;
         npc.Hp.gameObject.SetActive(true);
-        StartCoroutine(npc.Boss());
+        StartCoroutine(npc.Boss_Pattern());
     }
 
     public IEnumerator isVibrationEvent()

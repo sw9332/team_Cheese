@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
         {
-            if (playerAttack.hp != null)
+            if (playerAttack.hp != null && playerAttack.hp.Count > 0)
             {
                 GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
                 playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
