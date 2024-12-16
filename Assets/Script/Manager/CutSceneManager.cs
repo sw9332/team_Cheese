@@ -60,7 +60,7 @@ public class CutSceneManager : MonoBehaviour
     {
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
-        playerControl.transform.position = new Vector3(-49f, 27, 0);
+        playerControl.transform.position = new Vector3(-49f, 26.5f, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);
