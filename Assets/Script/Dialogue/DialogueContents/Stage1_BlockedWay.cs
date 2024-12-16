@@ -10,29 +10,29 @@ public class Stage1_BlockedWay : MonoBehaviour
 
     public bool is_open = false;
 
-    private void Start()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-    }
-
-    private void Awake()
-    {
-        is_open = false;
-    }
-
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.tag == "Player" && Input.GetKey(KeyCode.Z) && dialogueManager.is_talking == false)
+        if (col.tag == "Player" && dialogueManager.is_talking == false)
         {
             dialogueManager.ShowDialogue(gnome);
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (is_open)
         {
             this.gameObject.SetActive(false);
         }
+    }
+
+    void Start()
+    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
+    }
+
+    void Awake()
+    {
+        is_open = false;
     }
 }

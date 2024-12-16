@@ -16,18 +16,21 @@ public class CutSceneManager : MonoBehaviour
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
     private NPC npc;
+    private Stage1_BlockedWay stage1_BlockedWay;
 
     public GameObject Effect;
     public GameObject Blocking;
     public GameObject NPC;
 
     public GameObject Stage1;
-    public GameObject BlockedWay;
 
     public GameObject VibrationEvent;
 
     public GameObject BigTeddyBearBos;
-    public Animator BigTeddyBearBosAnimation;
+
+    public Animator BigTeddyBearBosAnimation1;
+    public Animator BigTeddyBearBosAnimation2;
+    public Animator BigTeddyBearBosAnimation3;
 
     public GameObject BlackBackground;
     public GameObject WhiteBackground;
@@ -83,7 +86,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_2);
         while (dialogueManager.dialogue_continue) yield return null;
         Blocking.SetActive(true);
-        BlockedWay.SetActive(false);
+        stage1_BlockedWay.is_open = true;
         Stage1.SetActive(true);
         VibrationEvent.SetActive(true);
         isCutScene = false;
@@ -102,8 +105,12 @@ public class CutSceneManager : MonoBehaviour
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
         float moveSpeed = 13f;
-        BigTeddyBearBosAnimation.speed = 2f;
-        BigTeddyBearBosAnimation.Play("BigTeddyBearMove");
+        BigTeddyBearBosAnimation1.speed = 2f;
+        BigTeddyBearBosAnimation1.Play("BigTeddyBearMove");
+        BigTeddyBearBosAnimation2.speed = 2f;
+        BigTeddyBearBosAnimation2.Play("BigTeddyBearMove2");
+        BigTeddyBearBosAnimation3.speed = 2f;
+        BigTeddyBearBosAnimation3.Play("BigTeddyBearMove3");
 
         while ((Vector2)BigTeddyBearBos.transform.position != targetPosition)
         {
@@ -115,7 +122,9 @@ public class CutSceneManager : MonoBehaviour
             yield return null;
         }
 
-        BigTeddyBearBosAnimation.Play("BigTeddyBearStop");
+        BigTeddyBearBosAnimation1.Play("BigTeddyBearStop");
+        BigTeddyBearBosAnimation2.Play("BigTeddyBearStop");
+        BigTeddyBearBosAnimation3.Play("BigTeddyBearStop");
         BlackBackground.SetActive(true);
         StartCoroutine(CutScene_4());
     }
@@ -213,5 +222,6 @@ public class CutSceneManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
+        stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
     }
 }
