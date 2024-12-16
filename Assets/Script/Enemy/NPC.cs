@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
     private PlayerControl player;
 
     public Animator animator;
+
+    public Slider Hp;
 
     public GameObject Bullet_Up;
     public GameObject Bullet_Down;
@@ -185,6 +188,15 @@ public class NPC : MonoBehaviour
         yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
     }
 
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = originalColor;
+    }
+
     public IEnumerator Boss()
     {
         //1¹ø ÆÐÅÏ
@@ -241,6 +253,20 @@ public class NPC : MonoBehaviour
                 case "Right": animator.Play("Boss Damaged Right"); break;
                 default: animator.Play("Boss Damaged Left"); break;
             }
+        }
+
+        if (other.CompareTag("Bullet"))
+        {
+            Hp.value -= 10f;
+            StartCoroutine(Damage());
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && walking && !isRush || !rushing)
+        {
+            Melee_Attack();
         }
     }
 

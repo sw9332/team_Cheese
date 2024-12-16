@@ -54,6 +54,8 @@ TagManager:
   - ChocoBar
   - Ammo
   - Wall
+  - Boss
+  - Boss Bullet
   layers:
   - Default
   - TransparentFX
