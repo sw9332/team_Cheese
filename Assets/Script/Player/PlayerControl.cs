@@ -207,7 +207,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        else if (!isMove)
+        else
         {
             switch (Direction)
             {
