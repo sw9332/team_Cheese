@@ -42,12 +42,12 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_1()
     {
         isCutScene = true;
-        yield return StartCoroutine(fadeManager.FadeOut());
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         playerControl.transform.position = new Vector3(-1.5f, -1.5f, 0);
         mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
-        yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -59,7 +59,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_2()
     {
         isCutScene = true;
-        yield return StartCoroutine(fadeManager.FadeOut());
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         playerControl.transform.position = new Vector3(-49f, 27, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
@@ -67,13 +67,13 @@ public class CutSceneManager : MonoBehaviour
         playerControl.isMove = false;
         playerControl.Direction = "Up";
         inventoryManager.Clean();
-        yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
         while (GameManager.GameState != "CutScene2") yield return null;
 
-        yield return StartCoroutine(fadeManager.FadeOut());
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_1);
         while (dialogueManager.dialogue_continue) yield return null;

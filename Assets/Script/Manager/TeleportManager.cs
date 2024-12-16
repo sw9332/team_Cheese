@@ -42,10 +42,10 @@ public class TeleportManager : MonoBehaviour
     IEnumerator TeleportFade(string state, Collider2D other, float x, float y)
     {
         fadeManager.fadeDuration = 0.5f;
-        yield return StartCoroutine(fadeManager.FadeOut());
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         GameManager.GameState = state;
         other.transform.position = new Vector3(x, y, 0);
-        yield return StartCoroutine(fadeManager.FadeIn());
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         mapNameManager.ShowMapNameText(GameManager.GameState);
         fadeManager.fadeDuration = 1f;
     }

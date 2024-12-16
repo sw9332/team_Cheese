@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
     private TutorialManager tutorialManager;
+    private GameManager gameManager;
 
     public Animator animator; // player attack and movement
 
@@ -19,11 +20,32 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
 
+    public bool GameEnd = false;
     public bool isMove = true; // if isMove == false -> can't move
     public bool isPush = false; // if isPush == false -> can't push Push Object.
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        {
+            if (playerAttack.hp != null && playerAttack.hp.Count > 0)
+            {
+                GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                Destroy(lastHp);
+                StartCoroutine(Damage());
+            }
+
+            else if (playerAttack.hp.Count <= 1 && !GameEnd)
+            {
+                StartCoroutine(gameManager.GameOver());
+                GameEnd = true;
+            }
+        }
+    }
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -248,6 +270,15 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = originalColor;
+    }
+
     void Update()
     {
         MoveControl();
@@ -261,5 +292,6 @@ public class PlayerControl : MonoBehaviour
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 }

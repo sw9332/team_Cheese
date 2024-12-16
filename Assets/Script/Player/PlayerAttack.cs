@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
+    private GameManager gameManager;
     public Bullet bullet;
     public Text bulletNumText;
 
@@ -241,6 +242,12 @@ public class PlayerAttack : MonoBehaviour
                     Destroy(lastHp);
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
+
+                else if (hp.Count <= 1 && !playerControl.GameEnd)
+                {
+                    StartCoroutine(gameManager.GameOver());
+                    playerControl.GameEnd = true;
+                }
             }
         }
     }
@@ -293,6 +300,7 @@ public class PlayerAttack : MonoBehaviour
 
         playerControl = FindFirstObjectByType<PlayerControl>();
         enemyManager = FindFirstObjectByType<EnemyManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
 
         getPlayerHP();

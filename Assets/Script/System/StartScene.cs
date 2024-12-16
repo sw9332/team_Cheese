@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour
 {
     private FadeManager fadeManager;
-    public GameObject fadeImage;
 
     public void ScreenClickButton()
     {
@@ -16,6 +15,6 @@ public class StartScene : MonoBehaviour
     void Start()
     {
         fadeManager = FindObjectOfType<FadeManager>();
-        StartCoroutine(fadeManager.FadeIn());
+        StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
     }
 }

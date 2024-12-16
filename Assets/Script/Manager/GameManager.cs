@@ -6,15 +6,30 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static string GameState = "Æ©Åä¸®¾ó";
-    public string GameStatePrint;
+
+    public Image DemoClearUI;
+    public Image GameOverUI;
+
+    private PlayerControl playerControl;
+    private FadeManager fadeManager;
+
+    public IEnumerator DemoClear()
+    {
+        playerControl.isMove = false;
+        yield return StartCoroutine(fadeManager.FadeOut(DemoClearUI, Color.white));
+    }
+
+    public IEnumerator GameOver()
+    {
+        playerControl.isMove = false;
+        yield return StartCoroutine(fadeManager.FadeOut(GameOverUI, Color.black));
+    }
 
     void Start()
     {
         GameState = "Æ©Åä¸®¾ó";
-    }
 
-    void Update()
-    {
-        GameStatePrint = GameState;
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
     }
 }

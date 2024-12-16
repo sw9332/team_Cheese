@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour
 {
     private PlayerControl player;
+    private GameManager gameManager;
 
     public Animator animator;
 
@@ -192,10 +193,19 @@ public class NPC : MonoBehaviour
             AnimationDirection("Damaged", 1f);
         }
 
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet") && !player.GameEnd)
         {
-            Hp.value -= 10f;
-            StartCoroutine(Damage());
+            if (Hp.value > 0)
+            {
+                Hp.value -= 10f;
+                StartCoroutine(Damage());
+            }
+            
+            else if (Hp.value <= 1)
+            {
+                StartCoroutine(gameManager.DemoClear());
+                player.GameEnd = true;
+            }
         }
     }
 
@@ -212,6 +222,8 @@ public class NPC : MonoBehaviour
     void Start()
     {
         player = FindFirstObjectByType<PlayerControl>();
+        gameManager = FindFirstObjectByType<GameManager>();
+
         animator.Play("NPC");
     }
 }
