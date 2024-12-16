@@ -30,20 +30,24 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss") && npc.attackDamage || other.CompareTag("Boss Bullet"))
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
         {
-            if (playerAttack.hp != null && playerAttack.hp.Count > 0)
+            if(npc.attackDamage)
             {
-                GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
-                playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
-                Destroy(lastHp);
-                StartCoroutine(Damage());
-            }
+                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
+                {
+                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                    Destroy(lastHp);
+                }
 
-            else if (playerAttack.hp.Count <= 1 && !GameEnd)
-            {
-                StartCoroutine(gameManager.GameOver());
-                GameEnd = true;
+                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                {
+                    StartCoroutine(gameManager.GameOver());
+                    GameEnd = true;
+                }
+
+                StartCoroutine(Damage());
             }
         }
     }
@@ -274,10 +278,14 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator Damage()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = originalColor;
+
+        for (int i = 0; i < 5; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     void Update()
