@@ -162,8 +162,10 @@ public class NPC : MonoBehaviour
 
             if (bullet)
             {
+                attackDamage = true;
                 Instantiate(bullet, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(1.5f);
+                attackDamage = false;
             }
 
             yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
