@@ -211,7 +211,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        else
+        else if (!isMove || tutorialManager.TutorialUI.activeSelf)
         {
             switch (Direction)
             {
