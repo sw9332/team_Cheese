@@ -69,7 +69,7 @@ public class InventoryManager : MonoBehaviour
             RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
             newRectTransform.anchoredPosition = newAnchoredPosition;
 
-            playerattack.hp.Add(hpObj);
+            playerattack.hp.Add(newHpObj);
         }
     }
 
