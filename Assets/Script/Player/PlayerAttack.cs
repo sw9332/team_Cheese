@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerControl playerControl;
     private EnemyManager enemyManager;
     private GameManager gameManager;
+    private CutSceneManager cutSceneManager;
     public Bullet bullet;
     public Text bulletNumText;
 
@@ -41,14 +42,14 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking)  // 근접 공격 범위 내에 적군이 감지되었다면
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
         }
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
-            && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true) // 쿨타임 확인
+            && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true && !cutSceneManager.isCutScene) // 쿨타임 확인
         {
             rangedAttackMotion();
         }
@@ -301,6 +302,7 @@ public class PlayerAttack : MonoBehaviour
         playerControl = FindFirstObjectByType<PlayerControl>();
         enemyManager = FindFirstObjectByType<EnemyManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
 
 
         getPlayerHP();
