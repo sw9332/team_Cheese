@@ -101,6 +101,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_3()
     {
         isCutScene = true;
+        Move = false;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
         yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
         while (dialogueManager.dialogue_continue) yield return null;
@@ -186,6 +187,7 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = false;
         npc.Hp.gameObject.SetActive(true);
         Blocking_2.SetActive(true);
+        Move = true;
         StartCoroutine(npc.Boss_Pattern());
     }
 
