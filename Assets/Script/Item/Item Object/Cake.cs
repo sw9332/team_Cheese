@@ -15,7 +15,7 @@ public class Cake : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !dialogueManager.dialogue_continue)
+        if (other.CompareTag("Player"))
         {
             canPickUp = true;
         }
@@ -31,7 +31,7 @@ public class Cake : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canPickUp)
+        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue)
         {
             inventoryManager.PickUpItem(objectCollider);
         }
