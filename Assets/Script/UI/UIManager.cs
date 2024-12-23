@@ -64,6 +64,12 @@ public class UIManager : MonoBehaviour
         SettingUI.SetActive(true);
     }
 
+    public void NewGame()
+    {
+        StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
+        Time.timeScale = 1;
+    }
+
     public void GameExit()
     {
         Pause_UI.SetActive(false);

@@ -11,6 +11,8 @@ public class PlayerControl : MonoBehaviour
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
     private TutorialManager tutorialManager;
+    private GameManager gameManager;
+    private NPC npc;
 
     public Animator animator; // player attack and movement
 
@@ -19,11 +21,36 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
 
+    public bool GameEnd = false;
     public bool isMove = true; // if isMove == false -> can't move
     public bool isPush = false; // if isPush == false -> can't push Push Object.
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        {
+            if(npc.attackDamage)
+            {
+                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
+                {
+                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                    Destroy(lastHp);
+                }
+
+                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                {
+                    StartCoroutine(gameManager.GameOver());
+                    GameEnd = true;
+                }
+
+                StartCoroutine(Damage());
+            }
+        }
+    }
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -83,7 +110,7 @@ public class PlayerControl : MonoBehaviour
 
     void MoveControl()
     {
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
+        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf && cutSceneManager.Move)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -184,7 +211,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        else if (!isMove)
+        else if (!isMove || tutorialManager.TutorialUI.activeSelf)
         {
             switch (Direction)
             {
@@ -248,6 +275,19 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
     void Update()
     {
         MoveControl();
@@ -261,5 +301,7 @@ public class PlayerControl : MonoBehaviour
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        npc = FindFirstObjectByType<NPC>();
     }
 }

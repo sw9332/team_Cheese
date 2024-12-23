@@ -13,58 +13,58 @@ public class FadeManager : MonoBehaviour
     public float fadeDuration = 1f;
     public bool isFade = false;
 
-    public IEnumerator FadeIn()
+    public IEnumerator FadeIn(Image ui, Color color)
     {
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.black;
+        ui.gameObject.SetActive(true);
+        ui.color = color;
 
         float timer = 0f;
         while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
+            ui.color = Color.Lerp(color, Color.clear, timer / fadeDuration);
             yield return null;
         }
 
         isFade = false;
-        fadeImage.gameObject.SetActive(false);
+        ui.gameObject.SetActive(false);
 
         if(playerControl != null && !dialogueManager.DialoguePanel.activeSelf)
             playerControl.isMove = true;
     }
 
-    public IEnumerator FadeOut()
+    public IEnumerator FadeOut(Image ui, Color color)
     {
         if(playerControl != null)
             playerControl.isMove = false;
 
         isFade = true;
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.color = Color.clear;
+        ui.gameObject.SetActive(true);
+        ui.color = color;
 
         float timer = 0f;
         while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
-            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
+            ui.color = Color.Lerp(Color.clear, color, timer / fadeDuration);
             yield return null;
         }
 
-        fadeImage.color = Color.black;
+        ui.color = color;
     }
 
     public IEnumerator ChangeStateFade(string state) //State 바꾸기
     {
         playerControl.isMove = false;
-        yield return StartCoroutine(FadeOut());
+        yield return StartCoroutine(FadeOut(fadeImage, Color.black));
         GameManager.GameState = state;
-        yield return StartCoroutine(FadeIn());
+        yield return StartCoroutine(FadeIn(fadeImage, Color.black));
         playerControl.isMove = true;
     }
 
     public IEnumerator ChangeSceneFade(string scene) //Scene 바꾸기
     {
-        yield return StartCoroutine(FadeOut());
+        yield return StartCoroutine(FadeOut(fadeImage, Color.black));
         SceneManager.LoadScene(scene);
     }
 

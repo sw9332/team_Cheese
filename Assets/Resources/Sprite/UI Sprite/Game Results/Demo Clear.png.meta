@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d9bfeb03036e43b4e841d15c66a8cab3
+guid: cad875041584cab43b5e28c615f4b16f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss_walking_front_0
+      name: Demo Clear_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 33
-        height: 61
+        x: 70
+        y: 310
+        width: 990
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,71 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4efdd137b907d584f99efee02758f3a9
-      internalID: -1574319522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss_walking_front_1
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 1
-        width: 33
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bae42e43503a9d744bfd01743ece244b
-      internalID: 221027965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss_walking_front_2
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 0
-        width: 33
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a562503348926284b88bab624392fcd1
-      internalID: -222969819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss_walking_front_3
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 1
-        width: 33
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 437f7c1362b69ec44acd8f6af0a695b5
-      internalID: -835917015
+      spriteID: 55d2e5cc13a6f5c47a18ffbcf29fbdf8
+      internalID: -553081420
       vertices: []
       indices: 
       edges: []
@@ -204,10 +141,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss_walking_front_0: -1574319522
-      boss_walking_front_1: 221027965
-      boss_walking_front_2: -222969819
-      boss_walking_front_3: -835917015
+      Demo Clear_0: -553081420
+      Demo Clear_1: 1850049206
+      Demo Clear_2: 2135377975
+      Demo Clear_3: 34556992
+      Demo Clear_4: 2083856509
+      Demo Clear_5: 106090654
+      Demo Clear_6: 231897833
+      Demo Clear_7: -733452317
+      Demo Clear_8: 181683855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

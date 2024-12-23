@@ -50,26 +50,24 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(Item item)
     {
-        if (item.id=="Ammo")
+        switch(item.id)
         {
-            playerattack.bullet.bulletNum += 5;
-        }
+            case "Ammo": playerattack.bullet.bulletNum += 5; break;
+            case "ChocoBar":
+                // get HP Object on Player HP
+                GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
 
-        if(item.id=="ChocoBar")
-        {
-            // get HP Object on Player HP
-            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
+                // set hpObj's position on UI system
+                RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
+                Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
 
-            // set hpObj's position on UI system
-            RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
-            Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
+                // Locate newly generated Hp 
+                GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // 부모 유지
+                RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
+                newRectTransform.anchoredPosition = newAnchoredPosition;
 
-            // Locate newly generated Hp 
-            GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // 부모 유지
-            RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
-            newRectTransform.anchoredPosition = newAnchoredPosition;
-
-            playerattack.hp.Add(hpObj);
+                playerattack.hp.Add(newHpObj);
+                break;
         }
     }
 

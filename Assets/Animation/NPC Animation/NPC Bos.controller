@@ -130,6 +130,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-1790899327181589130
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Boss Damaged Down
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 8af4914e79439924b845712ecaa8aa2e, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-1567085571545831972
 AnimatorState:
   serializedVersion: 6
@@ -170,7 +196,7 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 653925703853741450}
-    m_Position: {x: 40, y: 270, z: 0}
+    m_Position: {x: 30, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6188248499280488579}
     m_Position: {x: 10, y: 420, z: 0}
@@ -185,34 +211,40 @@ AnimatorStateMachine:
     m_Position: {x: 10, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4135298108400791201}
-    m_Position: {x: 10, y: 700, z: 0}
+    m_Position: {x: 10, y: 800, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3169035506011617556}
-    m_Position: {x: 260, y: 620, z: 0}
+    m_Position: {x: -230, y: 860, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9068508108203410223}
-    m_Position: {x: 260, y: 680, z: 0}
+    m_Position: {x: -230, y: 800, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1567085571545831972}
-    m_Position: {x: 260, y: 740, z: 0}
+    m_Position: {x: -230, y: 740, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8119325441237414508}
-    m_Position: {x: 260, y: 800, z: 0}
+    m_Position: {x: -230, y: 680, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3378495341808726472}
-    m_Position: {x: 10, y: 760, z: 0}
+    m_Position: {x: 10, y: 860, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3780877083746598892}
     m_Position: {x: -230, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6245727727765713218}
-    m_Position: {x: -195, y: 485, z: 0}
+    m_Position: {x: -230, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -173260562165119028}
-    m_Position: {x: -160, y: 550, z: 0}
+    m_Position: {x: -230, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4460252956988969876}
-    m_Position: {x: -125, y: 615, z: 0}
+    m_Position: {x: -230, y: 600, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4921782376369146255}
+    m_Position: {x: 10, y: 680, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1790899327181589130}
+    m_Position: {x: 10, y: 740, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -396,6 +428,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 91e4ffc1c324aec4eaba97df9187f920, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &4921782376369146255
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Boss Damaged Up
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 63e141255e4361f4990e2b1c04e1200a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
