@@ -6,6 +6,7 @@ public class TeddyBear : MonoBehaviour
 {
     private InventoryManager inventoryManager;
     private ItemManager itemManager;
+    private DialogueManager dialogueManager;
 
     private Collider2D objectCollider;
 
@@ -16,7 +17,7 @@ public class TeddyBear : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !dialogueManager.dialogue_continue)
         {
             canPickUp = true;
         }
@@ -60,6 +61,7 @@ public class TeddyBear : MonoBehaviour
     {
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         itemManager = FindFirstObjectByType<ItemManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
         objectCollider = GetComponent<Collider2D>();
     }
 }
