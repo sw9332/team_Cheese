@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue_continue && !is_talking)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && !is_ChoiceButton)
+            if (Input.GetKeyDown(KeyCode.Space) && !is_ChoiceButton)
             {
                 if (count == contentsList.Count - 2)
                 {
