@@ -90,8 +90,8 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "창고":
-                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
                 break;
 
             case "보스":
@@ -100,13 +100,13 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "CutScene2":
-                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
                 break;
 
             case "CutScene5":
-                pos.x = Mathf.Clamp(player.transform.position.x, -51f, -48f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 19f, 28f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
                 break;
 
             default:
