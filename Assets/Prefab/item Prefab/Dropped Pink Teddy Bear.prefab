@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6619317292119853964}
   - component: {fileID: 8789685749600727112}
   m_Layer: 0
-  m_Name: Dropped Brown Teddy Bear
-  m_TagString: DroppedBrownTeddyBear
+  m_Name: Dropped Pink Teddy Bear
+  m_TagString: DroppedPinkTeddyBear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d132c97628b809b4d95dec211364b1fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa416757824ccfa49acc631c5e9eebd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
