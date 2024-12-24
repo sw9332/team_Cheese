@@ -30,6 +30,8 @@ public class MiniGame : MonoBehaviour
     {
         if (is_take_photo && Input.GetKeyDown(KeyCode.P))
         {
+            if (GameManager.GameState == "CutScene4" && !cutSceneManager.isCutScene4) return;
+
             playerControl.gameObject.SetActive(false);
             mainCamera.GetComponent<Camera>().enabled = false;
             photoCamera.GetComponent<Camera>().enabled = true;

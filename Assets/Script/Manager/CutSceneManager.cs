@@ -41,8 +41,9 @@ public class CutSceneManager : MonoBehaviour
     public Animator BigTeddyBearBosAnimation3;
 
     [Header("Check")]
-    public bool isCutScene = false;
     public bool Move = true;
+    public bool isCutScene = false;
+    public bool isCutScene4 = false;
 
     public IEnumerator CutScene_1()
     {
@@ -148,6 +149,8 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         yield return new WaitForSeconds(2);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene4 = true;
     }
 
     public IEnumerator CutScene_5()
