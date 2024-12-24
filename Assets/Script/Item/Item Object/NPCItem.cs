@@ -9,6 +9,7 @@ public class NPCItem : MonoBehaviour
     private InventoryManager inventoryManager;
     private ItemManager itemManager;
     private DialogueManager dialogueManager;
+    private TutorialManager tutorialManager;
 
     private Collider2D objectCollider;
 
@@ -36,7 +37,7 @@ public class NPCItem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue)
+        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
             inventoryManager.PickUpItem(objectCollider);
         }
@@ -47,6 +48,7 @@ public class NPCItem : MonoBehaviour
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         itemManager = FindFirstObjectByType<ItemManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
         objectCollider = GetComponent<Collider2D>();
     }
 
