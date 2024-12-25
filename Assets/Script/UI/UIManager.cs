@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 public class UIManager : MonoBehaviour
 {
     private FadeManager fadeManager;
+    private InventoryManager inventoryManager;
 
     public GameObject CameraUI;
     public GameObject Pause_UI;
@@ -83,29 +84,39 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void CameraEvent() //미니게임 실행 조건
+    {
+        if (is_bear && is_cake && is_playerPos) //튜토리얼 조건
+            tutorialTrigger = true;
+        else
+            tutorialTrigger = false;
+
+        if (inventoryManager.Camera)
+        {
+            if (tutorialTrigger || is_NPC || is_CutScene_4)
+            {
+                CameraEffect(true);
+                MiniGame.is_take_photo = true;
+            }
+
+            else
+            {
+                CameraEffect(false);
+                MiniGame.is_take_photo = false;
+            }
+        }
+    }
+
     void Update()
     {
         Pause();
-
-        if (is_bear && is_cake && is_playerPos) tutorialTrigger = true;
-        else tutorialTrigger = false;
-
-        if (tutorialTrigger || is_NPC || is_CutScene_4) //카메라 UI 반짝임 애니메이션을 제어하는 조건문 , 스테이지 추가 할 때 마다 || 연산자를 사용하여 조건식에 추가 해 줄것.
-        {
-            CameraEffect(true);
-            MiniGame.is_take_photo = true;
-        }
-
-        else
-        {
-            CameraEffect(false);
-            MiniGame.is_take_photo = false;
-        }
+        CameraEvent();
     }
 
     void Start()
     {
         fadeManager = FindFirstObjectByType<FadeManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         Time.timeScale = 1;
         fadeImage.gameObject.SetActive(true);

@@ -36,6 +36,7 @@ public class Camera_Item : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
+            inventoryManager.Camera = true;
             uiManager.CameraUI.SetActive(true);
             Destroy(gameObject);
             dialogueManager.ShowDialogue(dialogueContentManager.d_camera);
