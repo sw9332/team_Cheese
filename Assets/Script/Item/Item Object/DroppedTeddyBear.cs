@@ -9,8 +9,11 @@ public class DroppedTeddyBear : MonoBehaviour
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private UIManager uiManager;
+    private TutorialManager tutorialManager;
 
     private Collider2D objectCollider;
+
+    public GameObject Camera_Item;
 
     public bool canPickUp = false;
     public bool isInstalled = false;
@@ -33,11 +36,10 @@ public class DroppedTeddyBear : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue)
+        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
+            Instantiate(Camera_Item, transform.position, Quaternion.identity);
             inventoryManager.PickUpItem(objectCollider);
-            uiManager.CameraUI.SetActive(true);
-            dialogueManager.ShowDialogue(dialogueContentManager.d_camera);
         }
     }
 
@@ -48,6 +50,7 @@ public class DroppedTeddyBear : MonoBehaviour
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         uiManager = FindFirstObjectByType<UIManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
         objectCollider = GetComponent<Collider2D>();
     }
 }

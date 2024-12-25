@@ -7,6 +7,6 @@ public class TeddyBearChair : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("BrownTeddyBear")) UIManager.is_bear = true;
+        if (other.CompareTag("PinkTeddyBear")) UIManager.is_bear = true;
     }
 }

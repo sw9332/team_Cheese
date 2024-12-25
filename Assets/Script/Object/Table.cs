@@ -23,11 +23,11 @@ public class Table : MonoBehaviour
 
         if (TeddyBear != null && TeddyBear.isInstalled) return;
 
-        if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
+        if (other.CompareTag("Cake") && !isCake && inventoryManager.Camera) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
         {
+            isCake = true;
             CamaraEvent.SetActive(true);
             UIManager.is_cake = true;
-            isCake = true;
         }
 
         else if (other.CompareTag("BrownTeddyBear") || other.CompareTag("PinkTeddyBear") || other.CompareTag("YellowTeddyBear"))
@@ -43,6 +43,15 @@ public class Table : MonoBehaviour
                     Destroy(other.gameObject);
                     break;
                 }
+        }
+    }
+
+    void Update()
+    {
+        if (inventoryManager.Camera)
+        {
+            if (CamaraEvent != null) CamaraEvent.SetActive(true);
+            UIManager.is_cake = true;
         }
     }
 

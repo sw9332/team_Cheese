@@ -30,6 +30,8 @@ public class MiniGame : MonoBehaviour
     {
         if (is_take_photo && Input.GetKeyDown(KeyCode.P))
         {
+            if (GameManager.GameState == "CutScene4" && !cutSceneManager.isCutScene4) return;
+
             playerControl.gameObject.SetActive(false);
             mainCamera.GetComponent<Camera>().enabled = false;
             photoCamera.GetComponent<Camera>().enabled = true;
@@ -93,10 +95,10 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
+                case "창고": ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
                     if (Input.GetKey(KeyCode.F)
-                        && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
-                        && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
+                        && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
+                        && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
                     {
                         UIManager.is_NPC = false;
                         is_take_photo = false;

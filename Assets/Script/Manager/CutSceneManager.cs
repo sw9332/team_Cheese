@@ -41,8 +41,9 @@ public class CutSceneManager : MonoBehaviour
     public Animator BigTeddyBearBosAnimation3;
 
     [Header("Check")]
-    public bool isCutScene = false;
     public bool Move = true;
+    public bool isCutScene = false;
+    public bool isCutScene4 = false;
 
     public IEnumerator CutScene_1()
     {
@@ -65,7 +66,7 @@ public class CutSceneManager : MonoBehaviour
     {
         Move = false;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
-        playerControl.transform.position = new Vector3(-49f, 26.5f, 0);
+        playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);
@@ -148,6 +149,8 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         yield return new WaitForSeconds(2);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene4 = true;
     }
 
     public IEnumerator CutScene_5()
@@ -156,8 +159,8 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "CutScene5";
         WhiteBackground.SetActive(true);
         playerControl.Direction = "Up";
-        playerControl.transform.position = new Vector3(-49f, 22f, 0);
-        npc.transform.position = new Vector3(-49f, 25f, 0);
+        playerControl.transform.position = new Vector3(-49f, 22.5f, 0);
+        npc.transform.position = new Vector3(-49f, 26.5f, 0);
         yield return new WaitForSeconds(2);
         Effect.SetActive(false);
         BlackBackground.SetActive(false);
