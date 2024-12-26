@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private TutorialManager tutorialManager;
     private GameManager gameManager;
     private NPC npc;
+    private DialogueManager dialogueManager;
 
     public Animator animator; // player attack and movement
 
@@ -223,6 +224,8 @@ public class PlayerControl : MonoBehaviour
 
             animator.speed = 1;
         }
+
+        if (dialogueManager.dialogue_continue) stamina.isPlayerRunning = false;
     }
 
     void DamageControl()
@@ -303,5 +306,6 @@ public class PlayerControl : MonoBehaviour
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         npc = FindFirstObjectByType<NPC>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 }
