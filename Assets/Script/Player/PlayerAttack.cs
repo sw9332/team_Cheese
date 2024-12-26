@@ -53,6 +53,7 @@ public class PlayerAttack : MonoBehaviour
         {
             rangedAttackMotion();
         }
+        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
 
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
@@ -158,7 +159,6 @@ public class PlayerAttack : MonoBehaviour
         .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
-
 
         if (meleeAttackableEnemies.Length > 0)
         {
