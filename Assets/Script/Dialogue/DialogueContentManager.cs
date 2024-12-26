@@ -17,6 +17,8 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue d_photo;
     [SerializeField]
     public Dialogue d_camera;
+    [SerializeField]
+    public Dialogue d_album;
 
     [Header("CutScene_1 (튜토리얼 종료)")]
     [SerializeField]

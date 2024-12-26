@@ -17,6 +17,7 @@ public class CutSceneManager : MonoBehaviour
     private NPCEnemy npcEnemy;
     private NPC npc;
     private Stage1_BlockedWay stage1_BlockedWay;
+    private AlbumManager albumManager;
 
     [Header("Effect")]
     public GameObject Effect;
@@ -25,6 +26,7 @@ public class CutSceneManager : MonoBehaviour
     public Text BosUI;
 
     [Header("Object")]
+    public GameObject E_Key;
     public GameObject NPC;
     public GameObject BigTeddyBearBos;
 
@@ -59,6 +61,12 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        E_Key.SetActive(true);
+        while (E_Key.activeSelf) yield return null;
+        while (albumManager.Album.activeSelf) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_album);
+        while (dialogueManager.dialogue_continue) yield return null;
         isCutScene = false;
     }
 
@@ -219,7 +227,10 @@ public class CutSceneManager : MonoBehaviour
         image.gameObject.SetActive(false);
     }
 
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && E_Key.activeSelf) E_Key.SetActive(false);
+    }
     void Start()
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
@@ -234,5 +245,6 @@ public class CutSceneManager : MonoBehaviour
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
+        albumManager = FindFirstObjectByType<AlbumManager>();
     }
 }
