@@ -47,6 +47,18 @@ public class CutSceneManager : MonoBehaviour
     public bool isCutScene = false;
     public bool isCutScene4 = false;
 
+    public IEnumerator Tutorial()
+    {
+        while (!inventoryManager.Camera) yield return null;
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = true;
+        E_Key.SetActive(true);
+        while (!albumManager.Album.activeSelf) yield return null;
+        while (albumManager.Album.activeSelf) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_album2);
+        isCutScene = false;
+    }
+
     public IEnumerator CutScene_1()
     {
         isCutScene = true;
@@ -56,6 +68,7 @@ public class CutSceneManager : MonoBehaviour
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -65,7 +78,7 @@ public class CutSceneManager : MonoBehaviour
         E_Key.SetActive(true);
         while (E_Key.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.d_album);
+        dialogueManager.ShowDialogue(dialogueContentManager.d_album1);
         while (dialogueManager.dialogue_continue) yield return null;
         isCutScene = false;
     }
@@ -246,5 +259,7 @@ public class CutSceneManager : MonoBehaviour
         npc = FindFirstObjectByType<NPC>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
+
+        StartCoroutine(Tutorial());
     }
 }
