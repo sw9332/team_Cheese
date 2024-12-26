@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueChoiceManager : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
+
+    public bool choice1 = true;
+    public bool choice2 = false;
+
+    public Image choiceButton1;
+    public Image choiceButton2;
 
     public void Choice_1()
     {
@@ -29,6 +36,40 @@ public class DialogueChoiceManager : MonoBehaviour
         }
     }
 
+    void ChoiceButton()
+    {
+        if (dialogueManager.dialogue_continue && dialogueManager.is_ChoiceButton)
+        {
+            if (choice1)
+            {
+                choiceButton1.color = new Color32(170, 170, 170, 255);
+                choiceButton2.color = Color.white;
+
+                if (Input.GetKeyDown(KeyCode.Space)) Choice_1();
+            }
+
+            else if (choice2)
+            {
+                choiceButton1.color = Color.white;
+                choiceButton2.color = new Color32(170, 170, 170, 255);
+
+                if (Input.GetKeyDown(KeyCode.Space)) Choice_2();
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                choice1 = true;
+                choice2 = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                choice1 = false;
+                choice2 = true;
+            }
+        }
+    }
+
     void Clear()
     {
         dialogueManager.DialoguePanel = transform.GetChild(0).gameObject;
@@ -39,6 +80,12 @@ public class DialogueChoiceManager : MonoBehaviour
         dialogueManager.ingameUiPanel.SetActive(true);
         dialogueManager.DialoguePanel.SetActive(false);
         dialogueManager.dialogue_continue = false;
+        dialogueManager.is_ChoiceButton = false;
+    }
+
+    void Update()
+    {
+        ChoiceButton();
     }
 
     void Start()
