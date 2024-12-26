@@ -94,6 +94,11 @@ public class MainCamera : MonoBehaviour
                 pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
                 break;
 
+            case "Stage1":
+                pos.x = -63.45f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -46.5f, -32f);
+                break;
+
             case "º¸½º":
                 pos.x = player.transform.position.x;
                 pos.y = Mathf.Clamp(player.transform.position.y, -60f, -58.3f);
