@@ -126,18 +126,7 @@ public class CameraAlbumUI : MonoBehaviour
         if (img != null) presentImage = img; // 현재 표시되는 이미지로 설정
     }
 
-    void Update()
-    {
-        AlbumUI_Open_Close();
-        removeNullImagesFromLists(); // 매 프레임마다 null 이미지 체크 및 제거
 
-        // MiniGame.isChange가 true일 때 이미지 삭제 후 상태 초기화
-        if (MiniGame.isImageChange && imageObjects.Count > 0)
-        {
-            destroyImage(imageObjects[0].name); // 0번째 이미지 삭제
-            MiniGame.isImageChange = false; // 상태를 false로 전환
-        }
-    }
 
     void Start()
     {
@@ -150,6 +139,19 @@ public class CameraAlbumUI : MonoBehaviour
         {
             ActivateImageAt(0); // 처음에 0번째 오브젝트만 활성화
             presentImage = albumImages[0]; // 기본으로 첫 번째 이미지 설정
+        }
+    }
+
+    void Update()
+    {
+        AlbumUI_Open_Close();
+        removeNullImagesFromLists(); // 매 프레임마다 null 이미지 체크 및 제거
+
+        // MiniGame.isChange가 true일 때 이미지 삭제 후 상태 초기화
+        if (MiniGame.isImageChange && imageObjects.Count > 0)
+        {
+            destroyImage(imageObjects[0].name); // 0번째 이미지 삭제
+            MiniGame.isImageChange = false; // 상태를 false로 전환
         }
     }
 }
