@@ -9,6 +9,7 @@ public class CameraAlbumUI : MonoBehaviour
     public GameObject InGameUI;
 
     private PlayerControl playerControl;
+    private InventoryManager inventoryManager;
 
     [SerializeField] List<GameObject> imageObjects = new(); // Image 관련 GameObject 리스트
     [SerializeField] List<Image> albumImages = new(); // Image 컴포넌트 리스트
@@ -16,14 +17,14 @@ public class CameraAlbumUI : MonoBehaviour
 
     void AlbumUI_Open_Close()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Album.activeSelf == false)
+        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf == false)
         {
             Album.SetActive(true);
             playerControl.isMove = false;
             InGameUI.SetActive(false);
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && Album.activeSelf == true)
+        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf == true)
         {
             Album.SetActive(false);
             playerControl.isMove = true;
@@ -141,6 +142,7 @@ public class CameraAlbumUI : MonoBehaviour
     void Start()
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
 
