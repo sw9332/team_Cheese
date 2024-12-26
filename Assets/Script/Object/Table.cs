@@ -17,16 +17,11 @@ public class Table : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player")) return;
         if (dialogueManager.dialogue_continue) return;
 
-        var TeddyBear = other.gameObject.GetComponent<TeddyBear>();
-
-        if (TeddyBear != null && TeddyBear.isInstalled) return;
-
-        if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 놓았을때 생기는 이벤트 오브젝트
+        if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 올려놓으면
         {
-            CamaraEvent.SetActive(true);
-            UIManager.is_cake = true;
             isCake = true;
         }
 
@@ -39,10 +34,19 @@ public class Table : MonoBehaviour
                 {
                     inventoryManager.SlotDB[i] = other.tag;
                     inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(other.tag);
-                    TeddyBear.isInstalled = true;
                     Destroy(other.gameObject);
                     break;
                 }
+        }
+    }
+
+    void Update()
+    {
+        if (inventoryManager.Camera && isCake) //케이크를 올려놓은 상태에서 카메라를 획득 했을때
+        {
+            if (CamaraEvent != null && UIManager.is_bear) CamaraEvent.SetActive(true);
+            else if (!UIManager.is_bear) CamaraEvent.SetActive(false);
+            UIManager.is_cake = true;
         }
     }
 

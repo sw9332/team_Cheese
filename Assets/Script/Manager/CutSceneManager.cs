@@ -18,26 +18,32 @@ public class CutSceneManager : MonoBehaviour
     private NPC npc;
     private Stage1_BlockedWay stage1_BlockedWay;
 
+    [Header("Effect")]
     public GameObject Effect;
-    public GameObject Blocking;
+    public GameObject BlackBackground;
+    public GameObject WhiteBackground;
+    public Text BosUI;
+
+    [Header("Object")]
     public GameObject NPC;
-
-    public GameObject Stage1;
-
-    public GameObject VibrationEvent;
-
     public GameObject BigTeddyBearBos;
 
+    [Header("Blocking")]
+    public GameObject Blocking_1;
+    public GameObject Blocking_2;
+
+    [Header("Event")]
+    public GameObject VibrationEvent;
+
+    [Header("Animation")]
     public Animator BigTeddyBearBosAnimation1;
     public Animator BigTeddyBearBosAnimation2;
     public Animator BigTeddyBearBosAnimation3;
 
-    public GameObject BlackBackground;
-    public GameObject WhiteBackground;
-
-    public Text BosUI;
-
+    [Header("Check")]
+    public bool Move = true;
     public bool isCutScene = false;
+    public bool isCutScene4 = false;
 
     public IEnumerator CutScene_1()
     {
@@ -58,19 +64,19 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_2()
     {
-        isCutScene = true;
+        Move = false;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
-        playerControl.transform.position = new Vector3(-49f, 26.5f, 0);
+        playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
         NPC.SetActive(true);
         playerControl.isMove = false;
         playerControl.Direction = "Up";
-        inventoryManager.Clean();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
         while (GameManager.GameState != "CutScene2") yield return null;
 
+        isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
@@ -85,16 +91,17 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_2);
         while (dialogueManager.dialogue_continue) yield return null;
-        Blocking.SetActive(true);
+        Blocking_1.SetActive(true);
         stage1_BlockedWay.is_open = true;
-        Stage1.SetActive(true);
         VibrationEvent.SetActive(true);
         isCutScene = false;
+        Move = true;
     }
 
     public IEnumerator CutScene_3()
     {
         isCutScene = true;
+        Move = false;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
         yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
         while (dialogueManager.dialogue_continue) yield return null;
@@ -141,6 +148,8 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         yield return new WaitForSeconds(2);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene4 = true;
     }
 
     public IEnumerator CutScene_5()
@@ -149,8 +158,8 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "CutScene5";
         WhiteBackground.SetActive(true);
         playerControl.Direction = "Up";
-        playerControl.transform.position = new Vector3(-49f, 22f, 0);
-        npc.transform.position = new Vector3(-49f, 25f, 0);
+        playerControl.transform.position = new Vector3(-49f, 22.5f, 0);
+        npc.transform.position = new Vector3(-49f, 26.5f, 0);
         yield return new WaitForSeconds(2);
         Effect.SetActive(false);
         BlackBackground.SetActive(false);
@@ -179,6 +188,8 @@ public class CutSceneManager : MonoBehaviour
         yield return null;
         isCutScene = false;
         npc.Hp.gameObject.SetActive(true);
+        Blocking_2.SetActive(true);
+        Move = true;
         StartCoroutine(npc.Boss_Pattern());
     }
 

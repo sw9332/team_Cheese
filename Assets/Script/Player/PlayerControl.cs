@@ -110,7 +110,7 @@ public class PlayerControl : MonoBehaviour
 
     void MoveControl()
     {
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
+        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf && cutSceneManager.Move)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {

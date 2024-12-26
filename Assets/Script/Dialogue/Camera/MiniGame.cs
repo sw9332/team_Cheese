@@ -19,17 +19,17 @@ public class MiniGame : MonoBehaviour
     private CutSceneManager cutSceneManager;
     private MainCamera mainCamera;
     private MiniGame photoCamera;
+    private InventoryManager inventoryManager;
 
     private float ClampX;
     private float ClampY;
 
-    //private bool is_next_stage = false;
-    //private bool is_transition = false;
-
-    void PhotoMode()
+    private void PhotoMode()
     {
         if (is_take_photo && Input.GetKeyDown(KeyCode.P))
         {
+            if (GameManager.GameState == "CutScene4" && !cutSceneManager.isCutScene4) return;
+
             playerControl.gameObject.SetActive(false);
             mainCamera.GetComponent<Camera>().enabled = false;
             photoCamera.GetComponent<Camera>().enabled = true;
@@ -49,7 +49,7 @@ public class MiniGame : MonoBehaviour
         is_minigame = false;
     }
 
-    void ControlPhotoMode(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
+    private void ControlPhotoMode(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
     {
         x_Axis.minValue = x_minValue;
         x_Axis.maxValue = x_maxValue;
@@ -66,16 +66,16 @@ public class MiniGame : MonoBehaviour
         y_Axis.value = photoCamera.transform.position.y;
     }
 
-    void TakePhoto()
+    private void TakePhoto()
     {
         if (is_minigame)
         {
-            if (Input.GetKey(KeyCode.LeftArrow)) photoCamera.transform.Translate(-1f * 1.5f * Time.deltaTime, 0f, 0f);
-            if (Input.GetKey(KeyCode.RightArrow)) photoCamera.transform.Translate(1f * 1.5f * Time.deltaTime, 0f, 0f);
             if (Input.GetKey(KeyCode.UpArrow)) photoCamera.transform.Translate(0f, 1f * 1.5f * Time.deltaTime, 0f);
             if (Input.GetKey(KeyCode.DownArrow)) photoCamera.transform.Translate(0f, -1f * 1.5f * Time.deltaTime, 0f);
+            if (Input.GetKey(KeyCode.LeftArrow)) photoCamera.transform.Translate(-1f * 1.5f * Time.deltaTime, 0f, 0f);
+            if (Input.GetKey(KeyCode.RightArrow)) photoCamera.transform.Translate(1f * 1.5f * Time.deltaTime, 0f, 0f);
 
-            switch(GameManager.GameState)
+            switch (GameManager.GameState)
             {
                 case "튜토리얼": ControlPhotoMode(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.F)
@@ -89,20 +89,22 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_1());
                     }
                     break;
 
-                case "창고": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
+                case "창고": ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
                     if (Input.GetKey(KeyCode.F)
-                        && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
-                        && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
+                        && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
+                        && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
                     {
                         UIManager.is_NPC = false;
                         is_take_photo = false;
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_2());
                     }
                     break;
@@ -117,6 +119,7 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_5());
                     }
                     break;
@@ -136,5 +139,6 @@ public class MiniGame : MonoBehaviour
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
 }

@@ -98,7 +98,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (TutorialUI.activeSelf == true && Input.GetKeyDown(KeyCode.Z))
+        if (TutorialUI.activeSelf == true && Input.GetKeyDown(KeyCode.Space))
         {
             TutorialUI.SetActive(false);
         }

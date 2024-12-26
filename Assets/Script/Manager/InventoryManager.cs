@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public string[] SlotDB;
     public Image[] SlotImageDB;
+    public bool Camera = false;
 
     private Player player;
     private PlayerAttack playerattack;
@@ -32,8 +33,8 @@ public class InventoryManager : MonoBehaviour
 
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
 
-        // ÀÌ ¼ø¼­¸¦ ¸ÕÀú ÇØ¾ß »ç¿ë typeÀÇ item Á¶°ÇÀÌ ¹ßµ¿µÊ
-        if (!Player.objectCollision && item != null && item.type == Type.»ç¿ë)
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ typeï¿½ï¿½ item ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½
+        if (!Player.objectCollision && item != null && item.type == Type.ï¿½ï¿½ï¿½)
         {
             UseItem(item);
             SlotDB[slotIndex] = null;
@@ -50,26 +51,24 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(Item item)
     {
-        if (item.id=="Ammo")
+        switch(item.id)
         {
-            playerattack.bullet.bulletNum += 5;
-        }
+            case "Ammo": playerattack.bullet.bulletNum += 5; break;
+            case "ChocoBar":
+                // get HP Object on Player HP
+                GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
 
-        if(item.id=="ChocoBar")
-        {
-            // get HP Object on Player HP
-            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
+                // set hpObj's position on UI system
+                RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
+                Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
 
-            // set hpObj's position on UI system
-            RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
-            Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
+                // Locate newly generated Hp 
+                GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+                RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
+                newRectTransform.anchoredPosition = newAnchoredPosition;
 
-            // Locate newly generated Hp 
-            GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // ºÎ¸ð À¯Áö
-            RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
-            newRectTransform.anchoredPosition = newAnchoredPosition;
-
-            playerattack.hp.Add(newHpObj);
+                playerattack.hp.Add(newHpObj);
+                break;
         }
     }
 
