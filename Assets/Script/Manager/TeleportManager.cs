@@ -31,11 +31,11 @@ public class TeleportManager : MonoBehaviour
 
             case "보스 (입구)": StartCoroutine(TeleportFade("보스", other, -63f, -56.8f)); break;
 
-            case "RoomE Go": StartCoroutine(TeleportFade("-", other, 27.76f, -49.45f)); break;
-            case "RoomE Exit": StartCoroutine(TeleportFade("-", other, 41.15f, -42.31f)); break;
+            case "RoomE Go": StartCoroutine(TeleportFade("", other, 27.76f, -49.45f)); break;
+            case "RoomE Exit": StartCoroutine(TeleportFade("", other, 41.15f, -42.31f)); break;
 
-            case "RoomF Go": StartCoroutine(TeleportFade("-", other, 40.97f, -58.25f)); break;
-            case "RoomF Exit": StartCoroutine(TeleportFade("-", other, 28.05f, -63f)); break;
+            case "RoomF Go": StartCoroutine(TeleportFade("", other, 40.97f, -58.25f)); break;
+            case "RoomF Exit": StartCoroutine(TeleportFade("", other, 28.05f, -63f)); break;
         }
     }
 
