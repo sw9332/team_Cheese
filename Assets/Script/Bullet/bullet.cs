@@ -86,6 +86,14 @@ public class Bullet : MonoBehaviour
         {
             DestroyBullet(); // 충돌 후 총알 파괴
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("attackable object")) // 벽과 충돌
+        {
+            // 기획이 나오면 추가 예정
+           return;
+        }
+
+
     }
 
     void Start()
