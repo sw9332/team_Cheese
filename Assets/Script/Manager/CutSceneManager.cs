@@ -72,7 +72,6 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         playerControl.Direction = "Up";
-        inventoryManager.Clean();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
         while (GameManager.GameState != "CutScene2") yield return null;
