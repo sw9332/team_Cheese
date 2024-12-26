@@ -44,7 +44,8 @@ public class Table : MonoBehaviour
     {
         if (inventoryManager.Camera && isCake) //케이크를 올려놓은 상태에서 카메라를 획득 했을때
         {
-            if (CamaraEvent != null) CamaraEvent.SetActive(true);
+            if (CamaraEvent != null && UIManager.is_bear) CamaraEvent.SetActive(true);
+            else if (!UIManager.is_bear) CamaraEvent.SetActive(false);
             UIManager.is_cake = true;
         }
     }

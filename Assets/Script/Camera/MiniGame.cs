@@ -19,6 +19,7 @@ public class MiniGame : MonoBehaviour
     private CutSceneManager cutSceneManager;
     private MainCamera mainCamera;
     private MiniGame photoCamera;
+    private InventoryManager inventoryManager;
 
     private float ClampX;
     private float ClampY;
@@ -88,6 +89,7 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_1());
                     }
                     break;
@@ -102,6 +104,7 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_2());
                     }
                     break;
@@ -116,6 +119,7 @@ public class MiniGame : MonoBehaviour
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
+                        inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_5());
                     }
                     break;
@@ -135,5 +139,6 @@ public class MiniGame : MonoBehaviour
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
 }

@@ -9,4 +9,9 @@ public class TeddyBearChair : MonoBehaviour
     {
         if (other.CompareTag("PinkTeddyBear")) UIManager.is_bear = true;
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("PinkTeddyBear")) UIManager.is_bear = false;
+    }
 }
