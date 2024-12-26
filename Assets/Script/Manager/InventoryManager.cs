@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
 
         // �� ������ ���� �ؾ� ��� type�� item ������ �ߵ���
-        if (!Player.objectCollision && item != null && item.type == Type.���)
+        if (!Player.objectCollision && item != null && item.type == Type.사용)
         {
             UseItem(item);
             SlotDB[slotIndex] = null;
