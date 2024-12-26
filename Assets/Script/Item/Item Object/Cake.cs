@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cake : MonoBehaviour
@@ -39,7 +38,7 @@ public class Cake : MonoBehaviour
             inventoryManager.PickUpItem(objectCollider);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Space) && canPickUp && !inventoryManager.Camera)
+        else if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !inventoryManager.Camera)
         {
             dialogueManager.ShowDialogue(dialogueContentManager.d_not_camera);
             canPickUp = false;
