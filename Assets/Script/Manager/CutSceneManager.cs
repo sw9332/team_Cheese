@@ -214,6 +214,20 @@ public class CutSceneManager : MonoBehaviour
         StartCoroutine(npc.Boss_Pattern());
     }
 
+    public IEnumerator CutScene_6()
+    {
+        BlackBackground.SetActive(true);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(false);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(true);
+        yield return new WaitForSeconds(1);
+        BlackBackground.SetActive(false);
+        NPC.gameObject.transform.position = new Vector3(-49, 26, 0);
+        playerControl.transform.position = new Vector3(-49, 22, 0);
+        NPC.SetActive(true);
+    }
+
     public IEnumerator isVibrationEvent()
     {
         isCutScene = true;

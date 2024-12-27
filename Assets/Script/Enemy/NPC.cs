@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     private PlayerControl player;
     private GameManager gameManager;
+    private CutSceneManager cutSceneManager;
 
     public Animator animator;
 
@@ -181,9 +182,15 @@ public class NPC : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
+    public IEnumerator Die()
+    {
+        animator.Play("Die");
+        yield return StartCoroutine(cutSceneManager.CutScene_6());
+    }
+
     public IEnumerator Boss_Pattern()
     {
-        while (true)
+        while (true && !player.GameEnd)
         {
             yield return StartCoroutine(Melee_Attack(5));
             yield return StartCoroutine(Rush(3));
@@ -210,7 +217,8 @@ public class NPC : MonoBehaviour
             
             else if (Hp.value <= 1)
             {
-                StartCoroutine(gameManager.DemoClear());
+                //StartCoroutine(gameManager.DemoClear());
+                StartCoroutine(Die());
                 player.GameEnd = true;
             }
         }
