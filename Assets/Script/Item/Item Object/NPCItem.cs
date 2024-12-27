@@ -10,6 +10,7 @@ public class NPCItem : MonoBehaviour
     private ItemManager itemManager;
     private DialogueManager dialogueManager;
     private TutorialManager tutorialManager;
+    private Event2 event2;
 
     private Collider2D objectCollider;
 
@@ -39,6 +40,7 @@ public class NPCItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
+            event2.gameObject.SetActive(false);
             inventoryManager.PickUpItem(objectCollider);
         }
     }
@@ -49,6 +51,7 @@ public class NPCItem : MonoBehaviour
         itemManager = FindFirstObjectByType<ItemManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        event2 = FindFirstObjectByType<Event2>();
         objectCollider = GetComponent<Collider2D>();
     }
 

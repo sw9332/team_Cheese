@@ -10,13 +10,13 @@ public class CutSceneManager : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
     private FadeManager fadeManager;
     private MainCamera mainCamera;
-    private TutorialManager tutorialManager;
     private MiniGame miniGame;
     private InventoryManager inventoryManager;
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
     private NPC npc;
     private Stage1_BlockedWay stage1_BlockedWay;
+    private AlbumManager albumManager;
 
     [Header("Effect")]
     public GameObject Effect;
@@ -25,6 +25,7 @@ public class CutSceneManager : MonoBehaviour
     public Text BosUI;
 
     [Header("Object")]
+    public GameObject E_Key;
     public GameObject NPC;
     public GameObject BigTeddyBearBos;
 
@@ -45,6 +46,18 @@ public class CutSceneManager : MonoBehaviour
     public bool isCutScene = false;
     public bool isCutScene4 = false;
 
+    public IEnumerator Tutorial()
+    {
+        while (!inventoryManager.Camera) yield return null;
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = true;
+        E_Key.SetActive(true);
+        while (!albumManager.Album.activeSelf) yield return null;
+        while (albumManager.Album.activeSelf) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_album2);
+        isCutScene = false;
+    }
+
     public IEnumerator CutScene_1()
     {
         isCutScene = true;
@@ -54,11 +67,18 @@ public class CutSceneManager : MonoBehaviour
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        E_Key.SetActive(true);
+        while (E_Key.activeSelf) yield return null;
+        while (albumManager.Album.activeSelf) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_album1);
+        while (dialogueManager.dialogue_continue) yield return null;
         isCutScene = false;
     }
 
@@ -72,7 +92,6 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         playerControl.isMove = false;
         playerControl.Direction = "Up";
-        inventoryManager.Clean();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
         while (GameManager.GameState != "CutScene2") yield return null;
@@ -155,6 +174,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_5()
     {
+        NPC.SetActive(false);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
         WhiteBackground.SetActive(true);
@@ -220,7 +240,10 @@ public class CutSceneManager : MonoBehaviour
         image.gameObject.SetActive(false);
     }
 
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && E_Key.activeSelf) E_Key.SetActive(false);
+    }
     void Start()
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
@@ -228,12 +251,14 @@ public class CutSceneManager : MonoBehaviour
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
         mainCamera = FindFirstObjectByType<MainCamera>();
-        tutorialManager = FindFirstObjectByType<TutorialManager>();
         miniGame = FindFirstObjectByType<MiniGame>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
+        albumManager = FindFirstObjectByType<AlbumManager>();
+
+        StartCoroutine(Tutorial());
     }
 }

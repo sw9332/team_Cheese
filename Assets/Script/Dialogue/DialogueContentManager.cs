@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class DialogueContentManager : MonoBehaviour
 {
+    [Header("이벤트")]
+    public Dialogue d_event1;
+    public Dialogue d_event2;
+    public Dialogue d_event3;
+    public Dialogue d_event4;
+
     [Header("튜토리얼")]
     [SerializeField]
     public Dialogue d_prologue;
     [SerializeField]
     public Dialogue d_cake;
     [SerializeField]
+    public Dialogue d_not_camera;
+    [SerializeField]
     public Dialogue d_not_a_cake;
     [SerializeField]
     public Dialogue d_photo;
     [SerializeField]
     public Dialogue d_camera;
+    [SerializeField]
+    public Dialogue d_album1;
+    [SerializeField]
+    public Dialogue d_album2;
 
     [Header("CutScene_1 (튜토리얼 종료)")]
     [SerializeField]

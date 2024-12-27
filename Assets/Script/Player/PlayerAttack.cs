@@ -42,7 +42,8 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove 
+            && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
@@ -53,10 +54,12 @@ public class PlayerAttack : MonoBehaviour
         {
             rangedAttackMotion();
         }
+        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
 
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
+            attackMotionStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
@@ -158,7 +161,6 @@ public class PlayerAttack : MonoBehaviour
         .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
-
 
         if (meleeAttackableEnemies.Length > 0)
         {

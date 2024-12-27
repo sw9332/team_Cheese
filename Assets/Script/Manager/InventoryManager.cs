@@ -33,8 +33,8 @@ public class InventoryManager : MonoBehaviour
 
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
 
-        // ÀÌ ¼ø¼­¸¦ ¸ÕÀú ÇØ¾ß »ç¿ë typeÀÇ item Á¶°ÇÀÌ ¹ßµ¿µÊ
-        if (!Player.objectCollision && item != null && item.type == Type.»ç¿ë)
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ typeï¿½ï¿½ item ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½
+        if (!Player.objectCollision && item != null && item.type == Type.ì‚¬ìš©)
         {
             UseItem(item);
             SlotDB[slotIndex] = null;
@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
                 Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
 
                 // Locate newly generated Hp 
-                GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // ºÎ¸ð À¯Áö
+                GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
                 RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
                 newRectTransform.anchoredPosition = newAnchoredPosition;
 
