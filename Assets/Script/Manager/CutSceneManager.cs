@@ -175,6 +175,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_5()
     {
+        NPC.SetActive(false);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
         WhiteBackground.SetActive(true);
