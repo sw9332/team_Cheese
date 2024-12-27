@@ -26,7 +26,7 @@ public class MiniGame : MonoBehaviour
 
     private void PhotoMode()
     {
-        if (is_take_photo && Input.GetKeyDown(KeyCode.P))
+        if (is_take_photo && Input.GetKeyDown(KeyCode.Tab))
         {
             if (GameManager.GameState == "CutScene4" && !cutSceneManager.isCutScene4) return;
 
@@ -78,7 +78,7 @@ public class MiniGame : MonoBehaviour
             switch (GameManager.GameState)
             {
                 case "튜토리얼": ControlPhotoMode(-78.2f, -76.2f, 48f, 50f);
-                    if (Input.GetKey(KeyCode.F)
+                    if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
                     {
@@ -95,7 +95,7 @@ public class MiniGame : MonoBehaviour
                     break;
 
                 case "창고": ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
-                    if (Input.GetKey(KeyCode.F)
+                    if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
                         && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
                     {
@@ -110,7 +110,7 @@ public class MiniGame : MonoBehaviour
                     break;
 
                 case "CutScene4": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
-                    if (Input.GetKey(KeyCode.F)
+                    if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
                         && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
                     {
