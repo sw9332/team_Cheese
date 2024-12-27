@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject ObjectPush_Image;
     public GameObject Attack_Image;
     public GameObject Camera_Image;
+    public GameObject Item_Image;
 
     public IEnumerator ShowTutorialUI(bool isTutorial, Dialogue dialoge)
     {
@@ -44,6 +45,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
 
             case 2:
@@ -52,6 +54,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
 
             case 3:
@@ -60,6 +63,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(true);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
 
             case 4:
@@ -68,6 +72,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
 
             case 5:
@@ -76,6 +81,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
 
             case 6:
@@ -84,6 +90,7 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(true);
                 Camera_Image.SetActive(false);
+                Item_Image.SetActive(false);
                 break;
              
             case 7:
@@ -92,6 +99,16 @@ public class TutorialManager : MonoBehaviour
                 ObjectPush_Image.SetActive(false);
                 Attack_Image.SetActive(false);
                 Camera_Image.SetActive(true);
+                Item_Image.SetActive(false);
+                break;
+
+            case 8:
+                Move_Image.SetActive(false);
+                ObjectInstallation_Image.SetActive(false);
+                ObjectPush_Image.SetActive(false);
+                Attack_Image.SetActive(false);
+                Camera_Image.SetActive(false);
+                Item_Image.SetActive(true);
                 break;
         }
     }

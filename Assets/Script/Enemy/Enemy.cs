@@ -32,17 +32,17 @@ public class Enemy : MonoBehaviour
         destroyEnemy();
     }
 
-    void Start()
-    {
-        enemy = this.gameObject;
-        enemyEffects = GetComponent<Animator>();
-    }
-
     void Update()
     {
         if (hp == 0)
         {
             StartCoroutine(PlayDeathAnimationAndDestroy());
         }
+    }
+
+    void Start()
+    {
+        enemy = this.gameObject;
+        enemyEffects = GetComponent<Animator>();
     }
 }

@@ -10,7 +10,6 @@ public class CutSceneManager : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
     private FadeManager fadeManager;
     private MainCamera mainCamera;
-    private TutorialManager tutorialManager;
     private MiniGame miniGame;
     private InventoryManager inventoryManager;
     private UIManager uiManager;
@@ -252,7 +251,6 @@ public class CutSceneManager : MonoBehaviour
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
         mainCamera = FindFirstObjectByType<MainCamera>();
-        tutorialManager = FindFirstObjectByType<TutorialManager>();
         miniGame = FindFirstObjectByType<MiniGame>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         uiManager = FindFirstObjectByType<UIManager>();

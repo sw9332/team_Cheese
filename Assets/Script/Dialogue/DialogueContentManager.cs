@@ -8,6 +8,7 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue d_event1;
     public Dialogue d_event2;
     public Dialogue d_event3;
+    public Dialogue d_event4;
 
     [Header("Æ©Åä¸®¾ó")]
     [SerializeField]
