@@ -47,6 +47,7 @@ public class NPCEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet")) TakeDamage();
+        if (other.CompareTag("NPC Boss Event")) StartCoroutine(cutSceneManager.CutScene_7());
     }
 
     void Update()

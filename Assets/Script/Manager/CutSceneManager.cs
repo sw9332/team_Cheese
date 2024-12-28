@@ -35,6 +35,7 @@ public class CutSceneManager : MonoBehaviour
 
     [Header("Event")]
     public GameObject VibrationEvent;
+    public GameObject NPC_Boss_Event;
 
     [Header("Animation")]
     public Animator BigTeddyBearBosAnimation1;
@@ -227,6 +228,12 @@ public class CutSceneManager : MonoBehaviour
         npc.gameObject.SetActive(false);
         NPC.gameObject.transform.position = npc.transform.position;
         NPC.SetActive(true);
+        NPC_Boss_Event.SetActive(true);
+    }
+
+    public IEnumerator CutScene_7()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public IEnumerator isVibrationEvent()
