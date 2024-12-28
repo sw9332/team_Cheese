@@ -70,4 +70,7 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue cutScene_5_2;
     [SerializeField]
     public Dialogue cutScene_5_3;
+
+    [Header("CutScene_6 (보스전 후)")]
+    public Dialogue cutScene_6_1;
 }

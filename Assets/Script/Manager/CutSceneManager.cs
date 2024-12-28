@@ -229,11 +229,11 @@ public class CutSceneManager : MonoBehaviour
         NPC.gameObject.transform.position = npc.transform.position;
         NPC.SetActive(true);
         NPC_Boss_Event.SetActive(true);
-    }
+        isCutScene = false;
 
-    public IEnumerator CutScene_7()
-    {
-        yield return new WaitForSeconds(1);
+        npcEnemy = FindFirstObjectByType<NPCEnemy>();
+        while (!npcEnemy.trigger) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_1);
     }
 
     public IEnumerator isVibrationEvent()

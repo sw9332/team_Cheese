@@ -20,6 +20,8 @@ public class NPCEnemy : MonoBehaviour
     private bool FreezeX = false;
     private bool FreezeY = false;
 
+    public bool trigger = false;
+
     void TakeDamage()
     {
         StartCoroutine(FlashRed());
@@ -47,7 +49,7 @@ public class NPCEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet")) TakeDamage();
-        if (other.CompareTag("NPC Boss Event")) StartCoroutine(cutSceneManager.CutScene_7());
+        if (other.CompareTag("NPC Boss Event")) trigger = true;
     }
 
     void Update()
