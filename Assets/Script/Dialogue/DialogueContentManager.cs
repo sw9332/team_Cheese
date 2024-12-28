@@ -77,4 +77,8 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue cutScene_6_3;
     public Dialogue cutScene_6_4;
     public Dialogue cutScene_6_5;
+
+    [Header("CutScene_7 (Demo ¸¶Áö¸·)")]
+    public Dialogue cutScene_7_1;
+    public Dialogue cutScene_7_2;
 }

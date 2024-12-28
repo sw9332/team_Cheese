@@ -40,7 +40,7 @@ public class NPCEnemy : MonoBehaviour
         {
             case 3: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3); break;
             case 1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4); break;
-            case -1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5); GameManager.Demo = true; break;
+            case -1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5); GameManager.Demo = true; CtrlKey.SetActive(false); break;
         }
     }
 
@@ -76,6 +76,7 @@ public class NPCEnemy : MonoBehaviour
 
         if (other.CompareTag("NPC Boss Event 2"))
         {
+            CtrlKey.SetActive(true);
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
         }
     }

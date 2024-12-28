@@ -123,6 +123,23 @@ public class MiniGame : MonoBehaviour
                         StartCoroutine(cutSceneManager.CutScene_5());
                     }
                     break;
+
+                case "CutScene6":
+                    ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
+                    if (Input.GetKey(KeyCode.Tab)
+                        && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
+                        && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
+                    {
+                        UIManager.is_NPC = false;
+                        GameManager.Demo = false;
+                        is_take_photo = false;
+                        is_minigame = false;
+                        isImageChange = true;
+                        playerControl.isMove = false;
+                        inventoryManager.Clean();
+                        StartCoroutine(cutSceneManager.CutScene_7());
+                    }
+                    break;
             }
         }
     }

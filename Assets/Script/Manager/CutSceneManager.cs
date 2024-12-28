@@ -17,6 +17,10 @@ public class CutSceneManager : MonoBehaviour
     private NPC npc;
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
+    private GameManager gameManager;
+
+    [Header("Image")]
+    public GameObject PlayerImage;
 
     [Header("Effect")]
     public GameObject Effect;
@@ -218,6 +222,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_6()
     {
+        GameManager.GameState = "CutScene6";
         isCutScene = true;
         BlackBackground.SetActive(true);
         yield return new WaitForSeconds(1);
@@ -232,6 +237,21 @@ public class CutSceneManager : MonoBehaviour
         NPC_Boss_Event1.SetActive(true);
         NPC_Boss_Event2.SetActive(true);
         isCutScene = false;
+    }
+
+    public IEnumerator CutScene_7()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        yield return new WaitForSeconds(1f);
+        PlayerImage.gameObject.SetActive(true);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
+        while (dialogueManager.dialogue_continue) yield return null;
+        fadeManager.fadeImage.gameObject.SetActive(false);
+        PlayerImage.gameObject.SetActive(false);
+        WhiteBackground.SetActive(true);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        StartCoroutine(gameManager.DemoClear());
     }
 
     public IEnumerator isVibrationEvent()
@@ -278,6 +298,7 @@ public class CutSceneManager : MonoBehaviour
         npc = FindFirstObjectByType<NPC>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
         StartCoroutine(Tutorial());
     }
