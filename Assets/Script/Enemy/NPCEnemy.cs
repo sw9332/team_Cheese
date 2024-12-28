@@ -76,6 +76,11 @@ public class NPCEnemy : MonoBehaviour
             other.gameObject.SetActive(false);
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
         }
+
+        if (other.CompareTag("NPC Boss Event 3"))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     void Update()
