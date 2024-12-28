@@ -22,7 +22,8 @@ public class NPCEnemy : MonoBehaviour
     private bool FreezeX = false;
     private bool FreezeY = false;
 
-    public bool trigger = false;
+    public bool event1 = false;
+    public bool event2 = false;
 
     void Talk1()
     {
@@ -64,35 +65,54 @@ public class NPCEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet") && !trigger) TakeDamage(1);
-        else if (other.CompareTag("Bullet") && trigger) TakeDamage(2);
+        if (other.CompareTag("Bullet") && !event1 && !event2) TakeDamage(1);
+        else if (other.CompareTag("Bullet") && event1 && event2) TakeDamage(2);
 
         if (other.CompareTag("NPC Boss Event 1"))
         {
-            trigger = true;
+            event1 = true;
             other.gameObject.SetActive(false);
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_1);
         }
 
         if (other.CompareTag("NPC Boss Event 2"))
         {
-            CtrlKey.SetActive(true);
+            event2 = true;
+            other.gameObject.SetActive(false);
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
         }
     }
 
     void Update()
     {
-        if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
-        else CtrlKey.SetActive(true);
+        if (!event1 && !event2)
+        {
+            if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
+            else CtrlKey.SetActive(true);
+        }
+
+        else
+        {
+            if (!playerControl.isMove) CtrlKey.SetActive(false);
+            else CtrlKey.SetActive(true);
+        }
 
         if (PlayerControl.speed == 2 && npc.die)
         {
-            if (PlayerControl.MoveY && !PlayerControl.MoveX && !FreezeY) // 세로로 밀었을 때
+            if (PlayerControl.MoveX && !PlayerControl.MoveY && !FreezeX)
             {
-                rigid.constraints = RigidbodyConstraints2D.FreezePositionX; // X축 고정
+                rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
                 rigid.freezeRotation = true;
             }
+
+            else if (PlayerControl.MoveY && !PlayerControl.MoveX && !FreezeY)
+            {
+                rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rigid.freezeRotation = true;
+            }
+
+            else if (!FreezeX && !FreezeY) rigid.constraints = RigidbodyConstraints2D.None;
+            else rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         else rigid.constraints = RigidbodyConstraints2D.FreezeAll;

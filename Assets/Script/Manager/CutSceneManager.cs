@@ -20,12 +20,12 @@ public class CutSceneManager : MonoBehaviour
     private GameManager gameManager;
 
     [Header("Image")]
-    public GameObject PlayerImage;
+    public Image BlackBackground;
+    public Image WhiteBackground;
+    public Image PlayerImage;
 
     [Header("Effect")]
     public GameObject Effect;
-    public GameObject BlackBackground;
-    public GameObject WhiteBackground;
     public Text BosUI;
 
     [Header("Object")]
@@ -158,7 +158,7 @@ public class CutSceneManager : MonoBehaviour
         BigTeddyBearBosAnimation1.Play("BigTeddyBearStop");
         BigTeddyBearBosAnimation2.Play("BigTeddyBearStop");
         BigTeddyBearBosAnimation3.Play("BigTeddyBearStop");
-        BlackBackground.SetActive(true);
+        BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
     }
 
@@ -183,29 +183,27 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(false);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
-        WhiteBackground.SetActive(true);
+        WhiteBackground.gameObject.SetActive(true);
         playerControl.Direction = "Up";
         playerControl.transform.position = new Vector3(-49f, 22.5f, 0);
         npc.transform.position = new Vector3(-49f, 26.5f, 0);
-        yield return new WaitForSeconds(2);
         Effect.SetActive(false);
-        BlackBackground.SetActive(false);
-        UnityEngine.UI.Image image = WhiteBackground.GetComponent<UnityEngine.UI.Image>();
-        yield return StartCoroutine(FadeOutImage(image, 1f));
-        yield return new WaitForSeconds(1);
+        BlackBackground.gameObject.SetActive(false);
+        yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white));
+        WhiteBackground.color = Color.white;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
         while (dialogueManager.dialogue_continue) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
         dialogueManager.ChoiceButton(true, "≥≠¿Ô¿Ã", "¿Œ«¸");
         while (dialogueManager.dialogue_continue) yield return null;
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(true);
+        BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(false);
+        BlackBackground.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(true);
+        BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(false);
+        BlackBackground.gameObject.SetActive(false);
         StartCoroutine(mainCamera.VibrationEffect(4, 0.1f));
         npc.Transformation(true);
         yield return new WaitForSeconds(2f);
@@ -224,15 +222,15 @@ public class CutSceneManager : MonoBehaviour
     {
         GameManager.GameState = "CutScene6";
         isCutScene = true;
-        BlackBackground.SetActive(true);
+        BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(false);
+        BlackBackground.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(true);
+        BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
-        BlackBackground.SetActive(false);
-        npc.gameObject.SetActive(false);
+        BlackBackground.gameObject.SetActive(false);
         NPC.gameObject.transform.position = npc.transform.position;
+        npc.transform.position = new Vector3(-68, 26.5f, 0);
         NPC.SetActive(true);
         NPC_Boss_Event1.SetActive(true);
         NPC_Boss_Event2.SetActive(true);
@@ -244,11 +242,13 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
         PlayerImage.gameObject.SetActive(true);
+        yield return StartCoroutine(fadeManager.FadeOut(PlayerImage, Color.white));
+        yield return new WaitForSeconds(2f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
         while (dialogueManager.dialogue_continue) yield return null;
         fadeManager.fadeImage.gameObject.SetActive(false);
         PlayerImage.gameObject.SetActive(false);
-        WhiteBackground.SetActive(true);
+        WhiteBackground.gameObject.SetActive(true);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_2);
         while (dialogueManager.dialogue_continue) yield return null;
         StartCoroutine(gameManager.DemoClear());
