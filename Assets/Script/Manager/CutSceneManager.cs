@@ -216,6 +216,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_6()
     {
+        isCutScene = true;
         BlackBackground.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.SetActive(false);
@@ -223,8 +224,8 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.SetActive(false);
-        NPC.gameObject.transform.position = new Vector3(-49, 26, 0);
-        playerControl.transform.position = new Vector3(-49, 22, 0);
+        npc.gameObject.SetActive(false);
+        NPC.gameObject.transform.position = npc.transform.position;
         NPC.SetActive(true);
     }
 
