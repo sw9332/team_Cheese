@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     private PlayerControl player;
     private GameManager gameManager;
+    private CutSceneManager cutSceneManager;
 
     public Animator animator;
 
@@ -25,12 +26,12 @@ public class NPC : MonoBehaviour
     public bool attackDamage = false;
     private bool rushing = false;
     private bool wall = false;
+    public bool die = false;
 
-    private const float RUSH_SPEED = 15f;
-    private const float MOVE_STEP = 5f;
-    private const float RANGED_ATTACK_DELAY = 0.1f;
-    private const float MELEE_ATTACK_DELAY = 1f;
-    private const float DAMAGE_DELAY = 3f;
+    private float RUSH_SPEED = 15f;
+    private float MOVE_STEP = 5f;
+    private float RANGED_ATTACK_DELAY = 0.1f;
+    private float MELEE_ATTACK_DELAY = 1f;
 
     private Vector3 lastPlayerDirection;
     private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
@@ -69,6 +70,12 @@ public class NPC : MonoBehaviour
     {
         for (int i = 0; i < repeat; i++)
         {
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
+
             while (!meleeAttack)
             {
                 UpdateDirection();
@@ -92,6 +99,12 @@ public class NPC : MonoBehaviour
     {
         for (int i = 0; i < repeat; i++)
         {
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
+
             while (!wall)
             {
                 rushing = true;
@@ -110,6 +123,13 @@ public class NPC : MonoBehaviour
                 {
                     AnimationDirection("Walking", 2f);
                     transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
+
+                    if (die)
+                    {
+                        animator.Play("Die");
+                        yield break;
+                    }
+
                     yield return null;
                 }
             }
@@ -124,6 +144,12 @@ public class NPC : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
+
             float step = MOVE_STEP * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
@@ -133,12 +159,24 @@ public class NPC : MonoBehaviour
             {
                 direction = directionToTarget.x > 0 ? "Right" : "Left";
                 AnimationDirection("Walking", 1f);
+
+                if (die)
+                {
+                    animator.Play("Die");
+                    yield break;
+                }
             }
 
             else
             {
                 direction = directionToTarget.y > 0 ? "Up" : "Down";
                 AnimationDirection("Walking", 1f);
+
+                if (die)
+                {
+                    animator.Play("Die");
+                    yield break;
+                }
             }
 
             yield return null;
@@ -146,6 +184,12 @@ public class NPC : MonoBehaviour
 
         for (int i = 0; i < repeat; i++)
         {
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
+
             UpdateDirection();
             AnimationDirection("Ranged Attack", 1f);
 
@@ -181,9 +225,20 @@ public class NPC : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
+    public IEnumerator Die()
+    {
+        animator.Play("Die");
+        speed = 0;
+        RUSH_SPEED = 0;
+        die = true;
+        Hp.gameObject.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(cutSceneManager.CutScene_6());
+    }
+
     public IEnumerator Boss_Pattern()
     {
-        while (true)
+        while (true && !player.GameEnd && !die)
         {
             yield return StartCoroutine(Melee_Attack(5));
             yield return StartCoroutine(Rush(3));
@@ -200,7 +255,7 @@ public class NPC : MonoBehaviour
             AnimationDirection("Damaged", 1f);
         }
 
-        if (other.CompareTag("Bullet") && !player.GameEnd)
+        if (other.CompareTag("Bullet") && !player.GameEnd && !die)
         {
             if (Hp.value > 0)
             {
@@ -210,8 +265,7 @@ public class NPC : MonoBehaviour
             
             else if (Hp.value <= 1)
             {
-                StartCoroutine(gameManager.DemoClear());
-                player.GameEnd = true;
+                StartCoroutine(Die());
             }
         }
     }
@@ -230,6 +284,7 @@ public class NPC : MonoBehaviour
     {
         player = FindFirstObjectByType<PlayerControl>();
         gameManager = FindFirstObjectByType<GameManager>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
 
         animator.Play("NPC");
     }
