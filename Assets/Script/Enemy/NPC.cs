@@ -70,7 +70,11 @@ public class NPC : MonoBehaviour
     {
         for (int i = 0; i < repeat; i++)
         {
-            if (die) yield break;
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
 
             while (!meleeAttack)
             {
@@ -95,7 +99,11 @@ public class NPC : MonoBehaviour
     {
         for (int i = 0; i < repeat; i++)
         {
-            if (die) yield break;
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
 
             while (!wall)
             {
@@ -115,6 +123,13 @@ public class NPC : MonoBehaviour
                 {
                     AnimationDirection("Walking", 2f);
                     transform.position += lastPlayerDirection * RUSH_SPEED * Time.deltaTime;
+
+                    if (die)
+                    {
+                        animator.Play("Die");
+                        yield break;
+                    }
+
                     yield return null;
                 }
             }
@@ -129,7 +144,11 @@ public class NPC : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
-            if (die) yield break;
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
 
             float step = MOVE_STEP * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
@@ -140,12 +159,24 @@ public class NPC : MonoBehaviour
             {
                 direction = directionToTarget.x > 0 ? "Right" : "Left";
                 AnimationDirection("Walking", 1f);
+
+                if (die)
+                {
+                    animator.Play("Die");
+                    yield break;
+                }
             }
 
             else
             {
                 direction = directionToTarget.y > 0 ? "Up" : "Down";
                 AnimationDirection("Walking", 1f);
+
+                if (die)
+                {
+                    animator.Play("Die");
+                    yield break;
+                }
             }
 
             yield return null;
@@ -153,7 +184,11 @@ public class NPC : MonoBehaviour
 
         for (int i = 0; i < repeat; i++)
         {
-            if (die) yield break;
+            if (die)
+            {
+                animator.Play("Die");
+                yield break;
+            }
 
             UpdateDirection();
             AnimationDirection("Ranged Attack", 1f);
@@ -196,6 +231,7 @@ public class NPC : MonoBehaviour
         speed = 0;
         RUSH_SPEED = 0;
         die = true;
+        Hp.gameObject.SetActive(false);
         yield return new WaitForSeconds(3f);
         yield return StartCoroutine(cutSceneManager.CutScene_6());
     }
