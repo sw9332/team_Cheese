@@ -26,7 +26,7 @@ public class NPC : MonoBehaviour
     public bool attackDamage = false;
     private bool rushing = false;
     private bool wall = false;
-    private bool die = false;
+    public bool die = false;
 
     private float RUSH_SPEED = 15f;
     private float MOVE_STEP = 5f;

@@ -9,15 +9,16 @@ public class NPCEnemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerControl playerControl;
     private CutSceneManager cutSceneManager;
+    private NPC npc;
+
+    private Rigidbody2D rigid;
 
     public GameObject CtrlKey;
     private Color originalColor;
     public int HP = 5;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Bullet")) TakeDamage();
-    }
+    private bool FreezeX = false;
+    private bool FreezeY = false;
 
     void TakeDamage()
     {
@@ -43,6 +44,28 @@ public class NPCEnemy : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet")) TakeDamage();
+    }
+
+    void Update()
+    {
+        if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
+        else CtrlKey.SetActive(true);
+
+        if (PlayerControl.speed == 2 && npc.die)
+        {
+            if (PlayerControl.MoveY && !PlayerControl.MoveX && !FreezeY) // 세로로 밀었을 때
+            {
+                rigid.constraints = RigidbodyConstraints2D.FreezePositionX; // X축 고정
+                rigid.freezeRotation = true;
+            }
+        }
+
+        else rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
     void Start()
     {
         dialogueManager = FindFirstObjectByType<DialogueManager>();
@@ -50,13 +73,10 @@ public class NPCEnemy : MonoBehaviour
         fadeManager = FindFirstObjectByType<FadeManager>();
         playerControl = FindFirstObjectByType<PlayerControl>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        npc = FindFirstObjectByType<NPC>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-    }
 
-    void Update()
-    {
-        if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
-        else CtrlKey.SetActive(true);
+        rigid = GetComponent<Rigidbody2D>();
+        originalColor = spriteRenderer.color;
     }
 }
