@@ -32,7 +32,6 @@ public class NPC : MonoBehaviour
     private float MOVE_STEP = 5f;
     private float RANGED_ATTACK_DELAY = 0.1f;
     private float MELEE_ATTACK_DELAY = 1f;
-    private float DAMAGE_DELAY = 3f;
 
     private Vector3 lastPlayerDirection;
     private Vector3 targetPosition = new Vector3(-49f, 24f, 0);
