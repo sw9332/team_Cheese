@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static string GameState = "Æ©Åä¸®¾ó";
 
+    public static bool Demo = false;
+
     public Image DemoClearUI;
     public Image GameOverUI;
 

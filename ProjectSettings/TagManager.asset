@@ -57,7 +57,8 @@ TagManager:
   - Boss
   - Boss Bullet
   - DroppedPinkTeddyBear
-  - NPC Boss Event
+  - NPC Boss Event 1
+  - NPC Boss Event 2
   layers:
   - Default
   - TransparentFX

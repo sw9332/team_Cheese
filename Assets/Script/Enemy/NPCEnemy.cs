@@ -15,28 +15,44 @@ public class NPCEnemy : MonoBehaviour
 
     public GameObject CtrlKey;
     private Color originalColor;
+
     public int HP = 5;
+    public int HP2 = 5;
 
     private bool FreezeX = false;
     private bool FreezeY = false;
 
     public bool trigger = false;
 
-    void TakeDamage()
+    void Talk1()
     {
-        StartCoroutine(FlashRed());
-        HP--;
-        StartCoroutine(Talk());
+        switch (HP)
+        {
+            case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
+            case 1: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
+            case -1: GameManager.GameState = "CutScene2"; CtrlKey.SetActive(false); break;
+        }
     }
 
-    IEnumerator Talk()
+    void Talk2()
     {
-        switch(HP)
+        switch (HP2)
         {
-            case 4: yield return null; dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
-            case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
-            case 2: GameManager.GameState = "CutScene2"; CtrlKey.SetActive(false); break;
+            case 3: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3); break;
+            case 1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4); break;
+            case -1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5); GameManager.Demo = true; break;
         }
+    }
+
+    void TakeDamage(int trigger)
+    {
+        switch(trigger)
+        {
+            case 1: HP--; Talk1(); break;
+            case 2: HP2--; Talk2(); break;
+        }
+
+        StartCoroutine(FlashRed());
     }
 
     IEnumerator FlashRed()
@@ -48,8 +64,20 @@ public class NPCEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet")) TakeDamage();
-        if (other.CompareTag("NPC Boss Event")) trigger = true;
+        if (other.CompareTag("Bullet") && !trigger) TakeDamage(1);
+        else if (other.CompareTag("Bullet") && trigger) TakeDamage(2);
+
+        if (other.CompareTag("NPC Boss Event 1"))
+        {
+            trigger = true;
+            other.gameObject.SetActive(false);
+            dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_1);
+        }
+
+        if (other.CompareTag("NPC Boss Event 2"))
+        {
+            dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
+        }
     }
 
     void Update()

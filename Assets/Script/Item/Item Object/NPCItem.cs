@@ -40,7 +40,7 @@ public class NPCItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
-            event2.gameObject.SetActive(false);
+            if (event2 != null) event2.gameObject.SetActive(false);
             inventoryManager.PickUpItem(objectCollider);
         }
     }

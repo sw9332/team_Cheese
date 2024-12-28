@@ -35,7 +35,8 @@ public class CutSceneManager : MonoBehaviour
 
     [Header("Event")]
     public GameObject VibrationEvent;
-    public GameObject NPC_Boss_Event;
+    public GameObject NPC_Boss_Event1;
+    public GameObject NPC_Boss_Event2;
 
     [Header("Animation")]
     public Animator BigTeddyBearBosAnimation1;
@@ -228,12 +229,9 @@ public class CutSceneManager : MonoBehaviour
         npc.gameObject.SetActive(false);
         NPC.gameObject.transform.position = npc.transform.position;
         NPC.SetActive(true);
-        NPC_Boss_Event.SetActive(true);
+        NPC_Boss_Event1.SetActive(true);
+        NPC_Boss_Event2.SetActive(true);
         isCutScene = false;
-
-        npcEnemy = FindFirstObjectByType<NPCEnemy>();
-        while (!npcEnemy.trigger) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_1);
     }
 
     public IEnumerator isVibrationEvent()

@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
         if (inventoryManager.Camera)
         {
-            if (tutorialTrigger || is_NPC || is_CutScene_4)
+            if (tutorialTrigger || is_NPC || is_CutScene_4 || GameManager.Demo)
             {
                 CameraEffect(true);
                 MiniGame.is_take_photo = true;

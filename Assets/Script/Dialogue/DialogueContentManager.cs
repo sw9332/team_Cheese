@@ -73,4 +73,8 @@ public class DialogueContentManager : MonoBehaviour
 
     [Header("CutScene_6 (보스전 후)")]
     public Dialogue cutScene_6_1;
+    public Dialogue cutScene_6_2;
+    public Dialogue cutScene_6_3;
+    public Dialogue cutScene_6_4;
+    public Dialogue cutScene_6_5;
 }
