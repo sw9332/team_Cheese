@@ -87,14 +87,14 @@ public class NPCEnemy : MonoBehaviour
     {
         if (!event1 && !event2)
         {
-            if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
+            if (!playerControl.isMove) CtrlKey.SetActive(false);
             else CtrlKey.SetActive(true);
         }
 
-        else
+        else if (event1 && event2)
         {
             if (!playerControl.isMove) CtrlKey.SetActive(false);
-            else if (playerControl.isMove && event1 && event2) CtrlKey.SetActive(true);
+            else CtrlKey.SetActive(true);
         }
 
         if (PlayerControl.speed == 2 && npc.die)

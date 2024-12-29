@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5389620206503076948}
   - component: {fileID: 1366465614971120495}
   - component: {fileID: 8893096202313945822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ctrl Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1503124650602078501}
   - component: {fileID: 1609507939016078728}
   - component: {fileID: 8516259668794146152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NPC Enemy
   m_TagString: Push_Object
   m_Icon: {fileID: 0}
@@ -372,3 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CtrlKey: {fileID: 5552012631399099744}
   HP: 5
+  HP2: 5
+  event1: 0
+  event2: 0
