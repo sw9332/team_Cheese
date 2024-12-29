@@ -25,32 +25,6 @@ public class NPCEnemy : MonoBehaviour
     public bool event1 = false;
     public bool event2 = false;
 
-    void Talk1()
-    {
-        HP--;
-        StartCoroutine(FlashRed());
-
-        switch (HP)
-        {
-            case 3: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2); break;
-            case 1: dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3); break;
-            case -1: GameManager.GameState = "CutScene2"; CtrlKey.SetActive(false); break;
-        }
-    }
-
-    void Talk2()
-    {
-        HP2--;
-        StartCoroutine(FlashRed());
-
-        switch (HP2)
-        {
-            case 3: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3); break;
-            case 1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4); break;
-            case -1: dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5); GameManager.Demo = true; CtrlKey.SetActive(false); break;
-        }
-    }
-
     IEnumerator FlashRed()
     {
         spriteRenderer.color = Color.red;
@@ -60,8 +34,9 @@ public class NPCEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet") && !event1 && !event2) Talk1();
-        else if (other.CompareTag("Bullet") && event1 && event2) Talk2();
+        if (other.CompareTag("Player")) return;
+        if (other.CompareTag("Bullet") && !event1 && !event2) HP--; StartCoroutine(FlashRed());
+        if (other.CompareTag("Bullet") && event1 && event2) HP2--; StartCoroutine(FlashRed());
 
         if (other.CompareTag("NPC Boss Event 1"))
         {
@@ -77,25 +52,12 @@ public class NPCEnemy : MonoBehaviour
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
         }
 
-        if (other.CompareTag("NPC Boss Event 3"))
-        {
-            other.gameObject.SetActive(false);
-        }
+        if (other.CompareTag("NPC Boss Event 3")) other.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (!event1 && !event2)
-        {
-            if (!playerControl.isMove || HP <= 2) CtrlKey.SetActive(false);
-            else CtrlKey.SetActive(true);
-        }
-
-        else
-        {
-            if (!playerControl.isMove) CtrlKey.SetActive(false);
-            else if (playerControl.isMove && event1 && event2) CtrlKey.SetActive(true);
-        }
+        if (dialogueManager.dialogue_continue) CtrlKey.SetActive(false);
 
         if (PlayerControl.speed == 2 && npc.die)
         {
