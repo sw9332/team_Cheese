@@ -27,6 +27,8 @@ public class MiniGame : MonoBehaviour
     private float ClampX;
     private float ClampY;
 
+    public float SliderSpeed = 0.01f;
+
     private void PhotoMode()
     {
         if (is_take_photo && Input.GetKeyDown(KeyCode.Tab))
@@ -52,46 +54,48 @@ public class MiniGame : MonoBehaviour
         is_minigame = false;
     }
 
-    private void ControlPhotoMode(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
+    private void Position(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
     {
         x_Axis.minValue = x_minValue;
         x_Axis.maxValue = x_maxValue;
-
         y_Axis.minValue = y_minValue;
         y_Axis.maxValue = y_maxValue;
-
-        ClampX = Mathf.Clamp(photoCamera.transform.position.x, x_minValue, x_maxValue);
-        ClampY = Mathf.Clamp(photoCamera.transform.position.y, y_minValue, y_maxValue);
-
-        photoCamera.transform.position = new Vector3(ClampX, ClampY, -1f);
     }
 
-    private void Control(string direction)
+    private void UpdatePosition()
     {
-        switch(direction)
-        {
-            case "Up": photoCamera.transform.Translate(Vector2.up * 1.5f * Time.deltaTime); break;
-            case "Down": photoCamera.transform.Translate(Vector2.down * 1.5f * Time.deltaTime); break;
-            case "Left": photoCamera.transform.Translate(Vector2.left * 1.5f * Time.deltaTime); break;
-            case "Right": photoCamera.transform.Translate(Vector2.right * 1.5f * Time.deltaTime); break;
-        }
+        photoCamera.transform.position = new Vector3(x_Axis.value, y_Axis.value, -1f);
+    }
 
-        x_Axis.value = photoCamera.transform.position.x;
-        y_Axis.value = photoCamera.transform.position.y;
+    private void StartRandom()
+    {
+        x_Axis.value = Random.Range(x_Axis.minValue, x_Axis.maxValue);
+        y_Axis.value = Random.Range(y_Axis.minValue, y_Axis.maxValue);
+    }
+
+    private void SliderControl(string direction)
+    {
+        switch (direction)
+        {
+            case "Up": y_Axis.value = Mathf.Clamp(y_Axis.value + SliderSpeed, y_Axis.minValue, y_Axis.maxValue); break;
+            case "Down": y_Axis.value = Mathf.Clamp(y_Axis.value - SliderSpeed, y_Axis.minValue, y_Axis.maxValue); break;
+            case "Left": x_Axis.value = Mathf.Clamp(x_Axis.value - SliderSpeed, x_Axis.minValue, x_Axis.maxValue); break;
+            case "Right": x_Axis.value = Mathf.Clamp(x_Axis.value + SliderSpeed, x_Axis.minValue, x_Axis.maxValue); break;
+        }
     }
 
     private void TakePhoto()
     {
         if (is_minigame)
         {
-            if (Input.GetKey(KeyCode.UpArrow)) Control("Up");
-            if (Input.GetKey(KeyCode.DownArrow)) Control("Down");
-            if (Input.GetKey(KeyCode.LeftArrow)) Control("Left");
-            if (Input.GetKey(KeyCode.RightArrow)) Control("Right");
+            if (Input.GetKey(KeyCode.UpArrow)) SliderControl("Up");
+            if (Input.GetKey(KeyCode.DownArrow)) SliderControl("Down");
+            if (Input.GetKey(KeyCode.LeftArrow)) SliderControl("Left");
+            if (Input.GetKey(KeyCode.RightArrow)) SliderControl("Right");
 
             switch (GameManager.GameState)
             {
-                case "튜토리얼": ControlPhotoMode(-78.2f, -76.2f, 48f, 50f);
+                case "튜토리얼": Position(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
@@ -108,7 +112,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
+                case "창고": Position(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -123,7 +127,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene4": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
+                case "CutScene4": Position(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -138,7 +142,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene6": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
+                case "CutScene6": Position(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -161,6 +165,7 @@ public class MiniGame : MonoBehaviour
     {
         PhotoMode();
         TakePhoto();
+        UpdatePosition();
     }
 
     void Start()
@@ -170,5 +175,7 @@ public class MiniGame : MonoBehaviour
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
+
+        StartRandom();
     }
 }
