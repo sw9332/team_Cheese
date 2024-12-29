@@ -158,7 +158,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerControl.CenterOffset, meleeAttackBoxSize, 0f);
 
         meleeAttackableEnemies = enemyArray
-        .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+        .Where(collider => (collider.gameObject.layer == 6 || collider.gameObject.layer == 8) /*6번 Layer = enemy, 8번 Layer = attackable object, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
 
