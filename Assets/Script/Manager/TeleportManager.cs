@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TeleportManager : MonoBehaviour
 {
     private FadeManager fadeManager;
-    private MapNameManager mapNameManager;
+    private TextManager textManager;
 
     public void Teleport(string stateName, Collider2D other)
     {
@@ -46,13 +46,13 @@ public class TeleportManager : MonoBehaviour
         GameManager.GameState = state;
         other.transform.position = new Vector3(x, y, 0);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
-        mapNameManager.ShowMapNameText(GameManager.GameState);
+        textManager.ShowMapNameText(GameManager.GameState, 1.5f);
         fadeManager.fadeDuration = 1f;
     }
 
     void Start()
     {
         fadeManager = FindFirstObjectByType<FadeManager>();
-        mapNameManager = FindFirstObjectByType<MapNameManager>();
+        textManager = FindFirstObjectByType<TextManager>();
     }
 }
