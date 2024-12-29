@@ -70,10 +70,10 @@ public class MiniGame : MonoBehaviour
     {
         if (is_minigame)
         {
-            if (Input.GetKey(KeyCode.UpArrow)) photoCamera.transform.Translate(0f, 1f * 1.5f * Time.deltaTime, 0f);
-            if (Input.GetKey(KeyCode.DownArrow)) photoCamera.transform.Translate(0f, -1f * 1.5f * Time.deltaTime, 0f);
-            if (Input.GetKey(KeyCode.LeftArrow)) photoCamera.transform.Translate(-1f * 1.5f * Time.deltaTime, 0f, 0f);
-            if (Input.GetKey(KeyCode.RightArrow)) photoCamera.transform.Translate(1f * 1.5f * Time.deltaTime, 0f, 0f);
+            if (Input.GetKey(KeyCode.UpArrow)) photoCamera.transform.Translate(Vector2.up * 1.5f * Time.deltaTime);
+            if (Input.GetKey(KeyCode.DownArrow)) photoCamera.transform.Translate(Vector2.down * 1.5f * Time.deltaTime);
+            if (Input.GetKey(KeyCode.LeftArrow)) photoCamera.transform.Translate(Vector2.left * 1.5f * Time.deltaTime);
+            if (Input.GetKey(KeyCode.RightArrow)) photoCamera.transform.Translate(Vector2.right * 1.5f * Time.deltaTime);
 
             switch (GameManager.GameState)
             {
