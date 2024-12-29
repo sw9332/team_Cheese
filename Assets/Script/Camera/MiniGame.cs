@@ -52,6 +52,7 @@ public class MiniGame : MonoBehaviour
         ingameUIPanel.SetActive(true);
         minigamePanel.SetActive(false);
         is_minigame = false;
+        StartRandom();
     }
 
     private void Position(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
