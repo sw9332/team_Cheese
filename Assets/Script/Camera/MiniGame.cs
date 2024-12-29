@@ -27,11 +27,6 @@ public class MiniGame : MonoBehaviour
     private float ClampX;
     private float ClampY;
 
-    private float x_min;
-    private float x_max;
-    private float y_min;
-    private float y_max;
-
     private void PhotoMode()
     {
         if (is_take_photo && Input.GetKeyDown(KeyCode.Tab))
@@ -64,12 +59,6 @@ public class MiniGame : MonoBehaviour
 
         y_Axis.minValue = y_minValue;
         y_Axis.maxValue = y_maxValue;
-
-        x_min = x_minValue;
-        x_max = x_maxValue;
-
-        y_min = y_minValue;
-        y_max = y_maxValue;
 
         ClampX = Mathf.Clamp(photoCamera.transform.position.x, x_minValue, x_maxValue);
         ClampY = Mathf.Clamp(photoCamera.transform.position.y, y_minValue, y_maxValue);
@@ -181,8 +170,5 @@ public class MiniGame : MonoBehaviour
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
-
-        //x_Axis.value = x_min;
-        //y_Axis.value = y_min;
     }
 }
