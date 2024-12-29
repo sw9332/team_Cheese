@@ -7,14 +7,8 @@ using UnityEngine.SceneManagement;
 public class MainScene : MonoBehaviour
 {
     public GameObject SettingUI;
-    public GameObject Load_UI;
 
     private FadeManager fadeManager;
-
-    public void LoadUI() //불러오기 버튼
-    {
-        Load_UI.SetActive(!Load_UI.activeSelf);
-    }
 
     public void NewGameStartButton() //새 게임 버튼
     {
@@ -29,11 +23,6 @@ public class MainScene : MonoBehaviour
     public void ExitButton() //나가기 버튼
     {
         Application.Quit();
-    }
-
-    void Update()
-    {
-        if (Load_UI.activeSelf && Input.GetKeyDown(KeyCode.Escape)) LoadUI();
     }
 
     void Start()

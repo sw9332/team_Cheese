@@ -94,10 +94,10 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고": ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
+                case "창고": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
-                        && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
-                        && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
+                        && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
+                        && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
                         UIManager.is_NPC = false;
                         is_take_photo = false;
@@ -109,10 +109,10 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene4": ControlPhotoMode(-49.5f, -48.5f, 29f, 30f);
+                case "CutScene4": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
-                        && x_Axis.value <= -48.8f && x_Axis.value >= -49.2f
-                        && y_Axis.value <= 29.3f && y_Axis.value >= 29.2f)
+                        && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
+                        && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
                         UIManager.is_CutScene_4 = false;
                         is_take_photo = false;
@@ -124,11 +124,10 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene6":
-                    ControlPhotoMode(-49.5f, -48.5f, 31f, 32f);
+                case "CutScene6": ControlPhotoMode(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
-                        && x_Axis.value <= -48.86f && x_Axis.value >= -48.95f
-                        && y_Axis.value <= 31.3f && y_Axis.value >= 31.16f)
+                        && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
+                        && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
                         UIManager.is_NPC = false;
                         GameManager.Demo = false;
