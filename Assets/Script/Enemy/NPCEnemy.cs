@@ -34,6 +34,7 @@ public class NPCEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player")) return;
         if (other.CompareTag("Bullet") && !event1 && !event2) HP--; StartCoroutine(FlashRed());
         if (other.CompareTag("Bullet") && event1 && event2) HP2--; StartCoroutine(FlashRed());
 
