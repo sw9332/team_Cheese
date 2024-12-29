@@ -47,7 +47,6 @@ public class NPCEnemy : MonoBehaviour
         if (other.CompareTag("NPC Boss Event 2"))
         {
             event2 = true;
-            CtrlKey.SetActive(true);
             other.gameObject.SetActive(false);
             dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_2);
         }

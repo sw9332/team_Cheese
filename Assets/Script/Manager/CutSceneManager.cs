@@ -262,6 +262,10 @@ public class CutSceneManager : MonoBehaviour
         NPC_Boss_Event3.SetActive(true);
         isCutScene = false;
 
+        while (!npcEnemy.event2) yield return null;
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
         // NPC HP2 : 3
         while (npcEnemy.HP2 > 3) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
