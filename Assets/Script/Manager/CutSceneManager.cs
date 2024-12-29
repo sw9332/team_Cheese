@@ -295,9 +295,10 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
         while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white));
         fadeManager.fadeImage.gameObject.SetActive(false);
-        PlayerImage.gameObject.SetActive(false);
         WhiteBackground.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_2);
         while (dialogueManager.dialogue_continue) yield return null;
         StartCoroutine(gameManager.DemoClear());
