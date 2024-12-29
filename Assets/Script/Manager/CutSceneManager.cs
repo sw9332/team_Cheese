@@ -96,11 +96,34 @@ public class CutSceneManager : MonoBehaviour
         playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
-        NPC.SetActive(true);
         playerControl.isMove = false;
         playerControl.Direction = "Up";
+        NPC.SetActive(true);
+        npcEnemy = FindFirstObjectByType<NPCEnemy>();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+
+        // NPC HP : 5
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
+        // NPC HP : 3
+        while (npcEnemy.HP > 3) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
+        // NPC HP : 1
+        while (npcEnemy.HP > 1) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
+        // NPC HP : -1
+        while (npcEnemy.HP > -1) yield return null;
+        GameManager.GameState = "CutScene2";
+        npcEnemy.CtrlKey.SetActive(false);
+
         while (GameManager.GameState != "CutScene2") yield return null;
 
         isCutScene = true;
@@ -233,10 +256,30 @@ public class CutSceneManager : MonoBehaviour
         NPC.gameObject.transform.position = npc.transform.position;
         npc.transform.position = new Vector3(-68, 26.5f, 0);
         NPC.SetActive(true);
+        npcEnemy = FindFirstObjectByType<NPCEnemy>();
         NPC_Boss_Event1.SetActive(true);
         NPC_Boss_Event2.SetActive(true);
         NPC_Boss_Event3.SetActive(true);
         isCutScene = false;
+
+        // NPC HP2 : 3
+        while (npcEnemy.HP2 > 3) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
+        // NPC HP2 : 1
+        while (npcEnemy.HP2 > 1) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
+        // NPC HP2 : -1
+        while (npcEnemy.HP2 > -1) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(false);
+        GameManager.Demo = true;
     }
 
     public IEnumerator CutScene_7()
