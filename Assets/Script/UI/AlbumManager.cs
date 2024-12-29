@@ -32,6 +32,7 @@ public class AlbumManager : MonoBehaviour
         }
     }
 
+    // It functions as named 
     GameObject FindInactiveObjectByName(string name)
     {
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -43,6 +44,7 @@ public class AlbumManager : MonoBehaviour
     // 자동으로 image 관련 components들을 리스트에 추가
     void addImageInformationInLists()
     {
+        // Set parent object as "images" in Canvas -> CameraAlbumUI -> images
         GameObject imagesParent = FindInactiveObjectByName("images");
 
         if (imagesParent != null)
@@ -125,7 +127,6 @@ public class AlbumManager : MonoBehaviour
         (GameObject objImage, Image img) = getImageInformation(imageName);
         if (img != null) presentImage = img; // 현재 표시되는 이미지로 설정
     }
-
 
 
     void Start()
