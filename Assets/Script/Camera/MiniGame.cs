@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class MiniGame : MonoBehaviour
 {
     public static bool is_take_photo;
+
     public bool is_minigame = false;
+
     public Slider x_Axis;
     public Slider y_Axis;
+
     public GameObject minigamePanel;
     public GameObject ingameUIPanel;
 
@@ -23,6 +26,11 @@ public class MiniGame : MonoBehaviour
 
     private float ClampX;
     private float ClampY;
+
+    private float x_min;
+    private float x_max;
+    private float y_min;
+    private float y_max;
 
     private void PhotoMode()
     {
@@ -57,10 +65,27 @@ public class MiniGame : MonoBehaviour
         y_Axis.minValue = y_minValue;
         y_Axis.maxValue = y_maxValue;
 
+        x_min = x_minValue;
+        x_max = x_maxValue;
+
+        y_min = y_minValue;
+        y_max = y_maxValue;
+
         ClampX = Mathf.Clamp(photoCamera.transform.position.x, x_minValue, x_maxValue);
         ClampY = Mathf.Clamp(photoCamera.transform.position.y, y_minValue, y_maxValue);
 
         photoCamera.transform.position = new Vector3(ClampX, ClampY, -1f);
+    }
+
+    private void Control(string direction)
+    {
+        switch(direction)
+        {
+            case "Up": photoCamera.transform.Translate(Vector2.up * 1.5f * Time.deltaTime); break;
+            case "Down": photoCamera.transform.Translate(Vector2.down * 1.5f * Time.deltaTime); break;
+            case "Left": photoCamera.transform.Translate(Vector2.left * 1.5f * Time.deltaTime); break;
+            case "Right": photoCamera.transform.Translate(Vector2.right * 1.5f * Time.deltaTime); break;
+        }
 
         x_Axis.value = photoCamera.transform.position.x;
         y_Axis.value = photoCamera.transform.position.y;
@@ -70,10 +95,10 @@ public class MiniGame : MonoBehaviour
     {
         if (is_minigame)
         {
-            if (Input.GetKey(KeyCode.UpArrow)) photoCamera.transform.Translate(Vector2.up * 1.5f * Time.deltaTime);
-            if (Input.GetKey(KeyCode.DownArrow)) photoCamera.transform.Translate(Vector2.down * 1.5f * Time.deltaTime);
-            if (Input.GetKey(KeyCode.LeftArrow)) photoCamera.transform.Translate(Vector2.left * 1.5f * Time.deltaTime);
-            if (Input.GetKey(KeyCode.RightArrow)) photoCamera.transform.Translate(Vector2.right * 1.5f * Time.deltaTime);
+            if (Input.GetKey(KeyCode.UpArrow)) Control("Up");
+            if (Input.GetKey(KeyCode.DownArrow)) Control("Down");
+            if (Input.GetKey(KeyCode.LeftArrow)) Control("Left");
+            if (Input.GetKey(KeyCode.RightArrow)) Control("Right");
 
             switch (GameManager.GameState)
             {
@@ -156,5 +181,8 @@ public class MiniGame : MonoBehaviour
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
+
+        //x_Axis.value = x_min;
+        //y_Axis.value = y_min;
     }
 }
