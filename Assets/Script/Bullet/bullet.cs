@@ -71,7 +71,8 @@ public class Bullet : MonoBehaviour
     // 충돌 처리
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("enemy")) // 적과 충돌
+        if (other.gameObject.layer == LayerMask.NameToLayer("enemy")
+            || other.gameObject.layer == LayerMask.NameToLayer("attackable object")) // 적과 충돌
         {
             Enemy enemy = other.GetComponent<Enemy>(); // Enemy 스크립트 참조
             if (enemy != null)
@@ -86,13 +87,6 @@ public class Bullet : MonoBehaviour
         {
             DestroyBullet(); // 충돌 후 총알 파괴
         }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("attackable object")) // 벽과 충돌
-        {
-            // 기획이 나오면 추가 예정
-           return;
-        }
-
 
     }
 
