@@ -27,7 +27,7 @@ public class MiniGame : MonoBehaviour
     private float ClampX;
     private float ClampY;
 
-    public float SliderSpeed = 0.01f;
+    public float SliderSpeed = 1.5f;
 
     private void PhotoMode()
     {
@@ -78,10 +78,10 @@ public class MiniGame : MonoBehaviour
     {
         switch (direction)
         {
-            case "Up": y_Axis.value += SliderSpeed; break;
-            case "Down": y_Axis.value -= SliderSpeed; break;
-            case "Left": x_Axis.value -= SliderSpeed; break;
-            case "Right": x_Axis.value += SliderSpeed; break;
+            case "Up": y_Axis.value += SliderSpeed * Time.deltaTime; break;
+            case "Down": y_Axis.value -= SliderSpeed * Time.deltaTime; break;
+            case "Left": x_Axis.value -= SliderSpeed * Time.deltaTime; break;
+            case "Right": x_Axis.value += SliderSpeed * Time.deltaTime; break;
         }
     }
 
