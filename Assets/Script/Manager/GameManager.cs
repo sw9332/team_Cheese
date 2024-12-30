@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerControl playerControl;
     private FadeManager fadeManager;
+    private GameSetting gameSetting;
 
     public IEnumerator DemoClear()
     {
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameSetting.FrameLoad();
+
         Time.timeScale = 1f;
         Application.targetFrameRate = GameSetting.ScreenFrame;
 
@@ -36,5 +39,6 @@ public class GameManager : MonoBehaviour
 
         playerControl = FindFirstObjectByType<PlayerControl>();
         fadeManager = FindFirstObjectByType<FadeManager>();
+        gameSetting = FindFirstObjectByType<GameSetting>();
     }
 }
