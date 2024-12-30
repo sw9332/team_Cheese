@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour
     public void NewGame()
     {
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
-        Time.timeScale = 1;
     }
 
     public void GameExit()
@@ -118,7 +117,6 @@ public class UIManager : MonoBehaviour
         fadeManager = FindFirstObjectByType<FadeManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-        Time.timeScale = 1;
         fadeImage.gameObject.SetActive(true);
         CameraEffect(false);
     }

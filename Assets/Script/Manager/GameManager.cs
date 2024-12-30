@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         GameState = "Æ©Åä¸®¾ó";
 
         playerControl = FindFirstObjectByType<PlayerControl>();
