@@ -13,10 +13,10 @@ public class TeleportManager : MonoBehaviour
         switch (stateName)
         {
             case "파티룸 (입구)": StartCoroutine(TeleportFade("파티룸", other, -4f, -3.7f, true)); break;
-            case "파티룸 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -11.8f, true)); break;
+            case "파티룸 (출구)": StartCoroutine(TeleportFade("복도", other, other.transform.position.x, -11.8f, true)); break;
 
             case "연회장 입구 (입구)": StartCoroutine(TeleportFade("연회장 입구", other, other.transform.position.x, 5.5f, true)); break;
-            case "연회장 입구 (출구)": StartCoroutine(TeleportFade("복도 #F", other, other.transform.position.x, -2.85f, true)); break;
+            case "연회장 입구 (출구)": StartCoroutine(TeleportFade("복도", other, other.transform.position.x, -2.85f, true)); break;
 
             case "연회장 (입구)": StartCoroutine(TeleportFade("연회장", other, -3.5f, other.transform.position.y, true)); break;
             case "연회장 (출구)": StartCoroutine(TeleportFade("연회장 입구", other, -13.3f, other.transform.position.y, true)); break;
