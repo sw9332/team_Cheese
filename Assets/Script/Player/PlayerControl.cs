@@ -191,7 +191,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    speed = 5f;
+                    speed = 4f;
                     animator.speed = 2f;
                     stamina.isPlayerRunning = true;
                 }
