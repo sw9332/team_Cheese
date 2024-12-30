@@ -55,7 +55,7 @@ public class MiniGame : MonoBehaviour
         StartRandom();
     }
 
-    private void Position(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
+    private void MiniGamePosition(float x_minValue, float x_maxValue, float y_minValue, float y_maxValue)
     {
         x_Axis.minValue = x_minValue;
         x_Axis.maxValue = x_maxValue;
@@ -78,10 +78,10 @@ public class MiniGame : MonoBehaviour
     {
         switch (direction)
         {
-            case "Up": y_Axis.value = Mathf.Clamp(y_Axis.value + SliderSpeed, y_Axis.minValue, y_Axis.maxValue); break;
-            case "Down": y_Axis.value = Mathf.Clamp(y_Axis.value - SliderSpeed, y_Axis.minValue, y_Axis.maxValue); break;
-            case "Left": x_Axis.value = Mathf.Clamp(x_Axis.value - SliderSpeed, x_Axis.minValue, x_Axis.maxValue); break;
-            case "Right": x_Axis.value = Mathf.Clamp(x_Axis.value + SliderSpeed, x_Axis.minValue, x_Axis.maxValue); break;
+            case "Up": y_Axis.value += SliderSpeed; break;
+            case "Down": y_Axis.value -= SliderSpeed; break;
+            case "Left": x_Axis.value -= SliderSpeed; break;
+            case "Right": x_Axis.value += SliderSpeed; break;
         }
     }
 
@@ -96,7 +96,7 @@ public class MiniGame : MonoBehaviour
 
             switch (GameManager.GameState)
             {
-                case "튜토리얼": Position(-78.2f, -76.2f, 48f, 50f);
+                case "튜토리얼": MiniGamePosition(-78.2f, -76.2f, 48f, 50f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value <= -76.9f && x_Axis.value >= -77.1f
                         && y_Axis.value <= 48.7f && y_Axis.value >= 48.35f)
@@ -113,7 +113,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "창고": Position(-50.5f, -48f, 32f, 33.5f);
+                case "창고": MiniGamePosition(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -128,7 +128,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene4": Position(-50.5f, -48f, 32f, 33.5f);
+                case "CutScene4": MiniGamePosition(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
@@ -143,7 +143,7 @@ public class MiniGame : MonoBehaviour
                     }
                     break;
 
-                case "CutScene6": Position(-50.5f, -48f, 32f, 33.5f);
+                case "CutScene6": MiniGamePosition(-50.5f, -48f, 32f, 33.5f);
                     if (Input.GetKey(KeyCode.Tab)
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
