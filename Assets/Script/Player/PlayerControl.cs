@@ -102,9 +102,9 @@ public class PlayerControl : MonoBehaviour
     {
         switch(direction)
         {
-            case "Up":animator.Play("PlayerUp_Stop"); Direction = direction; break;
+            case "Up": animator.Play("PlayerUp_Stop"); Direction = direction; break;
             case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
-            case "Left":animator.Play("PlayerLeft_Stop"); Direction = direction; break;
+            case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
         }
     }
@@ -184,8 +184,8 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && Direction == "Up") StopDirection("Up");
             if (Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && Direction == "Down") StopDirection("Down");
-            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left")StopDirection("Left");
-            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right")StopDirection("Right");
+            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left") StopDirection("Left");
+            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right") StopDirection("Right");
 
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
