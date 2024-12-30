@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator DemoClear()
     {
         playerControl.isMove = false;
-        yield return StartCoroutine(fadeManager.FadeOut(DemoClearUI, Color.clear));
+        yield return StartCoroutine(fadeManager.FadeOut(DemoClearUI, Color.white));
     }
 
     public IEnumerator GameOver()
