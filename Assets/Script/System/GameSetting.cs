@@ -144,7 +144,7 @@ public class GameSetting : MonoBehaviour
         PlayerPrefs.SetInt("Frame", SaveFPS);
     }
 
-    public void FrameLoad()
+    void FrameLoad()
     {
         LoadFPS = PlayerPrefs.GetInt("Frame", 60);
         Frame(LoadFPS);
