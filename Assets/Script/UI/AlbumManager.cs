@@ -10,6 +10,7 @@ public class AlbumManager : MonoBehaviour
 
     private PlayerControl playerControl;
     private InventoryManager inventoryManager;
+    private DialogueManager dialogueManager;
 
     [SerializeField] List<GameObject> imageObjects = new(); // Image 관련 GameObject 리스트
     [SerializeField] List<Image> albumImages = new(); // Image 컴포넌트 리스트
@@ -17,14 +18,14 @@ public class AlbumManager : MonoBehaviour
 
     void AlbumUI_Open_Close()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf == false)
+        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && !Album.activeSelf && !dialogueManager.dialogue_continue)
         {
             Album.SetActive(true);
             playerControl.isMove = false;
             InGameUI.SetActive(false);
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf == true)
+        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf)
         {
             Album.SetActive(false);
             playerControl.isMove = true;
@@ -133,6 +134,7 @@ public class AlbumManager : MonoBehaviour
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
 
         addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
 
