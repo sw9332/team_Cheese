@@ -29,80 +29,6 @@ public class PlayerControl : MonoBehaviour
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
-        {
-            if(npc.attackDamage)
-            {
-                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
-                {
-                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
-                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
-                    Destroy(lastHp);
-                }
-
-                else if (playerAttack.hp.Count <= 1 && !GameEnd)
-                {
-                    StartCoroutine(gameManager.GameOver());
-                    GameEnd = true;
-                }
-
-                StartCoroutine(Damage());
-            }
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // Push Object movement
-        if (other.CompareTag("Push_Object"))
-        {
-            isPush = true;
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (isPush && Input.GetKey(KeyCode.UpArrow)) PushDirection("Up");
-                if (isPush && Input.GetKey(KeyCode.DownArrow)) PushDirection("Down");
-                if (isPush && Input.GetKey(KeyCode.LeftArrow)) PushDirection("Left");
-                if (isPush && Input.GetKey(KeyCode.RightArrow)) PushDirection("Right");
-            }
-
-            else
-            {
-                isPush = false;
-
-                switch (Direction)
-                {
-                    case "Up": PushStopDirection("Up"); break;
-                    case "Down": PushStopDirection("Down"); break;
-                    case "Left": PushStopDirection("Left"); break;
-                    case "Right": PushStopDirection("Right"); break;
-                }
-            }
-        }
-
-        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Push_Object"))
-        {
-            isPush = false;
-
-            switch (Direction)
-            {
-                case "Up": PushStopDirection("Up"); break;
-                case "Down": PushStopDirection("Down"); break;
-                case "Left": PushStopDirection("Left"); break;
-                case "Right": PushStopDirection("Right"); break;
-            }
-        }
-
-        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
-    }
-
     public void MoveDirection(string direction)
     {
         Direction = direction;
@@ -301,6 +227,80 @@ public class PlayerControl : MonoBehaviour
             spriteRenderer.color = Color.white;
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        {
+            if (npc.attackDamage)
+            {
+                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
+                {
+                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                    Destroy(lastHp);
+                }
+
+                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                {
+                    StartCoroutine(gameManager.GameOver());
+                    GameEnd = true;
+                }
+
+                StartCoroutine(Damage());
+            }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // Push Object movement
+        if (other.CompareTag("Push_Object"))
+        {
+            isPush = true;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (isPush && Input.GetKey(KeyCode.UpArrow)) PushDirection("Up");
+                if (isPush && Input.GetKey(KeyCode.DownArrow)) PushDirection("Down");
+                if (isPush && Input.GetKey(KeyCode.LeftArrow)) PushDirection("Left");
+                if (isPush && Input.GetKey(KeyCode.RightArrow)) PushDirection("Right");
+            }
+
+            else
+            {
+                isPush = false;
+
+                switch (Direction)
+                {
+                    case "Up": PushStopDirection("Up"); break;
+                    case "Down": PushStopDirection("Down"); break;
+                    case "Left": PushStopDirection("Left"); break;
+                    case "Right": PushStopDirection("Right"); break;
+                }
+            }
+        }
+
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Push_Object"))
+        {
+            isPush = false;
+
+            switch (Direction)
+            {
+                case "Up": PushStopDirection("Up"); break;
+                case "Down": PushStopDirection("Down"); break;
+                case "Left": PushStopDirection("Left"); break;
+                case "Right": PushStopDirection("Right"); break;
+            }
+        }
+
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
     void Update()
