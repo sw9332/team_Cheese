@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
-    
+
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
@@ -40,25 +40,24 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove 
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove
             && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
         }
-
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0
             && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true && !cutSceneManager.isCutScene) // 쿨타임 확인
         {
-            LongAttack();
+            rangedAttackMotion();
         }
-
         // else if( 근접, attackable object 관련 부분 코드 추가 예정)
+
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
-            LongAttackStop();
+            attackMotionStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
@@ -89,17 +88,26 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void LongAttack()
+    void rangedAttackMotion()
     {
         isAttacking = true;
-
-        switch (playerControl.Direction)
+        if (playerControl.Direction == "Up")
         {
-            case "Up": playerControl.animator.SetBool("LongAttackUp", true); break;
-            case "Down": playerControl.animator.SetBool("LongAttackDown", true); break;
-            case "Left": playerControl.animator.SetBool("LongAttackLeft", true); break;
-            case "Right": playerControl.animator.SetBool("LongAttackRight", true); break;
+            playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
         }
+        else if (playerControl.Direction == "Down")
+        {
+            playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
+        }
+        else if (playerControl.Direction == "Left")
+        {
+            playerControl.animator.Play("PlayerLongAttackLeft", 0, 0f);
+        }
+        else if (playerControl.Direction == "Right")
+        {
+            playerControl.animator.Play("PlayerLongAttackRight", 0, 0f);
+        }
+
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
@@ -107,15 +115,15 @@ public class PlayerAttack : MonoBehaviour
         fireCurtime = fireCooltime; // 쿨타임 초기화
     }
 
-  
-    void LongAttackStop()
+
+    void attackMotionStop()
     {
         switch (playerControl.Direction)
         {
-            case "Up": playerControl.animator.SetBool("LongAttackUp", false); break;
-            case "Down": playerControl.animator.SetBool("LongAttackDown", false); break;
-            case "Left": playerControl.animator.SetBool("LongAttackLeft", false); break;
-            case "Right": playerControl.animator.SetBool("LongAttackRight", false); break;
+            case "Up": playerControl.StopDirection(playerControl.Direction); break;
+            case "Down": playerControl.StopDirection(playerControl.Direction); break;
+            case "Left": playerControl.StopDirection(playerControl.Direction); break;
+            case "Right": playerControl.StopDirection(playerControl.Direction); break;
         }
     }
 
@@ -148,7 +156,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerControl.CenterOffset, meleeAttackBoxSize, 0f);
 
         meleeAttackableEnemies = enemyArray
-        .Where(collider => (collider.gameObject.layer == 6 || collider.gameObject.layer == 8) /*6번 Layer = enemy, 8번 Layer = attackable object, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+        .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
 
@@ -209,7 +217,7 @@ public class PlayerAttack : MonoBehaviour
             return false;
     }
 
-     void Player_Collision()
+    void Player_Collision()
     {
         if (hp != null)
         {
@@ -224,7 +232,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
             // 1초이상 적과 대면 시 hp--
-            if (isCollidingWithEnemy == true  && isChangingSprite != true)
+            if (isCollidingWithEnemy == true && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
@@ -249,7 +257,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
-        while(count <= 5)
+        while (count <= 5)
         {
             playerSpriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.05f);
@@ -284,7 +292,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void showBulletNum()
     {
-        bulletNumText.text = " Bullet: "+  bullet.bulletNum.ToString();
+        bulletNumText.text = " Bullet: " + bullet.bulletNum.ToString();
     }
     void Start()
     {

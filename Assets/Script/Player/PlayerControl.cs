@@ -31,49 +31,23 @@ public class PlayerControl : MonoBehaviour
 
     public void MoveDirection(string direction)
     {
-        Direction = direction;
-
         switch (direction)
         {
-            case "Up": animator.SetBool("Up", true); break;
-            case "Down": animator.SetBool("Down", true); break;
-            case "Left": animator.SetBool("Left", true); break;
-            case "Right": animator.SetBool("Right", true); break;
+            case "Up": animator.Play("PlayerUp"); Direction = direction; break;
+            case "Down": animator.Play("PlayerDown"); Direction = direction; break;
+            case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
+            case "Right": animator.Play("PlayerRight"); Direction = direction; break;
         }
     }
 
     public void StopDirection(string direction)
     {
-        switch(direction)
+        switch (direction)
         {
-            case "Up": animator.SetBool("Up", false); break;
-            case "Down": animator.SetBool("Down", false); break;
-            case "Left": animator.SetBool("Left", false); break;
-            case "Right": animator.SetBool("Right", false); break;
-        }
-    }
-
-    public void PushDirection(string direction)
-    {
-        Direction = direction;
-
-        switch (Direction)
-        {
-            case "Up": animator.SetBool("Up Push", true); break;
-            case "Down": animator.SetBool("Down Push", true); break;
-            case "Left": animator.SetBool("Left Push", true); break;
-            case "Right": animator.SetBool("Right Push", true); break;
-        }
-    }
-
-    public void PushStopDirection(string direction)
-    {
-        switch (Direction)
-        {
-            case "Up": animator.SetBool("Up Push", false); break;
-            case "Down": animator.SetBool("Down Push", false); break;
-            case "Left": animator.SetBool("Left Push", false); break;
-            case "Right": animator.SetBool("Right Push", false); break;
+            case "Up": animator.Play("PlayerUp_Stop"); Direction = direction; break;
+            case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
+            case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
+            case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
         }
     }
 
@@ -83,47 +57,77 @@ public class PlayerControl : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        MoveDirection("Left");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        MoveDirection("Right");
+                    else if (Input.GetKey(KeyCode.DownArrow))
+                        StopDirection("Down");
+                    else
+                        MoveDirection("Up");
+                }
+
                 MoveX = false;
                 MoveY = true;
 
-                if (!isPush) MoveDirection("Up");
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
             }
 
-            else StopDirection("Up");
-
             if (Input.GetKey(KeyCode.DownArrow))
             {
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                        MoveDirection("Left");
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                        MoveDirection("Right");
+                    else if (Input.GetKey(KeyCode.UpArrow))
+                        StopDirection("Down");
+                    else
+                        MoveDirection("Down");
+                }
+
                 MoveX = false;
                 MoveY = true;
 
-                if (!isPush) MoveDirection("Down");
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
             }
 
-            else StopDirection("Down");
-
             if (Input.GetKey(KeyCode.LeftArrow))
             {
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow)) StopDirection("Down");
+                    else MoveDirection("Left");
+                }
+
                 MoveX = true;
                 MoveY = false;
 
-                if (!isPush) MoveDirection("Left");
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
 
-            else StopDirection("Left");
-
             if (Input.GetKey(KeyCode.RightArrow))
             {
+                if (!isPush)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow)) StopDirection("Down");
+                    else MoveDirection("Right");
+                }
+
+
                 MoveX = true;
                 MoveY = false;
 
-                if (!isPush) MoveDirection("Right");
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
-            else StopDirection("Right");
+            if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && Direction == "Up") StopDirection("Up");
+            if (Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && Direction == "Down") StopDirection("Down");
+            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left") StopDirection("Left");
+            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right") StopDirection("Right");
 
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
@@ -216,19 +220,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public IEnumerator Damage()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.05f);
-            spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
@@ -262,59 +253,48 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (isPush && Input.GetKey(KeyCode.UpArrow)) PushDirection("Up");
-                if (isPush && Input.GetKey(KeyCode.DownArrow)) PushDirection("Down");
-                if (isPush && Input.GetKey(KeyCode.LeftArrow)) PushDirection("Left");
-                if (isPush && Input.GetKey(KeyCode.RightArrow)) PushDirection("Right");
+                if (isPush && Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
+                else if (isPush && Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
+                else if (isPush && Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
+                else if (isPush && Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
             }
 
-            else
-            {
-                isPush = false;
-
-                switch (Direction)
-                {
-                    case "Up": PushStopDirection("Up"); break;
-                    case "Down": PushStopDirection("Down"); break;
-                    case "Left": PushStopDirection("Left"); break;
-                    case "Right": PushStopDirection("Right"); break;
-                }
-            }
+            else isPush = false;
         }
 
-        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
+        if (other.CompareTag("MiniGame_Tutorial"))
+        {
+            UIManager.is_playerPos = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Push_Object"))
+        if (other.CompareTag("Push_Object")) isPush = false;
+
+        if (other.CompareTag("MiniGame_Tutorial"))
         {
-            isPush = false;
-
-            switch (Direction)
-            {
-                case "Up": PushStopDirection("Up"); break;
-                case "Down": PushStopDirection("Down"); break;
-                case "Left": PushStopDirection("Left"); break;
-                case "Right": PushStopDirection("Right"); break;
-            }
+            UIManager.is_playerPos = false;
         }
+    }
 
-        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     void Update()
     {
         MoveControl();
         DamageControl();
-
-        switch (Direction)
-        {
-            case "Up": Direction = "Up"; break;
-            case "Down": Direction = "Down"; break;
-            case "Left": Direction = "Left"; break;
-            case "Right": Direction = "Right"; break;
-        }
     }
 
     void Start()
