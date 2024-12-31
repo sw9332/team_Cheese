@@ -22,6 +22,8 @@ public class NPC : MonoBehaviour
 
     public float speed = 5f;
 
+    public int wall_Crash_stack = 0;
+
     private bool meleeAttack = false;
     public bool attackDamage = false;
     private bool rushing = false;
@@ -111,13 +113,28 @@ public class NPC : MonoBehaviour
                 attackDamage = true;
                 animator.speed = 2;
 
-                Vector3 toPlayer = player.transform.position - transform.position;
-                lastPlayerDirection = toPlayer.normalized;
+                UpdateDirection();
 
-                if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y))
-                    direction = toPlayer.x > 0 ? "Right" : "Left";
+                Vector3 toPlayer = player.transform.position - transform.position;
+
+                if (wall_Crash_stack == 0 || wall_Crash_stack == 1) lastPlayerDirection = toPlayer.normalized;
+
                 else
-                    direction = toPlayer.y > 0 ? "Up" : "Down";
+                {
+                    if (Mathf.Abs(toPlayer.x) > Mathf.Abs(toPlayer.y))
+                    {
+                        direction = toPlayer.x > 0 ? "Right" : "Left";
+                        lastPlayerDirection = new Vector3(Mathf.Sign(toPlayer.x), 0, 0);
+                        wall_Crash_stack = 0;
+                    }
+
+                    else
+                    {
+                        direction = toPlayer.y > 0 ? "Up" : "Down";
+                        lastPlayerDirection = new Vector3(0, Mathf.Sign(toPlayer.y), 0);
+                        wall_Crash_stack = 0;
+                    }
+                }
 
                 while (rushing)
                 {
@@ -252,6 +269,7 @@ public class NPC : MonoBehaviour
         {
             wall = true;
             rushing = false;
+            wall_Crash_stack++;
             AnimationDirection("Damaged", 1f);
         }
 
