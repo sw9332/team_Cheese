@@ -262,20 +262,13 @@ public class PlayerControl : MonoBehaviour
             else isPush = false;
         }
 
-        if (other.CompareTag("MiniGame_Tutorial"))
-        {
-            UIManager.is_playerPos = true;
-        }
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Push_Object")) isPush = false;
-
-        if (other.CompareTag("MiniGame_Tutorial"))
-        {
-            UIManager.is_playerPos = false;
-        }
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
     public IEnumerator Damage()
