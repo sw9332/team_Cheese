@@ -129,8 +129,6 @@ public class PlayerAttack : MonoBehaviour
                 case "Right": playerControl.StopDirection(playerControl.Direction); break;
             }
         }
-
-        isAttacking = false;
     }
 
     // 근접 공격   -------------------------------------------------------------------------------------------
