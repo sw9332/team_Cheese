@@ -62,29 +62,45 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (isPush && Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
-                else if (isPush && Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
-                else if (isPush && Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
-                else if (isPush && Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
+                if (isPush && Input.GetKey(KeyCode.UpArrow)) PushDirection("Up");
+                if (isPush && Input.GetKey(KeyCode.DownArrow)) PushDirection("Down");
+                if (isPush && Input.GetKey(KeyCode.LeftArrow)) PushDirection("Left");
+                if (isPush && Input.GetKey(KeyCode.RightArrow)) PushDirection("Right");
             }
 
-            else isPush = false;
+            else
+            {
+                isPush = false;
+
+                switch (Direction)
+                {
+                    case "Up": PushStopDirection("Up"); break;
+                    case "Down": PushStopDirection("Down"); break;
+                    case "Left": PushStopDirection("Left"); break;
+                    case "Right": PushStopDirection("Right"); break;
+                }
+            }
         }
 
-        if(other.CompareTag("MiniGame_Tutorial"))
-        {
-            UIManager.is_playerPos = true;
-        }
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Push_Object")) isPush = false;
-
-        if (other.CompareTag("MiniGame_Tutorial"))
+        if (other.CompareTag("Push_Object"))
         {
-            UIManager.is_playerPos = false;
+            isPush = false;
+
+            switch (Direction)
+            {
+                case "Up": PushStopDirection("Up"); break;
+                case "Down": PushStopDirection("Down"); break;
+                case "Left": PushStopDirection("Left"); break;
+                case "Right": PushStopDirection("Right"); break;
+            }
         }
+
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
     public void MoveDirection(string direction)
@@ -111,9 +127,33 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void PushDirection(string direction)
+    {
+        Direction = direction;
+
+        switch (Direction)
+        {
+            case "Up": animator.SetBool("Up Push", true); break;
+            case "Down": animator.SetBool("Down Push", true); break;
+            case "Left": animator.SetBool("Left Push", true); break;
+            case "Right": animator.SetBool("Right Push", true); break;
+        }
+    }
+
+    public void PushStopDirection(string direction)
+    {
+        switch (Direction)
+        {
+            case "Up": animator.SetBool("Up Push", false); break;
+            case "Down": animator.SetBool("Down Push", false); break;
+            case "Left": animator.SetBool("Left Push", false); break;
+            case "Right": animator.SetBool("Right Push", false); break;
+        }
+    }
+
     void MoveControl()
     {
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf && cutSceneManager.Move)
+        if (isMove && cutSceneManager.Move && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -267,6 +307,14 @@ public class PlayerControl : MonoBehaviour
     {
         MoveControl();
         DamageControl();
+
+        switch (Direction)
+        {
+            case "Up": Direction = "Up"; break;
+            case "Down": Direction = "Down"; break;
+            case "Left": Direction = "Left"; break;
+            case "Right": Direction = "Right"; break;
+        }
     }
 
     void Start()
