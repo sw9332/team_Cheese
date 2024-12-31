@@ -91,10 +91,10 @@ public class PlayerControl : MonoBehaviour
     {
         switch (direction)
         {
-            case "Up": animator.Play("PlayerUp"); Direction = direction; break;
-            case "Down": animator.Play("PlayerDown"); Direction = direction; break;
-            case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
-            case "Right": animator.Play("PlayerRight"); Direction = direction; break;
+            case "Up": animator.SetBool("Up", true); break;
+            case "Down": animator.SetBool("Down", true); break;
+            case "Left": animator.SetBool("Left", true); break;
+            case "Right": animator.SetBool("Right", true); break;
         }
     }
 
@@ -102,10 +102,10 @@ public class PlayerControl : MonoBehaviour
     {
         switch(direction)
         {
-            case "Up": animator.Play("PlayerUp_Stop"); Direction = direction; break;
-            case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
-            case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
-            case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
+            case "Up": animator.SetBool("Up", false); break;
+            case "Down": animator.SetBool("Down", false); break;
+            case "Left": animator.SetBool("Left", false); break;
+            case "Right": animator.SetBool("Right", false); break;
         }
     }
 
@@ -117,14 +117,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                        MoveDirection("Left");
-                    else if (Input.GetKey(KeyCode.RightArrow))
-                        MoveDirection("Right");
-                    else if (Input.GetKey(KeyCode.DownArrow))
-                        StopDirection("Down");
-                    else
-                        MoveDirection("Up");
+                    MoveDirection("Up");
                 }
 
                 MoveX = false;
@@ -133,18 +126,13 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
             }
 
+            else StopDirection("Up");
+
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                        MoveDirection("Left");
-                    else if (Input.GetKey(KeyCode.RightArrow))
-                        MoveDirection("Right");
-                    else if (Input.GetKey(KeyCode.UpArrow))
-                        StopDirection("Down");
-                    else
-                        MoveDirection("Down");
+                    MoveDirection("Down");
                 }
 
                 MoveX = false;
@@ -153,12 +141,13 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
             }
 
+            else StopDirection("Down");
+
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.RightArrow)) StopDirection("Down");
-                    else MoveDirection("Left");
+                    MoveDirection("Left");
                 }
 
                 MoveX = true;
@@ -167,12 +156,13 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
 
+            else StopDirection("Left");
+
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 if (!isPush)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow)) StopDirection("Down");
-                    else MoveDirection("Right");
+                    MoveDirection("Right");
                 }
 
 
@@ -182,10 +172,7 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
-            if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && Direction == "Up") StopDirection("Up");
-            if (Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && Direction == "Down") StopDirection("Down");
-            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left") StopDirection("Left");
-            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right") StopDirection("Right");
+            else StopDirection("Right");
 
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
