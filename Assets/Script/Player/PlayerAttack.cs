@@ -46,14 +46,15 @@ public class PlayerAttack : MonoBehaviour
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
         }
+
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0
             && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true && !cutSceneManager.isCutScene) // 쿨타임 확인
         {
             rangedAttackMotion();
         }
-        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
 
+        // else if (근접, attackable object 관련 부분 코드 추가 예정)
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
@@ -118,13 +119,18 @@ public class PlayerAttack : MonoBehaviour
 
     void attackMotionStop()
     {
-        switch (playerControl.Direction)
+        if (isAttacking)
         {
-            case "Up": playerControl.StopDirection(playerControl.Direction); break;
-            case "Down": playerControl.StopDirection(playerControl.Direction); break;
-            case "Left": playerControl.StopDirection(playerControl.Direction); break;
-            case "Right": playerControl.StopDirection(playerControl.Direction); break;
+            switch (playerControl.Direction)
+            {
+                case "Up": playerControl.StopDirection(playerControl.Direction); break;
+                case "Down": playerControl.StopDirection(playerControl.Direction); break;
+                case "Left": playerControl.StopDirection(playerControl.Direction); break;
+                case "Right": playerControl.StopDirection(playerControl.Direction); break;
+            }
         }
+
+        isAttacking = false;
     }
 
     // 근접 공격   -------------------------------------------------------------------------------------------
