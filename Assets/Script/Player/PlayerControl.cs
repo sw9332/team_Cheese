@@ -117,14 +117,10 @@ public class PlayerControl : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                if (!isPush)
-                {
-                    MoveDirection("Up");
-                }
-
                 MoveX = false;
                 MoveY = true;
 
+                if (!isPush) MoveDirection("Up");
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
             }
 
@@ -132,14 +128,10 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                if (!isPush)
-                {
-                    MoveDirection("Down");
-                }
-
                 MoveX = false;
                 MoveY = true;
 
+                if (!isPush) MoveDirection("Down");
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
             }
 
@@ -147,14 +139,10 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (!isPush)
-                {
-                    MoveDirection("Left");
-                }
-
                 MoveX = true;
                 MoveY = false;
 
+                if (!isPush) MoveDirection("Left");
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
 
@@ -162,15 +150,10 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (!isPush)
-                {
-                    MoveDirection("Right");
-                }
-
-
                 MoveX = true;
                 MoveY = false;
 
+                if (!isPush) MoveDirection("Right");
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
