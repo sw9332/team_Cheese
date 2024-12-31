@@ -89,6 +89,8 @@ public class PlayerControl : MonoBehaviour
 
     public void MoveDirection(string direction)
     {
+        Direction = direction;
+
         switch (direction)
         {
             case "Up": animator.SetBool("Up", true); break;

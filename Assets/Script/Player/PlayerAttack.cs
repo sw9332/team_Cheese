@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
@@ -48,18 +46,19 @@ public class PlayerAttack : MonoBehaviour
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
         }
+
         // 원거리 공격 처리
         else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
             && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true && !cutSceneManager.isCutScene) // 쿨타임 확인
         {
-            rangedAttackMotion();
+            LongAttack();
         }
-        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
 
+        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
-            attackMotionStop();
+            LongAttackStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
@@ -90,26 +89,17 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void rangedAttackMotion()
+    void LongAttack()
     {
         isAttacking = true;
-        if (playerControl.Direction == "Up") 
-        {
-            playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
-        }
-        else if (playerControl.Direction == "Down") 
-        {
-            playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
-        }
-        else if (playerControl.Direction == "Left")
-        {
-            playerControl.animator.Play("PlayerLongAttackLeft", 0, 0f);
-        }
-        else if (playerControl.Direction == "Right")
-        {
-            playerControl.animator.Play("PlayerLongAttackRight", 0, 0f);
-        }
 
+        switch (playerControl.Direction)
+        {
+            case "Up": playerControl.animator.SetBool("LongAttackUp", true); break;
+            case "Down": playerControl.animator.SetBool("LongAttackDown", true); break;
+            case "Left": playerControl.animator.SetBool("LongAttackLeft", true); break;
+            case "Right": playerControl.animator.SetBool("LongAttackRight", true); break;
+        }
 
         // 발사 쿨타임이 끝났을 때만 총알 발사
         Instantiate(bullet, bulletPos.position, transform.rotation);  // 총알 생성
@@ -118,14 +108,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
   
-    void attackMotionStop()
+    void LongAttackStop()
     {
         switch (playerControl.Direction)
         {
-            case "Up": playerControl.StopDirection(playerControl.Direction); break;
-            case "Down": playerControl.StopDirection(playerControl.Direction); break;
-            case "Left": playerControl.StopDirection(playerControl.Direction); break;
-            case "Right": playerControl.StopDirection(playerControl.Direction); break;
+            case "Up": playerControl.animator.SetBool("LongAttackUp", false); break;
+            case "Down": playerControl.animator.SetBool("LongAttackDown", false); break;
+            case "Left": playerControl.animator.SetBool("LongAttackLeft", false); break;
+            case "Right": playerControl.animator.SetBool("LongAttackRight", false); break;
         }
     }
 
