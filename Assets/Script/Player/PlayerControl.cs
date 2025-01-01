@@ -251,12 +251,12 @@ public class PlayerControl : MonoBehaviour
         {
             isPush = true;
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && isPush)
             {
-                if (isPush && Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
-                else if (isPush && Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
-                else if (isPush && Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
-                else if (isPush && Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
+                if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
+                else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
+                else if (Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
+                else if (Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
             }
 
             else isPush = false;
