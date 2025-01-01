@@ -29,64 +29,6 @@ public class PlayerControl : MonoBehaviour
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
-        {
-            if(npc.attackDamage)
-            {
-                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
-                {
-                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
-                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
-                    Destroy(lastHp);
-                }
-
-                else if (playerAttack.hp.Count <= 1 && !GameEnd)
-                {
-                    StartCoroutine(gameManager.GameOver());
-                    GameEnd = true;
-                }
-
-                StartCoroutine(Damage());
-            }
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // Push Object movement
-        if (other.CompareTag("Push_Object"))
-        {
-            isPush = true;
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (isPush && Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
-                else if (isPush && Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
-                else if (isPush && Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
-                else if (isPush && Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
-            }
-
-            else isPush = false;
-        }
-
-        if(other.CompareTag("MiniGame_Tutorial"))
-        {
-            UIManager.is_playerPos = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Push_Object")) isPush = false;
-
-        if (other.CompareTag("MiniGame_Tutorial"))
-        {
-            UIManager.is_playerPos = false;
-        }
-    }
-
     public void MoveDirection(string direction)
     {
         switch (direction)
@@ -100,18 +42,18 @@ public class PlayerControl : MonoBehaviour
 
     public void StopDirection(string direction)
     {
-        switch(direction)
+        switch (direction)
         {
-            case "Up":animator.Play("PlayerUp_Stop"); Direction = direction; break;
+            case "Up": animator.Play("PlayerUp_Stop"); Direction = direction; break;
             case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
-            case "Left":animator.Play("PlayerLeft_Stop"); Direction = direction; break;
+            case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
         }
     }
 
     void MoveControl()
     {
-        if (isMove && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf && cutSceneManager.Move)
+        if (isMove && cutSceneManager.Move && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -184,14 +126,14 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && Direction == "Up") StopDirection("Up");
             if (Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && Direction == "Down") StopDirection("Down");
-            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left")StopDirection("Left");
-            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right")StopDirection("Right");
+            if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left") StopDirection("Left");
+            if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right") StopDirection("Right");
 
             if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
             {
                 if (!isPush)
                 {
-                    speed = 5f;
+                    speed = 4f;
                     animator.speed = 2f;
                     stamina.isPlayerRunning = true;
                 }
@@ -276,6 +218,57 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
+        {
+            if (npc.attackDamage)
+            {
+                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
+                {
+                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
+                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
+                    Destroy(lastHp);
+                }
+
+                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                {
+                    StartCoroutine(gameManager.GameOver());
+                    GameEnd = true;
+                }
+
+                StartCoroutine(Damage());
+            }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // Push Object movement
+        if (other.CompareTag("Push_Object"))
+        {
+            isPush = true;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (isPush && Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
+                else if (isPush && Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
+                else if (isPush && Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
+                else if (isPush && Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
+            }
+
+            else isPush = false;
+        }
+
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Push_Object")) isPush = false;
+        if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
     public IEnumerator Damage()

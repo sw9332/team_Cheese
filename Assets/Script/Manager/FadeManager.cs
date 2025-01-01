@@ -29,14 +29,12 @@ public class FadeManager : MonoBehaviour
         isFade = false;
         ui.gameObject.SetActive(false);
 
-        if(playerControl != null && !dialogueManager.DialoguePanel.activeSelf)
-            playerControl.isMove = true;
+        if (playerControl != null && !dialogueManager.DialoguePanel.activeSelf) playerControl.isMove = true;
     }
 
     public IEnumerator FadeOut(Image ui, Color color)
     {
-        if(playerControl != null)
-            playerControl.isMove = false;
+        if (playerControl != null) playerControl.isMove = false;
 
         isFade = true;
         ui.gameObject.SetActive(true);

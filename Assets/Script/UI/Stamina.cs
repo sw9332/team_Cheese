@@ -22,11 +22,12 @@ public class Stamina : MonoBehaviour
     }
     void staminaDown()
     {
-        playerStaminaBar.value -= Time.deltaTime;
+        playerStaminaBar.value -= 0.5f * Time.deltaTime;
     }
+
     void staminaUp()
     {
-        playerStaminaBar.value += 0.25f * Time.deltaTime ;
+        playerStaminaBar.value += 0.25f * Time.deltaTime;
     }
 
     void Start()

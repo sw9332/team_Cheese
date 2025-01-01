@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
@@ -33,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
-    
+
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
 
@@ -42,20 +40,21 @@ public class PlayerAttack : MonoBehaviour
         enemyCollider = meleeAttackableEnemy();
 
         // 근접 공격 처리
-        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove 
+        if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider != null && playerControl.isMove
             && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
             enemyManager.takeDamage(enemyCollider.tag);
         }
+
         // 원거리 공격 처리
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0 
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && enemyCollider == null && fireCurtime <= 0
             && playerControl.isMove && !isAttacking && bullet.IsBulletAvailable() == true && !cutSceneManager.isCutScene) // 쿨타임 확인
         {
             rangedAttackMotion();
         }
-        // else if( 근접, attackable object 관련 부분 코드 추가 예정)
 
+        // else if (근접, attackable object 관련 부분 코드 추가 예정)
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
@@ -93,11 +92,11 @@ public class PlayerAttack : MonoBehaviour
     void rangedAttackMotion()
     {
         isAttacking = true;
-        if (playerControl.Direction == "Up") 
+        if (playerControl.Direction == "Up")
         {
             playerControl.animator.Play("PlayerLongAttackUp", 0, 0f);
         }
-        else if (playerControl.Direction == "Down") 
+        else if (playerControl.Direction == "Down")
         {
             playerControl.animator.Play("PlayerLongAttackDown", 0, 0f);
         }
@@ -117,15 +116,18 @@ public class PlayerAttack : MonoBehaviour
         fireCurtime = fireCooltime; // 쿨타임 초기화
     }
 
-  
+
     void attackMotionStop()
     {
-        switch (playerControl.Direction)
+        if (isAttacking)
         {
-            case "Up": playerControl.StopDirection(playerControl.Direction); break;
-            case "Down": playerControl.StopDirection(playerControl.Direction); break;
-            case "Left": playerControl.StopDirection(playerControl.Direction); break;
-            case "Right": playerControl.StopDirection(playerControl.Direction); break;
+            switch (playerControl.Direction)
+            {
+                case "Up": playerControl.StopDirection(playerControl.Direction); break;
+                case "Down": playerControl.StopDirection(playerControl.Direction); break;
+                case "Left": playerControl.StopDirection(playerControl.Direction); break;
+                case "Right": playerControl.StopDirection(playerControl.Direction); break;
+            }
         }
     }
 
@@ -219,7 +221,7 @@ public class PlayerAttack : MonoBehaviour
             return false;
     }
 
-     void Player_Collision()
+    void Player_Collision()
     {
         if (hp != null)
         {
@@ -234,7 +236,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
             // 1초이상 적과 대면 시 hp--
-            if (isCollidingWithEnemy == true  && isChangingSprite != true)
+            if (isCollidingWithEnemy == true && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
@@ -259,7 +261,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator changeToDamaged()
     {
         isChangingSprite = true;
-        while(count <= 5)
+        while (count <= 5)
         {
             playerSpriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.05f);
@@ -294,7 +296,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void showBulletNum()
     {
-        bulletNumText.text = " Bullet: "+  bullet.bulletNum.ToString();
+        bulletNumText.text = " Bullet: " + bullet.bulletNum.ToString();
     }
     void Start()
     {

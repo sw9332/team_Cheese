@@ -18,6 +18,7 @@ public class CutSceneManager : MonoBehaviour
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
     private GameManager gameManager;
+    private TextManager textManager;
 
     [Header("Image")]
     public Image BlackBackground;
@@ -69,15 +70,17 @@ public class CutSceneManager : MonoBehaviour
     {
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        Effect.SetActive(true);
+        textManager.ShowDateText("XX.10.10", 3f);
         playerControl.transform.position = new Vector3(-1.5f, -1.5f, 0);
         mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
-
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
+        Effect.SetActive(false);
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -93,12 +96,14 @@ public class CutSceneManager : MonoBehaviour
     {
         Move = false;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        Effect.SetActive(true);
         playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
         Destroy(NPCItem.Instance.gameObject);
         miniGame.ClearPhotoMode();
         playerControl.isMove = false;
         playerControl.Direction = "Up";
         NPC.SetActive(true);
+        textManager.ShowDateText("XX.10.01", 3f);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
 
@@ -128,6 +133,7 @@ public class CutSceneManager : MonoBehaviour
 
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
         yield return null;
@@ -349,6 +355,7 @@ public class CutSceneManager : MonoBehaviour
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        textManager = FindFirstObjectByType<TextManager>();
 
         StartCoroutine(Tutorial());
     }

@@ -60,7 +60,7 @@ public class MainCamera : MonoBehaviour
                 pos.y = Mathf.Clamp(player.transform.position.y, -1f, 1f);
                 break;
 
-            case "복도 #F":
+            case "복도":
                 if (player.transform.position.y >= -7.8f)
                 {
                     pos.x = -17.5f;

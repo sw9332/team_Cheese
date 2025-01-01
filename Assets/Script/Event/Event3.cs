@@ -17,7 +17,7 @@ public class Event3 : MonoBehaviour
         if (first)
         {
             while (hp > 0) yield return null;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             dialogueManager.ShowDialogue(dialogueContentManager.d_event4);
             while (dialogueManager.dialogue_continue) yield return null;
             tutorialManager.TutorialUI.SetActive(true);

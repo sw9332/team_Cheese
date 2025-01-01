@@ -6,6 +6,8 @@ using System.Linq;
 
 public class GameSetting : MonoBehaviour
 {
+    public static int ScreenFrame = 60;
+
     public GameObject GraphicTab;
     public GameObject AudioTab;
     public GameObject KeyTab;
@@ -69,7 +71,7 @@ public class GameSetting : MonoBehaviour
         foreach (Resolution item in resolutions)
         {
             Dropdown.OptionData option = new Dropdown.OptionData();
-            option.text = item.width + "x" + item.height + " " + Application.targetFrameRate + "Hz";
+            option.text = item.width + "x" + item.height + " ";
             resolutionDropdown.options.Add(option);
             if (item.width == Screen.width && item.height == Screen.height) resolutionDropdown.value = optionNum;
             optionNum++;
@@ -100,6 +102,52 @@ public class GameSetting : MonoBehaviour
     void ScreenApply()
     {
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
+    }
+
+    //프레임 설정 부분---------------------------------------------------------------------------------------
+
+    public GameObject Check_30;
+    public GameObject Check_60;
+    public GameObject Check_144;
+
+    private int SaveFPS;
+    private int LoadFPS;
+
+    public void Frame(int fps)
+    {
+        SaveFPS = fps;
+
+        switch (fps)
+        {
+            case 30:
+                ScreenFrame = 30;
+                Check_30.SetActive(true);
+                Check_60.SetActive(false);
+                Check_144.SetActive(false);
+                break;
+
+            case 60:
+                ScreenFrame = 60;
+                Check_30.SetActive(false);
+                Check_60.SetActive(true);
+                Check_144.SetActive(false);
+                break;
+
+            case 144:
+                ScreenFrame = 144;
+                Check_30.SetActive(false);
+                Check_60.SetActive(false);
+                Check_144.SetActive(true);
+                break;
+        }
+
+        PlayerPrefs.SetInt("Frame", SaveFPS);
+    }
+
+    void FrameLoad()
+    {
+        LoadFPS = PlayerPrefs.GetInt("Frame", 60);
+        Frame(LoadFPS);
     }
 
     //그래픽 품질 설정 부분---------------------------------------------------------------------------------------
@@ -194,12 +242,14 @@ public class GameSetting : MonoBehaviour
         Background_sound_Setting();
         Effect_sound_Setting();
 
+        Application.targetFrameRate = ScreenFrame;
         if (gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape)) OK_Button();
     }
 
     void Start()
     {
         InitUI();
+        FrameLoad();
         GraphicLoad();
         SoundLoad();
     }
