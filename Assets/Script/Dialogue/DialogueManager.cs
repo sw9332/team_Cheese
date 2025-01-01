@@ -51,6 +51,8 @@ public class DialogueManager : MonoBehaviour
     public MiniGame minigame;
     public FadeManager fadeManager;
 
+    public Animator animator;
+
     private void Start()
     {
         text.text = "";
@@ -64,25 +66,26 @@ public class DialogueManager : MonoBehaviour
             contentsList.Add(dialogue.contents[i]);
             spriteList.Add(dialogue.sprites[i]);
         }
+
+        animator.Play("Dialogue Up");
+        StartCoroutine(startDialogueCoroutine());
         dialogue_continue = true;
         button_text.text = "¥Ÿ¿Ω";
         ingameUiPanel.SetActive(false);
-        DialoguePanel.SetActive(true);
-        StartCoroutine(startDialogueCoroutine());
         playerControl.isMove = false;
     }
 
     public void ExitDialogue()
     {
+        animator.Play("Dialogue Down");
         DialoguePanel = transform.GetChild(0).gameObject;
         text.text = "";
         contentsList.Clear();
         spriteList.Clear();
         count = 0;
         ingameUiPanel.SetActive(true);
-        DialoguePanel.SetActive(false);
         dialogue_continue = false;
-        if(!fadeManager.isFade) playerControl.isMove = true;
+        if (!fadeManager.isFade) playerControl.isMove = true;
     }
 
     IEnumerator startDialogueCoroutine()
@@ -91,11 +94,13 @@ public class DialogueManager : MonoBehaviour
         {
             sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
             is_talking = true;
+
             for (int i = 0; i < contentsList[count].Length; i++)
             {
                 text.text += contentsList[count][i];
                 yield return new WaitForSeconds(delay);
             }
+
             is_talking = false;
         }
 

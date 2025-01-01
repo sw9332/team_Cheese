@@ -72,13 +72,13 @@ public class DialogueChoiceManager : MonoBehaviour
 
     void Clear()
     {
+        dialogueManager.animator.Play("Dialogue Down");
         dialogueManager.DialoguePanel = transform.GetChild(0).gameObject;
         dialogueManager.text.text = "";
         dialogueManager.contentsList.Clear();
         dialogueManager.spriteList.Clear();
         dialogueManager.count = 0;
         dialogueManager.ingameUiPanel.SetActive(true);
-        dialogueManager.DialoguePanel.SetActive(false);
         dialogueManager.dialogue_continue = false;
         dialogueManager.is_ChoiceButton = false;
     }

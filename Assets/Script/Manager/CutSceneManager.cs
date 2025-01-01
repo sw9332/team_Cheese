@@ -158,13 +158,16 @@ public class CutSceneManager : MonoBehaviour
     {
         isCutScene = true;
         Move = false;
+
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
-        yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
+        StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
         while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(0.1f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos2);
-        yield return StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
+        StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
         while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(0.1f);
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
         float moveSpeed = 13f;
