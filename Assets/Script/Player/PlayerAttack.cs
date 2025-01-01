@@ -296,7 +296,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void showBulletNum()
     {
-        bulletNumText.text = " Bullet: " + bullet.bulletNum.ToString();
+        bulletNumText.text = "Bullet : " + bullet.bulletNum.ToString();
     }
     void Start()
     {
