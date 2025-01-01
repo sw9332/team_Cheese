@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogue_continue = false;
     public bool is_talking = false;
     public bool is_ChoiceButton = false;
+    public bool is_ChoiceExpected = false;
 
     public PlayerControl playerControl;
     public MiniGame minigame;
@@ -93,7 +94,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ExitDialogue()
     {
-        animator.Play("Dialogue Down");
+        if (!is_ChoiceExpected) animator.Play("Dialogue Down");
         DialoguePanel = transform.GetChild(0).gameObject;
         text.text = "";
         contentsList.Clear();

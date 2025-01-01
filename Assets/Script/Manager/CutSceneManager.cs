@@ -224,11 +224,14 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white));
         WhiteBackground.color = Color.white;
+
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
+        dialogueManager.is_ChoiceExpected = true;
         while (dialogueManager.dialogue_continue) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
         dialogueManager.ShowChoiceDialogue(true, "≥≠¿Ô¿Ã", "¿Œ«¸");
         while (dialogueManager.dialogue_continue) yield return null;
+
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
@@ -237,6 +240,7 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
+
         StartCoroutine(mainCamera.VibrationEffect(4, 0.1f));
         npc.Transformation(true);
         yield return new WaitForSeconds(2f);
