@@ -83,6 +83,12 @@ public class NPC : MonoBehaviour
                 UpdateDirection();
                 AnimationDirection("Walking", 1f);
 
+                if (die)
+                {
+                    animator.Play("Die");
+                    yield break;
+                }
+
                 Vector3 toPlayer = (player.transform.position - transform.position).normalized;
                 transform.position += toPlayer * speed * Time.deltaTime;
 
