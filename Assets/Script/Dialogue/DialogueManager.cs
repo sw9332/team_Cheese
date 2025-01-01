@@ -53,12 +53,6 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    private void Start()
-    {
-        text.text = "";
-        count = 0;
-    }
-
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
         for (int i = 0; i < dialogue.contents.Length; i++)
@@ -75,6 +69,28 @@ public class DialogueManager : MonoBehaviour
         playerControl.isMove = false;
     }
 
+    public void ShowChoiceDialogue(bool isChoice, string ChoiceButton_1, string ChoiceButton_2)
+    {
+        if (isChoice)
+        {
+            animator.Play("Dialogue Up");
+            dialogue_continue = true;
+            ChoiceText_1.text = ChoiceButton_1;
+            ChoiceText_2.text = ChoiceButton_2;
+            ChoiceButtonPanel.SetActive(true);
+            CloseButton.SetActive(false);
+            is_ChoiceButton = true;
+        }
+
+        else
+        {
+            dialogue_continue = false;
+            ChoiceButtonPanel.SetActive(false);
+            CloseButton.SetActive(true);
+            is_ChoiceButton = false;
+        }
+    }
+
     public void ExitDialogue()
     {
         animator.Play("Dialogue Down");
@@ -88,11 +104,12 @@ public class DialogueManager : MonoBehaviour
         if (!fadeManager.isFade) playerControl.isMove = true;
     }
 
-    IEnumerator startDialogueCoroutine()
+    public IEnumerator startDialogueCoroutine()
     {
         if (count == 0)
         {
             sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
+
             is_talking = true;
 
             for (int i = 0; i < contentsList[count].Length; i++)
@@ -106,57 +123,37 @@ public class DialogueManager : MonoBehaviour
 
         if (count != 0) //인덱스 오류로 인해 0일때와 아닐때 구분
         {
-            if (spriteList[count] != spriteList[count - 1])
-            {
-                sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
-            }
+            if (spriteList[count] != spriteList[count - 1]) sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
+
             is_talking = true;
+
             for (int i = 0; i < contentsList[count].Length; i++)
             {
                 text.text += contentsList[count][i];
                 yield return new WaitForSeconds(delay);
             }
+
             is_talking = false;
         }
-
 
         yield return null;
     }
 
-    public void ChoiceButton(bool isChoice, string ChoiceButton_1, string ChoiceButton_2)
-    {
-        if (isChoice)
-        {
-            ChoiceText_1.text = ChoiceButton_1;
-            ChoiceText_2.text = ChoiceButton_2;
-            ChoiceButtonPanel.SetActive(true);
-            CloseButton.SetActive(false);
-            is_ChoiceButton = true;
-        }
-
-        else
-        {
-            ChoiceButtonPanel.SetActive(false);
-            CloseButton.SetActive(true);
-            is_ChoiceButton = false;
-        }
-    }
-
     public void NextSentence()
     {
-        if (dialogue_continue && is_talking == false)
+        if (dialogue_continue && !is_ChoiceButton && is_talking == false)
         {
-            if (count == contentsList.Count - 2)
-            {
-                button_text.text = "닫기";
-            }
+            if (count == contentsList.Count - 2) button_text.text = "닫기";
+
             count++;
             text.text = "";
+
             if (count == contentsList.Count)
             {
                 StopCoroutine(startDialogueCoroutine());
                 ExitDialogue();
             }
+
             else
             {
                 StopCoroutine(startDialogueCoroutine());
@@ -165,23 +162,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (dialogue_continue && !is_talking)
         {
             if (Input.GetKeyDown(KeyCode.Space) && !is_ChoiceButton)
             {
-                if (count == contentsList.Count - 2)
-                {
-                    button_text.text = "닫기";
-                }
+                if (count == contentsList.Count - 2) button_text.text = "닫기";
+
                 count++;
                 text.text = "";
+
                 if (count == contentsList.Count)
                 {
                     StopCoroutine(startDialogueCoroutine());
                     ExitDialogue();
                 }
+
                 else
                 {
                     StopCoroutine(startDialogueCoroutine());
@@ -191,6 +188,12 @@ public class DialogueManager : MonoBehaviour
 
            
         }
+    }
+
+    void Start()
+    {
+        text.text = "";
+        count = 0;
     }
 
     //혹시나 버그날 때 복구해서 사용할 코드...

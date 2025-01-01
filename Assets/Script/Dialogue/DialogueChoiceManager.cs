@@ -16,7 +16,7 @@ public class DialogueChoiceManager : MonoBehaviour
 
     public void Choice_1()
     {
-        dialogueManager.ChoiceButton(false, "", "");
+        dialogueManager.ShowChoiceDialogue(false, "", "");
         Clear();
 
         switch (GameManager.GameState)
@@ -27,7 +27,7 @@ public class DialogueChoiceManager : MonoBehaviour
 
     public void Choice_2()
     {
-        dialogueManager.ChoiceButton(false, "", "");
+        dialogueManager.ShowChoiceDialogue(false, "", "");
         Clear();
 
         switch (GameManager.GameState)

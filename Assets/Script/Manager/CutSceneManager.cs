@@ -227,7 +227,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
         while (dialogueManager.dialogue_continue) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
-        dialogueManager.ChoiceButton(true, "난쟁이", "인형");
+        dialogueManager.ShowChoiceDialogue(true, "난쟁이", "인형");
         while (dialogueManager.dialogue_continue) yield return null;
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(true);
