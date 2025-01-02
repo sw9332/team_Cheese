@@ -11,10 +11,9 @@ public class NPCEnemy : MonoBehaviour
     private CutSceneManager cutSceneManager;
     private NPC npc;
 
+    private Animator animator;
     private Rigidbody2D rigid;
-
     public GameObject CtrlKey;
-    private Color originalColor;
 
     public int HP = 5;
     public int HP2 = 5;
@@ -25,18 +24,23 @@ public class NPCEnemy : MonoBehaviour
     public bool event1 = false;
     public bool event2 = false;
 
-    IEnumerator FlashRed()
-    {
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = originalColor;
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) return;
-        if (other.CompareTag("Bullet") && !event1 && !event2) HP--; StartCoroutine(FlashRed());
-        if (other.CompareTag("Bullet") && event1 && event2) HP2--; StartCoroutine(FlashRed());
+
+        if (other.CompareTag("Bullet") && !event1 && !event2)
+        {
+            animator.SetTrigger("Damage");
+            HP--;
+            StartCoroutine(WaitForDamage());
+        }
+
+        if (other.CompareTag("Bullet") && event1 && event2)
+        {
+            animator.SetTrigger("Damage");
+            HP2--;
+            StartCoroutine(WaitForDamage());
+        }
 
         if (other.CompareTag("NPC Boss Event 1"))
         {
@@ -53,6 +57,12 @@ public class NPCEnemy : MonoBehaviour
         }
 
         if (other.CompareTag("NPC Boss Event 3")) other.gameObject.SetActive(false);
+    }
+
+    IEnumerator WaitForDamage()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.SetTrigger("idle");
     }
 
     void Update()
@@ -90,7 +100,7 @@ public class NPCEnemy : MonoBehaviour
         npc = FindFirstObjectByType<NPC>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        originalColor = spriteRenderer.color;
     }
 }

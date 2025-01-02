@@ -16,7 +16,7 @@ public class DialogueChoiceManager : MonoBehaviour
 
     public void Choice_1()
     {
-        dialogueManager.ChoiceButton(false, "", "");
+        dialogueManager.ShowChoiceDialogue(false, "", "");
         Clear();
 
         switch (GameManager.GameState)
@@ -27,7 +27,7 @@ public class DialogueChoiceManager : MonoBehaviour
 
     public void Choice_2()
     {
-        dialogueManager.ChoiceButton(false, "", "");
+        dialogueManager.ShowChoiceDialogue(false, "", "");
         Clear();
 
         switch (GameManager.GameState)
@@ -78,9 +78,9 @@ public class DialogueChoiceManager : MonoBehaviour
         dialogueManager.spriteList.Clear();
         dialogueManager.count = 0;
         dialogueManager.ingameUiPanel.SetActive(true);
-        dialogueManager.DialoguePanel.SetActive(false);
         dialogueManager.dialogue_continue = false;
         dialogueManager.is_ChoiceButton = false;
+        dialogueManager.is_ChoiceExpected = false;
     }
 
     void Update()
