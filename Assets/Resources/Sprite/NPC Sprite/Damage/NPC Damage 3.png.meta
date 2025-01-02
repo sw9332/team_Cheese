@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC Damage 3_1
+      name: NPC Damage 3
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
         width: 48
         height: 32
       alignment: 9
-      pivot: {x: 0.48, y: 0.34}
+      pivot: {x: 0.48, y: 0.345}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,8 +141,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      NPC Damage 3: -1112999351
       NPC Damage 3_0: 1776527166
-      NPC Damage 3_1: -1112999351
       NPC Damage 3_2: -741937545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
