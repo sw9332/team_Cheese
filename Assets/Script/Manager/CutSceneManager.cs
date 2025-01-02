@@ -112,20 +112,20 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
+        // NPC HP : 4
+        while (npcEnemy.HP > 4) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
         // NPC HP : 3
         while (npcEnemy.HP > 3) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2);
+        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3);
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP : 1
         while (npcEnemy.HP > 1) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3);
-        while (dialogueManager.dialogue_continue) yield return null;
-        npcEnemy.CtrlKey.SetActive(true);
-
-        // NPC HP : -1
-        while (npcEnemy.HP > -1) yield return null;
         GameManager.GameState = "CutScene2";
         npcEnemy.CtrlKey.SetActive(false);
 
@@ -279,20 +279,20 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
+        // NPC HP2 : 4
+        while (npcEnemy.HP2 > 4) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        npcEnemy.CtrlKey.SetActive(true);
+
         // NPC HP2 : 3
         while (npcEnemy.HP2 > 3) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4);
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP2 : 1
         while (npcEnemy.HP2 > 1) yield return null;
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4);
-        while (dialogueManager.dialogue_continue) yield return null;
-        npcEnemy.CtrlKey.SetActive(true);
-
-        // NPC HP2 : -1
-        while (npcEnemy.HP2 > -1) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5);
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(false);

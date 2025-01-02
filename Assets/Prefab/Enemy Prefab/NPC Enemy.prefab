@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1503124650602078501}
   - component: {fileID: 1609507939016078728}
   - component: {fileID: 8516259668794146152}
+  - component: {fileID: 8281458805752365313}
   m_Layer: 6
   m_Name: NPC Enemy
   m_TagString: Push_Object
@@ -184,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -871153960, guid: 6ada7aff926bb804a980044c4583a119, type: 3}
+  m_Sprite: {fileID: 555586199, guid: 3fb3beefef77081489cca0d719924e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -231,7 +232,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 1.75}
+    oldSize: {x: 0.875, y: 1.375}
     newSize: {x: 0.875, y: 1.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -276,14 +277,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 1.75}
+    oldSize: {x: 0.875, y: 1.375}
     newSize: {x: 0.875, y: 1.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1}
+  m_Size: {x: 0.7, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &1609507939016078728
 Rigidbody2D:
@@ -329,3 +330,24 @@ MonoBehaviour:
   HP2: 5
   event1: 0
   event2: 0
+--- !u!95 &8281458805752365313
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575412759122800928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23ec0f3fa2cfe2a409be761691b167e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
