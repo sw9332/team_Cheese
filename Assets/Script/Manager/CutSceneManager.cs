@@ -124,8 +124,8 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
-        // NPC HP : 1
-        while (npcEnemy.HP > 1) yield return null;
+        // NPC HP : 2
+        while (npcEnemy.HP > 2) yield return null;
         GameManager.GameState = "CutScene2";
         npcEnemy.CtrlKey.SetActive(false);
 
@@ -291,8 +291,8 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
-        // NPC HP2 : 1
-        while (npcEnemy.HP2 > 1) yield return null;
+        // NPC HP2 : 2
+        while (npcEnemy.HP2 > 2) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5);
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(false);
