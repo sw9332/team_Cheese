@@ -142,6 +142,9 @@ public class NPC : MonoBehaviour
                     }
                 }
 
+                AnimationDirection("Rush Start", 2);
+                yield return new WaitForSeconds(1f);
+
                 while (rushing)
                 {
                     AnimationDirection("Walking", 2f);
