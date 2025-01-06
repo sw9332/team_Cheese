@@ -72,7 +72,6 @@ public class DialogueChoiceManager : MonoBehaviour
 
     void Clear()
     {
-        dialogueManager.DialoguePanel = transform.GetChild(0).gameObject;
         dialogueManager.text.text = "";
         dialogueManager.contentsList.Clear();
         dialogueManager.spriteList.Clear();

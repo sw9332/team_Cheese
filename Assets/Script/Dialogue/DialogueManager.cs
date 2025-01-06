@@ -95,7 +95,6 @@ public class DialogueManager : MonoBehaviour
     public void ExitDialogue()
     {
         if (!is_ChoiceExpected) animator.Play("Dialogue Down");
-        DialoguePanel = transform.GetChild(0).gameObject;
         text.text = "";
         contentsList.Clear();
         spriteList.Clear();
