@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     public bool is_ChoiceButton = false;
     public bool is_ChoiceExpected = false;
 
-    private PlayerControl playerControl;
+    public PlayerControl playerControl;
     private FadeManager fadeManager;
 
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
@@ -174,7 +174,6 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        playerControl = FindFirstObjectByType<PlayerControl>();
         fadeManager = FindFirstObjectByType<FadeManager>();
 
         text.text = "";
