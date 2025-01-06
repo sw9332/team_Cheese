@@ -13,7 +13,7 @@ public class FadeManager : MonoBehaviour
     public float fadeDuration = 1f;
     public bool isFade = false;
 
-    public IEnumerator FadeIn(Image ui, Color color)
+    public IEnumerator FadeIn(Image ui, Color color, bool active)
     {
         ui.gameObject.SetActive(true);
         ui.color = color;
@@ -27,7 +27,7 @@ public class FadeManager : MonoBehaviour
         }
 
         isFade = false;
-        ui.gameObject.SetActive(false);
+        ui.gameObject.SetActive(active);
 
         if (playerControl != null) playerControl.isMove = true;
     }
@@ -56,7 +56,7 @@ public class FadeManager : MonoBehaviour
         playerControl.isMove = false;
         yield return StartCoroutine(FadeOut(fadeImage, Color.black));
         GameManager.GameState = state;
-        yield return StartCoroutine(FadeIn(fadeImage, Color.black));
+        yield return StartCoroutine(FadeIn(fadeImage, Color.black, false));
         playerControl.isMove = true;
     }
 

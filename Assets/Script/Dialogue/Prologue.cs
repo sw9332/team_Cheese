@@ -21,8 +21,8 @@ public class Prologue : MonoBehaviour
 
     void Update()
     {
-        if (dialogueManager.count == 3) StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
-        if (dialogueManager.count > 3 ) StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        if (dialogueManager.count == 3) StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+        if (dialogueManager.count > 3 ) StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         if (dialogueManager.dialogue_continue == false)
         {

@@ -83,6 +83,12 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void Camera_ON_OFF()
+    {
+        if (inventoryManager.Camera) CameraUI.SetActive(true);
+        else CameraUI.SetActive(false);
+    }
+
     public void CameraEvent() //미니게임 실행 조건
     {
         if (is_bear && is_cake && is_playerPos) //튜토리얼 조건
@@ -109,6 +115,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         Pause();
+        Camera_ON_OFF();
         CameraEvent();
     }
 

@@ -15,6 +15,6 @@ public class StartScene : MonoBehaviour
     void Start()
     {
         fadeManager = FindObjectOfType<FadeManager>();
-        StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
     }
 }

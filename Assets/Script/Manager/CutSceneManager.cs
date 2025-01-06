@@ -76,7 +76,7 @@ public class CutSceneManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -105,7 +105,7 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         textManager.ShowDateText("XX.10.01", 3f);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         // NPC HP : 5
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
@@ -135,7 +135,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -222,7 +222,7 @@ public class CutSceneManager : MonoBehaviour
         npc.transform.position = new Vector3(-49f, 26.5f, 0);
         Effect.SetActive(false);
         BlackBackground.gameObject.SetActive(false);
-        yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white));
+        yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white, false));
         WhiteBackground.color = Color.white;
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
@@ -308,7 +308,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
         while (dialogueManager.dialogue_continue) yield return null;
-        yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white));
+        yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white, false));
         fadeManager.fadeImage.gameObject.SetActive(false);
         WhiteBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
