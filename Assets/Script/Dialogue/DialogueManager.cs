@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject CloseButton;
 
+    public Animator animator;
+
     public int count; // 대화 진행상황 표시용, 확인 후 private 로 변경 필요
     public float delay = 0.03f;
 
@@ -33,8 +35,6 @@ public class DialogueManager : MonoBehaviour
 
     private PlayerControl playerControl;
     private FadeManager fadeManager;
-
-    private Animator animator;
 
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
@@ -176,8 +176,6 @@ public class DialogueManager : MonoBehaviour
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
         fadeManager = FindFirstObjectByType<FadeManager>();
-
-        animator = GetComponent<Animator>();
 
         text.text = "";
         count = 0;
