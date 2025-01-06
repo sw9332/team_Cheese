@@ -19,6 +19,7 @@ public class CutSceneManager : MonoBehaviour
     private AlbumManager albumManager;
     private GameManager gameManager;
     private TextManager textManager;
+    private TutorialManager tutorialManager;
 
     [Header("Image")]
     public Image BlackBackground;
@@ -53,6 +54,19 @@ public class CutSceneManager : MonoBehaviour
     public bool Move = true;
     public bool isCutScene = false;
     public bool isCutScene4 = false;
+
+    public IEnumerator Prologue()
+    {
+        isCutScene = true;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
+        while (dialogueManager.count < 3) yield return null;
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = false;
+        tutorialManager.TutorialType(1);
+        tutorialManager.TutorialUI.SetActive(true);
+    }
 
     public IEnumerator Tutorial()
     {
@@ -363,7 +377,9 @@ public class CutSceneManager : MonoBehaviour
         albumManager = FindFirstObjectByType<AlbumManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         textManager = FindFirstObjectByType<TextManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
 
+        StartCoroutine(Prologue());
         StartCoroutine(Tutorial());
     }
 }
