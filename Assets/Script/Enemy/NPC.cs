@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
     private CutSceneManager cutSceneManager;
 
     public Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     public Slider Hp;
 
@@ -307,11 +308,18 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player")) meleeAttack = false;
     }
 
+    void Update()
+    {
+        if (player.transform.position.y > transform.position.y - 1) spriteRenderer.sortingOrder = 15;
+        else spriteRenderer.sortingOrder = 10;
+    }
+
     void Start()
     {
         player = FindFirstObjectByType<PlayerControl>();
         gameManager = FindFirstObjectByType<GameManager>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         animator.Play("NPC");
     }
