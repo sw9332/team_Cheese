@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public List<string> contentsList;
+    public List<Sprite> spriteList;
+
     public Text text;
     public SpriteRenderer sprite;
     public Text button_text;
-
-    public List<string> contentsList;
-    public List<Sprite> spriteList;
 
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
@@ -31,11 +31,10 @@ public class DialogueManager : MonoBehaviour
     public bool is_ChoiceButton = false;
     public bool is_ChoiceExpected = false;
 
-    public PlayerControl playerControl;
-    public MiniGame minigame;
-    public FadeManager fadeManager;
+    private PlayerControl playerControl;
+    private FadeManager fadeManager;
 
-    public Animator animator;
+    private Animator animator;
 
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
@@ -175,6 +174,11 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        fadeManager = FindFirstObjectByType<FadeManager>();
+
+        animator = GetComponent<Animator>();
+
         text.text = "";
         count = 0;
     }
