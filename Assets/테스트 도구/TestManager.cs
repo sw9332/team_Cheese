@@ -18,6 +18,9 @@ public class TestManager : MonoBehaviour
     public InputField Dialogue_Speed_Input;
 
     public Button TestButton;
+    public Button Camera_ON_OFF_Button;
+
+    public Text CameraText;
 
     public void Player_Position()
     {
@@ -42,8 +45,17 @@ public class TestManager : MonoBehaviour
 
     public void Camera_ON_OFF()
     {
-        if (inventoryManager.Camera == false) inventoryManager.Camera = true;
-        else inventoryManager.Camera = false;
+        if (inventoryManager.Camera == false)
+        {
+            CameraText.text = "ON";
+            inventoryManager.Camera = true;
+        }
+            
+        else
+        {
+            CameraText.text = "OFF";
+            inventoryManager.Camera = false;
+        }
     }
 
     public void Test_UI_True()
