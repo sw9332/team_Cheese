@@ -32,7 +32,7 @@ public class NPC : MonoBehaviour
 
     private float RUSH_SPEED = 15f;
     private float MOVE_STEP = 5f;
-    private float RANGED_ATTACK_DELAY = 0.1f;
+    private float RANGED_ATTACK_DELAY = 1f;
     private float MELEE_ATTACK_DELAY = 1f;
 
     private Vector3 lastPlayerDirection;
@@ -234,11 +234,11 @@ public class NPC : MonoBehaviour
             {
                 attackDamage = true;
                 Instantiate(bullet, transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(1.5f);
+                //yield return new WaitForSeconds(1.5f);
                 attackDamage = false;
             }
 
-            yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
+            //yield return new WaitForSeconds(RANGED_ATTACK_DELAY);
         }
     }
 
