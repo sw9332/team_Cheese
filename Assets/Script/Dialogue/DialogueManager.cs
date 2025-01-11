@@ -14,6 +14,9 @@ public class DialogueManager : MonoBehaviour
     public SpriteRenderer sprite;
     public Text button_text;
 
+    public Image Player;
+    public Image NPC;
+
     public GameObject ingameUiPanel;
     public GameObject DialoguePanel;
     public GameObject ChoiceButtonPanel;
@@ -36,8 +39,23 @@ public class DialogueManager : MonoBehaviour
     public PlayerControl playerControl;
     private FadeManager fadeManager;
 
+    public void ShowImage()
+    {
+        if (count < nameList.Count)
+        {
+            switch (nameList[count])
+            {
+                case "주인공": Player.gameObject.SetActive(true); NPC.gameObject.SetActive(false); break;
+                case "NPC": Player.gameObject.SetActive(false); NPC.gameObject.SetActive(true); break;
+            }
+        }
+    }
+
     public void ShowDialogue(Dialogue dialogue) // dlalogue의 sprite정보와 contents 정보를 받아오는 함수
     {
+        contentsList.Clear();
+        nameList.Clear();
+
         for (int i = 0; i < dialogue.contents.Length; i++)
         {
             contentsList.Add(dialogue.contents[i]);
@@ -92,6 +110,8 @@ public class DialogueManager : MonoBehaviour
         {
             is_talking = true;
 
+            ShowImage();
+
             for (int i = 0; i < contentsList[count].Length; i++)
             {
                 text.text += contentsList[count][i];
@@ -104,6 +124,8 @@ public class DialogueManager : MonoBehaviour
         if (count != 0) //인덱스 오류로 인해 0일때와 아닐때 구분
         {
             is_talking = true;
+
+            ShowImage();
 
             for (int i = 0; i < contentsList[count].Length; i++)
             {
@@ -121,12 +143,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue_continue && !is_ChoiceButton && is_talking == false)
         {
-            if (count == contentsList.Count - 2) button_text.text = "닫기";
+            if (count >= contentsList.Count - 1) button_text.text = "닫기";
 
             count++;
             text.text = "";
 
-            if (count == contentsList.Count)
+            ShowImage();
+
+            if (count >= contentsList.Count)
             {
                 StopCoroutine(startDialogueCoroutine());
                 ExitDialogue();
@@ -146,12 +170,12 @@ public class DialogueManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && !is_ChoiceButton)
             {
-                if (count == contentsList.Count - 2) button_text.text = "닫기";
+                if (count >= contentsList.Count - 1) button_text.text = "닫기";
 
                 count++;
                 text.text = "";
 
-                if (count == contentsList.Count)
+                if (count >= contentsList.Count)
                 {
                     StopCoroutine(startDialogueCoroutine());
                     ExitDialogue();
