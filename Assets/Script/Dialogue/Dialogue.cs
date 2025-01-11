@@ -8,4 +8,5 @@ public class Dialogue
     [TextArea(1, 2)]
     public string[] contents;
     public string[] name;
+    public int[] fontSize;
 }

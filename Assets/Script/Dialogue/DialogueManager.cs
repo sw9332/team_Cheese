@@ -9,9 +9,9 @@ public class DialogueManager : MonoBehaviour
 {
     public List<string> contentsList;
     public List<string> nameList;
+    public List<int> fontSizeList;
 
     public Text text;
-    public SpriteRenderer sprite;
     public Text button_text;
 
     public Image Player;
@@ -56,11 +56,13 @@ public class DialogueManager : MonoBehaviour
     {
         contentsList.Clear();
         nameList.Clear();
+        fontSizeList.Clear();
 
         for (int i = 0; i < dialogue.contents.Length; i++)
         {
             contentsList.Add(dialogue.contents[i]);
             nameList.Add(dialogue.name[i]);
+            fontSizeList.Add(dialogue.fontSize[i]);
         }
 
         is_talking = true;
@@ -106,6 +108,7 @@ public class DialogueManager : MonoBehaviour
         text.text = "";
         contentsList.Clear();
         nameList.Clear();
+        fontSizeList.Clear();
         count = 0;
         ingameUiPanel.SetActive(true);
         dialogue_continue = false;
@@ -121,6 +124,7 @@ public class DialogueManager : MonoBehaviour
             is_talking = true;
 
             ShowImage();
+            text.fontSize = fontSizeList[count];
 
             for (int i = 0; i < contentsList[count].Length; i++)
             {
@@ -136,6 +140,7 @@ public class DialogueManager : MonoBehaviour
             is_talking = true;
 
             ShowImage();
+            text.fontSize = fontSizeList[count];
 
             for (int i = 0; i < contentsList[count].Length; i++)
             {
