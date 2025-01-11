@@ -80,6 +80,8 @@ public class DialogueChoiceManager : MonoBehaviour
         dialogueManager.dialogue_continue = false;
         dialogueManager.is_ChoiceButton = false;
         dialogueManager.is_ChoiceExpected = false;
+        dialogueManager.Player.gameObject.SetActive(false);
+        dialogueManager.NPC.gameObject.SetActive(false);
     }
 
     void Update()

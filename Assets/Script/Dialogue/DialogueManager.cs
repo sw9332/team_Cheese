@@ -102,6 +102,8 @@ public class DialogueManager : MonoBehaviour
         count = 0;
         ingameUiPanel.SetActive(true);
         dialogue_continue = false;
+        Player.gameObject.SetActive(false);
+        NPC.gameObject.SetActive(false);
         if (!fadeManager.isFade) playerControl.isMove = true;
     }
 
