@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
         {
             switch (nameList[count])
             {
+                case "": Player.gameObject.SetActive(false); NPC.gameObject.SetActive(false); break;
                 case "¡÷¿Œ∞¯": Player.gameObject.SetActive(true); NPC.gameObject.SetActive(false); break;
                 case "NPC": Player.gameObject.SetActive(false); NPC.gameObject.SetActive(true); break;
             }
