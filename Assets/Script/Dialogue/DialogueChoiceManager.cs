@@ -74,7 +74,7 @@ public class DialogueChoiceManager : MonoBehaviour
     {
         dialogueManager.text.text = "";
         dialogueManager.contentsList.Clear();
-        dialogueManager.spriteList.Clear();
+        dialogueManager.nameList.Clear();
         dialogueManager.count = 0;
         dialogueManager.ingameUiPanel.SetActive(true);
         dialogueManager.dialogue_continue = false;

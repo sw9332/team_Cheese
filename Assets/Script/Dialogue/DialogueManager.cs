@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public List<string> contentsList;
-    public List<Sprite> spriteList;
+    public List<string> nameList;
 
     public Text text;
     public SpriteRenderer sprite;
@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < dialogue.contents.Length; i++)
         {
             contentsList.Add(dialogue.contents[i]);
-            spriteList.Add(dialogue.sprites[i]);
+            nameList.Add(dialogue.name[i]);
         }
 
         animator.Play("Dialogue Up");
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         if (!is_ChoiceExpected) animator.Play("Dialogue Down");
         text.text = "";
         contentsList.Clear();
-        spriteList.Clear();
+        nameList.Clear();
         count = 0;
         ingameUiPanel.SetActive(true);
         dialogue_continue = false;
@@ -90,8 +90,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (count == 0)
         {
-            sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
-
             is_talking = true;
 
             for (int i = 0; i < contentsList[count].Length; i++)
@@ -105,8 +103,6 @@ public class DialogueManager : MonoBehaviour
 
         if (count != 0) //인덱스 오류로 인해 0일때와 아닐때 구분
         {
-            if (spriteList[count] != spriteList[count - 1]) sprite.GetComponent<SpriteRenderer>().sprite = spriteList[count];
-
             is_talking = true;
 
             for (int i = 0; i < contentsList[count].Length; i++)
