@@ -63,12 +63,19 @@ public class DialogueManager : MonoBehaviour
             nameList.Add(dialogue.name[i]);
         }
 
+        is_talking = true;
         animator.Play("Dialogue Up");
-        StartCoroutine(startDialogueCoroutine());
+        StartCoroutine(WaitForDialogue());
         dialogue_continue = true;
         button_text.text = "¥Ÿ¿Ω";
         ingameUiPanel.SetActive(false);
         playerControl.isMove = false;
+    }
+
+    IEnumerator WaitForDialogue()
+    {
+        yield return new WaitForSeconds(0.3f);
+        StartCoroutine(startDialogueCoroutine());
     }
 
     public void ShowChoiceDialogue(bool isChoice, string ChoiceButton_1, string ChoiceButton_2)
