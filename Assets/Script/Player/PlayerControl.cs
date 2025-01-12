@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    private Player player;
     private PlayerAttack playerAttack;
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
@@ -220,6 +217,37 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void PushControl()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && isPush)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
+            else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
+            else if (Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
+            else if (Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
+        }
+
+        else isPush = false;
+    }
+
+    void PullControl()
+    {
+
+    }
+
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
@@ -246,20 +274,10 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        // Push Object movement
         if (other.CompareTag("Push_Object"))
         {
             isPush = true;
-
-            if (Input.GetKey(KeyCode.LeftShift) && isPush)
-            {
-                if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
-                else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
-                else if (Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
-                else if (Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
-            }
-
-            else isPush = false;
+            PushControl();
         }
 
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
@@ -271,19 +289,6 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
-    public IEnumerator Damage()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.05f);
-            spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
     void Update()
     {
         MoveControl();
@@ -292,7 +297,6 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        player = FindFirstObjectByType<Player>();
         stamina = FindFirstObjectByType<Stamina>();
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
