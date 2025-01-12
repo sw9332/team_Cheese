@@ -25,11 +25,6 @@ public class Object_Being_Pushed : MonoBehaviour
         FreezeY = false;
     }
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     void Update()
     {
         if (PlayerControl.speed == 2)
@@ -51,5 +46,10 @@ public class Object_Being_Pushed : MonoBehaviour
         }
 
         else rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 }
