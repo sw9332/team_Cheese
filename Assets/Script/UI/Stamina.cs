@@ -7,19 +7,20 @@ public class Stamina : MonoBehaviour
 {
     public Slider playerStaminaBar;
     public bool isPlayerRunning;
-    private PlayerControl playerControl;
 
     void staminaChage()
     {
-        if (isPlayerRunning== true && playerControl.isPush != true)
+        if (isPlayerRunning && !PlayerControl.isPush)
         {
             staminaDown();
         }
+            
         else
         {
             staminaUp();
         }
     }
+
     void staminaDown()
     {
         playerStaminaBar.value -= 0.5f * Time.deltaTime;
@@ -33,7 +34,6 @@ public class Stamina : MonoBehaviour
     void Start()
     {
         playerStaminaBar.value = 1f;
-        playerControl = FindObjectOfType<PlayerControl>();
     }
 
     void Update()

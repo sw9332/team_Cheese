@@ -16,12 +16,14 @@ public class PlayerControl : MonoBehaviour
 
     public static float speed = 2.5f;
 
+    public static bool isPush = false;
+    public static bool isPull = false;
+
     public static bool MoveX = false;
     public static bool MoveY = false;
 
     public bool GameEnd = false;
     public bool isMove = true; // if isMove == false -> can't move
-    public bool isPush = false; // if isPush == false -> can't push Push Object.
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
