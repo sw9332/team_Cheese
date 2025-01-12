@@ -269,11 +269,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Push_Object"))
-        {
-            isPush = true;
-        }
-
+        if (other.CompareTag("Push_Object")) isPush = true;
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
     }
 
