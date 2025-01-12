@@ -230,11 +230,6 @@ public class PlayerControl : MonoBehaviour
         else isPush = false;
     }
 
-    void PullControl()
-    {
-
-    }
-
     public IEnumerator Damage()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -277,7 +272,6 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("Push_Object"))
         {
             isPush = true;
-            PushControl();
         }
 
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
@@ -293,6 +287,7 @@ public class PlayerControl : MonoBehaviour
     {
         MoveControl();
         DamageControl();
+        PushControl();
     }
 
     void Start()
