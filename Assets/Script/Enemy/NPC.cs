@@ -41,6 +41,8 @@ public class NPC : MonoBehaviour
     public void Original()
     {
         animator.Play("NPC");
+        Hp.gameObject.SetActive(false);
+        cutSceneManager.Blocking_2.SetActive(false);
         transform.position = new Vector2(-68f, 26f);
     }
 
