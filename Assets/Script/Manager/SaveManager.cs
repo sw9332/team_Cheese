@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player player;
+
+    public Vector2 PlayerPosition;
+    public float Time;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerPosition.x = player.transform.position.x;
+            PlayerPosition.y = player.transform.position.y;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        player = FindFirstObjectByType<Player>();
     }
 }
