@@ -14,18 +14,6 @@ public class InventoryManager : MonoBehaviour
     private PlayerAttack playerattack;
     private ItemManager itemManager;
 
-    public void LoadItemSprite(string id)
-    {
-        for (int i = 0; i < SlotDB.Length; i++)
-        {
-            if (string.IsNullOrEmpty(SlotDB[i]))
-            {
-                SlotImageDB[i].sprite = itemManager.GetItemSprite(id);
-                break;
-            }
-        }
-    }
-
     public void PickUpItem(Collider2D item)
     {
         for (int i = 0; i < SlotDB.Length; i++)

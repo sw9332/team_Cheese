@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     private PlayerControl player;
+    private ItemManager itemManager;
     private InventoryManager inventoryManager;
 
     public Vector2 PlayerPosition;
@@ -29,9 +30,9 @@ public class SaveManager : MonoBehaviour
 
     void Update()
     {
-        if (PlayerPosition != null && GameSate != null && Inventory != null)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (PlayerPosition != null && GameSate != null && Inventory != null)
             {
                 player.transform.position = PlayerPosition;
                 GameManager.GameState = GameSate;
@@ -39,15 +40,18 @@ public class SaveManager : MonoBehaviour
                 for (int i = 0; i < Inventory.Length; i++)
                 {
                     inventoryManager.SlotDB[i] = Inventory[i];
-                    inventoryManager.LoadItemSprite(Inventory[i]);
+                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(Inventory[i]);
                 }
             }
+
+            else return;
         }
     }
 
     void Start()
     {
         player = FindFirstObjectByType<PlayerControl>();
+        itemManager = FindFirstObjectByType<ItemManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
 }
