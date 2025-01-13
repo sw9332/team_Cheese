@@ -32,7 +32,7 @@ public class SaveManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (PlayerPosition != null && GameSate != null && Inventory != null)
+            if ((PlayerPosition.x != 0 && PlayerPosition.y != 0) && GameSate != null)
             {
                 player.transform.position = PlayerPosition;
                 GameManager.GameState = GameSate;
