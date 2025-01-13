@@ -9,15 +9,24 @@ public class SaveManager : MonoBehaviour
     private ItemManager itemManager;
     private InventoryManager inventoryManager;
 
+    [Header("플레이어 저장 데이터")]
     public Vector2 PlayerPosition;
-    public string GameSate;
+    public bool Move;
+
+    [Header("게임 상태 저장 데이터")]
+    public string gameSate;
+    public bool gameEnd;
+
+    [Header("인벤토리 저장 데이터")]
     public string[] Inventory;
 
     public void Save()
     {
-        PlayerPosition.x = player.transform.position.x;
-        PlayerPosition.y = player.transform.position.y;
-        GameSate = GameManager.GameState;
+        PlayerPosition = player.transform.position;
+        Move = player.isMove;
+
+        gameSate = GameManager.GameState;
+        gameEnd = GameManager.GameEnd;
 
         for (int i = 0; i < Inventory.Length; i++)
         {
@@ -27,21 +36,22 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
-        if ((PlayerPosition.x != 0 && PlayerPosition.y != 0) && GameSate != null)
+        if ((PlayerPosition.x != 0 && PlayerPosition.y != 0) && gameSate != null)
         {
             player.transform.position = PlayerPosition;
-            GameManager.GameState = GameSate;
+            player.isMove = Move;
 
-            if (inventoryManager.SlotDB != null)
+            GameManager.GameState = gameSate;
+            GameManager.GameEnd = gameEnd;
+
+            for (int i = 0; i < Inventory.Length; i++)
             {
-                for (int i = 0; i < Inventory.Length; i++)
+                if (Inventory[i] != null)
                 {
                     inventoryManager.SlotDB[i] = Inventory[i];
                     inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(Inventory[i]);
                 }
             }
-
-            else return;
         }
 
         else return;
