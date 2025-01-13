@@ -13,39 +13,43 @@ public class SaveManager : MonoBehaviour
     public string GameSate;
     public string[] Inventory;
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void Save()
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerPosition.x = player.transform.position.x;
-            PlayerPosition.y = player.transform.position.y;
-            GameSate = GameManager.GameState;
+        PlayerPosition.x = player.transform.position.x;
+        PlayerPosition.y = player.transform.position.y;
+        GameSate = GameManager.GameState;
 
-            for(int i = 0; i < Inventory.Length; i++)
+        for (int i = 0; i < Inventory.Length; i++)
+        {
+            Inventory[i] = inventoryManager.SlotDB[i];
+        }
+    }
+
+    public void Load()
+    {
+        if ((PlayerPosition.x != 0 && PlayerPosition.y != 0) && GameSate != null)
+        {
+            player.transform.position = PlayerPosition;
+            GameManager.GameState = GameSate;
+
+            for (int i = 0; i < Inventory.Length; i++)
             {
-                Inventory[i] = inventoryManager.SlotDB[i];
+                inventoryManager.SlotDB[i] = Inventory[i];
+                inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(Inventory[i]);
             }
         }
+
+        else return;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) Save();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if ((PlayerPosition.x != 0 && PlayerPosition.y != 0) && GameSate != null)
-            {
-                player.transform.position = PlayerPosition;
-                GameManager.GameState = GameSate;
-
-                for (int i = 0; i < Inventory.Length; i++)
-                {
-                    inventoryManager.SlotDB[i] = Inventory[i];
-                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(Inventory[i]);
-                }
-            }
-
-            else return;
-        }
+        if (Input.GetKeyDown(KeyCode.R)) Load();
     }
 
     void Start()
