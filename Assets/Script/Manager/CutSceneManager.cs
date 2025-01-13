@@ -293,6 +293,9 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
+        playerControl.transform.position = new Vector2(-49, 29f);
+        playerControl.Direction = "Up";
+
         // NPC HP2 : 4
         while (npcEnemy.HP2 > 4) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
