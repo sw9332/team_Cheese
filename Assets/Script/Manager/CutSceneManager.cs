@@ -50,6 +50,11 @@ public class CutSceneManager : MonoBehaviour
     public Animator BigTeddyBearBosAnimation2;
     public Animator BigTeddyBearBosAnimation3;
 
+    [Header("Chapter 1 Save")]
+    public GameObject Chapter1_Save1;
+    public GameObject Chapter1_Save2;
+    public GameObject Chapter1_Save3;
+
     [Header("Check")]
     public bool Move = true;
     public bool isCutScene = false;

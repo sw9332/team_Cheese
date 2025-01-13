@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -12,6 +13,18 @@ public class InventoryManager : MonoBehaviour
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
+
+    public void LoadItemSprite(string id)
+    {
+        for (int i = 0; i < SlotDB.Length; i++)
+        {
+            if (string.IsNullOrEmpty(SlotDB[i]))
+            {
+                SlotImageDB[i].sprite = itemManager.GetItemSprite(id);
+                break;
+            }
+        }
+    }
 
     public void PickUpItem(Collider2D item)
     {
