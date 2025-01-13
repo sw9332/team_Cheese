@@ -22,9 +22,13 @@ public class EnemyManager : MonoBehaviour
         if (!isCoroutining && enemy.hp > 0)
         {
             Debug.Log("hp 까임");
-            enemyAni.Play(enemy.name + "Hit");
+            if((enemy.name + "Hit") != null)
+            {
+                enemyAni.Play(enemy.name + "Hit");
+            }
+
             StartCoroutine(changeColor(enemySprite));
-            StartCoroutine(ResetToDefaultState(enemyAni));
+            StartCoroutine(ResetToDefaultState(enemyAni,enemy));
         }
 
         if (!isCoroutining && enemy.hp == 0)
@@ -83,6 +87,11 @@ public class EnemyManager : MonoBehaviour
                         deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                         break;
                     }
+                case "yellowBearEnemy":
+                    {
+                        deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
+                        break;
+                    }
             }
         }
 
@@ -108,10 +117,13 @@ public class EnemyManager : MonoBehaviour
         isCoroutining = false;
     }
 
-    IEnumerator ResetToDefaultState(Animator enemyAni)   // 애니메이션을 기본 상태로 전환
+    IEnumerator ResetToDefaultState(Animator enemyAni, Enemy enemy)   // 애니메이션을 기본 상태로 전환
     {
         yield return new WaitForSeconds(0.4f);
-        enemyAni.Play("None");
+        if (enemy.gameObject.layer != LayerMask.NameToLayer("enemy"))
+        {
+            enemyAni.Play("None");
+        }
     }
 
     // null reference 오류 발생을 안시키도록
@@ -130,6 +142,9 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
+
+    // ===============================================================================
 
 
     void Start()
