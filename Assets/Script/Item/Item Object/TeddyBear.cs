@@ -14,7 +14,15 @@ public class TeddyBear : MonoBehaviour
     public bool canPickUp = false;
     public bool isInstalled = false;
 
+    public Vector2 position;
+
     Vector3 Scale;
+
+    void ItemPosition()
+    {
+        isInstalled = true;
+        position = transform.position;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,6 +63,7 @@ public class TeddyBear : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
             inventoryManager.PickUpItem(objectCollider);
+            isInstalled = false;
         }
     }
 
@@ -65,5 +74,7 @@ public class TeddyBear : MonoBehaviour
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         objectCollider = GetComponent<Collider2D>();
+
+        ItemPosition();
     }
 }
