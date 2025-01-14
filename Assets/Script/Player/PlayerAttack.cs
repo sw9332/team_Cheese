@@ -248,10 +248,10 @@ public class PlayerAttack : MonoBehaviour
                     elapsedTime = 0f; // 다시 시간 초기화
                 }
 
-                else if (hp.Count < 1 && !playerControl.GameEnd)
+                else if (hp.Count < 1 && !GameManager.GameEnd)
                 {
                     StartCoroutine(gameManager.GameOver());
-                    playerControl.GameEnd = true;
+                    GameManager.GameEnd = true;
                 }
             }
         }

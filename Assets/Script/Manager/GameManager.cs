@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static string GameState = "Æ©Åä¸®¾ó";
 
     public static bool Demo = false;
+    public static bool GameEnd = false;
 
     public Image DemoClearUI;
     public Image GameOverUI;
@@ -23,8 +24,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        playerControl.isMove = false;
-        yield return StartCoroutine(fadeManager.FadeOut(GameOverUI, Color.black));
+        if (GameEnd)
+        {
+            playerControl.isMove = false;
+            yield return StartCoroutine(fadeManager.FadeOut(GameOverUI, Color.black));
+        }
     }
 
     void Start()

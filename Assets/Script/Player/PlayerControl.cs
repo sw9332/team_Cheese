@@ -22,7 +22,6 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public bool GameEnd = false;
     public bool isMove = true; // if isMove == false -> can't move
 
     public Vector3 CenterOffset; // player Gizmo function related
@@ -258,10 +257,10 @@ public class PlayerControl : MonoBehaviour
                     Destroy(lastHp);
                 }
 
-                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                else if (playerAttack.hp.Count <= 1 && !GameManager.GameEnd)
                 {
+                    GameManager.GameEnd = true;
                     StartCoroutine(gameManager.GameOver());
-                    GameEnd = true;
                 }
 
                 StartCoroutine(Damage());

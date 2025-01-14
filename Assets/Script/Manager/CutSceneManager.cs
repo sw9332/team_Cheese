@@ -45,10 +45,9 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
 
-    [Header("Animation")]
-    public Animator BigTeddyBearBosAnimation1;
-    public Animator BigTeddyBearBosAnimation2;
-    public Animator BigTeddyBearBosAnimation3;
+    [Header("Chapter 1 Save")]
+    public GameObject Chapter1_Save1;
+    public GameObject Chapter1_Save2;
 
     [Header("Check")]
     public bool Move = true;
@@ -185,26 +184,14 @@ public class CutSceneManager : MonoBehaviour
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
         float moveSpeed = 13f;
-        BigTeddyBearBosAnimation1.speed = 2f;
-        BigTeddyBearBosAnimation1.Play("BigTeddyBearMove");
-        BigTeddyBearBosAnimation2.speed = 2f;
-        BigTeddyBearBosAnimation2.Play("BigTeddyBearMove2");
-        BigTeddyBearBosAnimation3.speed = 2f;
-        BigTeddyBearBosAnimation3.Play("BigTeddyBearMove3");
 
         while ((Vector2)BigTeddyBearBos.transform.position != targetPosition)
         {
-            BigTeddyBearBos.transform.position = Vector2.MoveTowards(
-                BigTeddyBearBos.transform.position,
-                targetPosition,
-                moveSpeed * Time.deltaTime
-            );
+            BigTeddyBearBos.transform.position = Vector2.MoveTowards(BigTeddyBearBos.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
 
-        BigTeddyBearBosAnimation1.Play("BigTeddyBearStop");
-        BigTeddyBearBosAnimation2.Play("BigTeddyBearStop");
-        BigTeddyBearBosAnimation3.Play("BigTeddyBearStop");
+        BigTeddyBearBos.transform.position = new Vector2(-45f, -59f);
         BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
     }
