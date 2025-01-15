@@ -8,20 +8,29 @@ public class TeddyBear : MonoBehaviour
     private ItemManager itemManager;
     private DialogueManager dialogueManager;
     private TutorialManager tutorialManager;
+    private SaveManager saveManager;
 
     private Collider2D objectCollider;
 
     public bool canPickUp = false;
-    public bool isInstalled = false;
-
-    public Vector2 position;
 
     Vector3 Scale;
 
-    void ItemPosition()
+    ItemData GetitemData(string tag, Vector2 position)
     {
-        isInstalled = true;
-        position = transform.position;
+        return new ItemData(tag, position);
+    }
+
+    void PickUp()
+    {
+        inventoryManager.PickUpItem(objectCollider);
+        ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
+        saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+    }
+
+    void Drop()
+    {
+        saveManager.itemDataCurrent.Add(GetitemData(gameObject.tag, transform.position));
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +40,7 @@ public class TeddyBear : MonoBehaviour
             canPickUp = true;
         }
 
-        if(other.CompareTag("Chair"))
+        if (other.CompareTag("Chair"))
         {
             switch(other.transform.localScale.x)
             {
@@ -62,8 +71,7 @@ public class TeddyBear : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf)
         {
-            inventoryManager.PickUpItem(objectCollider);
-            isInstalled = false;
+            PickUp();
         }
     }
 
@@ -73,8 +81,9 @@ public class TeddyBear : MonoBehaviour
         itemManager = FindFirstObjectByType<ItemManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        saveManager = FindFirstObjectByType<SaveManager>();
         objectCollider = GetComponent<Collider2D>();
 
-        ItemPosition();
+        Drop();
     }
 }
