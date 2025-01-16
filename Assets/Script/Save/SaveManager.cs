@@ -23,18 +23,26 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
-        playerData.position = player.transform.position;
+        playerData.position.x = player.transform.position.x;
+        playerData.position.y = player.transform.position.y;
         playerData.move = player.isMove;
+        PlayerPrefs.SetFloat("Player Position X", playerData.position.x);
+        PlayerPrefs.SetFloat("Player Position Y", playerData.position.y);
+        PlayerPrefs.SetInt("Move", System.Convert.ToInt16(playerData.move));
 
         gameData.state = GameManager.GameState;
         gameData.end = GameManager.GameEnd;
+        PlayerPrefs.SetString("Game State", gameData.state);
+        PlayerPrefs.SetInt("Game End", System.Convert.ToInt16(gameData.end));
 
         for (int i = 0; i < inventoryData.slot.Length; i++)
         {
             inventoryData.slot[i] = inventoryManager.SlotDB[i];
+            PlayerPrefs.SetString("Inventory Data", inventoryData.slot[i]);
         }
 
         itemDataSave = new List<ItemData>(itemDataCurrent);
+        PlayerPrefs.SetString("Item Data", itemDataSave.ToString());
     }
 
     public void Load()
