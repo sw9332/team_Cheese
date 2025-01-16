@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
             inventoryData.slot[i] = inventoryManager.SlotDB[i];
         }
 
-        itemDataSave = itemDataCurrent;
+        itemDataSave = new List<ItemData>(itemDataCurrent);
     }
 
     public void Load()
@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour
                 }
             }
 
-            itemDataCurrent = itemDataSave;
+            itemDataCurrent = new List<ItemData>(itemDataSave);
         }
 
         else return;
