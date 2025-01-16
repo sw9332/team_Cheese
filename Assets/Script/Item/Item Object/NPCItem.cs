@@ -27,11 +27,17 @@ public class NPCItem : MonoBehaviour
         inventoryManager.PickUpItem(objectCollider);
         ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
         saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+        gameObject.SetActive(false);
     }
 
     void Drop()
     {
-        saveManager.itemDataCurrent.Add(GetitemData(gameObject.tag, transform.position));
+        ItemData itemToAdd = GetitemData(gameObject.tag, transform.position);
+        if (!saveManager.itemDataCurrent.Exists(item => item.tag == itemToAdd.tag && item.position == itemToAdd.position))
+        {
+            saveManager.itemDataCurrent.Add(itemToAdd);
+        }
+        gameObject.SetActive(true);
     }
 
     void OnTriggerEnter2D(Collider2D other)

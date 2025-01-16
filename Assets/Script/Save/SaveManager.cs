@@ -56,10 +56,37 @@ public class SaveManager : MonoBehaviour
                 }
             }
 
+            foreach (var itemData in itemDataCurrent)
+            {
+                DestroyItem(itemData);
+            }
+
+            foreach (var itemData in itemDataSave)
+            {
+                GameObject itemPrefab = itemManager.GetItem(itemData.tag).prefab;
+                if (itemPrefab != null)
+                {
+                    GameObject itemInstance = Instantiate(itemPrefab, itemData.position, Quaternion.identity);
+                    itemInstance.SetActive(true);
+                }
+            }
+
             itemDataCurrent = new List<ItemData>(itemDataSave);
         }
 
         else return;
+    }
+
+    void DestroyItem(ItemData itemData)
+    {
+        var item = GameObject.FindGameObjectsWithTag(itemData.tag);
+        foreach (var obj in item)
+        {
+            if (obj.transform.position == (Vector3)itemData.position)
+            {
+                Destroy(obj);
+            }
+        }
     }
 
     void Update()
