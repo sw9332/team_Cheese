@@ -49,6 +49,12 @@ public class SaveManager : MonoBehaviour
 
             for (int i = 0; i < inventoryData.slot.Length; i++)
             {
+                inventoryManager.SlotDB[i] = null;
+                inventoryManager.SlotImageDB[i].sprite = null;
+            }
+
+            for (int i = 0; i < inventoryData.slot.Length; i++)
+            {
                 if (inventoryData.slot[i] != null)
                 {
                     inventoryManager.SlotDB[i] = inventoryData.slot[i];
@@ -73,7 +79,6 @@ public class SaveManager : MonoBehaviour
 
             itemDataCurrent = new List<ItemData>(itemDataSave);
         }
-
         else return;
     }
 
