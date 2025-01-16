@@ -56,6 +56,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator Prologue()
     {
+        fadeManager.fadeImage.gameObject.SetActive(true);
         isCutScene = true;
         dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
         while (dialogueManager.count < 3) yield return null;
