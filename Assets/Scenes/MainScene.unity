@@ -5842,6 +5842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8340dda8d3a9b45a74c37968b90d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadButton: {fileID: 2058041805}
   SettingUI: {fileID: 436344993}
 --- !u!1 &1142463834
 GameObject:
@@ -10892,8 +10893,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1140336921}
-        m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
-        m_MethodName: NewGameStartButton
+        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+        m_MethodName: LoadButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

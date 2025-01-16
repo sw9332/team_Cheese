@@ -37,57 +37,75 @@ public class SaveManager : MonoBehaviour
 
         for (int i = 0; i < inventoryData.slot.Length; i++)
         {
-            inventoryData.slot[i] = inventoryManager.SlotDB[i];
-            PlayerPrefs.SetString("Inventory Data", inventoryData.slot[i]);
+            if (inventoryManager.SlotDB[i] != null)
+            {
+                inventoryData.slot[i] = inventoryManager.SlotDB[i];
+                PlayerPrefs.SetString("Inventory Slot " + i, inventoryData.slot[i]);
+            }
+
+            else PlayerPrefs.SetString("Inventory Slot " + i, "");
         }
 
         itemDataSave = new List<ItemData>(itemDataCurrent);
-        PlayerPrefs.SetString("Item Data", itemDataSave.ToString());
+
+        string itemDataJson = JsonUtility.ToJson(new ItemDataSave(itemDataSave));
+        PlayerPrefs.SetString("Item Data", itemDataJson);
+
+        GameManager.Save = true;
+        PlayerPrefs.SetInt("Save", System.Convert.ToInt16(GameManager.Save));
     }
 
     public void Load()
     {
-        if ((playerData.position.x != 0 && playerData.position.y != 0) && gameData.state != null)
+        player = FindFirstObjectByType<PlayerControl>();
+        itemManager = FindFirstObjectByType<ItemManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+
+        playerData.position.x = PlayerPrefs.GetFloat("Player Position X");
+        playerData.position.y = PlayerPrefs.GetFloat("Player Position Y");
+        player.transform.position = playerData.position;
+
+        playerData.move = System.Convert.ToBoolean(PlayerPrefs.GetInt("Move"));
+        player.isMove = playerData.move;
+
+        gameData.state = PlayerPrefs.GetString("Game State");
+        gameData.end = System.Convert.ToBoolean(PlayerPrefs.GetInt("Game End"));
+        GameManager.GameState = gameData.state;
+        GameManager.GameEnd = gameData.end;
+
+        for (int i = 0; i < inventoryData.slot.Length; i++)
         {
-            player.transform.position = playerData.position;
-            player.isMove = playerData.move;
+            inventoryManager.SlotDB[i] = null;
+            inventoryManager.SlotImageDB[i].sprite = null;
 
-            GameManager.GameState = gameData.state;
-            GameManager.GameEnd = gameData.end;
+            string loadedSlotData = PlayerPrefs.GetString("Inventory Slot " + i);
 
-            for (int i = 0; i < inventoryData.slot.Length; i++)
+            if (!string.IsNullOrEmpty(loadedSlotData))
             {
-                inventoryManager.SlotDB[i] = null;
-                inventoryManager.SlotImageDB[i].sprite = null;
+                inventoryManager.SlotDB[i] = loadedSlotData;
+                inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(loadedSlotData);
             }
-
-            for (int i = 0; i < inventoryData.slot.Length; i++)
-            {
-                if (inventoryData.slot[i] != null)
-                {
-                    inventoryManager.SlotDB[i] = inventoryData.slot[i];
-                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(inventoryData.slot[i]);
-                }
-            }
-
-            foreach (var itemData in itemDataCurrent)
-            {
-                DestroyItem(itemData);
-            }
-
-            foreach (var itemData in itemDataSave)
-            {
-                GameObject itemPrefab = itemManager.GetItem(itemData.tag).prefab;
-                if (itemPrefab != null)
-                {
-                    GameObject itemInstance = Instantiate(itemPrefab, itemData.position, Quaternion.identity);
-                    itemInstance.SetActive(true);
-                }
-            }
-
-            itemDataCurrent = new List<ItemData>(itemDataSave);
         }
-        else return;
+
+        string itemDataJson = PlayerPrefs.GetString("Item Data");
+        ItemDataSave loadedItemData = JsonUtility.FromJson<ItemDataSave>(itemDataJson);
+
+        foreach (var itemData in itemDataCurrent)
+        {
+            DestroyItem(itemData);
+        }
+
+        foreach (var itemData in loadedItemData.item)
+        {
+            GameObject itemPrefab = itemManager.GetItem(itemData.tag).prefab;
+            if (itemPrefab != null)
+            {
+                GameObject itemInstance = Instantiate(itemPrefab, itemData.position, Quaternion.identity);
+                itemInstance.SetActive(true);
+            }
+        }
+
+        itemDataCurrent = new List<ItemData>(loadedItemData.item);
     }
 
     void DestroyItem(ItemData itemData)
@@ -145,5 +163,16 @@ public class ItemData
     {
         this.tag = tag;
         this.position = position;
+    }
+}
+
+[System.Serializable]
+public class ItemDataSave
+{
+    public List<ItemData> item;
+
+    public ItemDataSave(List<ItemData> item)
+    {
+        this.item = item;
     }
 }
