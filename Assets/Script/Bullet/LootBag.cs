@@ -5,10 +5,8 @@ using UnityEngine.UIElements;
 
 public class LootBag : MonoBehaviour
 {
-    public GameObject droppedItemPrefab;
+    public GameObject[] droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
-
-
 
     List<Loot> GetDroppedItems()    // item 여러개 드랍 가능
     {
@@ -39,18 +37,17 @@ public class LootBag : MonoBehaviour
         {
             foreach (Loot droppedItem in droppedItems)
             {
-                GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
-                // item pickup 때문에 필요
-                lootGameObject.tag = droppedItem.name;
-                lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
-                lootGameObject.name = droppedItem.name;
+                for(int i=0; i < droppedItemPrefab.Length; i++)
+                {
+                    GameObject lootGameObject = Instantiate(droppedItemPrefab[i], spawnPosition, Quaternion.identity);
+
+                    lootGameObject.tag = droppedItem.name;
+                    lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+                    lootGameObject.name = droppedItem.name;
+                }
             }
         }
-
     }
-
-    
-  
 }
 
     
