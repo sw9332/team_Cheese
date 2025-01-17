@@ -57,7 +57,7 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
-        if (GameManager.Save)
+        if (GameManager.Save || GameManager.Load)
         {
             player = FindFirstObjectByType<PlayerControl>();
             itemManager = FindFirstObjectByType<ItemManager>();
