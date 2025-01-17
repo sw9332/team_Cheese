@@ -57,55 +57,58 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
-        player = FindFirstObjectByType<PlayerControl>();
-        itemManager = FindFirstObjectByType<ItemManager>();
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
-
-        playerData.position.x = PlayerPrefs.GetFloat("Player Position X");
-        playerData.position.y = PlayerPrefs.GetFloat("Player Position Y");
-        player.transform.position = playerData.position;
-
-        playerData.move = System.Convert.ToBoolean(PlayerPrefs.GetInt("Move"));
-        player.isMove = playerData.move;
-
-        gameData.state = PlayerPrefs.GetString("Game State");
-        gameData.end = System.Convert.ToBoolean(PlayerPrefs.GetInt("Game End"));
-        GameManager.GameState = gameData.state;
-        GameManager.GameEnd = gameData.end;
-
-        for (int i = 0; i < inventoryData.slot.Length; i++)
+        if (GameManager.Save)
         {
-            inventoryManager.SlotDB[i] = null;
-            inventoryManager.SlotImageDB[i].sprite = null;
+            player = FindFirstObjectByType<PlayerControl>();
+            itemManager = FindFirstObjectByType<ItemManager>();
+            inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-            string loadedSlotData = PlayerPrefs.GetString("Inventory Slot " + i);
+            playerData.position.x = PlayerPrefs.GetFloat("Player Position X");
+            playerData.position.y = PlayerPrefs.GetFloat("Player Position Y");
+            player.transform.position = playerData.position;
 
-            if (!string.IsNullOrEmpty(loadedSlotData))
+            playerData.move = System.Convert.ToBoolean(PlayerPrefs.GetInt("Move"));
+            player.isMove = playerData.move;
+
+            gameData.state = PlayerPrefs.GetString("Game State");
+            gameData.end = System.Convert.ToBoolean(PlayerPrefs.GetInt("Game End"));
+            GameManager.GameState = gameData.state;
+            GameManager.GameEnd = gameData.end;
+
+            for (int i = 0; i < inventoryData.slot.Length; i++)
             {
-                inventoryManager.SlotDB[i] = loadedSlotData;
-                inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(loadedSlotData);
+                inventoryManager.SlotDB[i] = null;
+                inventoryManager.SlotImageDB[i].sprite = null;
+
+                string loadedSlotData = PlayerPrefs.GetString("Inventory Slot " + i);
+
+                if (!string.IsNullOrEmpty(loadedSlotData))
+                {
+                    inventoryManager.SlotDB[i] = loadedSlotData;
+                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(loadedSlotData);
+                }
             }
-        }
 
-        string itemDataJson = PlayerPrefs.GetString("Item Data");
-        ItemDataSave loadedItemData = JsonUtility.FromJson<ItemDataSave>(itemDataJson);
+            string itemDataJson = PlayerPrefs.GetString("Item Data");
+            ItemDataSave loadedItemData = JsonUtility.FromJson<ItemDataSave>(itemDataJson);
 
-        foreach (var itemData in itemDataCurrent)
-        {
-            DestroyItem(itemData);
-        }
-
-        foreach (var itemData in loadedItemData.item)
-        {
-            GameObject itemPrefab = itemManager.GetItem(itemData.tag).prefab;
-            if (itemPrefab != null)
+            foreach (var itemData in itemDataCurrent)
             {
-                GameObject itemInstance = Instantiate(itemPrefab, itemData.position, Quaternion.identity);
-                itemInstance.SetActive(true);
+                DestroyItem(itemData);
             }
-        }
 
-        itemDataCurrent = new List<ItemData>(loadedItemData.item);
+            foreach (var itemData in loadedItemData.item)
+            {
+                GameObject itemPrefab = itemManager.GetItem(itemData.tag).prefab;
+                if (itemPrefab != null)
+                {
+                    GameObject itemInstance = Instantiate(itemPrefab, itemData.position, Quaternion.identity);
+                    itemInstance.SetActive(true);
+                }
+            }
+
+            itemDataCurrent = new List<ItemData>(loadedItemData.item);
+        }
     }
 
     void DestroyItem(ItemData itemData)
