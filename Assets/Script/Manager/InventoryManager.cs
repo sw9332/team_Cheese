@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public string[] SlotDB;
     public Image[] SlotImageDB;
     public bool Camera = false;
+    public GameObject rightHP;
 
     private Player player;
     private PlayerAttack playerattack;
@@ -55,19 +56,41 @@ public class InventoryManager : MonoBehaviour
         {
             case "Ammo": playerattack.bullet.bulletNum += 5; break;
             case "ChocoBar":
-                // get HP Object on Player HP
-                GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(GameObject.Find("Player HP").transform.childCount - 1).gameObject;
+                Transform playerHpTransform = GameObject.Find("Player HP").transform;
+                int hpNum = playerHpTransform.childCount;
 
-                // set hpObj's position on UI system
-                RectTransform rectTransform = hpObj.GetComponent<RectTransform>();
-                Vector2 newAnchoredPosition = rectTransform.anchoredPosition + new Vector2(100, 0);
+                GameObject lastHpObj = null;
 
-                // Locate newly generated Hp 
-                GameObject newHpObj = Instantiate(hpObj, hpObj.transform.parent); // �θ� ����
-                RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
-                newRectTransform.anchoredPosition = newAnchoredPosition;
+                if (hpNum > 1)
+                {
+                    // Get the last relevant HP object
+                    lastHpObj = playerHpTransform.GetChild(hpNum - 2).gameObject;
+                }
+                else if (hpNum == 1)
+                {
+                    lastHpObj = rightHP;
+                }
 
-                playerattack.hp.Add(newHpObj);
+                if (lastHpObj != null)
+                {
+                    RectTransform lastRectTransform = lastHpObj.GetComponent<RectTransform>();
+                    Vector2 newAnchoredPosition = lastRectTransform.anchoredPosition;
+                    if (hpNum == 1)
+                    {
+                         newAnchoredPosition = lastRectTransform.anchoredPosition;
+                    }
+                    else
+                    {
+                         newAnchoredPosition = lastRectTransform.anchoredPosition + new Vector2(75, 0);
+                    }
+
+                    // Create a new HP object
+                    GameObject newHpObj = Instantiate(lastHpObj, playerHpTransform);
+                    RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
+                    newRectTransform.anchoredPosition = newAnchoredPosition;
+
+                    playerattack.hp.Add(newHpObj);
+                }
                 break;
         }
     }

@@ -77,8 +77,8 @@ public class Bullet : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>(); // Enemy 스크립트 참조
             if (enemy != null)
             {
-                Debug.Log(enemy.tag + " 명중!");
-                enemyList.takeDamage(enemy.tag); // 적에게 데미지 입힘
+                Debug.Log(enemy.name + " 명중!");
+                enemyList.takeDamage(enemy.name); // 적에게 데미지 입힘
             }
             DestroyBullet(); // 충돌 후 총알 파괴
         }

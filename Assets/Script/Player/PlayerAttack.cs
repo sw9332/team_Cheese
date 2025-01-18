@@ -243,6 +243,26 @@ public class PlayerAttack : MonoBehaviour
                 {
                     GameObject lastHp = hp[hp.Count - 1];
                     StartCoroutine(changeToDamaged());
+
+                    if(hp.Count %2 == 0)
+                    {
+                        var animator = lastHp.GetComponent<Animator>();
+                        animator.Play("HPLeftLose", 0, 0f);
+                        if (animator != null)
+                        {
+                            Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("HPLeftLose"));
+                        }
+                    }
+                    else
+                    {
+                        var animator = lastHp.GetComponent<Animator>();
+                        animator.Play("HPRightLose", 0, 0f);
+                        if (animator != null)
+                        {
+                            Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("HPRightLose"));
+                        }
+                    }
+
                     hp.RemoveAt(hp.Count - 1);
                     Destroy(lastHp);
                     elapsedTime = 0f; // 다시 시간 초기화
@@ -307,7 +327,6 @@ public class PlayerAttack : MonoBehaviour
         enemyManager = FindFirstObjectByType<EnemyManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
-
 
         getPlayerHP();
 
