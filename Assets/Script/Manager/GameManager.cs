@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static string GameState = "Æ©Åä¸®¾ó";
 
+    public static bool Save = false;
+    public static bool Load = false;
+
     public static bool Demo = false;
     public static bool GameEnd = false;
 
@@ -34,7 +37,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        GameState = "Æ©Åä¸®¾ó";
 
         playerControl = FindFirstObjectByType<PlayerControl>();
         fadeManager = FindFirstObjectByType<FadeManager>();

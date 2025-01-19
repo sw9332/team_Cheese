@@ -9,11 +9,35 @@ public class Cake : MonoBehaviour
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private TutorialManager tutorialManager;
+    private SaveManager saveManager;
 
     private Collider2D objectCollider;
 
     public bool canPickUp = false;
     public bool isInstalled = false;
+
+    ItemData GetitemData(string tag, Vector2 position)
+    {
+        return new ItemData(tag, position);
+    }
+
+    void PickUp()
+    {
+        inventoryManager.PickUpItem(objectCollider);
+        ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
+        saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+        gameObject.SetActive(false);
+    }
+
+    void Drop()
+    {
+        ItemData itemToAdd = GetitemData(gameObject.tag, transform.position);
+        if (!saveManager.itemDataCurrent.Exists(item => item.tag == itemToAdd.tag && item.position == itemToAdd.position))
+        {
+            saveManager.itemDataCurrent.Add(itemToAdd);
+        }
+        gameObject.SetActive(true);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -35,7 +59,7 @@ public class Cake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf && inventoryManager.Camera)
         {
-            inventoryManager.PickUpItem(objectCollider);
+            PickUp();
         }
 
         else if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !inventoryManager.Camera)
@@ -52,6 +76,9 @@ public class Cake : MonoBehaviour
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        saveManager = FindFirstObjectByType<SaveManager>();
         objectCollider = GetComponent<Collider2D>();
+
+        Drop();
     }
 }

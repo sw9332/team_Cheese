@@ -18,6 +18,7 @@ public class CutSceneManager : MonoBehaviour
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
     private GameManager gameManager;
+    private SaveManager saveManager;
     private TextManager textManager;
     private TutorialManager tutorialManager;
 
@@ -56,6 +57,8 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator Prologue()
     {
+        GameManager.GameState = "Æ©Åä¸®¾ó";
+        fadeManager.fadeImage.gameObject.SetActive(true);
         isCutScene = true;
         dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
         while (dialogueManager.count < 3) yield return null;
@@ -366,10 +369,14 @@ public class CutSceneManager : MonoBehaviour
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        saveManager = FindFirstObjectByType<SaveManager>();
         textManager = FindFirstObjectByType<TextManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
 
-        StartCoroutine(Prologue());
-        StartCoroutine(Tutorial());
+        switch (GameManager.Load)
+        {
+            case true: saveManager.Load(); break;
+            case false: StartCoroutine(Prologue()); StartCoroutine(Tutorial()); break;
+        }
     }
 }

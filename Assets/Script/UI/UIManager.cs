@@ -133,7 +133,6 @@ public class UIManager : MonoBehaviour
         fadeManager = FindFirstObjectByType<FadeManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-        fadeImage.gameObject.SetActive(true);
         CameraEffect(false);
     }
 }
