@@ -38,7 +38,7 @@ public class NPCItem : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void Remove()
+    public void ItemRemove()
     {
         ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
         saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
