@@ -18,14 +18,14 @@ public class AlbumManager : MonoBehaviour
 
     void AlbumUI_Open_Close()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && !Album.activeSelf && !dialogueManager.dialogue_continue)
+        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && !Album.activeSelf && !dialogueManager.dialogue_continue)
         {
             Album.SetActive(true);
             playerControl.isMove = false;
             InGameUI.SetActive(false);
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.Camera && Album.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && Album.activeSelf)
         {
             Album.SetActive(false);
             playerControl.isMove = true;

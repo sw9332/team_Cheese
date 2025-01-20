@@ -73,7 +73,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator Tutorial()
     {
-        while (!inventoryManager.Camera) yield return null;
+        while (!inventoryManager.miniGameCamera) yield return null;
         while (dialogueManager.dialogue_continue) yield return null;
         isCutScene = true;
         E_Key.SetActive(true);

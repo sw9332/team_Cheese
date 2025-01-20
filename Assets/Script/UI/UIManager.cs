@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
     public void Camera_ON_OFF()
     {
-        if (inventoryManager.Camera) CameraUI.SetActive(true);
+        if (inventoryManager.miniGameCamera) CameraUI.SetActive(true);
         else CameraUI.SetActive(false);
     }
 
@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
         else
             tutorialTrigger = false;
 
-        if (inventoryManager.Camera)
+        if (inventoryManager.miniGameCamera)
         {
             if (tutorialTrigger || is_NPC || is_CutScene_4 || GameManager.Demo)
             {
