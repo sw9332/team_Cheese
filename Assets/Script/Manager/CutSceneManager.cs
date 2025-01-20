@@ -116,7 +116,7 @@ public class CutSceneManager : MonoBehaviour
         Effect.SetActive(true);
         playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
         npcItem = FindFirstObjectByType<NPCItem>();
-        npcItem.PickUp();
+        npcItem.Remove();
         miniGame.ClearPhotoMode();
         playerControl.isMove = false;
         playerControl.Direction = "Up";

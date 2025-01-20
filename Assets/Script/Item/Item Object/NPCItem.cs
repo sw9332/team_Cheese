@@ -38,6 +38,13 @@ public class NPCItem : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Remove()
+    {
+        ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
+        saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+        gameObject.SetActive(false);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
