@@ -15,6 +15,7 @@ public class CutSceneManager : MonoBehaviour
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
     private NPC npc;
+    private NPCItem npcItem;
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
     private GameManager gameManager;
@@ -114,7 +115,8 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(true);
         playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
-        Destroy(NPCItem.Instance.gameObject);
+        npcItem = FindFirstObjectByType<NPCItem>();
+        npcItem.PickUp();
         miniGame.ClearPhotoMode();
         playerControl.isMove = false;
         playerControl.Direction = "Up";
