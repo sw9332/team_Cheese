@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public string[] SlotDB;
     public Image[] SlotImageDB;
-    public bool Camera = false;
+    public bool miniGameCamera = false;
 
     private Player player;
     private PlayerAttack playerattack;

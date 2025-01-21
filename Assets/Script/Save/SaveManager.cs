@@ -8,6 +8,8 @@ public class SaveManager : MonoBehaviour
     private ItemManager itemManager;
     private InventoryManager inventoryManager;
 
+    public Bullet bullet;
+
     [Header("플레이어 저장 데이터")]
     public PlayerData playerData;
 
@@ -25,10 +27,17 @@ public class SaveManager : MonoBehaviour
     {
         playerData.position.x = player.transform.position.x;
         playerData.position.y = player.transform.position.y;
-        playerData.move = player.isMove;
         PlayerPrefs.SetFloat("Player Position X", playerData.position.x);
         PlayerPrefs.SetFloat("Player Position Y", playerData.position.y);
+
+        inventoryData.miniGameCamera = inventoryManager.miniGameCamera;
+        PlayerPrefs.SetInt("Camera", System.Convert.ToInt16(inventoryData.miniGameCamera));
+
+        playerData.move = player.isMove;
         PlayerPrefs.SetInt("Move", System.Convert.ToInt16(playerData.move));
+
+        playerData.bullet = bullet.bulletNum;
+        PlayerPrefs.SetInt("Bullet", playerData.bullet);
 
         gameData.state = GameManager.GameState;
         gameData.end = GameManager.GameEnd;
@@ -67,8 +76,14 @@ public class SaveManager : MonoBehaviour
             playerData.position.y = PlayerPrefs.GetFloat("Player Position Y");
             player.transform.position = playerData.position;
 
+            inventoryData.miniGameCamera = System.Convert.ToBoolean(PlayerPrefs.GetInt("Camera"));
+            inventoryManager.miniGameCamera = inventoryData.miniGameCamera;
+
             playerData.move = System.Convert.ToBoolean(PlayerPrefs.GetInt("Move"));
             player.isMove = playerData.move;
+
+            playerData.bullet = PlayerPrefs.GetInt("Bullet");
+            bullet.bulletNum = playerData.bullet;
 
             gameData.state = PlayerPrefs.GetString("Game State");
             gameData.end = System.Convert.ToBoolean(PlayerPrefs.GetInt("Game End"));
@@ -140,7 +155,9 @@ public class SaveManager : MonoBehaviour
 public class PlayerData
 {
     public Vector2 position;
+    public int hp;
     public bool move;
+    public int bullet;
 }
 
 [System.Serializable]
@@ -154,6 +171,7 @@ public class GameData
 public class InventoryData
 {
     public string[] slot;
+    public bool miniGameCamera;
 }
 
 [System.Serializable]

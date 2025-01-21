@@ -45,16 +45,16 @@ public class TestManager : MonoBehaviour
 
     public void Camera_ON_OFF()
     {
-        if (inventoryManager.Camera == false)
+        if (inventoryManager.miniGameCamera == false)
         {
             CameraText.text = "ON";
-            inventoryManager.Camera = true;
+            inventoryManager.miniGameCamera = true;
         }
             
         else
         {
             CameraText.text = "OFF";
-            inventoryManager.Camera = false;
+            inventoryManager.miniGameCamera = false;
         }
     }
 

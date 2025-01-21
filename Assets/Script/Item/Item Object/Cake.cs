@@ -57,12 +57,12 @@ public class Cake : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf && inventoryManager.Camera)
+        if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !dialogueManager.dialogue_continue && !tutorialManager.TutorialUI.activeSelf && inventoryManager.miniGameCamera)
         {
             PickUp();
         }
 
-        else if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !inventoryManager.Camera)
+        else if (Input.GetKeyDown(KeyCode.Space) && canPickUp && !inventoryManager.miniGameCamera)
         {
             dialogueManager.ShowDialogue(dialogueContentManager.d_not_camera);
             canPickUp = false;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NPCItem : MonoBehaviour
 {
-    public static NPCItem Instance;
-
     private InventoryManager inventoryManager;
     private ItemManager itemManager;
     private DialogueManager dialogueManager;
@@ -22,7 +20,7 @@ public class NPCItem : MonoBehaviour
         return new ItemData(tag, position);
     }
 
-    void PickUp()
+    public void PickUp()
     {
         inventoryManager.PickUpItem(objectCollider);
         ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
@@ -30,7 +28,7 @@ public class NPCItem : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Drop()
+    public void Drop()
     {
         ItemData itemToAdd = GetitemData(gameObject.tag, transform.position);
         if (!saveManager.itemDataCurrent.Exists(item => item.tag == itemToAdd.tag && item.position == itemToAdd.position))
@@ -38,6 +36,13 @@ public class NPCItem : MonoBehaviour
             saveManager.itemDataCurrent.Add(itemToAdd);
         }
         gameObject.SetActive(true);
+    }
+
+    public void ItemRemove()
+    {
+        ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
+        saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+        gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -80,15 +85,5 @@ public class NPCItem : MonoBehaviour
         objectCollider = GetComponent<Collider2D>();
 
         Drop();
-    }
-
-    void Awake()
-    {
-        if (Instance == null) Instance = this;
-    }
-
-    void OnDestroy()
-    {
-        if (Instance == this) Instance = null;
     }
 }
