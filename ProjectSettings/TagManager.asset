@@ -68,6 +68,14 @@ TagManager:
   - "Chapter 2 \uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
   - "Chapter 2 \uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
   - "Chapter 2 \uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - Event 1 (Chapter 2)
+  - Event 2 (Chapter 2)
+  - Event 3 (Chapter 2)
+  - Event 4 (Chapter 2)
+  - Event 5 (Chapter 2)
+  - Event 6 (Chapter 2)
+  - Chicken
+  - Flower
   layers:
   - Default
   - TransparentFX

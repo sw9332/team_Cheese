@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class DialogueContentManager : MonoBehaviour
 {
-    [Header("이벤트")]
+    [Header("Chapter 1 Event")]
     public Dialogue d_event1;
     public Dialogue d_event2;
     public Dialogue d_event3;
     public Dialogue d_event4;
+
+    [Header("Chapter 2 Event")]
+    public Dialogue chapter2_event1;
+    public Dialogue chapter2_event2;
+    public Dialogue chapter2_event3;
+    public Dialogue chapter2_event4;
+    public Dialogue chapter2_event5;
+    public Dialogue chapter2_event6;
 
     [Header("튜토리얼")]
     [SerializeField]

@@ -24,7 +24,7 @@ public class TestManager : MonoBehaviour
 
     public void Player_Position()
     {
-        switch(Player_Position_Input.text)
+        switch (Player_Position_Input.text)
         {
             case "복도": player.transform.position = new Vector3(-5f, -13f, 0); break;
             case "연회장 입구": player.transform.position = new Vector3(-17f, 6f, 0); break;
@@ -32,6 +32,8 @@ public class TestManager : MonoBehaviour
             case "창고": player.transform.position = new Vector3(-49f, 17f, 0); break;
             case "창고 입구": player.transform.position = new Vector3(-49f, -3f, 0); break;
             case "보스 입구": player.transform.position = new Vector3(-63f, -48f, 0); break;
+            case "치킨 있는 곳": player.transform.position = new Vector3(-36f, -162f, 0); break;
+            case "박물관": player.transform.position = new Vector3(-16f, -198f, 0); break;
         }
 
         GameManager.GameState = Player_Position_Input.text;
