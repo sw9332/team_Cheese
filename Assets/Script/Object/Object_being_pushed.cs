@@ -12,8 +12,8 @@ public class Object_Being_Pushed : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player")) return;
-        if (collider.gameObject.CompareTag("Cart Position 1")) return;
-        if (collider.gameObject.CompareTag("Cart Position 2")) return;
+        if (collider.gameObject.CompareTag("Cart Position")) return;
+        if (collider.gameObject.CompareTag("Rabbit Statue Position")) return;
 
         FreezeX = Mathf.Abs(collider.transform.position.x - transform.position.x) > Mathf.Abs(collider.transform.position.y - transform.position.y);
         FreezeY = !FreezeX;
@@ -22,8 +22,8 @@ public class Object_Being_Pushed : MonoBehaviour
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player")) return;
-        if (collider.gameObject.CompareTag("Cart Position 1")) return;
-        if (collider.gameObject.CompareTag("Cart Position 2")) return;
+        if (collider.gameObject.CompareTag("Cart Position")) return;
+        if (collider.gameObject.CompareTag("Rabbit Statue Position")) return;
 
         FreezeX = false;
         FreezeY = false;
