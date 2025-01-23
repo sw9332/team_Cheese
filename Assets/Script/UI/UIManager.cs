@@ -34,8 +34,8 @@ public class UIManager : MonoBehaviour
     public static bool stage1 = false;
 
     //Stage2
-    public static bool cart1 = false;
-    public static bool cart2 = false;
+    public static bool cart = false;
+    public static bool rabbit_Statue = false;
     public static bool chicken = false;
     public static bool flower = false;
 
@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
 
         if (inventoryManager.miniGameCamera)
         {
-            if (tutorialTrigger || is_NPC || is_CutScene_4 || stage1 || (cart1 && cart2 && chicken && flower))
+            if (tutorialTrigger || is_NPC || is_CutScene_4 || stage1 || (cart && rabbit_Statue && chicken && flower))
             {
                 CameraEffect(true);
                 MiniGame.is_take_photo = true;
