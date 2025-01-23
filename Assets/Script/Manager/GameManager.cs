@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public static bool Save = false;
     public static bool Load = false;
 
-    public static bool Demo = false;
     public static bool GameEnd = false;
 
     public Image DemoClearUI;

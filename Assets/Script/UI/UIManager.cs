@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     //Stage1 변수
     public static bool is_NPC = false;
     public static bool is_CutScene_4 = false;
+    public static bool stage1 = false;
 
     public void CameraEffect(bool isCameraEffect)
     {
@@ -106,7 +107,7 @@ public class UIManager : MonoBehaviour
 
         if (inventoryManager.miniGameCamera)
         {
-            if (tutorialTrigger || is_NPC || is_CutScene_4 || GameManager.Demo)
+            if (tutorialTrigger || is_NPC || is_CutScene_4 || stage1)
             {
                 CameraEffect(true);
                 MiniGame.is_take_photo = true;

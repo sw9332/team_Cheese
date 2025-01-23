@@ -149,7 +149,7 @@ public class MiniGame : MonoBehaviour
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
                         UIManager.is_NPC = false;
-                        GameManager.Demo = false;
+                        UIManager.stage1 = false;
                         is_take_photo = false;
                         is_minigame = false;
                         isImageChange = true;

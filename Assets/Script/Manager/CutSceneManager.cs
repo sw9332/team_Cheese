@@ -305,13 +305,15 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5);
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(false);
-        GameManager.Demo = true;
+        UIManager.stage1 = true;
     }
 
     public IEnumerator CutScene_7()
     {
+        isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
+        miniGame.ClearPhotoMode();
         PlayerImage.gameObject.SetActive(true);
         yield return StartCoroutine(fadeManager.FadeOut(PlayerImage, Color.white));
         yield return new WaitForSeconds(2f);
@@ -323,7 +325,32 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_2);
         while (dialogueManager.dialogue_continue) yield return null;
-        StartCoroutine(gameManager.DemoClear());
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        WhiteBackground.gameObject.SetActive(false);
+        playerControl.transform.position = new Vector2(-49f, -109f);
+        playerControl.Direction = "Left";
+        GameManager.GameState = "";
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+        StartCoroutine(CutScene_8());
+    }
+
+    public IEnumerator CutScene_8()
+    {
+        yield return new WaitForSeconds(1f);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
+        while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(1f);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_2);
+        while (dialogueManager.dialogue_continue) yield return null;
+        yield return new WaitForSeconds(1f);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_3);
+        while (dialogueManager.dialogue_continue) yield return null;
+        E_Key.SetActive(true);
+        while (E_Key.activeSelf) yield return null;
+        while (albumManager.Album.activeSelf) yield return null;
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_4);
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = false;
     }
 
     public IEnumerator isVibrationEvent()
