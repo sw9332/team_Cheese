@@ -60,6 +60,15 @@ public class Player : MonoBehaviour
 
             case "RoomF Go": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "RoomF Exit": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 연회장 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 연회장 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 창고 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 창고 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 창고 입구 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 창고 입구 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
         }
     }
 

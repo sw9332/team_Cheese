@@ -60,6 +60,12 @@ TagManager:
   - NPC Boss Event 1
   - NPC Boss Event 2
   - NPC Boss Event 3
+  - "Chapter 2 \uCC3D\uACE0 (\uCD9C\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 (\uC785\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
   layers:
   - Default
   - TransparentFX
