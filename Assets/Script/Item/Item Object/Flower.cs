@@ -44,6 +44,11 @@ public class Flower : MonoBehaviour
         {
             canPickUp = true;
         }
+
+        if (other.CompareTag("연회장 테이블"))
+        {
+            UIManager.flower = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -51,6 +56,11 @@ public class Flower : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canPickUp = false;
+        }
+
+        if (other.CompareTag("연회장 테이블"))
+        {
+            UIManager.flower = false;
         }
     }
 

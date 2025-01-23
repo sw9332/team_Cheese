@@ -76,6 +76,9 @@ TagManager:
   - Event 6 (Chapter 2)
   - Chicken
   - Flower
+  - "\uC5F0\uD68C\uC7A5 \uD14C\uC774\uBE14"
+  - Cart Position 1
+  - Cart Position 2
   layers:
   - Default
   - TransparentFX
