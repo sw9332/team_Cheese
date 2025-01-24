@@ -310,6 +310,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_7()
     {
+        GameManager.GameState = "Chapter 2";
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
@@ -329,7 +330,6 @@ public class CutSceneManager : MonoBehaviour
         WhiteBackground.gameObject.SetActive(false);
         playerControl.transform.position = new Vector2(-49f, -109f);
         playerControl.Direction = "Left";
-        GameManager.GameState = "";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         StartCoroutine(CutScene_8());
     }

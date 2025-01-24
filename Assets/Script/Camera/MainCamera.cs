@@ -64,7 +64,7 @@ public class MainCamera : MonoBehaviour
                 if (player.transform.position.y >= -7.8f)
                 {
                     pos.x = -17.5f;
-                    pos.y = player.transform.position.y;
+                    pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -4.2f);
                 }
                     
                 else
@@ -122,6 +122,45 @@ public class MainCamera : MonoBehaviour
             case "CutScene7":
                 pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
                 pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                break;
+
+            case "Chapter 2":
+                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -113.3f, -101.2f);
+                break;
+
+            case "Chapter 2 복도":
+                if (player.transform.position.y >= -140f)
+                {
+                    pos.x = -17.5f;
+                    pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -136.2f);
+                }
+
+                else
+                {
+                    pos.x = Mathf.Clamp(player.transform.position.x, -45.5f, -17f);
+                    pos.y = -145.2f;
+                }
+                break;
+
+            case "Chapter 2 연회장 입구":
+                pos.x = -17.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -124.5f, -113f);
+                break;
+
+            case "Chapter 2 연회장":
+                pos.x = Mathf.Clamp(player.transform.position.x, 4f, 12f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -116.1f, -113.25f);
+                break;
+
+            case "Chapter 2 창고 입구":
+                pos.x = -49.44f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -133.3f, -125.2f);
+                break;
+
+            case "Chapter 2 창고":
+                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -113.3f, -101.2f);
                 break;
 
             default:
