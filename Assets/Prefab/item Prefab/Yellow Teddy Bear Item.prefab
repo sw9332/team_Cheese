@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6065053194172018896}
   - component: {fileID: 508794682087875319}
   - component: {fileID: 5599567072161136195}
+  - component: {fileID: 7542562134446838190}
   m_Layer: 0
   m_Name: Yellow Teddy Bear Item
   m_TagString: YellowTeddyBear
@@ -185,4 +186,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 0
-  isInstalled: 0
+--- !u!114 &7542562134446838190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2301719643279093575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3b1c5858aefe94d8a829c427d34d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
