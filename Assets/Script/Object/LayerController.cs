@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class LayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Player player;
+    private SpriteRenderer spriteRenderer;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (player.transform.position.y > transform.position.y - 1) spriteRenderer.sortingOrder = 15;
+        else spriteRenderer.sortingOrder = 10;
+    }
+
+    void Start()
+    {
+        player = FindFirstObjectByType<Player>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }
