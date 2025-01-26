@@ -9,7 +9,7 @@ public class LayerController : MonoBehaviour
 
     void Update()
     {
-        if (player.transform.position.y > transform.position.y - 1) spriteRenderer.sortingOrder = 15;
+        if (player.transform.position.y > transform.position.y - 0.1f) spriteRenderer.sortingOrder = 15;
         else spriteRenderer.sortingOrder = 10;
     }
 
