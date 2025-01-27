@@ -329,7 +329,7 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         WhiteBackground.gameObject.SetActive(false);
-        playerControl.transform.position = new Vector2(-49.5f, -106.6f);
+        playerControl.transform.position = new Vector2(-49.5f, -107f);
         playerControl.Direction = "Left";
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));

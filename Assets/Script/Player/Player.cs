@@ -33,23 +33,7 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
-            case "Event 1 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event1);
-                Destroy(other.gameObject);
-                break;
-
-            case "Event 2 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event2);
-                Destroy(other.gameObject);
-                break;
-
             case "Event 3 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event3);
-                Destroy(other.gameObject);
-                break;
-
-            case "Event 4 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event4);
-                Destroy(other.gameObject);
-                break;
-
-            case "Event 5 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event5);
                 Destroy(other.gameObject);
                 break;
 
