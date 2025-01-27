@@ -16,6 +16,7 @@ public class CutSceneManager : MonoBehaviour
     private NPCEnemy npcEnemy;
     private NPC npc;
     private NPCItem npcItem;
+    private N_Player n_Player;
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
     private GameManager gameManager;
@@ -330,12 +331,14 @@ public class CutSceneManager : MonoBehaviour
         WhiteBackground.gameObject.SetActive(false);
         playerControl.transform.position = new Vector2(-49f, -109f);
         playerControl.Direction = "Left";
+        yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         StartCoroutine(CutScene_8());
     }
 
     public IEnumerator CutScene_8()
     {
+        n_Player.isFollow = true;
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -395,6 +398,7 @@ public class CutSceneManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
+        n_Player = FindFirstObjectByType<N_Player>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
         gameManager = FindFirstObjectByType<GameManager>();

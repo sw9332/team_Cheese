@@ -7,6 +7,8 @@ public class N_Player : MonoBehaviour
     private PlayerControl player;
     private Animator animator;
 
+    public bool isFollow = false;
+
     public float followDistance = 1f;
 
     void FollowPlayer()
@@ -49,8 +51,7 @@ public class N_Player : MonoBehaviour
 
     void Update()
     {
-        FollowPlayer();
-
+        if (isFollow) FollowPlayer();
         if (player.stop) animator.Play("N_Player");
     }
 
