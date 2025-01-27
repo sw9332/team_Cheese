@@ -23,6 +23,7 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveY = false;
 
     public bool isMove = true; // if isMove == false -> can't move
+    public bool stop = true;
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
@@ -36,6 +37,8 @@ public class PlayerControl : MonoBehaviour
             case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight"); Direction = direction; break;
         }
+
+        stop = false;
     }
 
     public void StopDirection(string direction)
@@ -47,6 +50,8 @@ public class PlayerControl : MonoBehaviour
             case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
         }
+
+        stop = true;
     }
 
     void MoveControl()
