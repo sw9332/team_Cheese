@@ -13,46 +13,57 @@ public class N_Player : MonoBehaviour
 
     void FollowPlayer()
     {
-        Vector3 directionToPlayer = player.transform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
-        directionToPlayer.Normalize();
-
-        if (distanceToPlayer < followDistance)
+        if (isFollow)
         {
-            animator.Play("N_Player");
-            return;
-        }
+            Vector3 directionToPlayer = player.transform.position - transform.position;
+            float distanceToPlayer = directionToPlayer.magnitude;
+            directionToPlayer.Normalize();
 
-        if (Mathf.Abs(directionToPlayer.x) > Mathf.Abs(directionToPlayer.y))
-        {
-            if (!player.stop)
+            if (distanceToPlayer < followDistance)
             {
-                if (directionToPlayer.x > 0)
-                    animator.Play("N_Player Right");
-                else
-                    animator.Play("N_Player Left");
+                animator.Play("N_Player");
+                return;
             }
-            
-        }
 
-        else
-        {
-            if (!player.stop)
+            if (Mathf.Abs(directionToPlayer.x) > Mathf.Abs(directionToPlayer.y))
             {
-                if (directionToPlayer.y > 0)
-                    animator.Play("N_Player Up");
-                else
-                    animator.Play("N_Player Down");
+                if (!player.stop)
+                {
+                    if (directionToPlayer.x > 0)
+                        animator.Play("N_Player Right");
+                    else
+                        animator.Play("N_Player Left");
+                }
+
+                else animator.Play("N_Player");
+
             }
+
+            else
+            {
+                if (!player.stop)
+                {
+                    if (directionToPlayer.y > 0)
+                        animator.Play("N_Player Up");
+                    else
+                        animator.Play("N_Player Down");
+                }
+
+                else animator.Play("N_Player");
+            }
+
+            transform.position = player.transform.position - directionToPlayer * followDistance;
         }
 
-        transform.position = player.transform.position - directionToPlayer * followDistance;
+        else animator.Play("N_Player");
     }
 
     void Update()
     {
-        if (isFollow) FollowPlayer();
-        if (player.stop) animator.Play("N_Player");
+        FollowPlayer();
+
+        if (Input.GetKeyDown(KeyCode.Q) && !isFollow) isFollow = true;
+        else if (Input.GetKeyDown(KeyCode.Q) && isFollow) isFollow = false;
     }
 
     void Start()
