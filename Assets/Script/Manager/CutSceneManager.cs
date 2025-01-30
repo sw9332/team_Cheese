@@ -57,6 +57,16 @@ public class CutSceneManager : MonoBehaviour
     public bool isCutScene = false;
     public bool isCutScene4 = false;
 
+    public void ChangePosition(GameObject changeObject, float x, float y, float z)
+    {
+        changeObject.transform.position = new Vector3(x, y, z);
+    }
+
+    public IEnumerator WaitForDialogue()
+    {
+        while (dialogueManager.dialogue_continue) yield return null;
+    }
+
     public IEnumerator Prologue()
     {
         GameManager.GameState = "Æ©Åä¸®¾ó";
@@ -66,7 +76,7 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.count < 3) yield return null;
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
         tutorialManager.TutorialType(1);
         tutorialManager.TutorialUI.SetActive(true);
@@ -75,7 +85,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator Tutorial()
     {
         while (!inventoryManager.miniGameCamera) yield return null;
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene = true;
         E_Key.SetActive(true);
         while (!albumManager.Album.activeSelf) yield return null;
@@ -89,24 +99,24 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(true);
-        textManager.ShowDateText("XX.10.10", 3f);
-        playerControl.transform.position = new Vector3(-1.5f, -1.5f, 0);
-        mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
+        textManager.ShowDateText("XX.10.10", 2f);
+        ChangePosition(playerControl.gameObject, -1.5f, -1.5f, 0);
+        ChangePosition(mainCamera.gameObject, -1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         Effect.SetActive(false);
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         E_Key.SetActive(true);
         while (E_Key.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_album1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
     }
 
@@ -115,32 +125,32 @@ public class CutSceneManager : MonoBehaviour
         Move = false;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(true);
-        playerControl.transform.position = new Vector3(-49f, 29.5f, 0);
+        ChangePosition(playerControl.gameObject, -49f, 29.5f, 0);
         npcItem = FindFirstObjectByType<NPCItem>();
         npcItem.ItemRemove();
         miniGame.ClearPhotoMode();
         playerControl.isMove = false;
         playerControl.Direction = "Up";
         NPC.SetActive(true);
-        textManager.ShowDateText("XX.10.01", 3f);
+        textManager.ShowDateText("XX.10.01", 2f);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         // NPC HP : 5
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP : 4
         while (npcEnemy.HP > 4) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP : 3
         while (npcEnemy.HP > 3) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_3);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP : 2
@@ -157,7 +167,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         Effect.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         Effect.SetActive(false);
@@ -165,7 +175,7 @@ public class CutSceneManager : MonoBehaviour
         Effect.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         Blocking_1.SetActive(true);
         stage1_BlockedWay.is_open = true;
         VibrationEvent.SetActive(true);
@@ -180,12 +190,12 @@ public class CutSceneManager : MonoBehaviour
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
         StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(0.1f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos2);
         StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(0.1f);
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
@@ -208,13 +218,13 @@ public class CutSceneManager : MonoBehaviour
         UIManager.is_CutScene_4 = true;
         yield return new WaitForSeconds(3);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(2);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(2);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_3);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene4 = true;
     }
 
@@ -225,8 +235,8 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "CutScene5";
         WhiteBackground.gameObject.SetActive(true);
         playerControl.Direction = "Up";
-        playerControl.transform.position = new Vector3(-49f, 22.5f, 0);
-        npc.transform.position = new Vector3(-49f, 26.5f, 0);
+        ChangePosition(playerControl.gameObject, -49f, 22.5f, 0);
+        ChangePosition(npc.gameObject, -49f, 26.5f, 0);
         Effect.SetActive(false);
         BlackBackground.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white, false));
@@ -234,10 +244,10 @@ public class CutSceneManager : MonoBehaviour
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
         dialogueManager.is_ChoiceExpected = true;
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
         dialogueManager.ShowChoiceDialogue(true, "³­ÀïÀÌ", "ÀÎÇü");
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
 
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(true);
@@ -283,7 +293,7 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = false;
 
         while (!npcEnemy.event2) yield return null;
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         playerControl.transform.position = new Vector2(-49, 29f);
@@ -292,19 +302,19 @@ public class CutSceneManager : MonoBehaviour
         // NPC HP2 : 4
         while (npcEnemy.HP2 > 4) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP2 : 3
         while (npcEnemy.HP2 > 3) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_4);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
         // NPC HP2 : 2
         while (npcEnemy.HP2 > 2) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_5);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(false);
         UIManager.stage1 = true;
     }
@@ -320,16 +330,16 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(PlayerImage, Color.white));
         yield return new WaitForSeconds(2f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white, false));
         fadeManager.fadeImage.gameObject.SetActive(false);
         WhiteBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         WhiteBackground.gameObject.SetActive(false);
-        playerControl.transform.position = new Vector2(-49.5f, -107f);
+        ChangePosition(playerControl.gameObject, -49.5f, -107f, 0);
         playerControl.Direction = "Left";
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
@@ -341,18 +351,18 @@ public class CutSceneManager : MonoBehaviour
         n_Player.isFollow = true;
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_2);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_3);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         E_Key.SetActive(true);
         while (E_Key.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_4);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
     }
 
@@ -362,24 +372,8 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(mainCamera.VibrationEffect(1, 0.1f));
         yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_3);
-        while (dialogueManager.dialogue_continue) yield return null;
+        yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
-    }
-
-    IEnumerator FadeOutImage(UnityEngine.UI.Image image, float duration)
-    {
-        Color color = image.color;
-        float startAlpha = color.a;
-
-        for (float t = 0; t < duration; t += Time.deltaTime)
-        {
-            float alpha = Mathf.Lerp(startAlpha, 0f, t / duration);
-            image.color = new Color(color.r, color.g, color.b, alpha);
-            yield return null;
-        }
-
-        image.color = new Color(color.r, color.g, color.b, 0f);
-        image.gameObject.SetActive(false);
     }
 
     void Update()
