@@ -30,11 +30,11 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetFloat("Player Position X", playerData.position.x);
         PlayerPrefs.SetFloat("Player Position Y", playerData.position.y);
 
+        playerData.direction = player.Direction;
+        PlayerPrefs.SetString("Player Direction", playerData.direction);
+
         inventoryData.miniGameCamera = inventoryManager.miniGameCamera;
         PlayerPrefs.SetInt("Camera", System.Convert.ToInt16(inventoryData.miniGameCamera));
-
-        playerData.move = player.isMove;
-        PlayerPrefs.SetInt("Move", System.Convert.ToInt16(playerData.move));
 
         playerData.bullet = bullet.bulletNum;
         PlayerPrefs.SetInt("Bullet", playerData.bullet);
@@ -74,13 +74,19 @@ public class SaveManager : MonoBehaviour
 
             playerData.position.x = PlayerPrefs.GetFloat("Player Position X");
             playerData.position.y = PlayerPrefs.GetFloat("Player Position Y");
-            player.transform.position = playerData.position;
+            playerData.direction = PlayerPrefs.GetString("Player Direction");
+
+            switch (playerData.direction)
+            {
+                case "Up": player.transform.position = new Vector2(playerData.position.x, playerData.position.y - 0.5f); break;
+                case "Down": player.transform.position = new Vector2(playerData.position.x, playerData.position.y + 0.5f); break;
+                case "Left": player.transform.position = new Vector2(playerData.position.x + 0.5f, playerData.position.y); break;
+                case "Right": player.transform.position = new Vector2(playerData.position.x - 0.5f, playerData.position.y); break;
+            }
+            
 
             inventoryData.miniGameCamera = System.Convert.ToBoolean(PlayerPrefs.GetInt("Camera"));
             inventoryManager.miniGameCamera = inventoryData.miniGameCamera;
-
-            playerData.move = System.Convert.ToBoolean(PlayerPrefs.GetInt("Move"));
-            player.isMove = playerData.move;
 
             playerData.bullet = PlayerPrefs.GetInt("Bullet");
             bullet.bulletNum = playerData.bullet;
@@ -155,8 +161,8 @@ public class SaveManager : MonoBehaviour
 public class PlayerData
 {
     public Vector2 position;
+    public string direction;
     public int hp;
-    public bool move;
     public int bullet;
 }
 
