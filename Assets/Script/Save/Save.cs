@@ -5,15 +5,20 @@ using UnityEngine;
 public class Save : MonoBehaviour
 {
     private SaveManager saveManager;
+    private DialogueManager dialogueManager;
+    private DialogueChoiceManager dialogueChoiceManager;
 
-    public bool trigger = false;
+    public Dialogue SaveDialogue;
+
+    public static bool trigger = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !trigger)
+        if (other.CompareTag("Player"))
         {
             trigger = true;
-            saveManager.Save();
+            dialogueManager.ShowDialogue(SaveDialogue);
+            dialogueManager.ShowChoiceDialogue(true, "예", "아니오");
         }
     }
 
@@ -21,12 +26,14 @@ public class Save : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            trigger = false;
+            //trigger = false;
         }
     }
 
     void Start()
     {
         saveManager = FindFirstObjectByType<SaveManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueChoiceManager = FindFirstObjectByType<DialogueChoiceManager>();
     }
 }
