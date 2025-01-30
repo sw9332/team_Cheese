@@ -155,10 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062e89c4592e1ec4ebb46b15c125a1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveDialogue:
+  save:
     contents:
     - "\uAC8C\uC784\uC744 \uC800\uC7A5\uD560\uAE4C\uC694?"
     name:
     - 
     fontSize: 37000000
-  trigger: 0

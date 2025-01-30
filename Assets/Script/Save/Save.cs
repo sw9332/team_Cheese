@@ -8,7 +8,7 @@ public class Save : MonoBehaviour
     private DialogueManager dialogueManager;
     private DialogueChoiceManager dialogueChoiceManager;
 
-    public Dialogue SaveDialogue;
+    public Dialogue save;
 
     public static bool trigger = false;
 
@@ -17,7 +17,7 @@ public class Save : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             trigger = true;
-            dialogueManager.ShowDialogue(SaveDialogue);
+            dialogueManager.ShowDialogue(save);
             dialogueManager.ShowChoiceDialogue(true, "예", "아니오");
         }
     }
