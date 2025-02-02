@@ -235,7 +235,7 @@ public class PlayerAttack : MonoBehaviour
                 elapsedTime = 0f;
             }
 
-            // 1초이상 적과 대면 시 hp--
+            // 1초 이상 적과 대면 시 HP 감소
             if (isCollidingWithEnemy == true && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
@@ -243,31 +243,35 @@ public class PlayerAttack : MonoBehaviour
                 {
                     GameObject lastHp = hp[hp.Count - 1];
                     StartCoroutine(changeToDamaged());
+                    hp.RemoveAt(hp.Count - 1);
+                    // lastHp에서 Animator 가져오기
+                    Animator hpAnimator = lastHp.GetComponent<Animator>();
 
-                    if(hp.Count %2 == 0)
+                    // Animator가 존재하는지 체크
+                    if (hpAnimator == null)
                     {
-                        var animator = lastHp.GetComponent<Animator>();
-                        animator.Play("HPLeftLose", 0, 0f);
-                        if (animator != null)
-                        {
-                            Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("HPLeftLose"));
-                        }
+                        Debug.LogError("hpAnimator is null! HP 오브젝트에 Animator가 없습니다: " + lastHp.name);
                     }
                     else
                     {
-                        var animator = lastHp.GetComponent<Animator>();
-                        animator.Play("HPRightLose", 0, 0f);
-                        if (animator != null)
+                        Debug.Log("애니메이션 실행: " + lastHp.name);
+
+                        // 애니메이션 실행
+                        if ((hp.Count) % 2 == 0) 
                         {
-                            Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("HPRightLose"));
+                            hpAnimator.Play("HPLeftLose");
                         }
+                        else 
+                        {
+                            hpAnimator.Play("HPRightLose");
+                        }
+
+                        // 애니메이션이 끝난 후 오브젝트 삭제
+                        StartCoroutine(DestroyAfterAnimation(lastHp, hpAnimator));
                     }
 
-                    hp.RemoveAt(hp.Count - 1);
-                    Destroy(lastHp);
-                    elapsedTime = 0f; // 다시 시간 초기화
+                    elapsedTime = 0f; // 시간 초기화
                 }
-
                 else if (hp.Count < 1 && !playerControl.GameEnd)
                 {
                     StartCoroutine(gameManager.GameOver());
@@ -276,6 +280,19 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+    // HP Lose 애니메이션 재생
+    IEnumerator DestroyAfterAnimation(GameObject obj, Animator animator)
+    {
+        if (animator != null)
+        {
+            float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(animationLength);
+        }
+
+        // 애니메이션 실행 후 hp 지우기
+        Destroy(obj);
+    }
+
 
     // 피격 애니메이션 재생은 PlayerControl.cs
     IEnumerator changeToDamaged()
