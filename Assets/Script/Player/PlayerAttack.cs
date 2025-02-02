@@ -31,6 +31,7 @@ public class PlayerAttack : MonoBehaviour
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
+    // [SerializeField] Animator hpAnimator;
 
     // 근접 공격에서 enemy 정보를 받아오기 위해서 설정
     private Collider2D enemyCollider;
@@ -242,34 +243,22 @@ public class PlayerAttack : MonoBehaviour
                 if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
                 {
                     GameObject lastHp = hp[hp.Count - 1];
-                    StartCoroutine(changeToDamaged());
-                    hp.RemoveAt(hp.Count - 1);
                     // lastHp에서 Animator 가져오기
                     Animator hpAnimator = lastHp.GetComponent<Animator>();
 
-                    // Animator가 존재하는지 체크
-                    if (hpAnimator == null)
+                    // hpAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+                    if ((hp.Count) % 2 == 0)
                     {
-                        Debug.LogError("hpAnimator is null! HP 오브젝트에 Animator가 없습니다: " + lastHp.name);
+                        StartCoroutine(playHPLoseAnimation(lastHp, hpAnimator, hp.Count));
                     }
                     else
                     {
-                        Debug.Log("애니메이션 실행: " + lastHp.name);
-
-                        // 애니메이션 실행
-                        if ((hp.Count) % 2 == 0) 
-                        {
-                            hpAnimator.Play("HPLeftLose");
-                        }
-                        else 
-                        {
-                            hpAnimator.Play("HPRightLose");
-                        }
-
-                        // 애니메이션이 끝난 후 오브젝트 삭제
-                        StartCoroutine(DestroyAfterAnimation(lastHp, hpAnimator));
+                        StartCoroutine(playHPLoseAnimation(lastHp, hpAnimator, hp.Count));
                     }
+                    hp.RemoveAt(hp.Count - 1);
+                    StartCoroutine(changeToDamaged());
 
+                    // 애니메이션이 끝난 후 오브젝트 삭제
                     elapsedTime = 0f; // 시간 초기화
                 }
                 else if (hp.Count < 1 && !playerControl.GameEnd)
@@ -280,19 +269,28 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+
     // HP Lose 애니메이션 재생
-    IEnumerator DestroyAfterAnimation(GameObject obj, Animator animator)
+    IEnumerator playHPLoseAnimation(GameObject obj, Animator animator, int hpCount)
     {
         if (animator != null)
         {
+            if (hpCount % 2 == 0)
+            {
+                animator.Play("hprightlose");
+                Debug.Log("현재 애니메이션 상태: " + animator.GetCurrentAnimatorStateInfo(0).IsName("hprightlose"));
+
+            }
+            else
+            {
+                animator.Play("hpleftlose");
+                Debug.Log("현재 애니메이션 상태: " + animator.GetCurrentAnimatorStateInfo(0).IsName("hpleftlose"));
+            }
             float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
             yield return new WaitForSeconds(animationLength);
+            Destroy(obj);
         }
-
-        // 애니메이션 실행 후 hp 지우기
-        Destroy(obj);
     }
-
 
     // 피격 애니메이션 재생은 PlayerControl.cs
     IEnumerator changeToDamaged()
@@ -321,7 +319,6 @@ public class PlayerAttack : MonoBehaviour
             hp.Add(hpObj);
         }
     }
-
     void getPlayerSpriteRenderer()
     {
         player = GameObject.Find("Player");
@@ -359,5 +356,6 @@ public class PlayerAttack : MonoBehaviour
         Player_Collision();
 
         showBulletNum();
+
     }
 }
