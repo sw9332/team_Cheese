@@ -348,10 +348,15 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_8()
     {
+        playerControl.animator.Play("Wake Up");
+        playerControl.animator.speed = 0;
         n_Player.isFollow = true;
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
         yield return StartCoroutine(WaitForDialogue());
+        yield return new WaitForSeconds(1f);
+        playerControl.animator.speed = 1;
+        playerControl.animator.Play("Wake Up");
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_2);
         yield return StartCoroutine(WaitForDialogue());
