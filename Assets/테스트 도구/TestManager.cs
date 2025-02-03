@@ -10,6 +10,7 @@ public class TestManager : MonoBehaviour
     private InventoryManager inventoryManager;
     private UIManager uiManager;
     private FadeManager fadeManager;
+    private CutSceneManager cutSceneManager;
 
     private Image image;
     private Animator animator;
@@ -75,6 +76,11 @@ public class TestManager : MonoBehaviour
         StartCoroutine(fadeManager.FadeIn(image, Color.gray, true));
     }
 
+    public void Chapter2_Play()
+    {
+        StartCoroutine(cutSceneManager.CutScene_7());
+    }
+
     void Start()
     {
         player = FindFirstObjectByType<Player>();
@@ -82,6 +88,7 @@ public class TestManager : MonoBehaviour
         inventoryManager = FindFirstObjectByType<InventoryManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
 
         image = GetComponent<Image>();
         animator = GetComponent<Animator>();
