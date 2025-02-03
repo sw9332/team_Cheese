@@ -340,7 +340,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         WhiteBackground.gameObject.SetActive(false);
         ChangePosition(playerControl.gameObject, -49.5f, -107f, 0);
-        playerControl.Direction = "Left";
+        playerControl.StopDirection("lying down");
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         StartCoroutine(CutScene_8());
@@ -348,16 +348,15 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_8()
     {
-        playerControl.animator.Play("Wake Up");
-        playerControl.animator.speed = 0;
         n_Player.isFollow = true;
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
         yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(1f);
-        playerControl.animator.speed = 1;
-        playerControl.animator.Play("Wake Up");
-        yield return new WaitForSeconds(1f);
+        playerControl.StopDirection("Wake Up");
+        yield return new WaitForSeconds(1.3f);
+        playerControl.StopDirection("Left");
+        yield return new WaitForSeconds(0.5f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_2);
         yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(1f);

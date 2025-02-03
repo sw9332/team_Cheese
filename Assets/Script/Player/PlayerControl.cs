@@ -49,6 +49,8 @@ public class PlayerControl : MonoBehaviour
             case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
             case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
+            case "lying down": animator.Play("lying down"); Direction = direction; break;
+            case "Wake Up": animator.Play("Wake Up"); Direction = direction; break;
         }
 
         stop = true;
@@ -161,10 +163,7 @@ public class PlayerControl : MonoBehaviour
         {
             switch (Direction)
             {
-                case "Up": StopDirection(Direction); break;
-                case "Down": StopDirection(Direction); break;
-                case "Left": StopDirection(Direction); break;
-                case "Right": StopDirection(Direction); break;
+                default: StopDirection(Direction); break;
             }
 
             animator.speed = 1;
