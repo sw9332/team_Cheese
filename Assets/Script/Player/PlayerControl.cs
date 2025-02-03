@@ -22,6 +22,11 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
 
+
+    public Queue<Vector3> positionHistory = new Queue<Vector3>(); // 위치 기록 큐
+    public float recordInterval = 0.1f; // 위치 기록 간격 (초)
+    private float timer = 0f;
+
     public bool isMove = true; // if isMove == false -> can't move
 
     public Vector3 CenterOffset; // player Gizmo function related
@@ -31,10 +36,24 @@ public class PlayerControl : MonoBehaviour
     {
         switch (direction)
         {
-            case "Up": animator.Play("PlayerUp"); Direction = direction; break;
-            case "Down": animator.Play("PlayerDown"); Direction = direction; break;
-            case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
-            case "Right": animator.Play("PlayerRight"); Direction = direction; break;
+            case "Up": 
+                animator.Play("PlayerUp"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(0, 0, 0);
+                //transform.GetChild(2).GetComponent<SpriteRenderer>().sortingOrder = 12;
+                break;
+            case "Down": 
+                animator.Play("PlayerDown"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(0, 1.5f, 0);
+                //transform.GetChild(2).GetComponent<SpriteRenderer>().sortingOrder = 0;
+                break;
+            case "Left":
+                animator.Play("PlayerLeft"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(1, 0.8f, 0); 
+                break;
+            case "Right": 
+                animator.Play("PlayerRight"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(-1, 0.8f, 0);
+                break;
         }
     }
 
@@ -181,6 +200,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
+                //transform.position += new Vector3(0, speed * 1, 0);
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
@@ -192,6 +212,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
+                //transform.position += new Vector3(0, speed * -1, 0);
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -203,6 +224,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
+                //transform.position += new Vector3(speed * -1, 0, 0);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
@@ -214,6 +236,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
+                //transform.position += new Vector3(speed * 1, 0, 0);
             }
         }
     }
@@ -285,6 +308,20 @@ public class PlayerControl : MonoBehaviour
         MoveControl();
         DamageControl();
         PushControl();
+
+        // 일정 간격으로 위치 기록
+        timer += Time.deltaTime;
+        if (timer >= recordInterval)
+        {
+            positionHistory.Enqueue(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+            timer = 0f;
+
+            // 메모리 관리를 위해 오래된 위치 삭제 (필요에 따라 조정)
+            if (positionHistory.Count > 100)
+            {
+                positionHistory.Dequeue();
+            }
+        }
     }
 
     void Start()
