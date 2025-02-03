@@ -18,7 +18,9 @@ public class CutSceneManager : MonoBehaviour
     private Stage1_BlockedWay stage1_BlockedWay;
     private AlbumManager albumManager;
     private GameManager gameManager;
+    private SaveManager saveManager;
     private TextManager textManager;
+    private TutorialManager tutorialManager;
 
     [Header("Image")]
     public Image BlackBackground;
@@ -44,15 +46,29 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
 
-    [Header("Animation")]
-    public Animator BigTeddyBearBosAnimation1;
-    public Animator BigTeddyBearBosAnimation2;
-    public Animator BigTeddyBearBosAnimation3;
+    [Header("Chapter 1 Save")]
+    public GameObject Chapter1_Save1;
+    public GameObject Chapter1_Save2;
 
     [Header("Check")]
     public bool Move = true;
     public bool isCutScene = false;
     public bool isCutScene4 = false;
+
+    public IEnumerator Prologue()
+    {
+        GameManager.GameState = "Æ©Åä¸®¾ó";
+        fadeManager.fadeImage.gameObject.SetActive(true);
+        isCutScene = true;
+        dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
+        while (dialogueManager.count < 3) yield return null;
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+
+        while (dialogueManager.dialogue_continue) yield return null;
+        isCutScene = false;
+        tutorialManager.TutorialType(1);
+        tutorialManager.TutorialUI.SetActive(true);
+    }
 
     public IEnumerator Tutorial()
     {
@@ -76,7 +92,7 @@ public class CutSceneManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(-1.5f, -1.5f, -10);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -105,7 +121,7 @@ public class CutSceneManager : MonoBehaviour
         NPC.SetActive(true);
         textManager.ShowDateText("XX.10.01", 3f);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         // NPC HP : 5
         dialogueManager.ShowDialogue(dialogueContentManager.d_Demo_1);
@@ -135,7 +151,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_1);
         while (dialogueManager.dialogue_continue) yield return null;
@@ -171,26 +187,14 @@ public class CutSceneManager : MonoBehaviour
 
         Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
         float moveSpeed = 13f;
-        BigTeddyBearBosAnimation1.speed = 2f;
-        BigTeddyBearBosAnimation1.Play("BigTeddyBearMove");
-        BigTeddyBearBosAnimation2.speed = 2f;
-        BigTeddyBearBosAnimation2.Play("BigTeddyBearMove2");
-        BigTeddyBearBosAnimation3.speed = 2f;
-        BigTeddyBearBosAnimation3.Play("BigTeddyBearMove3");
 
         while ((Vector2)BigTeddyBearBos.transform.position != targetPosition)
         {
-            BigTeddyBearBos.transform.position = Vector2.MoveTowards(
-                BigTeddyBearBos.transform.position,
-                targetPosition,
-                moveSpeed * Time.deltaTime
-            );
+            BigTeddyBearBos.transform.position = Vector2.MoveTowards(BigTeddyBearBos.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
 
-        BigTeddyBearBosAnimation1.Play("BigTeddyBearStop");
-        BigTeddyBearBosAnimation2.Play("BigTeddyBearStop");
-        BigTeddyBearBosAnimation3.Play("BigTeddyBearStop");
+        BigTeddyBearBos.transform.position = new Vector2(-45f, -59f);
         BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
     }
@@ -222,7 +226,7 @@ public class CutSceneManager : MonoBehaviour
         npc.transform.position = new Vector3(-49f, 26.5f, 0);
         Effect.SetActive(false);
         BlackBackground.gameObject.SetActive(false);
-        yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white));
+        yield return StartCoroutine(fadeManager.FadeIn(WhiteBackground, Color.white, false));
         WhiteBackground.color = Color.white;
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_1);
@@ -279,6 +283,9 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
         npcEnemy.CtrlKey.SetActive(true);
 
+        playerControl.transform.position = new Vector2(-49, 29f);
+        playerControl.Direction = "Up";
+
         // NPC HP2 : 4
         while (npcEnemy.HP2 > 4) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_6_3);
@@ -308,7 +315,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_7_1);
         while (dialogueManager.dialogue_continue) yield return null;
-        yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white));
+        yield return StartCoroutine(fadeManager.FadeIn(PlayerImage, Color.white, false));
         fadeManager.fadeImage.gameObject.SetActive(false);
         WhiteBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
@@ -362,8 +369,14 @@ public class CutSceneManager : MonoBehaviour
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        saveManager = FindFirstObjectByType<SaveManager>();
         textManager = FindFirstObjectByType<TextManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
 
-        StartCoroutine(Tutorial());
+        switch (GameManager.Load)
+        {
+            case true: saveManager.Load(); break;
+            case false: StartCoroutine(Prologue()); StartCoroutine(Tutorial()); break;
+        }
     }
 }

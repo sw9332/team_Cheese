@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: 139_4_0
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 703
+        height: 1360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8268db99297d4a4098e15bebedcc6f0
+      internalID: -517540575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +166,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      139_4_0: -517540575
+      139_4_1: -904148785
+      139_4_2: -626697560
+      139_4_3: 840072109
+      139_4_4: 463659291
+      139_4_5: -1342019359
+      139_4_6: 1545491337
+      139_4_7: -1528273671
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

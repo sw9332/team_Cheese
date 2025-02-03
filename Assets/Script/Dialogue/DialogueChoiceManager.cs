@@ -72,15 +72,16 @@ public class DialogueChoiceManager : MonoBehaviour
 
     void Clear()
     {
-        dialogueManager.DialoguePanel = transform.GetChild(0).gameObject;
         dialogueManager.text.text = "";
         dialogueManager.contentsList.Clear();
-        dialogueManager.spriteList.Clear();
+        dialogueManager.nameList.Clear();
         dialogueManager.count = 0;
         dialogueManager.ingameUiPanel.SetActive(true);
         dialogueManager.dialogue_continue = false;
         dialogueManager.is_ChoiceButton = false;
         dialogueManager.is_ChoiceExpected = false;
+        dialogueManager.Player.gameObject.SetActive(false);
+        dialogueManager.NPC.gameObject.SetActive(false);
     }
 
     void Update()

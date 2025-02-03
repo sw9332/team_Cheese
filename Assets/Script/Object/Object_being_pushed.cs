@@ -25,14 +25,9 @@ public class Object_Being_Pushed : MonoBehaviour
         FreezeY = false;
     }
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     void Update()
     {
-        if (PlayerControl.speed == 2)
+        if (PlayerControl.speed == 2 && PlayerControl.isPush)
         {
             if (PlayerControl.MoveX && !PlayerControl.MoveY && !FreezeX) // 가로로 밀었을 때
             {
@@ -51,5 +46,10 @@ public class Object_Being_Pushed : MonoBehaviour
         }
 
         else rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 }

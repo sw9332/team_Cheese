@@ -36,6 +36,13 @@ public class Player : MonoBehaviour
                 StartCoroutine(cutSceneManager.isVibrationEvent());
                 break;
 
+            case "NPC":
+                if(Input.GetKey(KeyCode.E))
+                {
+                    transform.GetChild(2).gameObject.SetActive(true);
+                }
+                break;
+
             case "ÆÄÆ¼·ë (ÀÔ±¸)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "ÆÄÆ¼·ë (Ãâ±¸)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 

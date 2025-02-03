@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
+    private SaveManager saveManager;
     private FadeManager fadeManager;
     private InventoryManager inventoryManager;
 
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject SettingUI;
 
     public Image fadeImage;
+    public Image GameOver;
 
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
@@ -70,6 +72,12 @@ public class UIManager : MonoBehaviour
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }
 
+    public void Load()
+    {
+        saveManager.Load();
+        GameOver.gameObject.SetActive(false);
+    }
+
     public void GameExit()
     {
         Pause_UI.SetActive(false);
@@ -81,6 +89,12 @@ public class UIManager : MonoBehaviour
     {
         Pause_UI.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void Camera_ON_OFF()
+    {
+        if (inventoryManager.Camera) CameraUI.SetActive(true);
+        else CameraUI.SetActive(false);
     }
 
     public void CameraEvent() //미니게임 실행 조건
@@ -109,15 +123,16 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         Pause();
+        Camera_ON_OFF();
         CameraEvent();
     }
 
     void Start()
     {
+        saveManager = FindFirstObjectByType<SaveManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-        fadeImage.gameObject.SetActive(true);
         CameraEffect(false);
     }
 }

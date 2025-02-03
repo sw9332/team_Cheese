@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    private Player player;
     private PlayerAttack playerAttack;
     private Stamina stamina;
     private CutSceneManager cutSceneManager;
@@ -19,12 +16,18 @@ public class PlayerControl : MonoBehaviour
 
     public static float speed = 2.5f;
 
+    public static bool isPush = false;
+    public static bool isPull = false;
+
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public bool GameEnd = false;
+
+    public Queue<Vector3> positionHistory = new Queue<Vector3>(); // 위치 기록 큐
+    public float recordInterval = 0.1f; // 위치 기록 간격 (초)
+    private float timer = 0f;
+
     public bool isMove = true; // if isMove == false -> can't move
-    public bool isPush = false; // if isPush == false -> can't push Push Object.
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
@@ -33,10 +36,24 @@ public class PlayerControl : MonoBehaviour
     {
         switch (direction)
         {
-            case "Up": animator.Play("PlayerUp"); Direction = direction; break;
-            case "Down": animator.Play("PlayerDown"); Direction = direction; break;
-            case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
-            case "Right": animator.Play("PlayerRight"); Direction = direction; break;
+            case "Up": 
+                animator.Play("PlayerUp"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(0, 0, 0);
+                //transform.GetChild(2).GetComponent<SpriteRenderer>().sortingOrder = 12;
+                break;
+            case "Down": 
+                animator.Play("PlayerDown"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(0, 1.5f, 0);
+                //transform.GetChild(2).GetComponent<SpriteRenderer>().sortingOrder = 0;
+                break;
+            case "Left":
+                animator.Play("PlayerLeft"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(1, 0.8f, 0); 
+                break;
+            case "Right": 
+                animator.Play("PlayerRight"); Direction = direction;
+                //transform.GetChild(2).transform.localPosition = new Vector3(-1, 0.8f, 0);
+                break;
         }
     }
 
@@ -183,6 +200,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
+                //transform.position += new Vector3(0, speed * 1, 0);
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
@@ -194,6 +212,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = true;
 
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
+                //transform.position += new Vector3(0, speed * -1, 0);
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -205,6 +224,7 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
+                //transform.position += new Vector3(speed * -1, 0, 0);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
@@ -216,7 +236,34 @@ public class PlayerControl : MonoBehaviour
                 MoveY = false;
 
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
+                //transform.position += new Vector3(speed * 1, 0, 0);
             }
+        }
+    }
+
+    void PushControl()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && isPush)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
+            else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
+            else if (Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
+            else if (Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
+        }
+
+        else isPush = false;
+    }
+
+    public IEnumerator Damage()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -233,10 +280,10 @@ public class PlayerControl : MonoBehaviour
                     Destroy(lastHp);
                 }
 
-                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                else if (playerAttack.hp.Count <= 1 && !GameManager.GameEnd)
                 {
+                    GameManager.GameEnd = true;
                     StartCoroutine(gameManager.GameOver());
-                    GameEnd = true;
                 }
 
                 StartCoroutine(Damage());
@@ -246,22 +293,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        // Push Object movement
-        if (other.CompareTag("Push_Object"))
-        {
-            isPush = true;
-
-            if (Input.GetKey(KeyCode.LeftShift) && isPush)
-            {
-                if (Input.GetKey(KeyCode.LeftArrow)) animator.Play("LeftPush");
-                else if (Input.GetKey(KeyCode.RightArrow)) animator.Play("RightPush");
-                else if (Input.GetKey(KeyCode.UpArrow)) animator.Play("UpPush");
-                else if (Input.GetKey(KeyCode.DownArrow)) animator.Play("DownPush");
-            }
-
-            else isPush = false;
-        }
-
+        if (other.CompareTag("Push_Object")) isPush = true;
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = true;
     }
 
@@ -271,28 +303,29 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("MiniGame_Tutorial")) UIManager.is_playerPos = false;
     }
 
-    public IEnumerator Damage()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.05f);
-            spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
     void Update()
     {
         MoveControl();
         DamageControl();
+        PushControl();
+
+        // 일정 간격으로 위치 기록
+        timer += Time.deltaTime;
+        if (timer >= recordInterval)
+        {
+            positionHistory.Enqueue(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+            timer = 0f;
+
+            // 메모리 관리를 위해 오래된 위치 삭제 (필요에 따라 조정)
+            if (positionHistory.Count > 100)
+            {
+                positionHistory.Dequeue();
+            }
+        }
     }
 
     void Start()
     {
-        player = FindFirstObjectByType<Player>();
         stamina = FindFirstObjectByType<Stamina>();
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();

@@ -45,7 +45,7 @@ public class TeleportManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         GameManager.GameState = state;
         other.transform.position = new Vector3(x, y, 0);
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black));
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         if (print) textManager.ShowMapNameText(GameManager.GameState, 1.5f);
         fadeManager.fadeDuration = 1f;
     }
