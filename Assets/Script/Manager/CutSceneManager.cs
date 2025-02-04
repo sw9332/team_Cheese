@@ -321,7 +321,6 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_7()
     {
-        GameManager.GameState = "Chapter 2";
         isCutScene = true;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
@@ -343,12 +342,13 @@ public class CutSceneManager : MonoBehaviour
         ChangePosition(playerControl.gameObject, -49.5f, -107f, 0);
         playerControl.StopDirection("lying down");
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         StartCoroutine(CutScene_8());
     }
 
     public IEnumerator CutScene_8()
     {
+        GameManager.GameState = "Chapter 2";
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         n_Player.isFollow = true;
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
