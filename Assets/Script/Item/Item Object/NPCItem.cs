@@ -20,12 +20,19 @@ public class NPCItem : MonoBehaviour
         return new ItemData(tag, position);
     }
 
-    public void PickUp()
+    void PickUp()
     {
-        inventoryManager.PickUpItem(objectCollider);
-        ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
-        saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
-        gameObject.SetActive(false);
+        for (int i = 0; i < inventoryManager.SlotDB.Length; i++)
+        {
+            if (inventoryManager.SlotDB[i] == null || inventoryManager.SlotDB[i] == "")
+            {
+                inventoryManager.PickUpItem(objectCollider);
+                ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
+                saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
+                gameObject.SetActive(false);
+                break;
+            }
+        }
     }
 
     public void Drop()
