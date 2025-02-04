@@ -76,7 +76,7 @@ public class MainCamera : MonoBehaviour
 
             case "연회장 입구":
                 pos.x = -17.5f;
-                pos.y = Mathf.Clamp(player.transform.position.y, 8.8f, 17.15f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 8.8f, 17.5f);
                 break;
 
             case "연회장":
@@ -150,7 +150,7 @@ public class MainCamera : MonoBehaviour
 
             case "Chapter 2 연회장":
                 pos.x = Mathf.Clamp(player.transform.position.x, 7.02f, 10.05f);
-                pos.y = Mathf.Clamp(player.transform.position.y, -118.1f, -114.5f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -114.8f, -114.5f);
                 break;
 
             case "Chapter 2 창고 입구":
