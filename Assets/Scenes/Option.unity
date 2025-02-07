@@ -2044,6 +2044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a12464beb5d14f41a619a603f542a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 467564135}
   GraphicTab: {fileID: 86223409}
   AudioTab: {fileID: 715379161}
   KeyTab: {fileID: 549127297}
