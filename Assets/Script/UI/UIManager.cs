@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     private FadeManager fadeManager;
     private InventoryManager inventoryManager;
 
+    public GameObject InGameUI;
     public GameObject CameraUI;
     public GameObject Pause_UI;
     public GameObject SettingUI;

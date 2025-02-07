@@ -72,14 +72,16 @@ public class CutSceneManager : MonoBehaviour
         GameManager.GameState = "Æ©Åä¸®¾ó";
         fadeManager.fadeImage.gameObject.SetActive(true);
         isCutScene = true;
+        uiManager.InGameUI.SetActive(false);
         dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
         while (dialogueManager.count < 3) yield return null;
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         yield return StartCoroutine(WaitForDialogue());
-        isCutScene = false;
         tutorialManager.TutorialType(1);
         tutorialManager.TutorialUI.SetActive(true);
+        isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
     }
 
     public IEnumerator Tutorial()
@@ -97,6 +99,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_1()
     {
         isCutScene = true;
+        uiManager.InGameUI.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(true);
         textManager.ShowDateText("XX.10.10", 2f);
@@ -118,6 +121,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.d_album1);
         yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
     }
 
     public IEnumerator CutScene_2()
@@ -161,6 +165,7 @@ public class CutSceneManager : MonoBehaviour
         while (GameManager.GameState != "CutScene2") yield return null;
 
         isCutScene = true;
+        uiManager.InGameUI.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
@@ -181,12 +186,14 @@ public class CutSceneManager : MonoBehaviour
         VibrationEvent.SetActive(true);
         isCutScene = false;
         Move = true;
+        uiManager.InGameUI.SetActive(true);
     }
 
     public IEnumerator CutScene_3()
     {
         isCutScene = true;
         Move = false;
+        uiManager.InGameUI.SetActive(false);
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
         StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
@@ -216,6 +223,8 @@ public class CutSceneManager : MonoBehaviour
     {
         GameManager.GameState = "CutScene4";
         UIManager.is_CutScene_4 = true;
+        isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
         yield return new WaitForSeconds(3);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_1);
         yield return StartCoroutine(WaitForDialogue());
@@ -230,6 +239,8 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_5()
     {
+        uiManager.InGameUI.SetActive(false);
+        isCutScene = true;
         NPC.SetActive(false);
         miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
@@ -266,6 +277,7 @@ public class CutSceneManager : MonoBehaviour
         BosUI.gameObject.SetActive(false);
         yield return null;
         isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
         npc.Hp.gameObject.SetActive(true);
         Blocking_2.SetActive(true);
         Move = true;
@@ -276,6 +288,7 @@ public class CutSceneManager : MonoBehaviour
     {
         GameManager.GameState = "CutScene6";
         isCutScene = true;
+        uiManager.InGameUI.SetActive(false);
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
@@ -291,6 +304,7 @@ public class CutSceneManager : MonoBehaviour
         NPC_Boss_Event2.SetActive(true);
         NPC_Boss_Event3.SetActive(true);
         isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
 
         while (!npcEnemy.event2) yield return null;
         yield return StartCoroutine(WaitForDialogue());
@@ -322,6 +336,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_7()
     {
         isCutScene = true;
+        uiManager.InGameUI.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         yield return new WaitForSeconds(1f);
         miniGame.ClearPhotoMode();
@@ -369,6 +384,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_4);
         yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
     }
 
     public IEnumerator isVibrationEvent()
@@ -379,6 +395,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.d_Stage_3);
         yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
+        uiManager.InGameUI.SetActive(true);
     }
 
     void Update()
