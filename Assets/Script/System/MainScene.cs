@@ -27,7 +27,7 @@ public class MainScene : MonoBehaviour
 
     public void SettingButton() //설정 버튼
     {
-        SettingUI.SetActive(true);
+        GameSetting.Instance.ui.SetActive(true);
     }
 
     public void ExitButton() //나가기 버튼
