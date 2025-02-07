@@ -148,7 +148,6 @@ public class MiniGame : MonoBehaviour
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
-                        UIManager.is_NPC = false;
                         UIManager.stage1 = false;
                         is_take_photo = false;
                         is_minigame = false;
@@ -164,12 +163,16 @@ public class MiniGame : MonoBehaviour
                         && x_Axis.value >= 8.9f && x_Axis.value <= 9.1f
                         && y_Axis.value >= -115.1f && y_Axis.value <= -114.9f)
                     {
-                        UIManager.is_NPC = false;
+                        UIManager.rabbit_Statue = false;
+                        UIManager.cart = false;
+                        UIManager.chicken = false;
+                        UIManager.flower = false;
                         is_take_photo = false;
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
                         inventoryManager.Clean();
+                        StartCoroutine(cutSceneManager.CutScene_9());
                     }
                     break;
             }

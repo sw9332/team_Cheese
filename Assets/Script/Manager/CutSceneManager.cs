@@ -67,6 +67,17 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
     }
 
+    public IEnumerator MoveObject(GameObject Object, float x, float y, float speed)
+    {
+        Vector2 targetPosition = new Vector2(x, y);
+
+        while ((Vector2)Object.transform.position != targetPosition)
+        {
+            Object.transform.position = Vector2.MoveTowards(Object.transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
     public IEnumerator Prologue()
     {
         GameManager.GameState = "Æ©Åä¸®¾ó";
@@ -205,15 +216,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(0.1f);
 
-        Vector2 targetPosition = new Vector2(playerControl.transform.position.x, BigTeddyBearBos.transform.position.y);
-        float moveSpeed = 13f;
-
-        while ((Vector2)BigTeddyBearBos.transform.position != targetPosition)
-        {
-            BigTeddyBearBos.transform.position = Vector2.MoveTowards(BigTeddyBearBos.transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
+        yield return StartCoroutine(MoveObject(BigTeddyBearBos, playerControl.transform.position.x, BigTeddyBearBos.transform.position.y, 15f));
         BigTeddyBearBos.transform.position = new Vector2(-45f, -59f);
         BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
@@ -385,6 +388,26 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         isCutScene = false;
         uiManager.InGameUI.SetActive(true);
+    }
+
+    public IEnumerator CutScene_9()
+    {
+        GameManager.GameState = "CutScene 9";
+        uiManager.InGameUI.SetActive(false);
+        playerControl.gameObject.SetActive(false);
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        ChangePosition(playerControl.gameObject, 9.8f, -244.36f, 0);
+        ChangePosition(mainCamera.gameObject, 9.8f, -244.36f, -10);
+        miniGame.ClearPhotoMode();
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+        yield return new WaitForSeconds(2f);
+
+        TinSoldier.Instance.Move("Left");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 11.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+
+        TinSoldier.Instance.Stop("Left");
+        yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator isVibrationEvent()
