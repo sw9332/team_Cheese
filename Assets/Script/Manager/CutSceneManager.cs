@@ -130,7 +130,7 @@ public class CutSceneManager : MonoBehaviour
         npcItem.ItemRemove();
         miniGame.ClearPhotoMode();
         playerControl.isMove = false;
-        playerControl.Direction = "Up";
+        playerControl.StopDirection("Up");
         NPC.SetActive(true);
         textManager.ShowDateText("XX.10.01", 2f);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
@@ -234,7 +234,7 @@ public class CutSceneManager : MonoBehaviour
         miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
         WhiteBackground.gameObject.SetActive(true);
-        playerControl.Direction = "Up";
+        playerControl.StopDirection("Up");
         ChangePosition(playerControl.gameObject, -49f, 22.5f, 0);
         ChangePosition(npc.gameObject, -49f, 26.5f, 0);
         Effect.SetActive(false);
@@ -296,8 +296,8 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         npcEnemy.CtrlKey.SetActive(true);
 
-        playerControl.transform.position = new Vector2(-49, 29f);
-        playerControl.Direction = "Up";
+        ChangePosition(playerControl.gameObject, -49f, 29f, 0);
+        playerControl.StopDirection("Up");
 
         // NPC HP2 : 4
         while (npcEnemy.HP2 > 4) yield return null;
