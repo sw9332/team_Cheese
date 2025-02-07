@@ -393,6 +393,7 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_9()
     {
         GameManager.GameState = "CutScene 9";
+        isCutScene = true;
         uiManager.InGameUI.SetActive(false);
         playerControl.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
@@ -408,6 +409,15 @@ public class CutSceneManager : MonoBehaviour
 
         TinSoldier.Instance.Stop("Left");
         yield return new WaitForSeconds(1f);
+
+        TinSoldier.Instance.Move("Left Attack");
+        yield return new WaitForSeconds(1f);
+
+        TinSoldier.Instance.Stop("Left");
+        yield return new WaitForSeconds(3f);
+
+        TinSoldier.Instance.Move("Left");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, -3.7f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
     }
 
     public IEnumerator isVibrationEvent()
