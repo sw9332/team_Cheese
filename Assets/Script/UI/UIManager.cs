@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
 
     public void SettingButton()
     {
-        SettingUI.SetActive(true);
+        GameSetting.Instance.ui.SetActive(true);
     }
 
     public void NewGame()

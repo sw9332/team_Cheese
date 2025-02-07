@@ -18,6 +18,11 @@ public class GameSetting : MonoBehaviour
 
     void Awake()
     {
+        ui.SetActive(false);
+        Camera.enabled = false;
+
+
+
         if (instance == null)
             instance = this;
         else
@@ -25,6 +30,8 @@ public class GameSetting : MonoBehaviour
     }
 
     public static int ScreenFrame = 60;
+
+    public Camera Camera;
 
     public GameObject ui;
     public GameObject GraphicTab;
