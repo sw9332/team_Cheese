@@ -134,7 +134,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && Direction == "Left") StopDirection("Left");
             if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Direction == "Right") StopDirection("Right");
 
-            if (Input.GetKey(KeyCode.LeftShift) && stamina.playerStaminaBar.value > 0.01f)
+            if (Input.GetKey(KeyCode.LeftShift) && stamina.Hp > 1)
             {
                 if (!isPush)
                 {
