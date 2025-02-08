@@ -37,6 +37,7 @@ public class CutSceneManager : MonoBehaviour
     public GameObject E_Key;
     public GameObject NPC;
     public GameObject BigTeddyBearBos;
+    public Camera MainCamera;
 
     [Header("Blocking")]
     public GameObject Blocking_1;
@@ -393,14 +394,12 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_9()
     {
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        MainCamera.orthographicSize = 4;
         miniGame.ClearPhotoMode();
         Effect.SetActive(true);
         isCutScene = true;
         GameManager.GameState = "CutScene 9";
         uiManager.InGameUI.SetActive(false);
-        playerControl.gameObject.SetActive(false);
-        ChangePosition(playerControl.gameObject, 19.3f, -246.36f, 0);
-        ChangePosition(mainCamera.gameObject, 9.8f, -244.36f, -10);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(2f);
@@ -418,7 +417,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, -3.7f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, -1.3f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 

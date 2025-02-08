@@ -164,8 +164,8 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "CutScene 9":
-                pos.x = Mathf.Clamp(player.transform.position.x, 7.02f, 10.05f);
-                pos.y = Mathf.Clamp(player.transform.position.y, -245.83f, -245.5f);
+                pos.x = 10.5f;
+                pos.y = -244f;
                 break;
 
             default:

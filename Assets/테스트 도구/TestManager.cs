@@ -36,6 +36,7 @@ public class TestManager : MonoBehaviour
             case "치킨 있는 곳": player.transform.position = new Vector3(-36f, -162f, 0); break;
             case "박물관": player.transform.position = new Vector3(-16f, -198f, 0); break;
             case "Chapter 2 연회장 입구": player.transform.position = new Vector3(-15f, -114f, 0); break;
+            case "TinSoldier": StartCoroutine(cutSceneManager.CutScene_9()); break;
         }
 
         GameManager.GameState = Player_Position_Input.text;
