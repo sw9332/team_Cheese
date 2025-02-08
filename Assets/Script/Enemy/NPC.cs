@@ -310,6 +310,7 @@ public class NPC : MonoBehaviour
     public IEnumerator Die()
     {
         animator.Play("Die");
+        cutSceneManager.Move = false;
         speed = 0;
         RUSH_SPEED = 0;
         die = true;

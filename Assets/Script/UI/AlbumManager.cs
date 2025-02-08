@@ -36,7 +36,7 @@ public class AlbumManager : MonoBehaviour
             {
                 Album.SetActive(false);
                 playerControl.isMove = true;
-                InGameUI.SetActive(true);
+                if (!cutSceneManager.isCutScene) InGameUI.SetActive(true);
             }
         }
     }

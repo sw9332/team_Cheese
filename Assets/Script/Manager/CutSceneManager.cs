@@ -82,9 +82,12 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator Prologue()
     {
         GameManager.GameState = "Æ©Åä¸®¾ó";
-        fadeManager.fadeImage.gameObject.SetActive(true);
-        isCutScene = true;
         uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+
+        fadeManager.fadeImage.gameObject.SetActive(true);
+
         dialogueManager.ShowDialogue(dialogueContentManager.d_prologue);
         while (dialogueManager.count < 3) yield return null;
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
@@ -92,32 +95,46 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         tutorialManager.TutorialType(1);
         tutorialManager.TutorialUI.SetActive(true);
-        isCutScene = false;
+        
         uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
     }
 
     public IEnumerator Tutorial()
     {
         while (!inventoryManager.miniGameCamera) yield return null;
         yield return StartCoroutine(WaitForDialogue());
+
+        uiManager.InGameUI.SetActive(false);     
         isCutScene = true;
+
+        albumManager.album = true;
         E_Key.SetActive(true);
+
         while (!albumManager.Album.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
+
+        uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+
         dialogueManager.ShowDialogue(dialogueContentManager.d_album2);
+        StartCoroutine(WaitForDialogue());
         isCutScene = false;
     }
 
     public IEnumerator CutScene_1()
     {
-        isCutScene = true;
-        uiManager.InGameUI.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        miniGame.ClearPhotoMode();
+
         Effect.SetActive(true);
         textManager.ShowDateText("XX.10.10", 2f);
         ChangePosition(playerControl.gameObject, -1.5f, -1.5f, 0);
         ChangePosition(mainCamera.gameObject, -1.5f, -1.5f, -10);
-        miniGame.ClearPhotoMode();
         GameManager.GameState = "Æ©Åä¸®¾ó ÄÆ¾À";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
@@ -127,24 +144,31 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.ChangeStateFade("ÆÄÆ¼·ë"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         yield return StartCoroutine(WaitForDialogue());
+        albumManager.album = true;
         E_Key.SetActive(true);
         while (E_Key.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.d_album1);
         yield return StartCoroutine(WaitForDialogue());
-        isCutScene = false;
+
         uiManager.InGameUI.SetActive(true);
+        albumManager.album = true;
+        isCutScene = false;
     }
 
     public IEnumerator CutScene_2()
     {
-        Move = false;
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
+        Move = false;
+        miniGame.ClearPhotoMode();
+
         Effect.SetActive(true);
         ChangePosition(playerControl.gameObject, -49f, 29.5f, 0);
         npcItem = FindFirstObjectByType<NPCItem>();
         npcItem.ItemRemove();
-        miniGame.ClearPhotoMode();
         playerControl.isMove = false;
         playerControl.StopDirection("Up");
         NPC.SetActive(true);
@@ -176,8 +200,10 @@ public class CutSceneManager : MonoBehaviour
 
         while (GameManager.GameState != "CutScene2") yield return null;
 
-        isCutScene = true;
         uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         Effect.SetActive(false);
         yield return new WaitForSeconds(1f);
@@ -196,16 +222,19 @@ public class CutSceneManager : MonoBehaviour
         Blocking_1.SetActive(true);
         stage1_BlockedWay.is_open = true;
         VibrationEvent.SetActive(true);
+
+        uiManager.InGameUI.SetActive(true);
+        albumManager.album = true;
         isCutScene = false;
         Move = true;
-        uiManager.InGameUI.SetActive(true);
     }
 
     public IEnumerator CutScene_3()
     {
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
         isCutScene = true;
         Move = false;
-        uiManager.InGameUI.SetActive(false);
 
         dialogueManager.ShowDialogue(dialogueContentManager.d_Bos1);
         StartCoroutine(mainCamera.VibrationEffect(1f, 0.1f));
@@ -227,8 +256,9 @@ public class CutSceneManager : MonoBehaviour
     {
         GameManager.GameState = "CutScene4";
         UIManager.is_CutScene_4 = true;
-        isCutScene = false;
         uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
         yield return new WaitForSeconds(3);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_4_1);
         yield return StartCoroutine(WaitForDialogue());
@@ -243,11 +273,13 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_5()
     {
-        uiManager.InGameUI.SetActive(false);
-        isCutScene = true;
-        NPC.SetActive(false);
-        miniGame.ClearPhotoMode();
         GameManager.GameState = "CutScene5";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        miniGame.ClearPhotoMode();
+
+        NPC.SetActive(false);
         WhiteBackground.gameObject.SetActive(true);
         playerControl.StopDirection("Up");
         ChangePosition(playerControl.gameObject, -49f, 22.5f, 0);
@@ -280,19 +312,26 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         BosUI.gameObject.SetActive(false);
         yield return null;
-        isCutScene = false;
-        uiManager.InGameUI.SetActive(true);
+        
         npc.Hp.gameObject.SetActive(true);
         Blocking_2.SetActive(true);
+
+        uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
         Move = true;
+
         StartCoroutine(npc.Boss_Pattern());
     }
 
     public IEnumerator CutScene_6()
     {
         GameManager.GameState = "CutScene6";
-        isCutScene = true;
         uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        Move = false;
+        
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
@@ -307,8 +346,11 @@ public class CutSceneManager : MonoBehaviour
         NPC_Boss_Event1.SetActive(true);
         NPC_Boss_Event2.SetActive(true);
         NPC_Boss_Event3.SetActive(true);
-        isCutScene = false;
+
         uiManager.InGameUI.SetActive(true);
+        albumManager.album = false;
+        isCutScene = false;
+        Move = true;
 
         while (!npcEnemy.event2) yield return null;
         yield return StartCoroutine(WaitForDialogue());
@@ -339,11 +381,13 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_7()
     {
-        isCutScene = true;
-        uiManager.InGameUI.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
-        yield return new WaitForSeconds(1f);
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
         miniGame.ClearPhotoMode();
+
+        yield return new WaitForSeconds(1f);
         PlayerImage.gameObject.SetActive(true);
         yield return StartCoroutine(fadeManager.FadeOut(PlayerImage, Color.white));
         yield return new WaitForSeconds(2f);
@@ -367,8 +411,12 @@ public class CutSceneManager : MonoBehaviour
     public IEnumerator CutScene_8()
     {
         GameManager.GameState = "Chapter 2";
-        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
         n_Player.isFollow = true;
+
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_1);
         yield return StartCoroutine(WaitForDialogue());
@@ -382,24 +430,29 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_3);
         yield return StartCoroutine(WaitForDialogue());
+        albumManager.album = true;
         E_Key.SetActive(true);
         while (E_Key.activeSelf) yield return null;
         while (albumManager.Album.activeSelf) yield return null;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_8_4);
         yield return StartCoroutine(WaitForDialogue());
-        isCutScene = false;
+
         uiManager.InGameUI.SetActive(true);
+        albumManager.album = true;
+        isCutScene = false;
     }
 
     public IEnumerator CutScene_9()
     {
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
-        MainCamera.orthographicSize = 4;
-        miniGame.ClearPhotoMode();
-        Effect.SetActive(true);
-        isCutScene = true;
         GameManager.GameState = "CutScene 9";
         uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        miniGame.ClearPhotoMode();
+
+        MainCamera.orthographicSize = 4;
+        Effect.SetActive(true);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(2f);
@@ -419,9 +472,19 @@ public class CutSceneManager : MonoBehaviour
         TinSoldier.Instance.Move("Left");
         yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 1.3f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
+        TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 
+        GameManager.GameState = "Chapter 2 ¿¬È¸Àå";
+        uiManager.InGameUI.SetActive(true);
+        MainCamera.orthographicSize = 6;
         Effect.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
+
+        albumManager.album = true;
+        isCutScene = false;
     }
 
     public IEnumerator isVibrationEvent()
