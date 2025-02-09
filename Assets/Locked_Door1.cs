@@ -35,7 +35,7 @@ public class Locked_Door1 : MonoBehaviour
                 if (inventoryManager.SlotDB[i] == "Key")
                 {
                     inventoryManager.SlotDB[i] = null;
-                    inventoryManager.SlotImageDB[i] = null;
+                    inventoryManager.SlotImageDB[i].sprite = null;
                     break;
                 }
             }
@@ -54,7 +54,11 @@ public class Locked_Door1 : MonoBehaviour
             for(int i = 0; i<inventoryManager.SlotDB.Length; i++)
             {
                 if (inventoryManager.SlotDB[i] != "Key")
+                {
                     dialogueManager.ShowDialogue(locked_door1);
+                    break;
+                }
+                    
 
                 else if (inventoryManager.SlotDB[i] == "Key")
                 {
