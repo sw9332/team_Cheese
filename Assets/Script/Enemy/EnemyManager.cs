@@ -9,10 +9,13 @@ public class EnemyManager : MonoBehaviour
     private List<Enemy> enemyList = new();
     private List<SpriteRenderer> enemySprites = new();
     private List<Animator> enemyEffects = new();  // Animator override �ؼ� �ϰ� ������ ����, ���� ���� ����
+    private List<Animator> enemyEffects = new();  // Animator override �ؼ� �ϰ� ������ ����, ���� ���� ����
 
     private Bullet bullet;
     private bool isCoroutining = false; // ��ø�Ǽ� ����Ǵ� ���� ����
+    private bool isCoroutining = false; // ��ø�Ǽ� ����Ǵ� ���� ����
 
+    public void takeDamage(string enemyName) // name : bullet���� ������ enemy�� tag
     public void takeDamage(string enemyName) // name : bullet���� ������ enemy�� tag
     {
         (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
@@ -23,8 +26,11 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log("hp ����");
             if((enemy.tag + "Hit") != null)
+            Debug.Log("hp ����");
+            if((enemy.name + "Hit") != null)
             {
                 enemyAni.Play(enemy.tag + "Hit");
+                enemyAni.Play(enemy.name + "Hit");
             }
 
             StartCoroutine(changeColor(enemySprite));
@@ -34,9 +40,11 @@ public class EnemyManager : MonoBehaviour
         if (!isCoroutining && enemy.hp == 0)
         {
             destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
         }
     }
 
+    // �����ϸ� �ڵ������� enemy���� components�� list�� �߰��ǵ��� ����
     // �����ϸ� �ڵ������� enemy���� components�� list�� �߰��ǵ��� ����
     void addEnemyInformationInLists()
     {
@@ -49,17 +57,20 @@ public class EnemyManager : MonoBehaviour
     // Ʃ�÷� ���� ������ ��ȯ�ϰ� ��
     // Damage�� �޴� �ش� ������Ʈ�� Components���� list�鿡�� ��ȯ
     (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyTag)
+    // Ʃ�÷� ���� ������ ��ȯ�ϰ� ��
+    // Damage�� �޴� �ش� ������Ʈ�� Components���� list�鿡�� ��ȯ
+    (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyName)
     {
-        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyTag));
+        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
         GameObject obj = enemies[objIndex];
 
-        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyTag));
+        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyName));
         Enemy enemy = enemyList[enemyIndex];
 
-        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
+        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         SpriteRenderer enemySprite = enemySprites[spriteIndex];
 
-        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
+        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         Animator enemyAni = enemyEffects[aniIndex];
 
         return (obj, enemy, enemySprite, enemyAni);
@@ -67,10 +78,10 @@ public class EnemyManager : MonoBehaviour
 
     void destroyEnemy(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
-        string enemyTag = enemy.tag;
+        string enemyName = enemy.name;
         if (enemy.hp <= 0)
         {
-            switch (enemyTag)
+            switch (enemyName)
             {
                 case "pinkDollEnemy":
                     {
