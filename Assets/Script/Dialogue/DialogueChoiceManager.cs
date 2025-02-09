@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueChoiceManager : MonoBehaviour
 {
+    private SaveManager saveManager;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
 
@@ -23,6 +24,16 @@ public class DialogueChoiceManager : MonoBehaviour
         {
             case "CutScene5": dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_3); break;
         }
+
+        switch (Save.trigger)
+        {
+            case true: saveManager.Save(); dialogueManager.ExitDialogue(); Save.trigger = false; break;
+        }
+
+        switch (Locked_Door1.unlocked)
+        {
+            case true: dialogueManager.ExitDialogue(); Locked_Door1.door_Unlocked = true; Locked_Door1.unlocked = false; break;
+        }
     }
 
     public void Choice_2()
@@ -33,6 +44,16 @@ public class DialogueChoiceManager : MonoBehaviour
         switch (GameManager.GameState)
         {
             case "CutScene5": dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_3); break;
+        }
+
+        switch (Save.trigger)
+        {
+            case true: dialogueManager.ExitDialogue(); Save.trigger = false; return;
+        }
+
+        switch (Locked_Door1.unlocked)
+        {
+            case true: dialogueManager.ExitDialogue(); Locked_Door1.door_Unlocked = false; Locked_Door1.unlocked = false; break;
         }
     }
 
@@ -91,6 +112,7 @@ public class DialogueChoiceManager : MonoBehaviour
 
     void Start()
     {
+        saveManager = FindFirstObjectByType<SaveManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
     }

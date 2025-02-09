@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class DialogueContentManager : MonoBehaviour
 {
-    [Header("이벤트")]
+    [Header("Chapter 1 Event")]
     public Dialogue d_event1;
     public Dialogue d_event2;
     public Dialogue d_event3;
     public Dialogue d_event4;
+
+    [Header("Chapter 2 Event")]
+    public Dialogue chapter2_event1;
+    public Dialogue chapter2_event2;
+    public Dialogue chapter2_event3;
+    public Dialogue chapter2_event4;
+    public Dialogue chapter2_event5;
+    public Dialogue chapter2_event6;
 
     [Header("튜토리얼")]
     [SerializeField]
@@ -78,7 +86,13 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue cutScene_6_4;
     public Dialogue cutScene_6_5;
 
-    [Header("CutScene_7 (Demo 마지막)")]
+    [Header("CutScene_7")]
     public Dialogue cutScene_7_1;
     public Dialogue cutScene_7_2;
+
+    [Header("CutScene_8")]
+    public Dialogue cutScene_8_1;
+    public Dialogue cutScene_8_2;
+    public Dialogue cutScene_8_3;
+    public Dialogue cutScene_8_4;
 }

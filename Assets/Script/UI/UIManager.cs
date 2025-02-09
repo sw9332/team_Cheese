@@ -8,14 +8,17 @@ using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
+    private SaveManager saveManager;
     private FadeManager fadeManager;
     private InventoryManager inventoryManager;
 
+    public GameObject InGameUI;
     public GameObject CameraUI;
     public GameObject Pause_UI;
     public GameObject SettingUI;
 
     public Image fadeImage;
+    public Image GameOver;
 
     //카메라 UI 효과
     public Animator Camera_Effect_Animation;
@@ -29,6 +32,13 @@ public class UIManager : MonoBehaviour
     //Stage1 변수
     public static bool is_NPC = false;
     public static bool is_CutScene_4 = false;
+    public static bool stage1 = false;
+
+    //Stage2
+    public static bool cart = false;
+    public static bool rabbit_Statue = false;
+    public static bool chicken = false;
+    public static bool flower = false;
 
     public void CameraEffect(bool isCameraEffect)
     {
@@ -62,12 +72,18 @@ public class UIManager : MonoBehaviour
 
     public void SettingButton()
     {
-        SettingUI.SetActive(true);
+        GameSetting.Instance.ui.SetActive(true);
     }
 
     public void NewGame()
     {
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
+    }
+
+    public void Load()
+    {
+        saveManager.Load();
+        GameOver.gameObject.SetActive(false);
     }
 
     public void GameExit()
@@ -85,7 +101,7 @@ public class UIManager : MonoBehaviour
 
     public void Camera_ON_OFF()
     {
-        if (inventoryManager.Camera) CameraUI.SetActive(true);
+        if (inventoryManager.miniGameCamera) CameraUI.SetActive(true);
         else CameraUI.SetActive(false);
     }
 
@@ -96,9 +112,9 @@ public class UIManager : MonoBehaviour
         else
             tutorialTrigger = false;
 
-        if (inventoryManager.Camera)
+        if (inventoryManager.miniGameCamera)
         {
-            if (tutorialTrigger || is_NPC || is_CutScene_4 || GameManager.Demo)
+            if (tutorialTrigger || is_NPC || is_CutScene_4 || stage1 || (cart && rabbit_Statue && chicken && flower))
             {
                 CameraEffect(true);
                 MiniGame.is_take_photo = true;
@@ -121,10 +137,10 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        saveManager = FindFirstObjectByType<SaveManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-        fadeImage.gameObject.SetActive(true);
         CameraEffect(false);
     }
 }

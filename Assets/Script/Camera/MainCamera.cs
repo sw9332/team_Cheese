@@ -47,81 +47,125 @@ public class MainCamera : MonoBehaviour
         {
             case "튜토리얼":
                 pos.x = -77f;
-                pos.y = Mathf.Clamp(player.transform.position.y, 47.5f, 49f);
+                pos.y = 48.2f;
                 break;
 
             case "튜토리얼 컷씬":
                 pos.x = -51.9f;
-                pos.y = 47.5f;
+                pos.y = 48.2f;
                 break;
 
             case "파티룸":
                 pos.x = -1.5f;
-                pos.y = Mathf.Clamp(player.transform.position.y, -1f, 1f);
+                pos.y = 0;
                 break;
 
             case "복도":
                 if (player.transform.position.y >= -7.8f)
                 {
                     pos.x = -17.5f;
-                    pos.y = player.transform.position.y;
+                    pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -5.49f);
                 }
                     
                 else
                 {
-                    pos.x = Mathf.Clamp(player.transform.position.x, -45.5f, 0f);
-                    pos.y = -13.15f;
+                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, -0.15f);
+                    pos.y = -13.3f;
                 }
                 break;
 
             case "연회장 입구":
                 pos.x = -17.5f;
-                pos.y = Mathf.Clamp(player.transform.position.y, 7.5f, 18.8f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 8.8f, 17.5f);
                 break;
 
             case "연회장":
-                pos.x = Mathf.Clamp(player.transform.position.x, 4f, 12f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 16f, 18.7f);
+                pos.x = Mathf.Clamp(player.transform.position.x, 7.02f, 10.05f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 17.15f, 17.506f);
                 break;
 
             case "창고 입구":
                 pos.x = -49.44f;
-                pos.y = Mathf.Clamp(player.transform.position.y, -1.3f, 7f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -0.1f, 5.6f);
                 break;
 
             case "창고":
-                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.8f, 29.5f);
                 break;
 
             case "Stage1":
                 pos.x = -63.45f;
-                pos.y = Mathf.Clamp(player.transform.position.y, -46.5f, -32f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -45.2f, -33.5f);
                 break;
 
             case "보스":
                 pos.x = player.transform.position.x;
-                pos.y = Mathf.Clamp(player.transform.position.y, -60f, -58.3f);
+                pos.y = -59.2f;
                 break;
 
             case "CutScene2":
-                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.8f, 29.5f);
                 break;
 
             case "CutScene5":
-                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.8f, 29.5f);
                 break;
 
             case "CutScene6":
-                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.8f, 29.5f);
                 break;
 
             case "CutScene7":
-                pos.x = Mathf.Clamp(player.transform.position.x, -55f, -44f);
-                pos.y = Mathf.Clamp(player.transform.position.y, 20f, 30.8f);
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, 19.8f, 29.5f);
+                break;
+
+            case "Chapter 2":
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -112.2f, -102.5f);
+                break;
+
+            case "Chapter 2 복도":
+                if (player.transform.position.y >= -140f)
+                {
+                    pos.x = -17.5f;
+                    pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -137.5f);
+                }
+
+                else
+                {
+                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, -18f);
+                    pos.y = -145.5f;
+                }
+                break;
+
+            case "Chapter 2 연회장 입구":
+                pos.x = -17.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -123.2f, -114.5f);
+                break;
+
+            case "Chapter 2 연회장":
+                pos.x = Mathf.Clamp(player.transform.position.x, 7.02f, 10.05f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -114.8f, -114.5f);
+                break;
+
+            case "Chapter 2 창고 입구":
+                pos.x = -49.44f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -132.2f, -126.5f);
+                break;
+
+            case "Chapter 2 창고":
+                pos.x = Mathf.Clamp(player.transform.position.x, -52.99f, -45.98f);
+                pos.y = Mathf.Clamp(player.transform.position.y, -114.81f, -102.5f);
+                break;
+
+            case "CutScene 9":
+                pos.x = 10.5f;
+                pos.y = -244f;
                 break;
 
             default:

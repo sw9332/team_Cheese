@@ -63,6 +63,26 @@ TagManager:
   - pinkBearEnemy
   - brownBearEnemy
   - yellowBearEnemy
+  - "Chapter 2 \uCC3D\uACE0 (\uCD9C\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 (\uC785\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
+  - "Chapter 2 \uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
+  - "Chapter 2 \uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
+  - Event 1 (Chapter 2)
+  - Event 2 (Chapter 2)
+  - Event 3 (Chapter 2)
+  - Event 4 (Chapter 2)
+  - Event 5 (Chapter 2)
+  - Event 6 (Chapter 2)
+  - Chicken
+  - Flower
+  - "\uC5F0\uD68C\uC7A5 \uD14C\uC774\uBE14"
+  - Cart Position
+  - Rabbit Statue Position
+  - Key
   layers:
   - Default
   - TransparentFX
