@@ -457,20 +457,20 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(2f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 11.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
-        TinSoldier.Instance.Stop("Left");
+        TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1f);
 
-        TinSoldier.Instance.Move("Left Attack");
+        TinSoldier.Instance.Move("Right Attack");
         yield return new WaitForSeconds(1f);
 
-        TinSoldier.Instance.Stop("Left");
+        TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(3f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 1.3f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 16.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
