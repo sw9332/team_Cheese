@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hp : MonoBehaviour
 {
     public GameObject[] hpObject;
-    public float hpValue = 10;
+    public float hpValue = 5;
 
     private static GameObject value = null;
 
@@ -27,7 +27,7 @@ public class Hp : MonoBehaviour
 
     void HpUpdate()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             hpObject[i].SetActive(i < hpValue);
         }
