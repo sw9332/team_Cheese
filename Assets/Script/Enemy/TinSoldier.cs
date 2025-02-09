@@ -39,6 +39,6 @@ public class TinSoldier : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        Stop("Left");
+        Stop("Right");
     }
 }
