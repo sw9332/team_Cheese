@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
+    public GameObject rightHP;
 
     public void PickUpItem(Collider2D item)
     {

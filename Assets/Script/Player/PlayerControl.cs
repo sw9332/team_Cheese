@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     public Animator animator; // player attack and movement
 
     public static float speed = 2.5f;
-
+    public bool GameEnd  =false;
     public static bool isPush = false;
     public static bool isPull = false;
 
