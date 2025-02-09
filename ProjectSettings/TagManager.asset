@@ -60,6 +60,9 @@ TagManager:
   - NPC Boss Event 1
   - NPC Boss Event 2
   - NPC Boss Event 3
+  - pinkBearEnemy
+  - brownBearEnemy
+  - yellowBearEnemy
   - "Chapter 2 \uCC3D\uACE0 (\uCD9C\uAD6C)"
   - "Chapter 2 \uCC3D\uACE0 (\uC785\uAD6C)"
   - "Chapter 2 \uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"

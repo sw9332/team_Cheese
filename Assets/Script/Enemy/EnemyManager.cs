@@ -8,12 +8,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] List<GameObject> enemies = new();
     private List<Enemy> enemyList = new();
     private List<SpriteRenderer> enemySprites = new();
-    private List<Animator> enemyEffects = new();  // Animator override ÇØ¼­ ÇÏ°í ½ÍÁö¸¸ ½ÇÆÐ, ÃßÈÄ ¼öÁ¤ ¿¹Á¤
+    private List<Animator> enemyEffects = new();  // Animator override ï¿½Ø¼ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private Bullet bullet;
-    private bool isCoroutining = false; // ÁßÃ¸µÇ¼­ ½ÇÇàµÇ´Â °ÍÀ» ¹æÁö
+    private bool isCoroutining = false; // ï¿½ï¿½Ã¸ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    public void takeDamage(string enemyName) // name : bullet¿¡¼­ °¡Á®¿Â enemyÀÇ tag
+    public void takeDamage(string enemyName) // name : bulletï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ enemyï¿½ï¿½ tag
     {
         (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
             = getEnemyInformation(enemyName);
@@ -21,19 +21,23 @@ public class EnemyManager : MonoBehaviour
         enemy.hp -= 1;
         if (!isCoroutining && enemy.hp > 0)
         {
-            Debug.Log("hp ±îÀÓ");
-            enemyAni.Play(enemy.name + "Hit");
+            Debug.Log("hp ï¿½ï¿½ï¿½ï¿½");
+            if((enemy.tag + "Hit") != null)
+            {
+                enemyAni.Play(enemy.tag + "Hit");
+            }
+
             StartCoroutine(changeColor(enemySprite));
-            StartCoroutine(ResetToDefaultState(enemyAni));
+            StartCoroutine(ResetToDefaultState(enemyAni,enemy));
         }
 
         if (!isCoroutining && enemy.hp == 0)
         {
-            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // Àû ÆÄ±«
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // ï¿½ï¿½ ï¿½Ä±ï¿½
         }
     }
 
-    // ½ÇÇàÇÏ¸é ÀÚµ¿ÀûÀ¸·Î enemy°ü·Ã componentsµé list¿¡ Ãß°¡µÇµµ·Ï ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ enemyï¿½ï¿½ï¿½ï¿½ componentsï¿½ï¿½ listï¿½ï¿½ ï¿½ß°ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     void addEnemyInformationInLists()
     {
         // enemies.AddRange(transform.GetChild());
@@ -42,20 +46,20 @@ public class EnemyManager : MonoBehaviour
         enemyEffects.AddRange(GetComponentsInChildren<Animator>());
     }
 
-    // Æ©ÇÃ·Î ¿©·¯ Çü½ÄÀ» ¹ÝÈ¯ÇÏ°Ô ÇÔ
-    // Damage¸¦ ¹Þ´Â ÇØ´ç ¿ÀºêÁ§Æ®ÀÇ ComponentsµéÀ» listµé¿¡¼­ ¹ÝÈ¯
-    (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyName)
+    // Æ©ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï°ï¿½ ï¿½ï¿½
+    // Damageï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Componentsï¿½ï¿½ï¿½ï¿½ listï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½È¯
+    (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyTag)
     {
-        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
+        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyTag));
         GameObject obj = enemies[objIndex];
 
-        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyName));
+        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyTag));
         Enemy enemy = enemyList[enemyIndex];
 
-        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
+        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
         SpriteRenderer enemySprite = enemySprites[spriteIndex];
 
-        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
+        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
         Animator enemyAni = enemyEffects[aniIndex];
 
         return (obj, enemy, enemySprite, enemyAni);
@@ -63,10 +67,10 @@ public class EnemyManager : MonoBehaviour
 
     void destroyEnemy(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
-        string enemyName = enemy.name;
+        string enemyTag = enemy.tag;
         if (enemy.hp <= 0)
         {
-            switch (enemyName)
+            switch (enemyTag)
             {
                 case "pinkDollEnemy":
                     {
@@ -83,6 +87,11 @@ public class EnemyManager : MonoBehaviour
                         deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
                         break;
                     }
+                case "yellowBearEnemy":
+                    {
+                        deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
+                        break;
+                    }
             }
         }
 
@@ -90,7 +99,7 @@ public class EnemyManager : MonoBehaviour
             deleteEnemyInLists(objEnemy, enemy, enemySprite, enemyAni);
     }
 
-    // ÆÄ±«µÇ´Â °Í ¶ÇÇÑ ÀÚµ¿À¸·Î µÇ°Ô²û
+    // ï¿½Ä±ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°Ô²ï¿½
     void deleteEnemyInLists(GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
     {
         enemies.Remove(objEnemy);
@@ -108,21 +117,24 @@ public class EnemyManager : MonoBehaviour
         isCoroutining = false;
     }
 
-    IEnumerator ResetToDefaultState(Animator enemyAni)   // ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ±âº» »óÅÂ·Î ÀüÈ¯
+    IEnumerator ResetToDefaultState(Animator enemyAni, Enemy enemy)   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
     {
         yield return new WaitForSeconds(0.4f);
-        enemyAni.Play("None");
+        if (enemy.gameObject.layer != LayerMask.NameToLayer("enemy"))
+        {
+            enemyAni.Play("None");
+        }
     }
 
-    // null reference ¿À·ù ¹ß»ýÀ» ¾È½ÃÅ°µµ·Ï
+    // null reference ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½È½ï¿½Å°ï¿½ï¿½ï¿½ï¿½
     void removeNullEnemiesFromLists()
     {
-        // µÚ¿¡¼­ºÎÅÍ Áö¿ö¾ß ÀÎµ¦½º ²¿ÀÓÀÌ ¾È »ý±â¹Ç·Î, ¿ª¼øÀ¸·Î ¼øÈ¸
+        // ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç·ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
         for (int i = enemies.Count - 1; i >= 0; i--)
         {
             if (enemies[i] == null)
             {
-                // ÇØ´ç ÀÎµ¦½º¿¡ ÀÖ´Â ¿ä¼ÒµéÀ» ¸ðµÎ Á¦°Å
+                // ï¿½Ø´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 enemies.RemoveAt(i);
                 enemyList.RemoveAt(i);
                 enemySprites.RemoveAt(i);
@@ -130,6 +142,9 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
+
+    // ===============================================================================
 
 
     void Start()
