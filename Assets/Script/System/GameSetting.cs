@@ -6,8 +6,34 @@ using System.Linq;
 
 public class GameSetting : MonoBehaviour
 {
+    private static GameSetting instance;
+
+    public static GameSetting Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        ui.SetActive(false);
+        Camera.enabled = false;
+
+
+
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
+
     public static int ScreenFrame = 60;
 
+    public Camera Camera;
+
+    public GameObject ui;
     public GameObject GraphicTab;
     public GameObject AudioTab;
     public GameObject KeyTab;

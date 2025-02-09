@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6668227108988156852}
   - component: {fileID: 2376252531298945883}
   - component: {fileID: 742347311933976546}
+  - component: {fileID: 2103317790158566556}
   m_Layer: 0
   m_Name: Pink Teddy Bear Item
   m_TagString: PinkTeddyBear
@@ -187,5 +188,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1be5b3b1c2a4b264b8a95c9040c8e9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPickUp: 0
+--- !u!114 &2103317790158566556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609593712621222495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3b1c5858aefe94d8a829c427d34d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

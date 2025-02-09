@@ -22,8 +22,8 @@ public class PlayerControl : MonoBehaviour
     public static bool MoveX = false;
     public static bool MoveY = false;
 
-    public bool GameEnd = false;
     public bool isMove = true; // if isMove == false -> can't move
+    public bool stop = true;
 
     public Vector3 CenterOffset; // player Gizmo function related
     public string Direction = "Down"; // Up, Down, Left, Right
@@ -37,6 +37,8 @@ public class PlayerControl : MonoBehaviour
             case "Left": animator.Play("PlayerLeft"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight"); Direction = direction; break;
         }
+
+        stop = false;
     }
 
     public void StopDirection(string direction)
@@ -47,7 +49,11 @@ public class PlayerControl : MonoBehaviour
             case "Down": animator.Play("PlayerDown_Stop"); Direction = direction; break;
             case "Left": animator.Play("PlayerLeft_Stop"); Direction = direction; break;
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
+            case "lying down": animator.Play("lying down"); Direction = direction; break;
+            case "Wake Up": animator.Play("Wake Up"); Direction = direction; break;
         }
+
+        stop = true;
     }
 
     void MoveControl()
@@ -157,10 +163,7 @@ public class PlayerControl : MonoBehaviour
         {
             switch (Direction)
             {
-                case "Up": StopDirection(Direction); break;
-                case "Down": StopDirection(Direction); break;
-                case "Left": StopDirection(Direction); break;
-                case "Right": StopDirection(Direction); break;
+                default: StopDirection(Direction); break;
             }
 
             animator.speed = 1;
@@ -258,10 +261,10 @@ public class PlayerControl : MonoBehaviour
                     Destroy(lastHp);
                 }
 
-                else if (playerAttack.hp.Count <= 1 && !GameEnd)
+                else if (playerAttack.hp.Count <= 1 && !GameManager.GameEnd)
                 {
+                    GameManager.GameEnd = true;
                     StartCoroutine(gameManager.GameOver());
-                    GameEnd = true;
                 }
 
                 StartCoroutine(Damage());

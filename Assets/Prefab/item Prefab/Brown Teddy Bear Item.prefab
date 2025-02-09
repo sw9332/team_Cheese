@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7784347093704237125}
   - component: {fileID: 8840614283263922870}
   - component: {fileID: 1531107352501830904}
+  - component: {fileID: 6404449404584415929}
   m_Layer: 0
   m_Name: Brown Teddy Bear Item
   m_TagString: BrownTeddyBear
@@ -189,4 +190,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canPickUp: 0
-  isInstalled: 0
+--- !u!114 &6404449404584415929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448782574328820509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3b1c5858aefe94d8a829c427d34d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

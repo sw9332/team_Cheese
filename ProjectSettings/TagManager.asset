@@ -3,76 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - object_Table
-  - "\uC0AC\uBB3C"
-  - A
-  - B
-  - "\uB2EC\uB825"
-  - "\uB098\uAC00\uB294 \uBB38"
-  - "\uD14C\uC774\uBE14"
-  - pinkDollonChair
-  - cakeBehindChair
-  - Cake Event
-  - Teddy Bear
-  - BrownTeddyBear
-  - PinkTeddyBear
-  - YellowTeddyBear
-  - Cake
-  - Undefined
-  - DroppedBrownTeddyBear
-  - C
-  - Camera Event
-  - Enemy
-  - Chair
-  - Camera
-  - pinkDollEnemy
-  - rabbitDollEnemy
-  - Tutorial Go
-  - Push_Object
-  - back
-  - NPC
-  - TableA
-  - Room D floor
-  - NPCEnemy
-  - Bullet
-  - "\uD30C\uD2F0\uB8F8 (\uC785\uAD6C)"
-  - "\uD30C\uD2F0\uB8F8 (\uCD9C\uAD6C)"
-  - "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uC785\uAD6C)"
-  - "\uC5F0\uD68C\uC7A5 \uC785\uAD6C (\uCD9C\uAD6C)"
-  - "\uC5F0\uD68C\uC7A5 (\uC785\uAD6C)"
-  - "\uC5F0\uD68C\uC7A5 (\uCD9C\uAD6C)"
-  - "\uCC3D\uACE0 \uC785\uAD6C (\uC785\uAD6C)"
-  - "\uCC3D\uACE0 \uC785\uAD6C (\uCD9C\uAD6C)"
-  - "\uCC3D\uACE0 (\uC785\uAD6C)"
-  - "\uCC3D\uACE0 (\uCD9C\uAD6C)"
-  - MiniGame_Tutorial
-  - "Stage1 (\uC785\uAD6C)"
-  - "\uBCF4\uC2A4 (\uC785\uAD6C)"
-  - Last Vibration
-  - LootItem
-  - ChocoBar
-  - Ammo
-  - Wall
-  - Boss
-  - Boss Bullet
-  - DroppedPinkTeddyBear
-  - NPC Boss Event 1
-  - NPC Boss Event 2
-  - NPC Boss Event 3
-  - pinkBearEnemy
-  - brownBearEnemy
-  - yellowBearEnemy
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - player
+  - 
   - Water
   - UI
-  - enemy
-  - wall
-  - attackable object
+  - 
+  - 
+  - 
   - 
   - 
   - 

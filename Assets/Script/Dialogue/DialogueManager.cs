@@ -36,7 +36,9 @@ public class DialogueManager : MonoBehaviour
     public bool is_ChoiceButton = false;
     public bool is_ChoiceExpected = false;
 
+    public CutSceneManager cutSceneManager;
     public PlayerControl playerControl;
+    public UIManager uiManager;
     private FadeManager fadeManager;
 
     public void ShowImage()
@@ -70,8 +72,9 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(WaitForDialogue());
         dialogue_continue = true;
         button_text.text = "¥Ÿ¿Ω";
-        ingameUiPanel.SetActive(false);
         playerControl.isMove = false;
+
+        uiManager.InGameUI.SetActive(false);
     }
 
     IEnumerator WaitForDialogue()
@@ -110,11 +113,13 @@ public class DialogueManager : MonoBehaviour
         nameList.Clear();
         fontSizeList.Clear();
         count = 0;
-        ingameUiPanel.SetActive(true);
         dialogue_continue = false;
         Player.gameObject.SetActive(false);
         NPC.gameObject.SetActive(false);
         if (!fadeManager.isFade) playerControl.isMove = true;
+
+        if (!cutSceneManager.isCutScene) uiManager.InGameUI.SetActive(true);
+        else uiManager.InGameUI.SetActive(false);
     }
 
     public IEnumerator startDialogueCoroutine()
@@ -209,6 +214,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        uiManager = FindFirstObjectByType<UIManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
 
         text.text = "";

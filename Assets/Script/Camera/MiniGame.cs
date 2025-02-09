@@ -148,14 +148,31 @@ public class MiniGame : MonoBehaviour
                         && x_Axis.value >= -49.15f && x_Axis.value <= -48.8f
                         && y_Axis.value >= 32.3f && y_Axis.value <= 32.5f)
                     {
-                        UIManager.is_NPC = false;
-                        GameManager.Demo = false;
+                        UIManager.stage1 = false;
                         is_take_photo = false;
                         is_minigame = false;
                         isImageChange = true;
                         playerControl.isMove = false;
                         inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_7());
+                    }
+                    break;
+
+                case "Chapter 2 ¿¬È¸Àå": MiniGamePosition(8f, 10f, -116f, -114f);
+                    if (Input.GetKey(KeyCode.Tab)
+                        && x_Axis.value >= 8.9f && x_Axis.value <= 9.1f
+                        && y_Axis.value >= -115.1f && y_Axis.value <= -114.9f)
+                    {
+                        UIManager.rabbit_Statue = false;
+                        UIManager.cart = false;
+                        UIManager.chicken = false;
+                        UIManager.flower = false;
+                        is_take_photo = false;
+                        is_minigame = false;
+                        isImageChange = true;
+                        playerControl.isMove = false;
+                        inventoryManager.Clean();
+                        StartCoroutine(cutSceneManager.CutScene_9());
                     }
                     break;
             }

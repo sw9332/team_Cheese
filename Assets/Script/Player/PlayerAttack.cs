@@ -261,10 +261,10 @@ public class PlayerAttack : MonoBehaviour
                     // 애니메이션이 끝난 후 오브젝트 삭제
                     elapsedTime = 0f; // 시간 초기화
                 }
-                else if (hp.Count < 1 && !playerControl.GameEnd)
+                else if (hp.Count < 1 && !GameManager.GameEnd)
                 {
                     StartCoroutine(gameManager.GameOver());
-                    playerControl.GameEnd = true;
+                    GameManager.GameEnd = true;
                 }
             }
         }

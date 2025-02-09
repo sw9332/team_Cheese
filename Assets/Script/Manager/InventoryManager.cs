@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public Image[] SlotImageDB;
     public bool Camera = false;
     public GameObject rightHP;
+    public bool miniGameCamera = false;
 
     private Player player;
     private PlayerAttack playerattack;
