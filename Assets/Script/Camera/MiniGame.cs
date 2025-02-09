@@ -22,6 +22,7 @@ public class MiniGame : MonoBehaviour
     private CutSceneManager cutSceneManager;
     private MainCamera mainCamera;
     private MiniGame photoCamera;
+    private UIManager uiManager;
     private InventoryManager inventoryManager;
 
     private float ClampX;
@@ -38,7 +39,7 @@ public class MiniGame : MonoBehaviour
             playerControl.gameObject.SetActive(false);
             mainCamera.GetComponent<Camera>().enabled = false;
             photoCamera.GetComponent<Camera>().enabled = true;
-            ingameUIPanel.SetActive(false);
+            uiManager.InGameUI.SetActive(false);
             minigamePanel.SetActive(true);
             is_minigame = true;
         }
@@ -49,7 +50,6 @@ public class MiniGame : MonoBehaviour
         playerControl.gameObject.SetActive(true);
         mainCamera.GetComponent<Camera>().enabled = true;
         photoCamera.GetComponent<Camera>().enabled = false;
-        ingameUIPanel.SetActive(true);
         minigamePanel.SetActive(false);
         is_minigame = false;
         StartRandom();
@@ -192,6 +192,7 @@ public class MiniGame : MonoBehaviour
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
         mainCamera = FindFirstObjectByType<MainCamera>();
         photoCamera = FindFirstObjectByType<MiniGame>();
+        uiManager = FindFirstObjectByType<UIManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         StartRandom();

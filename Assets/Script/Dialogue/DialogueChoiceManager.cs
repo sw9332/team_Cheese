@@ -29,6 +29,11 @@ public class DialogueChoiceManager : MonoBehaviour
         {
             case true: saveManager.Save(); dialogueManager.ExitDialogue(); Save.trigger = false; break;
         }
+
+        switch (Locked_Door1.unlocked)
+        {
+            case true: dialogueManager.ExitDialogue(); Locked_Door1.door_Unlocked = true; Locked_Door1.unlocked = false; break;
+        }
     }
 
     public void Choice_2()
@@ -44,6 +49,11 @@ public class DialogueChoiceManager : MonoBehaviour
         switch (Save.trigger)
         {
             case true: dialogueManager.ExitDialogue(); Save.trigger = false; return;
+        }
+
+        switch (Locked_Door1.unlocked)
+        {
+            case true: dialogueManager.ExitDialogue(); Locked_Door1.door_Unlocked = false; Locked_Door1.unlocked = false; break;
         }
     }
 

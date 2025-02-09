@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class AlbumManager : MonoBehaviour
 {
+    public bool album = false;
+
     public GameObject Album;
     public GameObject InGameUI;
 
     private PlayerControl playerControl;
-    private InventoryManager inventoryManager;
     private DialogueManager dialogueManager;
+    private CutSceneManager cutSceneManager;
+    private InventoryManager inventoryManager;
 
     [SerializeField] List<GameObject> imageObjects = new(); // Image 관련 GameObject 리스트
     [SerializeField] List<Image> albumImages = new(); // Image 컴포넌트 리스트
@@ -18,18 +21,23 @@ public class AlbumManager : MonoBehaviour
 
     void AlbumUI_Open_Close()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && !Album.activeSelf && !dialogueManager.dialogue_continue)
-        {
-            Album.SetActive(true);
-            playerControl.isMove = false;
-            InGameUI.SetActive(false);
-        }
+        if ((!album && cutSceneManager.isCutScene) || (!album && !cutSceneManager.isCutScene)) return;
 
-        else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && Album.activeSelf)
+        if ((album && cutSceneManager.isCutScene) || (album && !cutSceneManager.isCutScene))
         {
-            Album.SetActive(false);
-            playerControl.isMove = true;
-            InGameUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && !Album.activeSelf && !dialogueManager.dialogue_continue)
+            {
+                Album.SetActive(true);
+                playerControl.isMove = false;
+                InGameUI.SetActive(false);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.E) && inventoryManager.miniGameCamera && Album.activeSelf)
+            {
+                Album.SetActive(false);
+                playerControl.isMove = true;
+                if (!cutSceneManager.isCutScene) InGameUI.SetActive(true);
+            }
         }
     }
 
@@ -133,8 +141,9 @@ public class AlbumManager : MonoBehaviour
     void Start()
     {
         playerControl = FindFirstObjectByType<PlayerControl>();
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
+        cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         addImageInformationInLists(); // 이미지 정보 리스트에 자동 추가
 

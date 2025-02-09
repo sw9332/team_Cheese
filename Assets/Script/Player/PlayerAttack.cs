@@ -245,7 +245,6 @@ public class PlayerAttack : MonoBehaviour
                     GameObject lastHp = hp[hp.Count - 1];
                     // lastHp에서 Animator 가져오기
                     Animator hpAnimator = lastHp.GetComponent<Animator>();
-
                     // hpAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
                     if ((hp.Count) % 2 == 0)
                     {
@@ -261,7 +260,7 @@ public class PlayerAttack : MonoBehaviour
                     // 애니메이션이 끝난 후 오브젝트 삭제
                     elapsedTime = 0f; // 시간 초기화
                 }
-                else if (hp.Count < 1 && !GameManager.GameEnd)
+                else if (hp.Count < 1 && !playerControl.GameEnd)
                 {
                     StartCoroutine(gameManager.GameOver());
                     GameManager.GameEnd = true;

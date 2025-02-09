@@ -5,17 +5,40 @@ using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
-    public Slider playerStaminaBar;
     public bool isPlayerRunning;
+    public float Hp = 6f;
 
-    void Start()
+    public GameObject[] stamina;
+
+    void HpUpdate()
     {
-        playerStaminaBar.value = 1f;
+        for (int i = 0; i < 6; i++)
+        {
+            stamina[i].SetActive(i < Hp);
+        }
+    }
+
+    void HpDecrease()
+    {
+        if (Hp > -0.8)
+        {
+            Hp -= 1f * Time.deltaTime;
+            HpUpdate();
+        }
+    }
+
+    void HpPlus()
+    {
+        if (Hp < 6)
+        {
+            Hp += 1f * Time.deltaTime;
+            HpUpdate();
+        }
     }
 
     void Update()
     {
-        if (isPlayerRunning && !PlayerControl.isPush) playerStaminaBar.value -= 0.5f * Time.deltaTime;
-        else playerStaminaBar.value += 0.25f * Time.deltaTime;
+        if (isPlayerRunning && Input.GetKey(KeyCode.LeftShift)) HpDecrease();
+        else if (!isPlayerRunning && !Input.GetKey(KeyCode.LeftShift)) HpPlus();
     }
 }
