@@ -7,9 +7,9 @@ public class Hp : MonoBehaviour
     public GameObject[] hpObject;
     public float hpValue = 3;
 
-    private static GameObject value = null;
+    private static Hp value = null;
 
-    public static GameObject Instance
+    public static Hp Instance
     {
         get
         {
@@ -20,7 +20,7 @@ public class Hp : MonoBehaviour
     void Awake()
     {
         if (value == null)
-            value = this.gameObject;
+            value = this;
         else
             Destroy(value);
     }
@@ -35,13 +35,13 @@ public class Hp : MonoBehaviour
 
     public void HpPlus(float value)
     {
-        hpValue += value;
+        if (hpValue < 5) hpValue += value;
         HpUpdate();
     }
 
     public void HpDecrease(float value)
     {
-        hpValue -= value;
+        if (hpValue > 0) hpValue -= value;
         HpUpdate();
     }
 

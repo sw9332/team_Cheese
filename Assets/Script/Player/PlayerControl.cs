@@ -254,14 +254,9 @@ public class PlayerControl : MonoBehaviour
         {
             if (npc.attackDamage)
             {
-                if (playerAttack.hp != null && playerAttack.hp.Count > 1)
-                {
-                    GameObject lastHp = playerAttack.hp[playerAttack.hp.Count - 1];
-                    playerAttack.hp.RemoveAt(playerAttack.hp.Count - 1);
-                    Destroy(lastHp);
-                }
+                Hp.Instance.HpDecrease(1.0f);
 
-                else if (playerAttack.hp.Count <= 1 && !GameManager.GameEnd)
+                if (Hp.Instance.hpValue < 1 && !GameManager.GameEnd)
                 {
                     GameManager.GameEnd = true;
                     StartCoroutine(gameManager.GameOver());

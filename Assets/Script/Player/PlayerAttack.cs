@@ -27,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
 
 
     // 근접공격 및 enemy와 충돌
-    public List<GameObject> hp = new List<GameObject>();
     private Collider2D[] meleeAttackableEnemies;
     private Vector2 meleeAttackBoxSize;
     private Vector2 nearEnemyBoxSize;
@@ -224,7 +223,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Player_Collision()
     {
-        if (hp != null)
+        if (Hp.Instance != null)
         {
             if (CollideWithEnemy() == true)
             {
@@ -240,27 +239,15 @@ public class PlayerAttack : MonoBehaviour
             if (isCollidingWithEnemy == true && isChangingSprite != true)
             {
                 elapsedTime += Time.deltaTime;
-                if (elapsedTime >= destroyTime /*1f*/ && hp.Count > 0)
+                if (elapsedTime >= destroyTime /*1f*/ && Hp.Instance.hpValue > 0)
                 {
-                    GameObject lastHp = hp[hp.Count - 1];
-                    // lastHp에서 Animator 가져오기
-                    Animator hpAnimator = lastHp.GetComponent<Animator>();
-                    // hpAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-                    if ((hp.Count) % 2 == 0)
-                    {
-                        StartCoroutine(playHPLoseAnimation(lastHp, hpAnimator, hp.Count));
-                    }
-                    else
-                    {
-                        StartCoroutine(playHPLoseAnimation(lastHp, hpAnimator, hp.Count));
-                    }
-                    hp.RemoveAt(hp.Count - 1);
+                    Hp.Instance.HpDecrease(1.0f);
                     StartCoroutine(changeToDamaged());
 
                     // 애니메이션이 끝난 후 오브젝트 삭제
                     elapsedTime = 0f; // 시간 초기화
                 }
-                else if (hp.Count < 1 && !playerControl.GameEnd)
+                else if (Hp.Instance.hpValue < 1 && !playerControl.GameEnd)
                 {
                     StartCoroutine(gameManager.GameOver());
                     GameManager.GameEnd = true;
@@ -309,15 +296,6 @@ public class PlayerAttack : MonoBehaviour
         isChangingSprite = false;
     }
 
-    void getPlayerHP()
-    {
-        int numHp = GameObject.Find("Player HP").transform.childCount;
-        for (int i = 0; i < numHp; i++)
-        {
-            GameObject hpObj = GameObject.Find("Player HP").transform.GetChild(i).gameObject;
-            hp.Add(hpObj);
-        }
-    }
     void getPlayerSpriteRenderer()
     {
         player = GameObject.Find("Player");
@@ -340,8 +318,6 @@ public class PlayerAttack : MonoBehaviour
         enemyManager = FindFirstObjectByType<EnemyManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
-
-        getPlayerHP();
 
         // Gizmo box size settings
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);

@@ -55,43 +55,7 @@ public class InventoryManager : MonoBehaviour
         switch(item.id)
         {
             case "Ammo": playerattack.bullet.bulletNum += 5; break;
-            case "ChocoBar":
-                Transform playerHpTransform = GameObject.Find("Player HP").transform;
-                int hpNum = playerHpTransform.childCount;
-
-                GameObject lastHpObj = null;
-
-                if (hpNum > 1)
-                {
-                    // Get the last relevant HP object
-                    lastHpObj = playerHpTransform.GetChild(hpNum - 2).gameObject;
-                }
-                else if (hpNum == 1)
-                {
-                    lastHpObj = rightHP;
-                }
-
-                if (lastHpObj != null)
-                {
-                    RectTransform lastRectTransform = lastHpObj.GetComponent<RectTransform>();
-                    Vector2 newAnchoredPosition = lastRectTransform.anchoredPosition;
-                    if (hpNum == 1)
-                    {
-                         newAnchoredPosition = lastRectTransform.anchoredPosition;
-                    }
-                    else
-                    {
-                         newAnchoredPosition = lastRectTransform.anchoredPosition + new Vector2(75, 0);
-                    }
-
-                    // Create a new HP object
-                    GameObject newHpObj = Instantiate(lastHpObj, playerHpTransform);
-                    RectTransform newRectTransform = newHpObj.GetComponent<RectTransform>();
-                    newRectTransform.anchoredPosition = newAnchoredPosition;
-
-                    playerattack.hp.Add(newHpObj);
-                }
-                break;
+            case "ChocoBar": Hp.Instance.HpPlus(1.0f); break;
         }
     }
 
