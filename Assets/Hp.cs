@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hp : MonoBehaviour
 {
     public GameObject[] hpObject;
-    public float hpValue = 5;
+    public float hpValue = 3;
 
     private static GameObject value = null;
 
@@ -42,6 +42,11 @@ public class Hp : MonoBehaviour
     public void HpDecrease(float value)
     {
         hpValue -= value;
+        HpUpdate();
+    }
+
+    void Start()
+    {
         HpUpdate();
     }
 }
