@@ -79,6 +79,7 @@ TagManager:
   - "\uC5F0\uD68C\uC7A5 \uD14C\uC774\uBE14"
   - Cart Position
   - Rabbit Statue Position
+  - Key
   layers:
   - Default
   - TransparentFX
