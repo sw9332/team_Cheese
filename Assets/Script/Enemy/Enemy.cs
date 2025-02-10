@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
     {
         while (attack)
         {
-            if(!isDamaging)
+            if (!isDamaging)
             {
                 isDamaging = true;
                 StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
@@ -129,13 +129,7 @@ public class Enemy : MonoBehaviour
 
             else yield return null;
         }
-
-        while (!attack)
-        {
-            bearMove();
-        }
     }
-
 
     void OnDrawGizmosSelected()
     {
@@ -160,7 +154,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             attack = false;
-            StartCoroutine(Attack());
+            bearMove();
         }
     }
 
