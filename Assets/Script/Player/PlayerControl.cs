@@ -15,10 +15,6 @@ public class PlayerControl : MonoBehaviour
     public Animator animator; // player attack and movement
 
     public static float speed = 2.5f;
-<<<<<<< HEAD
-    public bool GameEnd  =false;
-=======
->>>>>>> 62490b494e8cb7dac4fe007f5d7baf09911fa9b4
     public static bool isPush = false;
     public static bool isPull = false;
 
@@ -188,7 +184,7 @@ public class PlayerControl : MonoBehaviour
         else isPush = false;
     }
 
-    
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
