@@ -474,7 +474,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.1f);
 
         TinSoldier.Instance.Move("Right");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 16.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
