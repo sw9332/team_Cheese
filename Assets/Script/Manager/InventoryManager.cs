@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class InventoryManager : MonoBehaviour
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
-    public GameObject rightHP;
 
     public void PickUpItem(Collider2D item)
     {
@@ -81,5 +81,11 @@ public class InventoryManager : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
+
+        SlotDB[0] = "Flower";
+        SlotImageDB[0].sprite = itemManager.GetItemSprite("Flower");
+
+        SlotDB[1] = "Chicken";
+        SlotImageDB[1].sprite = itemManager.GetItemSprite("Chicken");
     }
 }
