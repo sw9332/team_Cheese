@@ -49,6 +49,9 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
 
+    [Header("Animation")]
+    public Animator rabbit;
+
     [Header("Chapter 1 Save")]
     public GameObject Chapter1_Save1;
     public GameObject Chapter1_Save2;
@@ -451,26 +454,33 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         miniGame.ClearPhotoMode();
 
+<<<<<<< HEAD
+=======
+        ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -243.8f, 0);
+        TinSoldier.Instance.gameObject.SetActive(true);
+        rabbit.Play("rabbit");
+>>>>>>> 62490b494e8cb7dac4fe007f5d7baf09911fa9b4
         MainCamera.orthographicSize = 4;
         Effect.SetActive(true);
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         yield return new WaitForSeconds(2f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 11.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
-        TinSoldier.Instance.Stop("Left");
+        TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1f);
 
-        TinSoldier.Instance.Move("Left Attack");
+        TinSoldier.Instance.Move("Right Attack");
         yield return new WaitForSeconds(1f);
+        rabbit.Play("rabbit transformation");
 
-        TinSoldier.Instance.Stop("Left");
-        yield return new WaitForSeconds(3f);
+        TinSoldier.Instance.Stop("Right");
+        yield return new WaitForSeconds(1.3f);
 
-        TinSoldier.Instance.Move("Left");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 1.3f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        TinSoldier.Instance.Move("Right");
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));

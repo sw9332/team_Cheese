@@ -7,19 +7,22 @@ using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
-    public int hp = 3;
-    public Transform playerTransform;
-
-
-    [SerializeField] Vector2 playerCheckBox;
+    private PlayerControl playerControl;
+    private Animator animator;
     private Collider2D player;
-    private SpriteRenderer spriteRenderer;
-    private string enemyName;
     private GameObject enemy;
-    private float moveSpeed;
     private Rigidbody2D rb;
 
-    [SerializeField] Animator animator;
+
+    private Vector2 playerCheckBox;
+
+    public int hp = 3;
+    private float moveSpeed;
+    private string enemyName;
+
+    public bool attack = false;
+    public bool isDamaging = false;
+    public bool showRangeGizmo = false;
 
     public void destroyEnemy()
     {
@@ -54,24 +57,15 @@ public class Enemy : MonoBehaviour
                 animator.Play(this.gameObject.name + "Idle");
             }
         }
-        else
-            return;
+
+        else return;
     }
 
-    public bool showRangeGizmo = false;
-    private void OnDrawGizmosSelected()
-    {
-        if (showRangeGizmo)
-        {
-            Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
-            Gizmos.DrawCube(this.transform.position, new Vector2(playerCheckBox.x, playerCheckBox.y));
-        }
-
-    }
     public bool isNearPlayer()
     {
         // check player
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, playerCheckBox, 0f);
+
         foreach (Collider2D collider in colliders)
         {
             if (collider.gameObject.tag == "Player")
@@ -80,70 +74,112 @@ public class Enemy : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 
     public void bearMove()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("enemy"))
+        if (!attack)
         {
-            if (isNearPlayer()) 
+            if (gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                // direction vector
-                Vector2 direction = (playerTransform.position - this.transform.position).normalized;
-
-                // enemy is on player's left
-                if (playerTransform.position.x > this.transform.position.x)
+                if (isNearPlayer())
                 {
-                    spriteRenderer.flipX = false;
-                    spriteRenderer.flipY = false;
-                }
-                else // enemy is on player's right
-                {
-                    spriteRenderer.flipX = false;
-                    spriteRenderer.flipY = true;
-                }
-                // move position 
-                rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+                    // direction vector
+                    Vector2 direction = (playerControl.transform.position - this.transform.position).normalized;
 
-                // Enemy rotate
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                rb.rotation = angle;
+                    // enemy is on player's left
+                    if (playerControl.transform.position.x > this.transform.position.x)
+                    {
+                        GetComponent<SpriteRenderer>().flipX = false;
+                        GetComponent<SpriteRenderer>().flipY = false;
+                    }
+                    else // enemy is on player's right
+                    {
+                        GetComponent<SpriteRenderer>().flipX = true;
+                        GetComponent<SpriteRenderer>().flipY = false;
+                    }
+                    // move position 
+                    rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
-                animator.Play(enemyName + "Walk");
-                Debug.Log($"Bear is walking towards {player.name}");
+                    animator.Play(enemyName + "Walk");
+                    Debug.Log($"Bear is walking towards {player.name}");
+                }
+
+                else bearIdle();
             }
-            else 
-            {
-                bearIdle();
-            }
+
+            else return;
         }
-        else
-            return;
     }
 
-    void Update()
+    IEnumerator Attack()
     {
-        if (hp == 0)
+        while (attack)
         {
-            StartCoroutine(PlayDeathAnimationAndDestroy());
+            if(!isDamaging)
+            {
+                isDamaging = true;
+                StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
+                animator.Play(this.gameObject.name + "Idle");
+                yield return new WaitForSeconds(1.0f);
+                isDamaging = false;
+            }
+
+            else yield return null;
         }
-        else
+
+        while (!attack)
         {
             bearMove();
         }
     }
 
 
+    void OnDrawGizmosSelected()
+    {
+        if (showRangeGizmo)
+        {
+            Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
+            Gizmos.DrawCube(this.transform.position, new Vector2(playerCheckBox.x, playerCheckBox.y));
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            attack = true;
+            if (!isDamaging) StartCoroutine(Attack());
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            attack = false;
+            StartCoroutine(Attack());
+        }
+    }
+
+    void Update()
+    {
+        if (hp == 0) StartCoroutine(PlayDeathAnimationAndDestroy());
+        else bearMove();
+    }
+
     void Start()
     {
-        enemy = this.gameObject;
+        playerControl = FindFirstObjectByType<PlayerControl>();
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        enemy = this.gameObject;
+        enemyName = enemy.name;
         playerCheckBox.x = 8.0f;
         playerCheckBox.y = 3.0f;
         moveSpeed = 2.0f;
-        enemyName = enemy.name;
-        animator = GetComponent<Animator>();
     }
 }

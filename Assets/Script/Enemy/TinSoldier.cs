@@ -21,7 +21,7 @@ public class TinSoldier : MonoBehaviour
         else Destroy(this.gameObject);
     }
 
-    public float speed = 3;
+    public float speed = 4;
 
     private Animator animator;
 
@@ -39,6 +39,6 @@ public class TinSoldier : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        Stop("Left");
+        Stop("Right");
     }
 }

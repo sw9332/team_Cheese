@@ -164,7 +164,7 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "CutScene 9":
-                pos.x = 10.5f;
+                pos.x = 9f;
                 pos.y = -244f;
                 break;
 
