@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5868854467837294693
 SpriteRenderer:
@@ -188,7 +188,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6580356011169003536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  playerTransform: {fileID: 0}
-  playerCheckBox: {x: 0, y: 0}
-  animator: {fileID: 0}
+  attack: 0
   showRangeGizmo: 1
 --- !u!114 &757216794319737280
 MonoBehaviour:
@@ -218,7 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8cb5b5dacfa8e48be63d3125adb7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 958779660442518404, guid: 6f05f8d5a0268bc4bbe0bc18c361d086, type: 3}
+  droppedItemPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   lootList:
   - {fileID: 11400000, guid: cfd22fbfedfc274408ffa464291a520e, type: 2}
   - {fileID: 11400000, guid: 0fb1af8eb92ce2045817a500744eaf25, type: 2}
