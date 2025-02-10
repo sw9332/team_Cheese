@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hp : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public GameObject[] hpObject;
     public float hpValue = 3;
 
@@ -45,8 +47,19 @@ public class Hp : MonoBehaviour
         HpUpdate();
     }
 
+    void Update()
+    {
+        if (hpValue < 1)
+        {
+            GameManager.GameEnd = true;
+            StartCoroutine(gameManager.GameOver());
+        }
+    }
+
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+
         HpUpdate();
     }
 }

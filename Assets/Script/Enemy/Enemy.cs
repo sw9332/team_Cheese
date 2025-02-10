@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private string enemyName;
 
     public bool attack = false;
+    public bool isDamaging = false;
     public bool showRangeGizmo = false;
 
     public void destroyEnemy()
@@ -117,17 +118,24 @@ public class Enemy : MonoBehaviour
     {
         while (attack)
         {
-            animator.Play(this.gameObject.name + "Idle");
-            yield return null;
+            if(!isDamaging)
+            {
+                isDamaging = true;
+                StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
+                animator.Play(this.gameObject.name + "Idle");
+                yield return new WaitForSeconds(1.0f);
+                isDamaging = false;
+            }
+
+            else yield return null;
         }
 
         while (!attack)
         {
             bearMove();
-            yield return null;
-
         }
     }
+
 
     void OnDrawGizmosSelected()
     {
@@ -143,7 +151,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             attack = true;
-            StartCoroutine(Attack());
+            if (!isDamaging) StartCoroutine(Attack());
         }
     }
 

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         {
             playerControl.isMove = false;
             yield return StartCoroutine(fadeManager.FadeOut(GameOverUI, Color.black));
+            yield break;
         }
     }
 

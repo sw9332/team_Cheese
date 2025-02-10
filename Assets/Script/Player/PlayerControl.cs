@@ -15,7 +15,6 @@ public class PlayerControl : MonoBehaviour
     public Animator animator; // player attack and movement
 
     public static float speed = 2.5f;
-    public bool GameEnd  =false;
     public static bool isPush = false;
     public static bool isPull = false;
 
@@ -58,7 +57,7 @@ public class PlayerControl : MonoBehaviour
 
     void MoveControl()
     {
-        if (isMove && cutSceneManager.Move && !cutSceneManager.isCutScene && !playerAttack.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
+        if (isMove && cutSceneManager.Move && !cutSceneManager.isCutScene && !Damage.Instance.isChangingSprite && !playerAttack.isAttacking && !tutorialManager.TutorialUI.activeSelf)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -172,56 +171,6 @@ public class PlayerControl : MonoBehaviour
         if (dialogueManager.dialogue_continue) stamina.isPlayerRunning = false;
     }
 
-    void DamageControl()
-    {
-        if (isMove && playerAttack.isChangingSprite)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                Direction = "Up";
-                animator.Play("PlayerDamagedUp");
-
-                MoveX = false;
-                MoveY = true;
-
-                transform.Translate(Vector3.up * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                Direction = "Down";
-                animator.Play("PlayerDamagedDown");
-
-                MoveX = false;
-                MoveY = true;
-
-                transform.Translate(Vector3.down * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                Direction = "Left";
-                animator.Play("PlayerDamagedLeft");
-
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                Direction = "Right";
-                animator.Play("PlayerDamagedRight");
-
-                MoveX = true;
-                MoveY = false;
-
-                transform.Translate(Vector3.right * speed * Time.deltaTime);
-            }
-        }
-    }
-
     void PushControl()
     {
         if (Input.GetKey(KeyCode.LeftShift) && isPush)
@@ -235,36 +184,12 @@ public class PlayerControl : MonoBehaviour
         else isPush = false;
     }
 
-    public IEnumerator Damage()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.05f);
-            spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss") || other.CompareTag("Boss Bullet"))
-        {
-            if (npc.attackDamage)
-            {
-                Hp.Instance.HpDecrease(1.0f);
-
-                if (Hp.Instance.hpValue < 1 && !GameManager.GameEnd)
-                {
-                    GameManager.GameEnd = true;
-                    StartCoroutine(gameManager.GameOver());
-                }
-
-                StartCoroutine(Damage());
-            }
-        }
+        if (npc.attackDamage && (other.CompareTag("Boss") || other.CompareTag("Boss Bullet")))
+            StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -282,7 +207,6 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         MoveControl();
-        DamageControl();
         PushControl();
     }
 
