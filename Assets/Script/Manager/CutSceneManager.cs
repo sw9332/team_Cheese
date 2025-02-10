@@ -471,7 +471,7 @@ public class CutSceneManager : MonoBehaviour
         rabbit.Play("rabbit transformation");
 
         TinSoldier.Instance.Stop("Right");
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(1.3f);
 
         TinSoldier.Instance.Move("Right");
         yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
