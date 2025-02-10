@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5374853006168662092}
   - component: {fileID: 72729631459620969}
   - component: {fileID: 6041845853303537885}
+  - component: {fileID: 4011100575213471504}
   m_Layer: 0
   m_Name: cart
   m_TagString: Push_Object
@@ -252,3 +253,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4011100575213471504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582308229702619141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3b1c5858aefe94d8a829c427d34d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
