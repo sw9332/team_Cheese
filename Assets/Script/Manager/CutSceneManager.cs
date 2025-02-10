@@ -454,7 +454,7 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         miniGame.ClearPhotoMode();
 
-        ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -244.07f, 0);
+        ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -243.8f, 0);
         TinSoldier.Instance.gameObject.SetActive(true);
         rabbit.Play("rabbit");
         MainCamera.orthographicSize = 4;
