@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     public int hp = 3;
     private float moveSpeed;
     private string enemyName;
+
+    public bool attack = false;
     public bool showRangeGizmo = false;
 
     public void destroyEnemy()
@@ -77,35 +79,54 @@ public class Enemy : MonoBehaviour
 
     public void bearMove()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("enemy"))
+        if (!attack)
         {
-            if (isNearPlayer()) 
+            if (gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
-                // direction vector
-                Vector2 direction = (playerControl.transform.position - this.transform.position).normalized;
-
-                // enemy is on player's left
-                if (playerControl.transform.position.x > this.transform.position.x)
+                if (isNearPlayer())
                 {
-                    GetComponent<SpriteRenderer>().flipX = false;
-                    GetComponent<SpriteRenderer>().flipY = false;
-                }
-                else // enemy is on player's right
-                {
-                    GetComponent<SpriteRenderer>().flipX = true;
-                    GetComponent<SpriteRenderer>().flipY = false;
-                }
-                // move position 
-                rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+                    // direction vector
+                    Vector2 direction = (playerControl.transform.position - this.transform.position).normalized;
 
-                animator.Play(enemyName + "Walk");
-                Debug.Log($"Bear is walking towards {player.name}");
+                    // enemy is on player's left
+                    if (playerControl.transform.position.x > this.transform.position.x)
+                    {
+                        GetComponent<SpriteRenderer>().flipX = false;
+                        GetComponent<SpriteRenderer>().flipY = false;
+                    }
+                    else // enemy is on player's right
+                    {
+                        GetComponent<SpriteRenderer>().flipX = true;
+                        GetComponent<SpriteRenderer>().flipY = false;
+                    }
+                    // move position 
+                    rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+
+                    animator.Play(enemyName + "Walk");
+                    Debug.Log($"Bear is walking towards {player.name}");
+                }
+
+                else bearIdle();
             }
 
-            else bearIdle();
+            else return;
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        while (attack)
+        {
+            animator.Play(this.gameObject.name + "Idle");
+            yield return null;
         }
 
-        else return;
+        while (!attack)
+        {
+            bearMove();
+            yield return null;
+
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -115,20 +136,30 @@ public class Enemy : MonoBehaviour
             Gizmos.color = new Color(1.0f, 0f, 0f, 0.8f);
             Gizmos.DrawCube(this.transform.position, new Vector2(playerCheckBox.x, playerCheckBox.y));
         }
+    }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            attack = true;
+            StartCoroutine(Attack());
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            attack = false;
+            StartCoroutine(Attack());
+        }
     }
 
     void Update()
     {
-        if (hp == 0)
-        {
-            StartCoroutine(PlayDeathAnimationAndDestroy());
-        }
-
-        else
-        {
-            bearMove();
-        }
+        if (hp == 0) StartCoroutine(PlayDeathAnimationAndDestroy());
+        else bearMove();
     }
 
     void Start()

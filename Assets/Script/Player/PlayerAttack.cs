@@ -178,7 +178,7 @@ public class PlayerAttack : MonoBehaviour
 
     private Collider2D[] nearEnemies;
     public float elapsedTime = 0f;
-    private float destroyTime = 1f;
+    private float destroyTime = 0.1f;
     private bool isCollidingWithEnemy = false;
 
     public bool isChangingSprite = false; // playerControl.MoveControl에서 사용하기 위해 public - isMove
