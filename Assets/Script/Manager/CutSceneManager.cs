@@ -454,6 +454,8 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         miniGame.ClearPhotoMode();
 
+        ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -244.07f, 0);
+        TinSoldier.Instance.gameObject.SetActive(true);
         MainCamera.orthographicSize = 4;
         Effect.SetActive(true);
         yield return new WaitForSeconds(1f);
