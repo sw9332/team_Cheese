@@ -456,6 +456,7 @@ public class CutSceneManager : MonoBehaviour
 
         ChangePosition(TinSoldier.Instance.gameObject, 0.6f, -244.07f, 0);
         TinSoldier.Instance.gameObject.SetActive(true);
+        rabbit.Play("rabbit");
         MainCamera.orthographicSize = 4;
         Effect.SetActive(true);
         yield return new WaitForSeconds(1f);
