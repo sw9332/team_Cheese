@@ -49,6 +49,9 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
 
+    [Header("Animation")]
+    public Animator rabbit;
+
     [Header("Chapter 1 Save")]
     public GameObject Chapter1_Save1;
     public GameObject Chapter1_Save2;
@@ -467,7 +470,9 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         TinSoldier.Instance.Stop("Right");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.1f);
+        rabbit.Play("rabbit transformation");
+        
 
         TinSoldier.Instance.Move("Right");
         yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 16.5f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
