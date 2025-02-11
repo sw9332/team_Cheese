@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8217349264398751253}
   - component: {fileID: 2111805047645809332}
   m_Layer: 0
-  m_Name: Orange Box
+  m_Name: OrangeBox
   m_TagString: Push_Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

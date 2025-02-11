@@ -55,11 +55,6 @@ public class Enemy : MonoBehaviour
         else return;
     }
 
-    void boxIdle()
-    {
-
-    }
-
     public bool isNearPlayer()
     {
         // check player

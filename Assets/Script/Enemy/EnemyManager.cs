@@ -19,6 +19,15 @@ public class EnemyManager : MonoBehaviour
             = getEnemyInformation(enemyName);
 
         enemy.hp -= 1;
+        Debug.Log(enemy.hp);
+        // For Box
+        if (!isCoroutining && enemy.hp > 0
+            && objEnemy.layer == LayerMask.NameToLayer("attackable object"))
+        {
+            StartCoroutine(changeColor(enemySprite));
+            StartCoroutine(ResetToDefaultState(enemyAni, enemy));
+        }
+
         if (!isCoroutining && enemy.hp > 0)
         {
             Debug.Log("hp --");
@@ -29,6 +38,13 @@ public class EnemyManager : MonoBehaviour
 
             StartCoroutine(changeColor(enemySprite));
             StartCoroutine(ResetToDefaultState(enemyAni,enemy));
+        }
+
+        // For Box
+        if (!isCoroutining && enemy.hp < 0 && objEnemy.layer == LayerMask.NameToLayer("attackable object"))
+        {
+            enemyAni.Play(objEnemy.name + "Open");
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
         }
 
         if (!isCoroutining && enemy.hp == 0)
@@ -61,6 +77,7 @@ public class EnemyManager : MonoBehaviour
 
         int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
         Animator enemyAni = enemyEffects[aniIndex];
+
 
         return (obj, enemy, enemySprite, enemyAni);
     }

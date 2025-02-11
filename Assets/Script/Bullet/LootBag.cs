@@ -44,7 +44,6 @@ public class LootBag : MonoBehaviour
 
                     lootGameObject.tag = droppedItem.name;
                     lootGameObject.name = droppedItem.name;
-                    Debug.Log(droppedItems.Count);
             }
         }
     }
