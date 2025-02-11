@@ -40,6 +40,8 @@ public class Hp : MonoBehaviour
     public void HpPlus(float value)
     {
         if (hpValue < hpObject.Length) hpValue += value;
+        animator[animator.Length].Play("Hp Left Stop");
+        animator[animator.Length].Play("Hp Right Stop");
         HpUpdate();
     }
 
