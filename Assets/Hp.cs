@@ -7,6 +7,8 @@ public class Hp : MonoBehaviour
     private GameManager gameManager;
 
     public GameObject[] hpObject;
+    public Animator[] animator;
+
     public float hpValue = 3;
 
     private static Hp value = null;
@@ -43,7 +45,28 @@ public class Hp : MonoBehaviour
 
     public void HpDecrease(float value)
     {
-        if (hpValue > 0) hpValue -= value;
+        if (hpValue > 0)
+        {
+            hpValue -= value;
+
+            for (int i = 0; i < hpObject.Length; i++)
+            {
+                switch (animator[i].name)
+                {
+                    case "Hp 1": animator[1].Play("hp Left"); break;
+                    case "Hp 2": animator[2].Play("hp Right"); break;
+                    case "Hp 3": animator[3].Play("hp Left"); break;
+                    case "Hp 4": animator[4].Play("hp Right"); break;
+                    case "Hp 5": animator[5].Play("hp Left"); break;
+                    case "Hp 6": animator[6].Play("hp Right"); break;
+                    case "Hp 7": animator[7].Play("hp Left"); break;
+                    case "Hp 8": animator[8].Play("hp Right"); break;
+                    case "Hp 9": animator[9].Play("hp Left"); break;
+                    case "Hp 10": animator[10].Play("hp Right"); break;
+                }
+            }
+        }
+
         HpUpdate();
     }
 
