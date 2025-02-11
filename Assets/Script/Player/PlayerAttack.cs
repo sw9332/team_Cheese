@@ -158,13 +158,11 @@ public class PlayerAttack : MonoBehaviour
             if (hpCount % 2 == 0)
             {
                 animator.Play("hprightlose");
-                Debug.Log("현재 애니메이션 상태: " + animator.GetCurrentAnimatorStateInfo(0).IsName("hprightlose"));
             }
 
             else
             {
                 animator.Play("hpleftlose");
-                Debug.Log("현재 애니메이션 상태: " + animator.GetCurrentAnimatorStateInfo(0).IsName("hpleftlose"));
             }
 
             float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;

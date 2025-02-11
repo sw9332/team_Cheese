@@ -28,14 +28,8 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         // Item Drop
-        LootBag[] lootBags = GetComponents<LootBag>();
-        foreach (LootBag lootBag in lootBags)
-        {
-            if (lootBag != null)
-            {
-                lootBag.InstantiateLoot(transform.position);
-            }
-        }
+        LootBag lootBag = GetComponent<LootBag>();
+        lootBag.InstantiateLoot(transform.position);
     }
 
     public IEnumerator PlayDeathAnimationAndDestroy()
@@ -59,6 +53,11 @@ public class Enemy : MonoBehaviour
         }
 
         else return;
+    }
+
+    void boxIdle()
+    {
+
     }
 
     public bool isNearPlayer()
@@ -104,7 +103,6 @@ public class Enemy : MonoBehaviour
                     rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
                     animator.Play(enemyName + "Walk");
-                    Debug.Log($"Bear is walking towards {player.name}");
                 }
 
                 else bearIdle();

@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         enemy.hp -= 1;
         if (!isCoroutining && enemy.hp > 0)
         {
-            Debug.Log("hp ����");
+            Debug.Log("hp --");
             if((enemy.tag + "Hit") != null)
             {
                 enemyAni.Play(enemy.tag + "Hit");
