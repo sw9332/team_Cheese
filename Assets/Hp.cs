@@ -47,26 +47,18 @@ public class Hp : MonoBehaviour
     {
         if (hpValue > 0)
         {
+            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
+            string name = (hpValue % 2 == 0) ? "Hp Right" : "Hp Left";
+            animator[number].Play(name);
+
             hpValue -= value;
-
-            for (int i = 0; i < hpObject.Length; i++)
-            {
-                switch (animator[i].name)
-                {
-                    case "Hp 1": animator[1].Play("hp Left"); break;
-                    case "Hp 2": animator[2].Play("hp Right"); break;
-                    case "Hp 3": animator[3].Play("hp Left"); break;
-                    case "Hp 4": animator[4].Play("hp Right"); break;
-                    case "Hp 5": animator[5].Play("hp Left"); break;
-                    case "Hp 6": animator[6].Play("hp Right"); break;
-                    case "Hp 7": animator[7].Play("hp Left"); break;
-                    case "Hp 8": animator[8].Play("hp Right"); break;
-                    case "Hp 9": animator[9].Play("hp Left"); break;
-                    case "Hp 10": animator[10].Play("hp Right"); break;
-                }
-            }
+            StartCoroutine(WaitForAnimation());
         }
+    }
 
+    IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(0.5f);
         HpUpdate();
     }
 
@@ -77,12 +69,13 @@ public class Hp : MonoBehaviour
             GameManager.GameEnd = true;
             StartCoroutine(gameManager.GameOver());
         }
+
+        if (Input.GetKeyDown(KeyCode.D)) HpDecrease(1.0f);
     }
 
     void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-
+        gameManager = FindObjectOfType<GameManager>();
         HpUpdate();
     }
 }
