@@ -39,9 +39,15 @@ public class Hp : MonoBehaviour
 
     public void HpPlus(float value)
     {
-        if (hpValue < hpObject.Length) hpValue += value;
-        animator[animator.Length].Play("Hp Left Stop");
-        animator[animator.Length].Play("Hp Right Stop");
+        if (hpValue < hpObject.Length)
+        {
+            hpValue += value;
+
+            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
+            string name = (hpValue % 2 == 0) ? "Hp Right Stop" : "Hp Left Stop";
+            animator[number].Play(name);
+        }
+        
         HpUpdate();
     }
 
