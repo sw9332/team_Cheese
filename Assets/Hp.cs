@@ -29,7 +29,7 @@ public class Hp : MonoBehaviour
 
     void HpUpdate()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < hpObject.Length; i++)
         {
             hpObject[i].SetActive(i < hpValue);
         }
@@ -37,7 +37,7 @@ public class Hp : MonoBehaviour
 
     public void HpPlus(float value)
     {
-        if (hpValue < 5) hpValue += value;
+        if (hpValue < hpObject.Length) hpValue += value;
         HpUpdate();
     }
 
