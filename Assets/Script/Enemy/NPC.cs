@@ -41,6 +41,10 @@ public class NPC : MonoBehaviour
     public void Original()
     {
         animator.Play("NPC");
+        Hp.value = 100;
+        die = false;
+        direction = "Down";
+        wall_Crash_stack = 0;
         Hp.gameObject.SetActive(false);
         cutSceneManager.Blocking_2.SetActive(false);
         transform.position = new Vector2(-68f, 26f);

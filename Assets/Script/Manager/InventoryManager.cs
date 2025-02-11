@@ -55,7 +55,7 @@ public class InventoryManager : MonoBehaviour
         switch(item.id)
         {
             case "Ammo": playerattack.bullet.bulletNum += 5; break;
-            case "ChocoBar": Hp.Instance.HpPlus(1.0f); break;
+            case "ChocoBar": Hp.Instance.HpPlus(2.0f); break;
         }
     }
 

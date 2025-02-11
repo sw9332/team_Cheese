@@ -7,6 +7,8 @@ public class Hp : MonoBehaviour
     private GameManager gameManager;
 
     public GameObject[] hpObject;
+    public Animator[] animator;
+
     public float hpValue = 3;
 
     private static Hp value = null;
@@ -29,7 +31,7 @@ public class Hp : MonoBehaviour
 
     void HpUpdate()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < hpObject.Length; i++)
         {
             hpObject[i].SetActive(i < hpValue);
         }
@@ -37,13 +39,34 @@ public class Hp : MonoBehaviour
 
     public void HpPlus(float value)
     {
-        if (hpValue < 5) hpValue += value;
+        if (hpValue < hpObject.Length)
+        {
+            hpValue += value;
+
+            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
+            string name = (hpValue % 2 == 0) ? "Hp Right Stop" : "Hp Left Stop";
+            animator[number].Play(name);
+        }
+        
         HpUpdate();
     }
 
     public void HpDecrease(float value)
     {
-        if (hpValue > 0) hpValue -= value;
+        if (hpValue > 0)
+        {
+            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
+            string name = (hpValue % 2 == 0) ? "Hp Right" : "Hp Left";
+            animator[number].Play(name);
+
+            hpValue -= value;
+            StartCoroutine(WaitForAnimation());
+        }
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(0.3f);
         HpUpdate();
     }
 
@@ -54,12 +77,13 @@ public class Hp : MonoBehaviour
             GameManager.GameEnd = true;
             StartCoroutine(gameManager.GameOver());
         }
+
+        if (Input.GetKeyDown(KeyCode.D)) HpDecrease(1.0f);
     }
 
     void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-
+        gameManager = FindObjectOfType<GameManager>();
         HpUpdate();
     }
 }
