@@ -35,26 +35,36 @@ public class InventoryManager : MonoBehaviour
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
 
         // �� ������ ���� �ؾ� ��� type�� item ������ �ߵ���
-        if (!Player.objectCollision && item != null && item.type == Type.사용)
+
+        switch (item.type)
         {
-            UseItem(item);
-            SlotDB[slotIndex] = null;
-            SlotImageDB[slotIndex].sprite = null;
-            return;
+            case Type.일반: Drop(item); break;
+            case Type.사용: Use(item); break;
+            case Type.회복: HpRecovery(item); break;
         }
-        else if (!Player.objectCollision && item != null) Instantiate(item.prefab, player.transform.position, Quaternion.identity);
-        else if (Player.objectCollision && item != null) Instantiate(item.prefab, Object.pos, Quaternion.identity);
-        
 
         SlotDB[slotIndex] = null;
         SlotImageDB[slotIndex].sprite = null;
     }
 
-    public void UseItem(Item item)
+    public void Drop(Item item)
     {
-        switch(item.id)
+        Vector2 position = !Player.objectCollision ? player.transform.position : Object.pos;
+        Instantiate(item.prefab, position, Quaternion.identity);
+    }
+
+    public void Use(Item item)
+    {
+        switch (item.id)
         {
             case "Ammo": playerattack.bullet.bulletNum += 5; break;
+        }
+    }
+
+    public void HpRecovery(Item item)
+    {
+        switch (item.id)
+        {
             case "ChocoBar": Hp.Instance.HpPlus(2.0f); break;
         }
     }

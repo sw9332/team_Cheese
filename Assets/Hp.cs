@@ -9,7 +9,7 @@ public class Hp : MonoBehaviour
     public GameObject[] hpObject;
     public Animator[] animator;
 
-    public float hpValue = 3;
+    public float hpValue = 6;
 
     private static Hp value = null;
 
@@ -29,25 +29,38 @@ public class Hp : MonoBehaviour
             Destroy(value);
     }
 
+    void HpStart()
+    {
+        for (int i = 0; i < hpObject.Length; i++)
+        {
+            if (i >= hpValue) hpObject[i].SetActive(false);
+        }
+    }
+
     void HpUpdate()
     {
         for (int i = 0; i < hpObject.Length; i++)
         {
-            hpObject[i].SetActive(i < hpValue);
+            if (i < hpValue)
+            {
+                if (i < hpValue) hpObject[i].SetActive(true);
+                if (hpObject[i].name == "Hp Left") animator[i].Play("Hp Left Stop");
+                else if (hpObject[i].name == "Hp Right") animator[i].Play("Hp Right Stop");
+            }
+
+            else
+            {
+                if (!hpObject[i].activeSelf) return;
+                if (hpObject[i].name == "Hp Left") animator[i].Play("Hp Left");
+                else if (hpObject[i].name == "Hp Right") animator[i].Play("Hp Right");
+            }
         }
     }
 
     public void HpPlus(float value)
     {
-        if (hpValue < hpObject.Length)
-        {
-            hpValue += value;
-
-            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
-            string name = (hpValue % 2 == 0) ? "Hp Right Stop" : "Hp Left Stop";
-            animator[number].Play(name);
-        }
-        
+        if (hpValue < hpObject.Length) hpValue += value;
+        if(hpValue > hpObject.Length) hpValue = hpObject.Length;
         HpUpdate();
     }
 
@@ -55,19 +68,9 @@ public class Hp : MonoBehaviour
     {
         if (hpValue > 0)
         {
-            int number = Mathf.Max(0, Mathf.Min((int)hpValue - 1, animator.Length - 1));
-            string name = (hpValue % 2 == 0) ? "Hp Right" : "Hp Left";
-            animator[number].Play(name);
-
             hpValue -= value;
-            StartCoroutine(WaitForAnimation());
+            HpUpdate();
         }
-    }
-
-    IEnumerator WaitForAnimation()
-    {
-        yield return new WaitForSeconds(0.3f);
-        HpUpdate();
     }
 
     void Update()
@@ -78,12 +81,13 @@ public class Hp : MonoBehaviour
             StartCoroutine(gameManager.GameOver());
         }
 
-        if (Input.GetKeyDown(KeyCode.D)) HpDecrease(1.0f);
+        if (Input.GetKeyDown(KeyCode.D)) StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
+        if (Input.GetKeyDown(KeyCode.F)) HpPlus(2.0f);
     }
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        HpUpdate();
+        HpStart();
     }
 }
