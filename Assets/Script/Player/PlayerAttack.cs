@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
             && !isAttacking && !cutSceneManager.isCutScene)  // 근접 공격 범위 내에 적군이 감지되었다면
         {
             meleeAttackMotion();
-            enemyManager.takeDamage(enemyCollider.tag);
+            enemyManager.takeDamage(enemyCollider.name);
         }
 
         // 원거리 공격 처리
@@ -52,7 +52,6 @@ public class PlayerAttack : MonoBehaviour
             rangedAttackMotion();
         }
 
-        // else if (근접, attackable object 관련 부분 코드 추가 예정)
         if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
@@ -100,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
 
     void attackMotionStop()
     {
-        if (isAttacking)
+        if (!isAttacking)
         {
             switch (playerControl.Direction)
             {
@@ -142,7 +141,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] enemyArray = Physics2D.OverlapBoxAll((Vector2)(this.transform.position) + (Vector2)playerControl.CenterOffset, meleeAttackBoxSize, 0f);
 
         meleeAttackableEnemies = enemyArray
-        .Where(collider => collider.gameObject.layer == 6 /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && collider is PolygonCollider2D)
+        .Where(collider => (collider.gameObject.layer == 6 || collider.gameObject.layer==8)  /*6번 Layer가 enemy, LayerMask.NameToLayer("enemy")*/ && (collider is PolygonCollider2D || collider is BoxCollider2D))
         .OrderBy(collider => Vector2.Distance(this.transform.position, collider.transform.position))
         .ToArray();
 
