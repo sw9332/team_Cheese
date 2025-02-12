@@ -6,6 +6,7 @@ using UnityEngine;
 public class Loot : ScriptableObject
 {
     // 드롭 가능한 아이템 - 시스템 이름이 Loot, Scriptable obj로 만들어서 관리
+    public Sprite lootSprite;
     public string lootName;
     public int dropChance;  // 드롭 확률
 

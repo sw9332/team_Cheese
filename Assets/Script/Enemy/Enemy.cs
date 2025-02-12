@@ -28,23 +28,27 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         // Item Drop
-        LootBag[] lootBags = GetComponents<LootBag>();
-        foreach (LootBag lootBag in lootBags)
-        {
-            if (lootBag != null)
-            {
-                lootBag.InstantiateLoot(transform.position);
-            }
-        }
+        LootBag lootBag = GetComponent<LootBag>();
+        lootBag.InstantiateLoot(transform.position);
     }
 
     public IEnumerator PlayDeathAnimationAndDestroy()
     {
-        if ((enemy.name + "Die") != null)
+        // For Box
+        if (enemy.gameObject.layer == LayerMask.NameToLayer("attackable object")
+         && enemy.tag == "Push_Object")
         {
+            animator.Play(enemy.name + "Open");
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+
+        else if (enemy.gameObject.layer == LayerMask.NameToLayer("enemy")
+            || enemy.gameObject.layer == LayerMask.NameToLayer("attackable object")) //(enemy.name + "Die") != null)
+        { 
             animator.Play(enemy.name + "Die");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         }
+ 
         // 애니메이션 재생 후 오브젝트 삭제
         destroyEnemy();
     }
@@ -104,7 +108,6 @@ public class Enemy : MonoBehaviour
                     rb.MovePosition((Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
                     animator.Play(enemyName + "Walk");
-                    Debug.Log($"Bear is walking towards {player.name}");
                 }
 
                 else bearIdle();
@@ -142,7 +145,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && this.gameObject.layer== LayerMask.NameToLayer("enemy"))
         {
             attack = true;
             if (!isDamaging) StartCoroutine(Attack());
@@ -151,7 +154,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && this.gameObject.layer == LayerMask.NameToLayer("enemy"))
         {
             attack = false;
             bearMove();

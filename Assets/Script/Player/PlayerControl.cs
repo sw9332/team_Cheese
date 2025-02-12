@@ -184,7 +184,7 @@ public class PlayerControl : MonoBehaviour
         else isPush = false;
     }
 
-    
+
 
     void OnTriggerEnter2D(Collider2D other)
     {

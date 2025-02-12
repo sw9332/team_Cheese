@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> enemies = new();
-    private List<Enemy> enemyList = new();
-    private List<SpriteRenderer> enemySprites = new();
-    private List<Animator> enemyEffects = new();  // Animator override �ؼ� �ϰ� ������ ����, ���� ���� ����
+    [SerializeField] List<Enemy> enemyList = new();
+    [SerializeField] List<SpriteRenderer> enemySprites = new();
+    [SerializeField] List<Animator> enemyEffects = new();  // Animator override �ؼ� �ϰ� ������ ����, ���� ���� ����
 
     private Bullet bullet;
     private bool isCoroutining = false; // ��ø�Ǽ� ����Ǵ� ���� ����
@@ -16,12 +16,22 @@ public class EnemyManager : MonoBehaviour
     public void takeDamage(string enemyName) // name : bullet���� ������ enemy�� tag
     {
         (GameObject objEnemy, Enemy enemy, SpriteRenderer enemySprite, Animator enemyAni)
-            = getEnemyInformation(enemyName);
+            = GetEnemyInformation(enemyName);
 
         enemy.hp -= 1;
+        Debug.Log(enemy.hp);
+
+        // For Box
+        if (!isCoroutining && enemy.hp > 0
+            && objEnemy.layer == LayerMask.NameToLayer("attackable object") && objEnemy.tag == "Push_Object")
+        {
+            StartCoroutine(changeColor(enemySprite));
+            //StartCoroutine(ResetToDefaultState(enemyAni, enemy));
+        }
+
         if (!isCoroutining && enemy.hp > 0)
         {
-            Debug.Log("hp ����");
+            Debug.Log("hp --");
             if((enemy.tag + "Hit") != null)
             {
                 enemyAni.Play(enemy.tag + "Hit");
@@ -31,8 +41,17 @@ public class EnemyManager : MonoBehaviour
             StartCoroutine(ResetToDefaultState(enemyAni,enemy));
         }
 
+        // For Box
+        if (!isCoroutining && enemy.hp == 0 
+            && objEnemy.layer == LayerMask.NameToLayer("attackable object")
+            && objEnemy.tag =="Push_Object")
+        {
+            destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
+        }
+
         if (!isCoroutining && enemy.hp == 0)
         {
+            // enemyAni.Play(enemy.tag + "Die");
             destroyEnemy(objEnemy, enemy, enemySprite, enemyAni);  // �� �ı�
         }
     }
@@ -48,19 +67,20 @@ public class EnemyManager : MonoBehaviour
 
     // Ʃ�÷� ���� ������ ��ȯ�ϰ� ��
     // Damage�� �޴� �ش� ������Ʈ�� Components���� list�鿡�� ��ȯ
-    (GameObject, Enemy, SpriteRenderer, Animator) getEnemyInformation(string enemyTag)
+    (GameObject, Enemy, SpriteRenderer, Animator) GetEnemyInformation(string enemyName)
     {
-        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyTag));
+        int objIndex = enemies.FindIndex(x => x.name.Equals(enemyName));
         GameObject obj = enemies[objIndex];
 
-        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyTag));
+        int enemyIndex = enemyList.FindIndex(x => x.name.Equals(enemyName));
         Enemy enemy = enemyList[enemyIndex];
 
-        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
+        int spriteIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         SpriteRenderer enemySprite = enemySprites[spriteIndex];
 
-        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyTag));
+        int aniIndex = enemySprites.FindIndex(x => x.name.Equals(enemyName));
         Animator enemyAni = enemyEffects[aniIndex];
+
 
         return (obj, enemy, enemySprite, enemyAni);
     }
@@ -112,7 +132,7 @@ public class EnemyManager : MonoBehaviour
     {
         isCoroutining = true;
         enemySprite.color = Color.red;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
         enemySprite.color = Color.white;
         isCoroutining = false;
     }

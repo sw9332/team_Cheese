@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Bullet : MonoBehaviour
 {
     // 싱글톤 인스턴스
-    public static Bullet Instance { get; private set; }
+    // public static Bullet Instance { get; private set; }
 
     public float speed;
     public float distance;
@@ -19,25 +19,6 @@ public class Bullet : MonoBehaviour
     private EnemyManager enemyList;
 
     // 싱글톤 설정
-    private void Awake()
-    {
-        // 인스턴스가 이미 존재하는 경우, 새로 생성된 오브젝트를 삭제
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 싱글톤 인스턴스 설정
-        Instance = this;
-
-        // 오브젝트가 씬 변경 시에도 삭제되지 않도록 설정
-        DontDestroyOnLoad(gameObject);
-
-        // 초기화
-        bulletNum = 20;
-
-    }
 
     // 총알이 사용 가능한지 확인
     public bool IsBulletAvailable()
@@ -83,7 +64,7 @@ public class Bullet : MonoBehaviour
             DestroyBullet(); // 충돌 후 총알 파괴
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("wall")) // 벽과 충돌
+        else if (other.gameObject.layer == LayerMask.NameToLayer("wall")) // 벽과 충돌
         {
             DestroyBullet(); // 충돌 후 총알 파괴
         }
