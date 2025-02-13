@@ -83,6 +83,8 @@ TagManager:
   - Cart Position
   - Rabbit Statue Position
   - Key
+  - "Chapter 2 CCTV Room (\uC785\uAD6C)"
+  - "Chapter 2 CCTV Room (\uCD9C\uAD6C)"
   layers:
   - Default
   - TransparentFX
