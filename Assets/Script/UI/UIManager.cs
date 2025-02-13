@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
-    private SaveManager saveManager;
     private FadeManager fadeManager;
     private InventoryManager inventoryManager;
 
@@ -77,13 +76,15 @@ public class UIManager : MonoBehaviour
 
     public void NewGame()
     {
+        SaveManager.Instance.DeleteKey();
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }
 
     public void Load()
     {
-        saveManager.Load();
-        GameOver.gameObject.SetActive(false);
+        StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
+        GameManager.Load = true;
+        SaveManager.Instance.Load();
     }
 
     public void GameExit()
@@ -137,7 +138,6 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        saveManager = FindFirstObjectByType<SaveManager>();
         fadeManager = FindFirstObjectByType<FadeManager>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 

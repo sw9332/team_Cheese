@@ -6,22 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class MainScene : MonoBehaviour
 {
+    private FadeManager fadeManager;
+
     public GameObject loadButton;
     public GameObject SettingUI;
-
-    private FadeManager fadeManager;
 
     public void LoadButton()
     {
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
         GameManager.Load = true;
+        SaveManager.Instance.Load();
     }
 
     public void NewGameStartButton() //새 게임 버튼
     {
+        SaveManager.Instance.DeleteKey();
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
-        GameManager.Save = false;
-        GameManager.Load = false;
     }
 
     public void SettingButton() //설정 버튼

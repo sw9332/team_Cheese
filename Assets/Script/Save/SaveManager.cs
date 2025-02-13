@@ -4,6 +4,35 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    private static SaveManager instance = null;
+
+    public static SaveManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return null;
+            }
+
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private PlayerControl player;
     private ItemManager itemManager;
     private InventoryManager inventoryManager;
@@ -25,6 +54,10 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        player = FindFirstObjectByType<PlayerControl>();
+        itemManager = FindFirstObjectByType<ItemManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+
         playerData.position.x = player.transform.position.x;
         playerData.position.y = player.transform.position.y;
         PlayerPrefs.SetFloat("Player Position X", playerData.position.x);
@@ -144,16 +177,30 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void DeleteKey()
+    {
+        PlayerPrefs.DeleteKey("Player Position X");
+        PlayerPrefs.DeleteKey("Player Position Y");
+        PlayerPrefs.DeleteKey("Player Direction");
+        PlayerPrefs.DeleteKey("Camera");
+        PlayerPrefs.DeleteKey("Bullet");
+        PlayerPrefs.DeleteKey("Game State");
+        PlayerPrefs.DeleteKey("Game End");
+        PlayerPrefs.DeleteKey("Item Data");
+        PlayerPrefs.DeleteKey("Save");
+
+        for (int i = 0; i < inventoryData.slot.Length; i++)
+        {
+            PlayerPrefs.DeleteKey("Inventory Slot " + i);
+        }
+
+        GameManager.Save = false;
+        GameManager.Load = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) Load();
-    }
-
-    void Start()
-    {
-        player = FindFirstObjectByType<PlayerControl>();
-        itemManager = FindFirstObjectByType<ItemManager>();
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
 }
 
