@@ -51,16 +51,17 @@ public class Locked_Door1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            for(int i = 0; i<inventoryManager.SlotDB.Length; i++)
+            if (inventoryManager.SlotDB[0] != "Key" &&
+                inventoryManager.SlotDB[1] != "Key" &&
+                inventoryManager.SlotDB[2] != "Key" &&
+                inventoryManager.SlotDB[3] != "Key")
             {
-                if (inventoryManager.SlotDB[i] != "Key")
-                {
-                    dialogueManager.ShowDialogue(locked_door1);
-                    break;
-                }
-                    
+                dialogueManager.ShowDialogue(locked_door1);
+            }
 
-                else if (inventoryManager.SlotDB[i] == "Key")
+            for (int i = 0; i<inventoryManager.SlotDB.Length; i++)
+            {
+                if (inventoryManager.SlotDB[i] == "Key")
                 {
                     StartCoroutine(Unlocked());
                     unlocked = true;
