@@ -82,9 +82,8 @@ public class UIManager : MonoBehaviour
 
     public void Load()
     {
-        StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
         GameManager.Load = true;
-        SaveManager.Instance.Load();
+        StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }
 
     public void GameExit()
