@@ -84,7 +84,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator Prologue()
     {
-        GameManager.GameState = "Ʃ�丮��";
+        GameManager.GameState = "튜토리얼";
         uiManager.InGameUI.SetActive(false);
         albumManager.album = false;
         isCutScene = true;
@@ -138,13 +138,13 @@ public class CutSceneManager : MonoBehaviour
         textManager.ShowDateText("XX.10.10", 2f);
         ChangePosition(playerControl.gameObject, -1.5f, -1.5f, 0);
         ChangePosition(mainCamera.gameObject, -1.5f, -1.5f, -10);
-        GameManager.GameState = "Ʃ�丮�� �ƾ�";
+        GameManager.GameState = "튜토리얼 컷씬";
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
         playerControl.isMove = true;
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_1);
         yield return StartCoroutine(WaitForDialogue());
         Effect.SetActive(false);
-        yield return StartCoroutine(fadeManager.ChangeStateFade("��Ƽ��"));
+        yield return StartCoroutine(fadeManager.ChangeStateFade("파티룸"));
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_1_2);
         yield return StartCoroutine(WaitForDialogue());
         albumManager.album = true;
@@ -296,7 +296,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.is_ChoiceExpected = true;
         yield return StartCoroutine(WaitForDialogue());
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_5_2);
-        dialogueManager.ShowChoiceDialogue(true, "������", "����");
+        dialogueManager.ShowChoiceDialogue(true, "인형", "난쟁이");
         yield return StartCoroutine(WaitForDialogue());
 
         yield return new WaitForSeconds(1);
@@ -482,7 +482,7 @@ public class CutSceneManager : MonoBehaviour
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 
-        GameManager.GameState = "Chapter 2 ��ȸ��";
+        GameManager.GameState = "Chapter 2 연회장";
         uiManager.InGameUI.SetActive(true);
         MainCamera.orthographicSize = 6;
         Effect.SetActive(false);
