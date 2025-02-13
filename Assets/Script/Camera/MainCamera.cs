@@ -168,6 +168,16 @@ public class MainCamera : MonoBehaviour
                 pos.y = -244f;
                 break;
 
+            case "Chapter 왼쪽 하단 복도":
+                pos.x = -63.45f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -177.3f, -165.5f);
+                break;
+
+            case "Chapter 2 CCTV Room":
+                pos.x = -12.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -194.83f, -186.483f);
+                break;
+
             default:
                 pos.x = player.transform.position.x;
                 pos.y = player.transform.position.y;
