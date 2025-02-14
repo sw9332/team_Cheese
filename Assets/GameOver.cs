@@ -30,9 +30,10 @@ public class GameOver : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(instance);
         }
 
-        else Destroy(this.gameObject);
+        else Destroy(instance);
     }
 
     public void NewGame()
