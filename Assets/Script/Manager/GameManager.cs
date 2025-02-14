@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     public static bool Save = false;
     public static bool Load = false;
 
-    public static bool GameEnd = false;
-
     public Image DemoClearUI;
     public Image GameOverUI;
 
@@ -29,7 +27,6 @@ public class GameManager : MonoBehaviour
     {
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         SceneManager.LoadScene("Game Over");
-        GameEnd = true;
     }
 
     void Start()

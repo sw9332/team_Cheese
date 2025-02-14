@@ -277,7 +277,7 @@ public class NPC : MonoBehaviour
 
     public IEnumerator Boss_Pattern()
     {
-        while (true && !GameManager.GameEnd && !die)
+        while (!die)
         {
             yield return StartCoroutine(Melee_Attack(5));
             yield return StartCoroutine(Rush(3));
@@ -295,7 +295,7 @@ public class NPC : MonoBehaviour
             AnimationDirection("Damaged", 1f);
         }
 
-        if (other.CompareTag("Bullet") && !GameManager.GameEnd && !die)
+        if (other.CompareTag("Bullet") && !die)
         {
             if (Hp.value > 0)
             {
