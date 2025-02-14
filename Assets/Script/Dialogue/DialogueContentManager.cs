@@ -95,4 +95,10 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue cutScene_8_2;
     public Dialogue cutScene_8_3;
     public Dialogue cutScene_8_4;
+
+    [Header("CutScene_10")]
+    public Dialogue cutScene_10_1;
+    public Dialogue cutScene_10_2;
+    public Dialogue cutScene_10_3;
+    public Dialogue cutScene_10_4;
 }

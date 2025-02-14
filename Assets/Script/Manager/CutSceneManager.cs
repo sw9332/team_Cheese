@@ -482,16 +482,64 @@ public class CutSceneManager : MonoBehaviour
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
 
-        GameManager.GameState = "Chapter 2 연회장";
-        uiManager.InGameUI.SetActive(true);
         MainCamera.orthographicSize = 6;
         Effect.SetActive(false);
 
         yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(CutScene_10());
+    }
+
+    public IEnumerator CutScene_10()
+    {
+        GameManager.GameState = "CutScene 10";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        n_Player.isFollow = false;
+
+        ChangePosition(playerControl.gameObject, 6.8f, -244.76f, 0);
+        ChangePosition(n_Player.gameObject, 5.2f, -244.08f, 0);
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_1);
+        yield return StartCoroutine(WaitForDialogue());
+
+        yield return new WaitForSeconds(3f); // Teddy Bear
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
+        yield return StartCoroutine(WaitForDialogue());
+
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = false;
+        n_Player.isFollow = true;
+    }
+
+    public IEnumerator CutScene_10_1()
+    {
+        GameManager.GameState = "CutScene 10_1";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        n_Player.isFollow = false;
+
+        ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
+        playerControl.animator.Play("RightPush");
+        playerControl.Direction = "Right";
+        playerControl.animator.speed = 0;
+
+        yield return new WaitForSeconds(2f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
+        yield return StartCoroutine(WaitForDialogue());
+
+        playerControl.animator.Play("PlayerRight_Stop");
+        playerControl.animator.speed = 1;
+
+        uiManager.InGameUI.SetActive(true);
         albumManager.album = true;
         isCutScene = false;
+        n_Player.isFollow = false;
     }
 
     public IEnumerator isVibrationEvent()
