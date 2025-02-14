@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
+            case "Event 7 (Chapter 2)": StartCoroutine(cutSceneManager.CutScene_10_1());
+                Destroy(other.gameObject);
+                break;
+
             case "파티룸 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "파티룸 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
