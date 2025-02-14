@@ -33,7 +33,7 @@ public class GameOver : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
 
-        else Destroy(instance);
+        else Destroy(this.gameObject);
     }
 
     public void NewGame()
