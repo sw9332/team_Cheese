@@ -90,12 +90,6 @@ public class NPC : MonoBehaviour
                 yield break;
             }
 
-            if (GameManager.GameEnd)
-            {
-                Invoke("Original", 1f);
-                yield break;
-            }
-
             while (!meleeAttack)
             {
                 UpdateDirection();
@@ -104,12 +98,6 @@ public class NPC : MonoBehaviour
                 if (die)
                 {
                     animator.Play("Die");
-                    yield break;
-                }
-
-                if (GameManager.GameEnd)
-                {
-                    Invoke("Original", 1f);
                     yield break;
                 }
 
@@ -134,12 +122,6 @@ public class NPC : MonoBehaviour
             if (die)
             {
                 animator.Play("Die");
-                yield break;
-            }
-
-            if (GameManager.GameEnd)
-            {
-                Invoke("Original", 1f);
                 yield break;
             }
 
@@ -186,12 +168,6 @@ public class NPC : MonoBehaviour
                         yield break;
                     }
 
-                    if (GameManager.GameEnd)
-                    {
-                        Invoke("Original", 1f);
-                        yield break;
-                    }
-
                     yield return null;
                 }
             }
@@ -212,12 +188,6 @@ public class NPC : MonoBehaviour
                 yield break;
             }
 
-            if (GameManager.GameEnd)
-            {
-                Invoke("Original", 1f);
-                yield break;
-            }
-
             float step = MOVE_STEP * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
@@ -233,12 +203,6 @@ public class NPC : MonoBehaviour
                     animator.Play("Die");
                     yield break;
                 }
-
-                if (GameManager.GameEnd)
-                {
-                    Invoke("Original", 1f);
-                    yield break;
-                }
             }
 
             else
@@ -251,12 +215,6 @@ public class NPC : MonoBehaviour
                     animator.Play("Die");
                     yield break;
                 }
-
-                if (GameManager.GameEnd)
-                {
-                    Invoke("Original", 1f);
-                    yield break;
-                }
             }
 
             yield return null;
@@ -267,12 +225,6 @@ public class NPC : MonoBehaviour
             if (die)
             {
                 animator.Play("Die");
-                yield break;
-            }
-
-            if (GameManager.GameEnd)
-            {
-                Invoke("Original", 1f);
                 yield break;
             }
 
