@@ -75,14 +75,10 @@ public class Hp : MonoBehaviour
 
     void Update()
     {
-        if (hpValue < 1)
-        {
-            GameManager.GameEnd = true;
-            StartCoroutine(gameManager.GameOver());
-        }
-
         if (Input.GetKeyDown(KeyCode.D)) StartCoroutine(Damage.Instance.ChangeToDamaged(1.0f));
         if (Input.GetKeyDown(KeyCode.F)) HpPlus(2.0f);
+
+        if (hpValue < 1) StartCoroutine(GameOver.Instance.True());
     }
 
     void Start()
