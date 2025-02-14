@@ -181,7 +181,6 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteKey("Camera");
         PlayerPrefs.DeleteKey("Bullet");
         PlayerPrefs.DeleteKey("Game State");
-        PlayerPrefs.DeleteKey("Game End");
         PlayerPrefs.DeleteKey("Item Data");
         PlayerPrefs.DeleteKey("Save");
 

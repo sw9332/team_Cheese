@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
 
     public void NewGame()
     {
+        GameManager.GameEnd = false;
         SaveManager.Instance.DeleteKey();
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }

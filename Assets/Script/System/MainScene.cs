@@ -20,6 +20,7 @@ public class MainScene : MonoBehaviour
 
     public void NewGameStartButton() //새 게임 버튼
     {
+        GameManager.GameEnd = false;
         SaveManager.Instance.DeleteKey();
         StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
     }
