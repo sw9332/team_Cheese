@@ -27,12 +27,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        if (GameEnd)
-        {
-            playerControl.isMove = false;
-            yield return StartCoroutine(fadeManager.FadeOut(GameOverUI, Color.black));
-            yield break;
-        }
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        SceneManager.LoadScene("Game Over");
+        GameEnd = true;
     }
 
     void Start()
