@@ -188,6 +188,11 @@ public class MainCamera : MonoBehaviour
                 pos.y = Mathf.Clamp(player.transform.position.y, -194.83f, -186.483f);
                 break;
 
+            case "Event":
+                pos.x = transform.position.x;
+                pos.y = transform.position.y;
+                break;
+
             default:
                 pos.x = player.transform.position.x;
                 pos.y = player.transform.position.y;

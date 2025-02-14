@@ -71,13 +71,13 @@ public class CutSceneManager : MonoBehaviour
         while (dialogueManager.dialogue_continue) yield return null;
     }
 
-    public IEnumerator MoveObject(GameObject Object, float x, float y, float speed)
+    public IEnumerator MoveObject(GameObject Object, float x, float y, float z, float speed)
     {
-        Vector2 targetPosition = new Vector2(x, y);
+        Vector3 targetPosition = new Vector3(x, y, z);
 
-        while ((Vector2)Object.transform.position != targetPosition)
+        while ((Vector3)Object.transform.position != targetPosition)
         {
-            Object.transform.position = Vector2.MoveTowards(Object.transform.position, targetPosition, speed * Time.deltaTime);
+            Object.transform.position = Vector3.MoveTowards(Object.transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
     }
@@ -249,7 +249,7 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
         yield return new WaitForSeconds(0.1f);
 
-        yield return StartCoroutine(MoveObject(BigTeddyBearBos, playerControl.transform.position.x, BigTeddyBearBos.transform.position.y, 15f));
+        yield return StartCoroutine(MoveObject(BigTeddyBearBos, playerControl.transform.position.x, BigTeddyBearBos.transform.position.y, 0, 15f));
         BigTeddyBearBos.transform.position = new Vector2(-45f, -59f);
         BlackBackground.gameObject.SetActive(true);
         StartCoroutine(CutScene_4());
@@ -464,7 +464,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         TinSoldier.Instance.Move("Right");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 7.2f, TinSoldier.Instance.transform.position.y, 0, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.Stop("Right");
         yield return new WaitForSeconds(1f);
@@ -477,7 +477,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
 
         TinSoldier.Instance.Move("Right");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, TinSoldier.Instance.speed));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, 17.16f, TinSoldier.Instance.transform.position.y, 0, TinSoldier.Instance.speed));
 
         TinSoldier.Instance.gameObject.SetActive(false);
         yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
@@ -503,8 +503,15 @@ public class CutSceneManager : MonoBehaviour
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_1);
         yield return StartCoroutine(WaitForDialogue());
+        yield return new WaitForSeconds(2f);
+
+        GameManager.GameState = "Event";
+        StartCoroutine(MoveObject(mainCamera.gameObject, 10.05f, -245.5f, -10, 1f));
+        while (mainCamera.transform.position.x < 10.05f) yield return null;
 
         yield return new WaitForSeconds(3f); // Teddy Bear
+
+        GameManager.GameState = "CutScene 10";
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
