@@ -73,9 +73,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("Bullet", playerData.bullet);
 
         gameData.state = GameManager.GameState;
-        gameData.end = GameManager.GameEnd;
         PlayerPrefs.SetString("Game State", gameData.state);
-        PlayerPrefs.SetInt("Game End", System.Convert.ToInt16(gameData.end));
 
         for (int i = 0; i < inventoryData.slot.Length; i++)
         {
@@ -125,9 +123,7 @@ public class SaveManager : MonoBehaviour
             bullet.bulletNum = playerData.bullet;
 
             gameData.state = PlayerPrefs.GetString("Game State");
-            gameData.end = System.Convert.ToBoolean(PlayerPrefs.GetInt("Game End"));
             GameManager.GameState = gameData.state;
-            GameManager.GameEnd = gameData.end;
 
             for (int i = 0; i < inventoryData.slot.Length; i++)
             {
@@ -217,7 +213,6 @@ public class PlayerData
 public class GameData
 {
     public string state;
-    public bool end;
 }
 
 [System.Serializable]
