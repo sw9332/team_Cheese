@@ -8,10 +8,9 @@ public class GameOver : MonoBehaviour
 {
     private FadeManager fadeManager;
 
-    public Image image;
     public Image error;
 
-    private static GameOver instance;
+    private static GameOver instance = null;
 
     public static GameOver Instance
     {
@@ -36,13 +35,6 @@ public class GameOver : MonoBehaviour
         else Destroy(this.gameObject);
     }
 
-    public IEnumerator True()
-    {
-        yield return StartCoroutine(fadeManager.FadeOut(image, Color.black));
-        SceneManager.LoadScene("Game Over");
-        GameManager.GameEnd = true;
-    }
-
     public void NewGame()
     {
         SaveManager.Instance.DeleteKey();
@@ -57,12 +49,24 @@ public class GameOver : MonoBehaviour
             StartCoroutine(fadeManager.ChangeSceneFade("GameScene"));
         }
 
-        else StartCoroutine(fadeManager.FadeOut(error, Color.black));
+        else error.gameObject.SetActive(true);
     }
 
     public void Quit()
     {
         StartCoroutine(fadeManager.ChangeSceneFade("MainScene"));
+    }
+
+    public void OK()
+    {
+        error.gameObject.SetActive(false);
+    }
+
+    public IEnumerator True()
+    {
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
+        SceneManager.LoadScene("Game Over");
+        GameManager.GameEnd = true;
     }
 
     void Start()
