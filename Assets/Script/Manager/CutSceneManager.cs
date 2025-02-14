@@ -524,6 +524,7 @@ public class CutSceneManager : MonoBehaviour
 
     public IEnumerator CutScene_10_1()
     {
+        yield return StartCoroutine(fadeManager.FadeOut(fadeManager.fadeImage, Color.black));
         GameManager.GameState = "CutScene 10_1";
         uiManager.InGameUI.SetActive(false);
         albumManager.album = false;
@@ -534,10 +535,11 @@ public class CutSceneManager : MonoBehaviour
         playerControl.animator.Play("RightPush");
         playerControl.Direction = "Right";
         playerControl.animator.speed = 0;
+        yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         yield return new WaitForSeconds(2f);
 
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_3);
         yield return StartCoroutine(WaitForDialogue());
 
         playerControl.animator.Play("PlayerRight_Stop");
@@ -547,6 +549,8 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = true;
         isCutScene = false;
         n_Player.isFollow = false;
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
     }
 
     public IEnumerator isVibrationEvent()
