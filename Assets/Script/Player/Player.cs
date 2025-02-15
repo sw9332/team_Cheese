@@ -45,6 +45,14 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
+            case "Event 8 (Chapter 2)": dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
+                Destroy(other.gameObject);
+                break;
+
+            case "Event 9 (Chapter 2)": StartCoroutine(cutSceneManager.CutScene_10_2());
+                Destroy(other.gameObject);
+                break;
+
             case "ÆÄÆ¼·ë (ÀÔ±¸)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "ÆÄÆ¼·ë (Ãâ±¸)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
