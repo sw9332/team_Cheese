@@ -28,6 +28,10 @@ public class CutSceneManager : MonoBehaviour
     public Image BlackBackground;
     public Image WhiteBackground;
     public Image PlayerImage;
+    public Image Downed_Player;
+
+    [Header("Text")]
+    public Text Demo_Clear;
 
     [Header("Effect")]
     public GameObject Effect;
@@ -546,6 +550,8 @@ public class CutSceneManager : MonoBehaviour
         playerControl.animator.Play("PlayerRight_Stop");
         playerControl.animator.speed = 1;
 
+        yield return new WaitForSeconds(0.5f);
+
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
         yield return StartCoroutine(WaitForDialogue());
 
@@ -590,6 +596,18 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         BlackBackground.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+
+        yield return StartCoroutine(fadeManager.FadeOut(Downed_Player, Color.white));
+        yield return StartCoroutine(textManager.FadeInText(Demo_Clear));
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(fadeManager.FadeIn(Downed_Player, Color.white, false));
+        StartCoroutine(textManager.FadeOutText(Demo_Clear));
+
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(gameManager.GameOver());
     }
 
     public IEnumerator isVibrationEvent()
