@@ -600,6 +600,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(fadeManager.FadeOut(Downed_Player, Color.white));
+        yield return new WaitForSeconds(2f);
         yield return StartCoroutine(textManager.FadeInText(Demo_Clear));
 
         yield return new WaitForSeconds(3f);
