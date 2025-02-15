@@ -596,17 +596,17 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         BlackBackground.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(fadeManager.FadeOut(Downed_Player, Color.white));
         yield return StartCoroutine(textManager.FadeInText(Demo_Clear));
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         StartCoroutine(fadeManager.FadeIn(Downed_Player, Color.white, false));
         StartCoroutine(textManager.FadeOutText(Demo_Clear));
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(gameManager.GameOver());
     }
 
