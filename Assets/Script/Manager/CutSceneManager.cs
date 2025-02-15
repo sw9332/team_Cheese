@@ -48,6 +48,7 @@ public class CutSceneManager : MonoBehaviour
     public GameObject NPC_Boss_Event1;
     public GameObject NPC_Boss_Event2;
     public GameObject NPC_Boss_Event3;
+    public GameObject Event_8;
 
     [Header("Animation")]
     public Animator rabbit;
@@ -549,9 +550,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = true;
         isCutScene = false;
         n_Player.isFollow = false;
-
-        //dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
-        //yield return StartCoroutine(WaitForDialogue());
+        Event_8.SetActive(true);
     }
 
     public IEnumerator CutScene_10_2()
