@@ -15,6 +15,7 @@ public class CutSceneManager : MonoBehaviour
     private UIManager uiManager;
     private NPCEnemy npcEnemy;
     private NPC npc;
+    private Enemy enemy;
     private NPCItem npcItem;
     private N_Player n_Player;
     private Stage1_BlockedWay stage1_BlockedWay;
@@ -518,6 +519,8 @@ public class CutSceneManager : MonoBehaviour
 
         GameManager.GameState = "CutScene 10";
 
+        enemy.playerCheckBox = new Vector2(40f, 15f);
+
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
 
@@ -535,6 +538,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
         n_Player.isFollow = false;
+        enemy.playerCheckBox = new Vector2(8f, 3f);
 
         ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
         playerControl.animator.Play("RightPush");
@@ -639,6 +643,7 @@ public class CutSceneManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
         npc = FindFirstObjectByType<NPC>();
+        enemy = FindFirstObjectByType<Enemy>();
         n_Player = FindFirstObjectByType<N_Player>();
         stage1_BlockedWay = FindFirstObjectByType<Stage1_BlockedWay>();
         albumManager = FindFirstObjectByType<AlbumManager>();

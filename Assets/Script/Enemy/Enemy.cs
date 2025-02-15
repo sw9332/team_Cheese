@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
 
 
-    private Vector2 playerCheckBox;
+    public Vector2 playerCheckBox;
 
     public int hp = 3;
     private float moveSpeed;
