@@ -588,8 +588,9 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Stop("Up Attack");
+        yield return new WaitForSeconds(0.5f);
 
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_6);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Move("Up Attack");
 
