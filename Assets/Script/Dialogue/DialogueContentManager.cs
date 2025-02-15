@@ -101,4 +101,6 @@ public class DialogueContentManager : MonoBehaviour
     public Dialogue cutScene_10_2;
     public Dialogue cutScene_10_3;
     public Dialogue cutScene_10_4;
+    public Dialogue cutScene_10_5;
+    public Dialogue cutScene_10_6;
 }

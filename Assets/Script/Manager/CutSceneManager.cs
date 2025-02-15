@@ -516,7 +516,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
 
-        uiManager.InGameUI.SetActive(false);
+        uiManager.InGameUI.SetActive(true);
         albumManager.album = false;
         isCutScene = false;
         n_Player.isFollow = true;
@@ -550,7 +550,37 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = false;
         n_Player.isFollow = false;
 
-        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
+        //dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
+        //yield return StartCoroutine(WaitForDialogue());
+    }
+
+    public IEnumerator CutScene_10_2()
+    {
+        GameManager.GameState = "CutScene_10_2";
+        uiManager.InGameUI.SetActive(false);
+        albumManager.album = false;
+        isCutScene = true;
+        n_Player.isFollow = false;
+
+        ChangePosition(TinSoldier.Instance.gameObject, -17.5f, -256.8f, 0);
+
+        yield return new WaitForSeconds(2f);
+
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, TinSoldier.Instance.transform.position.x, -250.9f, 0, 3f));
+
+        yield return new WaitForSeconds(0.5f);
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
+        TinSoldier.Instance.Stop("Up Attack");
+        yield return StartCoroutine(WaitForDialogue());
+
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
+        yield return StartCoroutine(WaitForDialogue());
+        TinSoldier.Instance.Move("Up Attack");
+
+        yield return new WaitForSeconds(2f);
+
+        BlackBackground.gameObject.SetActive(true);
     }
 
     public IEnumerator isVibrationEvent()
