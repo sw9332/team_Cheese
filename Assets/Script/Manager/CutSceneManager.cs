@@ -546,41 +546,48 @@ public class CutSceneManager : MonoBehaviour
         playerControl.animator.Play("PlayerRight_Stop");
         playerControl.animator.speed = 1;
 
+        dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_4);
+        yield return StartCoroutine(WaitForDialogue());
+
         uiManager.InGameUI.SetActive(true);
         albumManager.album = true;
         isCutScene = false;
-        n_Player.isFollow = false;
         Event_8.SetActive(true);
     }
 
     public IEnumerator CutScene_10_2()
     {
-        GameManager.GameState = "CutScene_10_2";
         uiManager.InGameUI.SetActive(false);
+        playerControl.isMove = false;
         albumManager.album = false;
         isCutScene = true;
-        n_Player.isFollow = false;
+
+        playerControl.Direction = "Down";
+
+        GameManager.GameState = "Event";
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(MoveObject(mainCamera.gameObject, mainCamera.transform.position.x, -250f, -10, 1f));
 
         TinSoldier.Instance.gameObject.SetActive(true);
-        ChangePosition(TinSoldier.Instance.gameObject, -17.5f, -256.8f, 0);
+        ChangePosition(TinSoldier.Instance.gameObject, -17.5f, -257.2f, 0);
 
         yield return new WaitForSeconds(2f);
 
         TinSoldier.Instance.Move("Up");
-        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, TinSoldier.Instance.transform.position.x, -250.9f, 0, 3f));
+        yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, playerControl.transform.position.x, -250.9f, 0, 1f));
 
         TinSoldier.Instance.Stop("Up");
         yield return new WaitForSeconds(0.5f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
+        StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Stop("Up Attack");
-        yield return StartCoroutine(WaitForDialogue());
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Move("Up Attack");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         BlackBackground.gameObject.SetActive(true);
     }
