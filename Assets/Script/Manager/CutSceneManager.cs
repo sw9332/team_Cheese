@@ -565,8 +565,10 @@ public class CutSceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        TinSoldier.Instance.Move("Up");
         yield return StartCoroutine(MoveObject(TinSoldier.Instance.gameObject, TinSoldier.Instance.transform.position.x, -250.9f, 0, 3f));
 
+        TinSoldier.Instance.Stop("Up");
         yield return new WaitForSeconds(0.5f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
