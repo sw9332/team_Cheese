@@ -561,6 +561,7 @@ public class CutSceneManager : MonoBehaviour
         isCutScene = true;
         n_Player.isFollow = false;
 
+        TinSoldier.Instance.gameObject.SetActive(true);
         ChangePosition(TinSoldier.Instance.gameObject, -17.5f, -256.8f, 0);
 
         yield return new WaitForSeconds(2f);
