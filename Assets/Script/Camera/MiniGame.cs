@@ -160,8 +160,8 @@ public class MiniGame : MonoBehaviour
 
                 case "Chapter 2 ¿¬È¸Àå": MiniGamePosition(8f, 10f, -116f, -114f);
                     if (Input.GetKey(KeyCode.Tab)
-                        && x_Axis.value >= 8.9f && x_Axis.value <= 9.1f
-                        && y_Axis.value >= -115.1f && y_Axis.value <= -114.9f)
+                        && x_Axis.value >= 9.08f && x_Axis.value <= 9.3f
+                        && y_Axis.value >= -115.65f && y_Axis.value <= -115.3f)
                     {
                         UIManager.rabbit_Statue = false;
                         UIManager.cart = false;
