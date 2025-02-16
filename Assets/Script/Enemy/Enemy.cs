@@ -93,7 +93,10 @@ public class Enemy : MonoBehaviour
                 if (isNearPlayer())
                 {
                     // direction vector
-                    Vector2 direction = (playerControl.transform.position - this.transform.position).normalized;
+                    Vector2 direction;
+
+                    if (GameManager.GameState == "CutScene 10") direction = new Vector2(playerControl.transform.position.x - this.transform.position.x, 0).normalized;
+                    else direction = (playerControl.transform.position - this.transform.position).normalized;
 
                     // enemy is on player's left
                     if (playerControl.transform.position.x > this.transform.position.x)
