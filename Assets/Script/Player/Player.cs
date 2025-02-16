@@ -92,8 +92,17 @@ public class Player : MonoBehaviour
             case "Chapter 2 Enemy Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "Chapter 2 Enemy Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
 
+            case "Chapter 2 왼쪽 하단 복도 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 복도 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
             case "Chapter 2 CCTV Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
             case "Chapter 2 CCTV Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 왼쪽 하단 (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+
+            case "Chapter 2 왼쪽 하단 Enemy Room (입구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
+            case "Chapter 2 왼쪽 하단 Enemy Room (출구)": teleportManager.Teleport(other.gameObject.tag, playerCollider); break;
         }
     }
 

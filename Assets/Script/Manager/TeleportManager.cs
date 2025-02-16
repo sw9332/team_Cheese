@@ -57,8 +57,17 @@ public class TeleportManager : MonoBehaviour
             case "Chapter 2 Enemy Room (입구)": StartCoroutine(TeleportFade("Chapter 2 Enemy Room", other, -44.42f, -172.5f, false)); break;
             case "Chapter 2 Enemy Room (출구)": StartCoroutine(TeleportFade("Chapter 2 하단 복도", other, -39, -180, false)); break;
 
+            case "Chapter 2 왼쪽 하단 복도 (입구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단 복도", other, -63.5f, -163, false)); break;
+            case "Chapter 2 왼쪽 하단 복도 (출구)": StartCoroutine(TeleportFade("Chapter 2 복도", other, -49.44f, -149.95f, false)); break;
+
             case "Chapter 2 CCTV Room (입구)": StartCoroutine(TeleportFade("Chapter 2 CCTV Room", other, -21.8f, -192, false)); break;
             case "Chapter 2 CCTV Room (출구)": StartCoroutine(TeleportFade("Chapter 2 하단 복도", other, -32.3f, -197, false)); break;
+
+            case "Chapter 2 왼쪽 하단 (입구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단", other, -63, -188.8f, false)); break;
+            case "Chapter 2 왼쪽 하단 (출구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단 복도", other, -63.97f, -180.9f, false)); break;
+
+            case "Chapter 2 왼쪽 하단 Enemy Room (입구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단 Enemy Room", other, -79.972f, -179f, false)); break;
+            case "Chapter 2 왼쪽 하단 Enemy Room (출구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단", other, -76, -188.8f, false)); break;
         }
     }
 
