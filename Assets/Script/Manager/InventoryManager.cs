@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
 
     bool flower = false;
     bool chicken = false;
+    bool Flower_and_Chicken = false;
 
     private Player player;
     private PlayerAttack playerattack;
@@ -31,17 +32,19 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < SlotDB.Length; i++)
+        if (!Flower_and_Chicken)
         {
-            if (SlotDB[i] == "Flower") flower = true;
-            if (SlotDB[i] == "Chicken") chicken = true;
-        }
+            for (int i = 0; i < SlotDB.Length; i++)
+            {
+                if (SlotDB[i] == "Flower") flower = true;
+                if (SlotDB[i] == "Chicken") chicken = true;
+            }
 
-        if (flower && chicken)
-        {
-            flower = false;
-            chicken = false;
-            dialogueManager.ShowDialogue(dialogue);
+            if (flower && chicken)
+            {
+                Flower_and_Chicken = true;
+                dialogueManager.ShowDialogue(dialogue);
+            }
         }
     }
 
