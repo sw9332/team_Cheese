@@ -650,6 +650,8 @@ public class CutSceneManager : MonoBehaviour
         textManager = FindFirstObjectByType<TextManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
 
+        Enemy.layer = false;
+
         switch (GameManager.Load)
         {
             case true: saveManager.Load(); break;
