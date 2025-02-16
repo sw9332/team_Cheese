@@ -519,7 +519,7 @@ public class CutSceneManager : MonoBehaviour
 
         GameManager.GameState = "CutScene 10";
 
-        enemy.playerCheckBox = new Vector2(40f, 15f);
+        enemy.playerCheckBox = new Vector2(60f, 15f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
