@@ -571,7 +571,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
 
-        playerControl.Direction = "Down";
+        playerControl.StopDirection("Down");
 
         GameManager.GameState = "Event";
         yield return new WaitForSeconds(2f);
@@ -591,13 +591,13 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Stop("Up Attack");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_6);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Move("Up Attack");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
 
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
