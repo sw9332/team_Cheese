@@ -91,11 +91,5 @@ public class InventoryManager : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
-
-        SlotDB[0] = "Flower";
-        SlotImageDB[0].sprite = itemManager.GetItemSprite("Flower");
-
-        SlotDB[1] = "Chicken";
-        SlotImageDB[1].sprite = itemManager.GetItemSprite("Chicken");
     }
 }
