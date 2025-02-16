@@ -9,10 +9,14 @@ public class InventoryManager : MonoBehaviour
     public Image[] SlotImageDB;
     public bool miniGameCamera = false;
 
+    bool flower = false;
+    bool chicken = false;
+
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
-    public GameObject rightHP;
+    private Dialogue dialogue;
+    private DialogueManager dialogueManager;
 
     public void PickUpItem(Collider2D item)
     {
@@ -26,6 +30,14 @@ public class InventoryManager : MonoBehaviour
                 break;
             }
         }
+
+        for (int i = 0; i < SlotDB.Length; i++)
+        {
+            if (SlotDB[i] == "Flower") flower = true;
+            if (SlotDB[i] == "Chicken") chicken = true;
+        }
+
+        if (flower && chicken) dialogueManager.ShowDialogue(dialogue);
     }
 
     public void DropItem(int slotIndex)
