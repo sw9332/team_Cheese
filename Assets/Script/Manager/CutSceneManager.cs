@@ -519,10 +519,10 @@ public class CutSceneManager : MonoBehaviour
 
         GameManager.GameState = "CutScene 10";
 
-        Enemy.layer = true;
-
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
+
+        Enemy.layer = true;
 
         uiManager.InGameUI.SetActive(true);
         albumManager.album = false;
