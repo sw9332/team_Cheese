@@ -110,22 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC Enemy Sprite
+      name: NPC Enemy Sprite_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 32
+        width: 14
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a81ef2b8d725d5545907f86d9b92809a
-      internalID: 555586199
+      spriteID: b61bd90c1f47d5a4b819c70635d7ff87
+      internalID: 1653371002
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NPC Enemy Sprite: 555586199
+      NPC Enemy Sprite_0: 1653371002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
