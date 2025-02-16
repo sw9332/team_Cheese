@@ -542,7 +542,7 @@ public class CutSceneManager : MonoBehaviour
 
         ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
         playerControl.StopDirection("RightPush");
-        playerControl.animator.speed = 0;
+        
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         yield return new WaitForSeconds(2f);
@@ -551,7 +551,6 @@ public class CutSceneManager : MonoBehaviour
         yield return StartCoroutine(WaitForDialogue());
 
         playerControl.StopDirection("Right");
-        playerControl.animator.speed = 1;
 
         yield return new WaitForSeconds(0.5f);
 
