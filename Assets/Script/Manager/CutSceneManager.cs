@@ -541,8 +541,8 @@ public class CutSceneManager : MonoBehaviour
         enemy.playerCheckBox = new Vector2(8f, 3f);
 
         ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
-        playerControl.StopDirection("RightPush");
-        
+        playerControl.StopDirection("Right Block");
+
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
         yield return new WaitForSeconds(2f);
