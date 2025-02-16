@@ -183,7 +183,7 @@ public class MainCamera : MonoBehaviour
                 pos.y = Mathf.Clamp(player.transform.position.y, -254.3f, -245.5f);
                 break;
 
-            case "Chapter 2 왼쪽 하단 복도":
+            case "Chapter 2 하단 복도":
                 pos.x = -63.45f;
                 pos.y = Mathf.Clamp(player.transform.position.y, -177.3f, -165.5f);
                 break;

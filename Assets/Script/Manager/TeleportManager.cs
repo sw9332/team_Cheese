@@ -51,8 +51,14 @@ public class TeleportManager : MonoBehaviour
             case "Chapter 2 창고 (입구)": StartCoroutine(TeleportFade("Chapter 2 창고", other, other.transform.position.x, -116, false)); break;
             case "Chapter 2 창고 (출구)": StartCoroutine(TeleportFade("Chapter 2 창고 입구", other, other.transform.position.x, -124, false)); break;
 
+            case "Chapter 2 하단 복도 (입구)": StartCoroutine(TeleportFade("Chapter 2 하단 복도", other, -32.3f, -182, false)); break;
+            case "Chapter 2 하단 복도 (출구)": StartCoroutine(TeleportFade("Chapter 2 복도", other, -21.5f, -166, false)); break;
+
+            case "Chapter 2 Enemy Room (입구)": StartCoroutine(TeleportFade("Chapter 2 Enemy Room", other, -44.42f, -172.5f, false)); break;
+            case "Chapter 2 Enemy Room (출구)": StartCoroutine(TeleportFade("Chapter 2 하단 복도", other, -39, -180, false)); break;
+
             case "Chapter 2 CCTV Room (입구)": StartCoroutine(TeleportFade("Chapter 2 CCTV Room", other, -21.8f, -192, false)); break;
-            case "Chapter 2 CCTV Room (출구)": StartCoroutine(TeleportFade("Chapter 2 왼쪽 하단 복도", other, -59.2f, -178.9f, false)); break;
+            case "Chapter 2 CCTV Room (출구)": StartCoroutine(TeleportFade("Chapter 2 하단 복도", other, -32.3f, -197, false)); break;
         }
     }
 
