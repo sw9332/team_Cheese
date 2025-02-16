@@ -64,8 +64,8 @@ public class Follow : MonoBehaviour
     {
         FollowPlayer();
 
-        if (Input.GetKeyDown(KeyCode.Q) && !n_Player.isFollow) n_Player.isFollow = true;
-        else if (Input.GetKeyDown(KeyCode.Q) && n_Player.isFollow) n_Player.isFollow = false;
+        //if (Input.GetKeyDown(KeyCode.Q) && !n_Player.isFollow) n_Player.isFollow = true;
+        //else if (Input.GetKeyDown(KeyCode.Q) && n_Player.isFollow) n_Player.isFollow = false;
     }
 
     void Start()
