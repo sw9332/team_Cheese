@@ -88,6 +88,10 @@ TagManager:
   - Event 7 (Chapter 2)
   - Event 8 (Chapter 2)
   - Event 9 (Chapter 2)
+  - "Chapter 2 \uD558\uB2E8 \uBCF5\uB3C4 (\uC785\uAD6C)"
+  - "Chapter 2 \uD558\uB2E8 \uBCF5\uB3C4 (\uCD9C\uAD6C)"
+  - "Chapter 2 Enemy Room (\uC785\uAD6C)"
+  - "Chapter 2 Enemy Room (\uCD9C\uAD6C)"
   layers:
   - Default
   - TransparentFX
