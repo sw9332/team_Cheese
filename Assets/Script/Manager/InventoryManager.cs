@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     private Player player;
     private PlayerAttack playerattack;
     private ItemManager itemManager;
-    private Dialogue dialogue;
+    public Dialogue dialogue;
     private DialogueManager dialogueManager;
 
     public void PickUpItem(Collider2D item)
@@ -103,5 +103,6 @@ public class InventoryManager : MonoBehaviour
         player = FindFirstObjectByType<Player>();
         playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
     }
 }
