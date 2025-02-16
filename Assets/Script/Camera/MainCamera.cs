@@ -130,17 +130,24 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "Chapter 2 복도":
-                if (player.transform.position.y >= -140f)
+                if (player.transform.position.y >= -140)
                 {
                     pos.x = -17.5f;
                     pos.y = Mathf.Clamp(player.transform.position.y, player.transform.position.y, -137.5f);
                 }
 
+                else if (player.transform.position.y <= -152)
+                {
+                    pos.x = Mathf.Clamp(player.transform.position.x, -11.98f, -1.7f);
+                    pos.y = Mathf.Clamp(player.transform.position.y, -165.3f, -156.2f);
+                }
+
                 else
                 {
-                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, -18f);
+                    pos.x = Mathf.Clamp(player.transform.position.x, -42.99f, 1.05f);
                     pos.y = -145.5f;
                 }
+
                 break;
 
             case "Chapter 2 연회장 입구":
@@ -184,8 +191,13 @@ public class MainCamera : MonoBehaviour
                 break;
 
             case "Chapter 2 하단 복도":
-                pos.x = -63.45f;
-                pos.y = Mathf.Clamp(player.transform.position.y, -177.3f, -165.5f);
+                pos.x = -36.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -192.82f, -182.5f);
+                break;
+
+            case "Chapter 2 Enemy Room":
+                pos.x = -40;
+                pos.y = Mathf.Clamp(player.transform.position.y, -168.2f, -163.5f);
                 break;
 
             case "Chapter 2 CCTV Room":
