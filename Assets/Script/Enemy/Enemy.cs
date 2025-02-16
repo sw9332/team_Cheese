@@ -4,9 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEditor.Build;
 
 public class Enemy : MonoBehaviour
 {
+    public static bool layer = false;
+
     private PlayerControl playerControl;
     private Animator animator;
     private Collider2D player;
@@ -165,6 +168,18 @@ public class Enemy : MonoBehaviour
     {
         if (hp == 0) StartCoroutine(PlayDeathAnimationAndDestroy());
         else bearMove();
+
+        if (layer)
+        {
+            playerCheckBox.x = 50.0f;
+            playerCheckBox.y = 15.0f;
+        }
+
+        else
+        {
+            playerCheckBox.x = 8.0f;
+            playerCheckBox.y = 3.0f;
+        }
     }
 
     void Start()

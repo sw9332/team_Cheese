@@ -519,7 +519,7 @@ public class CutSceneManager : MonoBehaviour
 
         GameManager.GameState = "CutScene 10";
 
-        enemy.playerCheckBox = new Vector2(60f, 15f);
+        Enemy.layer = true;
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_2);
         yield return StartCoroutine(WaitForDialogue());
@@ -538,7 +538,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
         n_Player.isFollow = false;
-        enemy.playerCheckBox = new Vector2(8f, 3f);
+        Enemy.layer = false;
 
         ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
         playerControl.StopDirection("Right Block");
