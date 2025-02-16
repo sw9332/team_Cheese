@@ -8,6 +8,7 @@ public class N_Player : MonoBehaviour
     private DialogueContentManager dialogueContentManager;
 
     private Animator animator;
+    private PolygonCollider2D polygon;
 
     public bool isFollow = false;
     public bool event4 = false;
@@ -16,6 +17,8 @@ public class N_Player : MonoBehaviour
     {
         switch (other.tag)
         {
+            case "Player": polygon.isTrigger = true; break;
+
             case "Event 1 (Chapter 2)":
                 dialogueManager.ShowDialogue(dialogueContentManager.chapter2_event1);
                 Destroy(other.gameObject);
@@ -41,9 +44,16 @@ public class N_Player : MonoBehaviour
         }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) polygon.isTrigger = false;
+    }
+
     void Start()
     {
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
+
+        polygon = GetComponent<PolygonCollider2D>();
     }
 }
