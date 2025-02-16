@@ -37,7 +37,12 @@ public class InventoryManager : MonoBehaviour
             if (SlotDB[i] == "Chicken") chicken = true;
         }
 
-        if (flower && chicken) dialogueManager.ShowDialogue(dialogue);
+        if (flower && chicken)
+        {
+            flower = false;
+            chicken = false;
+            dialogueManager.ShowDialogue(dialogue);
+        }
     }
 
     public void DropItem(int slotIndex)
