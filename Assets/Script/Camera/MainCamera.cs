@@ -200,9 +200,24 @@ public class MainCamera : MonoBehaviour
                 pos.y = Mathf.Clamp(player.transform.position.y, -168.2f, -163.5f);
                 break;
 
+            case "Chapter 2 ¿ÞÂÊ ÇÏ´Ü º¹µµ":
+                pos.x = -63.5f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -177.2f, -165.5f);
+                break;
+
             case "Chapter 2 CCTV Room":
                 pos.x = -12.5f;
                 pos.y = Mathf.Clamp(player.transform.position.y, -194.83f, -186.483f);
+                break;
+
+            case "Chapter 2 ¿ÞÂÊ ÇÏ´Ü":
+                pos.x = Mathf.Clamp(player.transform.position.x, -68.99f, -61.95f);
+                pos.y = -191.2f;
+                break;
+
+            case "Chapter 2 ¿ÞÂÊ ÇÏ´Ü Enemy Room":
+                pos.x = -79.75f;
+                pos.y = Mathf.Clamp(player.transform.position.y, -175.2f, -173.5f);
                 break;
 
             case "Event":
