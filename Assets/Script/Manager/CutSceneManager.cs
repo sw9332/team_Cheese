@@ -476,7 +476,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         TinSoldier.Instance.Move("Right Attack");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         rabbit.Play("rabbit transformation");
 
         TinSoldier.Instance.Stop("Right");
@@ -541,8 +541,7 @@ public class CutSceneManager : MonoBehaviour
         enemy.playerCheckBox = new Vector2(8f, 3f);
 
         ChangePosition(playerControl.gameObject, -13.225f, -244.055f, 0);
-        playerControl.animator.Play("RightPush");
-        playerControl.Direction = "Right";
+        playerControl.StopDirection("RightPush");
         playerControl.animator.speed = 0;
         yield return StartCoroutine(fadeManager.FadeIn(fadeManager.fadeImage, Color.black, false));
 
@@ -551,7 +550,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_3);
         yield return StartCoroutine(WaitForDialogue());
 
-        playerControl.animator.Play("PlayerRight_Stop");
+        playerControl.StopDirection("Right");
         playerControl.animator.speed = 1;
 
         yield return new WaitForSeconds(0.5f);
@@ -592,7 +591,7 @@ public class CutSceneManager : MonoBehaviour
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_5);
         yield return StartCoroutine(WaitForDialogue());
         TinSoldier.Instance.Stop("Up Attack");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         dialogueManager.ShowDialogue(dialogueContentManager.cutScene_10_6);
         yield return StartCoroutine(WaitForDialogue());

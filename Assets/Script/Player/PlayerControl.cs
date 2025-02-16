@@ -50,6 +50,7 @@ public class PlayerControl : MonoBehaviour
             case "Right": animator.Play("PlayerRight_Stop"); Direction = direction; break;
             case "lying down": animator.Play("lying down"); Direction = direction; break;
             case "Wake Up": animator.Play("Wake Up"); Direction = direction; break;
+            case "RightPush": animator.Play("RightPush"); Direction = direction; break;
         }
 
         stop = true;
