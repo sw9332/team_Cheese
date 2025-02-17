@@ -54,6 +54,17 @@ public class Enemy : MonoBehaviour
         // 애니메이션 재생 후 오브젝트 삭제
         destroyEnemy();
     }
+
+    public IEnumerator PlayDamageAnimation()
+    {
+        if (enemy.gameObject.layer == LayerMask.NameToLayer("attackable object")
+         && enemy.tag == "Push_Object")
+        {
+            animator.Play("Box Damage");
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+    }
+
     public void bearIdle()
     {
         if (gameObject.layer == LayerMask.NameToLayer("enemy"))
