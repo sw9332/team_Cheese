@@ -59,6 +59,16 @@ public class NPCEnemy : MonoBehaviour
         if (other.CompareTag("NPC Boss Event 3")) other.gameObject.SetActive(false);
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && other.CompareTag("Player"))
+        {
+            animator.SetTrigger("Damage");
+            HP--;
+            StartCoroutine(WaitForDamage());
+        }
+    }
+
     IEnumerator WaitForDamage()
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
