@@ -162,4 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d902afd6783a7640b05a8f3aa43aa5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue:
+    contents:
+    - "\uBC29\uBB38\uC744 \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uB2E4."
+    name:
+    - 
+    fontSize: 37000000
   canPickUp: 0
