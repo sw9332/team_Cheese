@@ -350,19 +350,27 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(false);
 
         if (npc.transform.position.x <= -61)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x + 1, npc.transform.position.y, 0);
+            NPC.gameObject.transform.position = new Vector3(-60, npc.transform.position.y, 0);
         else if (npc.transform.position.x >= -37)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x - 1, npc.transform.position.y, 0);
+            NPC.gameObject.transform.position = new Vector3(-38, npc.transform.position.y, 0);
+        else
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
 
-        if (npc.transform.position.y >= 28 || npc.transform.position.y >= 30)
+        if (npc.transform.position.y >= 28)
             NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, 27, 0);
         else if (npc.transform.position.y <= 18)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, 0);
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, 20, 0);
+        else
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
 
-        if (npc.transform.position.x > -61 && npc.transform.position.x < -37)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
-        if (npc.transform.position.y < 28 && npc.transform.position.y > 18)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
+        if (npc.transform.position.x <= -61 && npc.transform.position.y >= 28) // Left Up
+            NPC.gameObject.transform.position = new Vector3(-60, 27, 0);
+        else if (npc.transform.position.x <= -61 && npc.transform.position.y <= 18) // Left Down
+            NPC.gameObject.transform.position = new Vector3(-60, 20, 0);
+        else if (npc.transform.position.x >= -37 && npc.transform.position.y >= 28) // Right Up
+            NPC.gameObject.transform.position = new Vector3(-38, 27, 0);
+        else if (npc.transform.position.x >= -37 && npc.transform.position.y <= 18) // Right Down
+            NPC.gameObject.transform.position = new Vector3(-38, 20, 0);
 
         npc.transform.position = new Vector3(-68, 26.5f, 0);
         NPC.SetActive(true);
