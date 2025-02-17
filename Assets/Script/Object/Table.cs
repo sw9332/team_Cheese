@@ -6,6 +6,8 @@ using UnityEngine.Rendering;
 
 public class Table : MonoBehaviour
 {
+    public static bool trigger = false;
+
     public GameObject CameraEvent;
 
     private DialogueManager dialogueManager;
@@ -17,27 +19,18 @@ public class Table : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) return;
+        if (other.CompareTag("Player")) trigger = true;
         if (dialogueManager.dialogue_continue) return;
 
         if (other.CompareTag("Cake") && !isCake) //케이크를 테이블에 올려놓으면
         {
             isCake = true;
         }
+    }
 
-        else if (other.CompareTag("BrownTeddyBear") || other.CompareTag("PinkTeddyBear") || other.CompareTag("YellowTeddyBear"))
-        {
-            dialogueManager.ShowDialogue(dialogueContentManager.d_not_a_cake);
-
-            for (int i = 0; i < inventoryManager.SlotDB.Length; i++)
-                if (inventoryManager.SlotDB[i] == null)
-                {
-                    inventoryManager.SlotDB[i] = other.tag;
-                    inventoryManager.SlotImageDB[i].sprite = itemManager.GetItemSprite(other.tag);
-                    Destroy(other.gameObject);
-                    break;
-                }
-        }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) trigger = false;
     }
 
     void Update()

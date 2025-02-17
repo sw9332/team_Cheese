@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     private ItemManager itemManager;
     public Dialogue dialogue;
     private DialogueManager dialogueManager;
+    private DialogueContentManager dialogueContentManager;
 
     public void PickUpItem(Collider2D item)
     {
@@ -50,6 +51,15 @@ public class InventoryManager : MonoBehaviour
 
     public void DropItem(int slotIndex)
     {
+        if (Table.trigger)
+        {
+            if (SlotDB[slotIndex] != "Cake")
+            {
+                dialogueManager.ShowDialogue(dialogueContentManager.d_not_a_cake);
+                return;
+            }
+        }
+
         if (string.IsNullOrEmpty(SlotDB[slotIndex])) return;
 
         Item item = itemManager.GetItem(SlotDB[slotIndex]);
@@ -112,5 +122,6 @@ public class InventoryManager : MonoBehaviour
         playerattack = FindFirstObjectByType<PlayerAttack>();
         itemManager = FindFirstObjectByType<ItemManager>();
         dialogueManager = FindFirstObjectByType<DialogueManager>();
+        dialogueContentManager = FindFirstObjectByType<DialogueContentManager>();
     }
 }
