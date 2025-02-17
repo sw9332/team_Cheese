@@ -62,6 +62,8 @@ public class Enemy : MonoBehaviour
         {
             animator.Play("Box Damage");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            animator.Play(this.gameObject.name + "Idle");
         }
     }
 
