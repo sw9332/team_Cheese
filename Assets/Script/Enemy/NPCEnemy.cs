@@ -61,10 +61,10 @@ public class NPCEnemy : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl) && other.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && other.CompareTag("Player") && event1 && event2)
         {
             animator.SetTrigger("Damage");
-            HP--;
+            HP2--;
             StartCoroutine(WaitForDamage());
         }
     }
