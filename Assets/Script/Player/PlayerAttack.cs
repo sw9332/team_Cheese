@@ -52,10 +52,10 @@ public class PlayerAttack : MonoBehaviour
             rangedAttackMotion();
         }
 
-        if (playerControl.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            attackMotionStop();
             isAttacking = false;
+            attackMotionStop();
         }
 
         // bullet에 있던 코드를 끌어옴 , 단발 사격
