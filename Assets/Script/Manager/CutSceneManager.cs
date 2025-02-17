@@ -354,8 +354,8 @@ public class CutSceneManager : MonoBehaviour
         else if (npc.transform.position.x >= -37)
             NPC.gameObject.transform.position = new Vector3(npc.transform.position.x - 1, npc.transform.position.y, 0);
 
-        if (npc.transform.position.y >= 28)
-            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y - 1, 0);
+        if (npc.transform.position.y >= 28 || npc.transform.position.y >= 30)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, 27, 0);
         else if (npc.transform.position.y <= 18)
             NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, 0);
 
