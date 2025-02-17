@@ -121,7 +121,6 @@ public class MiniGame : MonoBehaviour
                         UIManager.is_NPC = false;
                         is_take_photo = false;
                         is_minigame = false;
-                        isImageChange = true;
                         playerControl.isMove = false;
                         inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_2());
@@ -136,7 +135,6 @@ public class MiniGame : MonoBehaviour
                         UIManager.is_CutScene_4 = false;
                         is_take_photo = false;
                         is_minigame = false;
-                        isImageChange = true;
                         playerControl.isMove = false;
                         inventoryManager.Clean();
                         StartCoroutine(cutSceneManager.CutScene_5());
