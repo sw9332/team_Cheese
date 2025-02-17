@@ -369,8 +369,8 @@ public class CutSceneManager : MonoBehaviour
             NPC.gameObject.transform.position = new Vector3(-60, 20, 0);
         else if (npc.transform.position.x >= -37 && npc.transform.position.y >= 28) // Right Up
             NPC.gameObject.transform.position = new Vector3(-38, 27, 0);
-        else if (npc.transform.position.x >= -37 && npc.transform.position.y <= 18) // Right Down
-            NPC.gameObject.transform.position = new Vector3(-38, 20, 0);
+        else if (npc.transform.position.x >= -40 && npc.transform.position.y <= 18) // Right Down
+            NPC.gameObject.transform.position = new Vector3(-42, 20, 0);
         else
             NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
 
