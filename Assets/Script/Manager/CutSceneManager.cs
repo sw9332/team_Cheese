@@ -348,7 +348,22 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
-        NPC.gameObject.transform.position = npc.transform.position;
+
+        if (npc.transform.position.x <= -61)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x + 1, npc.transform.position.y, 0);
+        else if (npc.transform.position.x >= -37)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x - 1, npc.transform.position.y, 0);
+
+        if (npc.transform.position.y >= 28)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y - 1, 0);
+        else if (npc.transform.position.y <= 18)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, 0);
+
+        if (npc.transform.position.x > -61 && npc.transform.position.x < -37)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
+        if (npc.transform.position.y < 28 && npc.transform.position.y > 18)
+            NPC.gameObject.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y, 0);
+
         npc.transform.position = new Vector3(-68, 26.5f, 0);
         NPC.SetActive(true);
         npcEnemy = FindFirstObjectByType<NPCEnemy>();
