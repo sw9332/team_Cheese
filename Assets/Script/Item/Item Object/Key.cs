@@ -6,6 +6,7 @@ public class Key : MonoBehaviour
 {
     private InventoryManager inventoryManager;
     private ItemManager itemManager;
+    public Dialogue dialogue;
     private DialogueManager dialogueManager;
     private DialogueContentManager dialogueContentManager;
     private TutorialManager tutorialManager;
@@ -30,6 +31,7 @@ public class Key : MonoBehaviour
                 ItemData itemToRemove = GetitemData(gameObject.tag, transform.position);
                 saveManager.itemDataCurrent.RemoveAll(item => item.tag == itemToRemove.tag && item.position == itemToRemove.position);
                 gameObject.SetActive(false);
+                dialogueManager.ShowDialogue(dialogue);
                 break;
             }
         }
