@@ -161,6 +161,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet")) StartCoroutine(PlayDamageAnimation());
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && this.gameObject.layer== LayerMask.NameToLayer("enemy"))
