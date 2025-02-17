@@ -70,6 +70,11 @@ public class TeddyBear : MonoBehaviour
                     break;
             }
         }
+
+        if (other.CompareTag("Chair") && this.gameObject.tag == "PinkTeddyBear")
+        {
+            if (this.gameObject.transform.position == new Vector3(-73.84f, 49.63f, 0)) UIManager.is_bear = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
