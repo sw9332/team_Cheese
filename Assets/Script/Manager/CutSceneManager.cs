@@ -340,6 +340,7 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
         Move = false;
+        playerControl.isMove = false;
 
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
@@ -348,6 +349,8 @@ public class CutSceneManager : MonoBehaviour
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
+
+        playerControl.StopDirection("Left");
 
         ChangePosition(playerControl.gameObject, -45.3f, 22, 0);
         ChangePosition(NPC.gameObject, -49.5f, 22.1f, 0);
@@ -360,9 +363,9 @@ public class CutSceneManager : MonoBehaviour
         NPC_Boss_Event3.SetActive(true);
 
         uiManager.InGameUI.SetActive(true);
-        albumManager.album = false;
         isCutScene = false;
         Move = true;
+        playerControl.isMove = true;
 
         while (!npcEnemy.event2) yield return null;
         yield return StartCoroutine(WaitForDialogue());
