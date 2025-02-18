@@ -270,6 +270,7 @@ public class NPC : MonoBehaviour
         speed = 0;
         RUSH_SPEED = 0;
         die = true;
+        player.StopDirection("Down");
         Hp.gameObject.SetActive(false);
         yield return new WaitForSeconds(3f);
         yield return StartCoroutine(cutSceneManager.CutScene_6());

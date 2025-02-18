@@ -340,7 +340,6 @@ public class CutSceneManager : MonoBehaviour
         albumManager.album = false;
         isCutScene = true;
         Move = false;
-        playerControl.StopDirection("Down");
 
         BlackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
