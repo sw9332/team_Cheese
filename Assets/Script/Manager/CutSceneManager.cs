@@ -349,8 +349,8 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         BlackBackground.gameObject.SetActive(false);
 
-        ChangePosition(playerControl.gameObject, 45.3f, 22, 0);
-        ChangePosition(NPC.gameObject, 49.5f, 22.1f, 0);
+        ChangePosition(playerControl.gameObject, -45.3f, 22, 0);
+        ChangePosition(NPC.gameObject, -49.5f, 22.1f, 0);
         ChangePosition(npc.gameObject, -68, 26.5f, 0);
 
         NPC.SetActive(true);
