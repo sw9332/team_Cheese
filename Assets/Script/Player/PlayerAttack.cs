@@ -175,12 +175,12 @@ public class PlayerAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Boss")) bossTrigger = true;
+        if (other.CompareTag("Boss")) bossTrigger = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        bossTrigger = false;
+        if (other.CompareTag("Boss")) bossTrigger = false;
     }
 
     void OnTriggerStay2D(Collider2D other)
