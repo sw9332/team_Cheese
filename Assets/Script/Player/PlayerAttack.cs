@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     private GameManager gameManager;
     private CutSceneManager cutSceneManager;
     public Bullet bullet;
+    private NPC npc;
     public Text bulletNumText;
 
     // 공격(공격 애니메이션)이 진행중인지 체크하는 변수
@@ -170,6 +171,23 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private bool bossTrigger = false;
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Boss")) bossTrigger = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        bossTrigger = false;
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && bossTrigger && npc.wall) meleeAttackMotion();
+    }
+
     void Update()
     {
         PlayerAttacks();
@@ -183,6 +201,7 @@ public class PlayerAttack : MonoBehaviour
         enemyManager = FindFirstObjectByType<EnemyManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         cutSceneManager = FindFirstObjectByType<CutSceneManager>();
+        npc = FindFirstObjectByType<NPC>();
 
         // Gizmo box size settings
         meleeAttackBoxSize = new Vector2(2.8f, 2.3f);
